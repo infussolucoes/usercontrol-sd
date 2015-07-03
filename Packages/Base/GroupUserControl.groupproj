@@ -1,0 +1,84 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{EAD768F4-B3FA-4B75-B757-0C390942BAF6}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="pckUCDataConnector.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="pckUCGlobal.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="pckUserControl_DT.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="pckUserControl_RT.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Historico\pckHistorico.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="pckUCDataConnector">
+        <MSBuild Projects="pckUCDataConnector.dproj"/>
+    </Target>
+    <Target Name="pckUCDataConnector:Clean">
+        <MSBuild Projects="pckUCDataConnector.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pckUCDataConnector:Make">
+        <MSBuild Projects="pckUCDataConnector.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pckUCGlobal">
+        <MSBuild Projects="pckUCGlobal.dproj"/>
+    </Target>
+    <Target Name="pckUCGlobal:Clean">
+        <MSBuild Projects="pckUCGlobal.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pckUCGlobal:Make">
+        <MSBuild Projects="pckUCGlobal.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pckUserControl_DT">
+        <MSBuild Projects="pckUserControl_DT.dproj"/>
+    </Target>
+    <Target Name="pckUserControl_DT:Clean">
+        <MSBuild Projects="pckUserControl_DT.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pckUserControl_DT:Make">
+        <MSBuild Projects="pckUserControl_DT.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pckUserControl_RT">
+        <MSBuild Projects="pckUserControl_RT.dproj"/>
+    </Target>
+    <Target Name="pckUserControl_RT:Clean">
+        <MSBuild Projects="pckUserControl_RT.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pckUserControl_RT:Make">
+        <MSBuild Projects="pckUserControl_RT.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pckHistorico">
+        <MSBuild Projects="..\Historico\pckHistorico.dproj"/>
+    </Target>
+    <Target Name="pckHistorico:Clean">
+        <MSBuild Projects="..\Historico\pckHistorico.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pckHistorico:Make">
+        <MSBuild Projects="..\Historico\pckHistorico.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="pckUCDataConnector;pckUCGlobal;pckUserControl_DT;pckUserControl_RT;pckHistorico"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="pckUCDataConnector:Clean;pckUCGlobal:Clean;pckUserControl_DT:Clean;pckUserControl_RT:Clean;pckHistorico:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="pckUCDataConnector:Make;pckUCGlobal:Make;pckUserControl_DT:Make;pckUserControl_RT:Make;pckHistorico:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
