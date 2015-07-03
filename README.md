@@ -1,4 +1,3 @@
-# usercontrol-sd
-User Control ShowDelphi Edition
-Versão dos Componentes User Control mantido pela Comunidade Show Delphi
-lkj
+# User Control ShowDelphi Edition
+
+Versão dos Componentes User Control mantido pela Comunidade Show Delphi.
