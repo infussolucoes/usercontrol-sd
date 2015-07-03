@@ -973,7 +973,7 @@ object FrmHistorico: TFrmHistorico
       Left = 49
       Top = 1
       Width = 193
-      Height = 47
+      Height = 24
       Align = alLeft
       Caption = 'Hist'#243'rico de Tabelas'
       Font.Charset = DEFAULT_CHARSET
@@ -983,7 +983,6 @@ object FrmHistorico: TFrmHistorico
       Font.Style = [fsBold]
       ParentFont = False
       Layout = tlCenter
-      ExplicitHeight = 24
     end
   end
   object Panel2: TPanel

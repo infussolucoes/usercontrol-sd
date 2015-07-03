@@ -30,9 +30,8 @@ object UCEditorForm: TUCEditorForm
       Top = 6
       Width = 100
       Height = 30
-      DoubleBuffered = True
       Kind = bkOK
-      ParentDoubleBuffered = False
+      NumGlyphs = 2
       TabOrder = 0
     end
     object btnClose: TBitBtn
@@ -41,7 +40,6 @@ object UCEditorForm: TUCEditorForm
       Width = 100
       Height = 30
       Caption = '&Fechar'
-      DoubleBuffered = True
       Glyph.Data = {
         B6020000424DB602000000000000B60100002800000010000000100000000100
         08000000000000010000120B0000120B0000600000006000000000000000FFFF
@@ -65,7 +63,6 @@ object UCEditorForm: TUCEditorForm
         254307474D4B4D3F4502020245302A2B292D07474D4B4D3F4502020245352E2C
         2E3207474D4B4D3F450202024545332F343107464A494A3F450202020202453C
         3744074545454545450202020202020245450702020202020202}
-      ParentDoubleBuffered = False
       TabOrder = 1
       OnClick = btnCloseClick
     end
@@ -98,7 +95,7 @@ object UCEditorForm: TUCEditorForm
       Left = 220
       Top = 0
       Width = 374
-      Height = 73
+      Height = 80
       Align = alRight
       AutoSize = True
       Picture.Data = {
@@ -367,7 +364,6 @@ object UCEditorForm: TUCEditorForm
         06CF6FB4C7C7FE3D5249F0ABC4CF6EB18D0C295E770BA8B27FF1EAFA2B637F74
         FE546C6FEE9FCA8B01F355CFC1EF15CBB443A2F18C906E62EBFF007D515F4D5B
         A36F3F29E9E945689684B3FFD9}
-      ExplicitHeight = 80
     end
   end
   object pnlCentro: TPanel
@@ -388,6 +384,10 @@ object UCEditorForm: TUCEditorForm
       TabOrder = 0
       object tabPrincipal: TTabSheet
         Caption = 'Principal'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel5: TPanel
           Left = 0
           Top = 0
@@ -562,6 +562,10 @@ object UCEditorForm: TUCEditorForm
       object tabControlRights: TTabSheet
         Caption = 'Control Rights'
         ImageIndex = 6
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label33: TLabel
           Left = 179
           Top = 117
@@ -842,6 +846,10 @@ object UCEditorForm: TUCEditorForm
       object tabUser: TTabSheet
         Caption = 'User'
         ImageIndex = 3
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label2: TLabel
           Left = 172
           Top = 122
@@ -896,6 +904,10 @@ object UCEditorForm: TUCEditorForm
       object tabUserProfile: TTabSheet
         Caption = 'User Profile'
         ImageIndex = 4
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label3: TLabel
           Left = 174
           Top = 128
@@ -948,6 +960,10 @@ object UCEditorForm: TUCEditorForm
       object tabUserPasswordChange: TTabSheet
         Caption = 'User Password Change'
         ImageIndex = 5
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label4: TLabel
           Left = 126
           Top = 252
@@ -1014,6 +1030,10 @@ object UCEditorForm: TUCEditorForm
       object tabLogControl: TTabSheet
         Caption = 'Log Control'
         ImageIndex = 1
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label25: TLabel
           Left = 140
           Top = 115
@@ -1235,6 +1255,10 @@ object UCEditorForm: TUCEditorForm
       object tabLogin: TTabSheet
         Caption = 'Login'
         ImageIndex = 2
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Label14: TLabel
           Left = 115
           Top = 25

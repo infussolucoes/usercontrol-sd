@@ -2,7 +2,7 @@ unit UCReg;
 
 interface
 
-{.$I 'UserControl.inc'}
+{ .$I 'UserControl.inc' }
 
 uses
   Classes,
@@ -19,7 +19,6 @@ type
     procedure Edit; override;
     function GetValue: String; override;
   end;
-
 
   TUCControlsEditor = class(TComponentEditor)
     procedure Edit; override;
@@ -66,18 +65,14 @@ uses
 
 procedure Register;
 begin
-  RegisterComponents('SWDelphi - UC Main',
-    [TUserControl,
-    TUCSettings,
-    TUCControls,
-    TUCApplicationMessage,
-    TUCIdle,
-    TMailUserControl
-    ]);
+  RegisterComponents('SWDelphi - UC Main', [TUserControl, TUCSettings,
+    TUCControls, TUCApplicationMessage, TUCIdle, TMailUserControl]);
 
-  RegisterPropertyEditor(TypeInfo(TUCAboutVar), TUserControl, 'About', TUCAboutVarProperty);
-  RegisterPropertyEditor(TypeInfo(TUCComponentsVar), TUserControl, 'Components', TUCComponentsVarProperty);
-  RegisterComponentEditor(TUCcontrols, TUCControlsEditor);
+  RegisterPropertyEditor(TypeInfo(TUCAboutVar), TUserControl, 'About',
+    TUCAboutVarProperty);
+  RegisterPropertyEditor(TypeInfo(TUCComponentsVar), TUserControl, 'Components',
+    TUCComponentsVarProperty);
+  RegisterComponentEditor(TUCControls, TUCControlsEditor);
   RegisterComponentEditor(TUserControl, TUserControlEditor);
 end;
 
@@ -120,23 +115,21 @@ end;
 
 procedure ShowUserControlsEditor(Componente: TUserControl);
 var
-  Editor:                           IOTAEditor;
-  Modulo:                           IOTAModule;
-  FormEditor:                       IOTAFormEditor;
-  I:                                Integer;
-  Formulario:                       TUCEditorForm;
-  UserControl:                      TUserControl;
-  Controle_Action ,
-  Controle_MainMenu ,
-  Controle_ActionManager,
-  Controle_ActionMainMenuBar :      String;
-  UserActionMenuItem:               String;
-  UserProfileActionMenuItem:        String;
-  LogControlActionMeuItem:          String;
+  Editor: IOTAEditor;
+  Modulo: IOTAModule;
+  FormEditor: IOTAFormEditor;
+  I: Integer;
+  Formulario: TUCEditorForm;
+  UserControl: TUserControl;
+  Controle_Action, Controle_MainMenu, Controle_ActionManager,
+    Controle_ActionMainMenuBar: String;
+  UserActionMenuItem: String;
+  UserProfileActionMenuItem: String;
+  LogControlActionMeuItem: String;
   UserPasswordChangeActionMenuItem: String;
-  FormularioDono:                   TForm;
+  FormularioDono: TForm;
 begin
-  UserControl    := Componente;
+  UserControl := Componente;
   FormularioDono := TForm(UserControl.Owner);
   try
     Formulario := TUCEditorForm.Create(nil, UserControl);
@@ -145,19 +138,19 @@ begin
     begin
       with UserControl do
       begin
-        ApplicationID                 := Formulario.edtApplicationID.Text;
-        AutoStart                     := Formulario.ckAutoStart.Checked;
-        CheckValidationKey            := Formulario.ckValidationKey.Checked;
-        EncryptKey                    := Formulario.spedtEncryptKey.Value;
-        TableRights.TableName         := Formulario.edtTableRights.Text;
-        TableUsers.TableName          := Formulario.edtTableUsers.Text;
+        ApplicationID := Formulario.edtApplicationID.Text;
+        AutoStart := Formulario.ckAutoStart.Checked;
+        CheckValidationKey := Formulario.ckValidationKey.Checked;
+        EncryptKey := Formulario.spedtEncryptKey.Value;
+        TableRights.TableName := Formulario.edtTableRights.Text;
+        TableUsers.TableName := Formulario.edtTableUsers.Text;
         NotAllowedItems.ActionVisible := Formulario.ckActionVisible.Checked;
-        NotAllowedItems.MenuVisible   := Formulario.ckMenuVisible.Checked;
-        Criptografia                  := TUCCriptografia(Formulario.cbCriptografia.ItemIndex);
-        LoginMode                     := TUCLoginMode(Formulario.cbLoginMode.ItemIndex);
+        NotAllowedItems.MenuVisible := Formulario.ckMenuVisible.Checked;
+        Criptografia := TUCCriptografia(Formulario.cbCriptografia.ItemIndex);
+        LoginMode := TUCLoginMode(Formulario.cbLoginMode.ItemIndex);
 
         if Formulario.cbActionList.ItemIndex >= 0 then
-          Controle_action := Formulario.cbActionList.Text;
+          Controle_Action := Formulario.cbActionList.Text;
 
         if Formulario.cbActionMainMenuBar.ItemIndex >= 0 then
           Controle_ActionMainMenuBar := Formulario.cbActionMainMenuBar.Text;
@@ -185,57 +178,77 @@ begin
           LogControlActionMeuItem := Formulario.cbLogControlMenuItem.Text;
 
         if Formulario.cbUserPasswordChangeAction.ItemIndex >= 0 then
-          UserPasswordChangeActionMenuItem := Formulario.cbUserPasswordChangeAction.Text;
+          UserPasswordChangeActionMenuItem :=
+            Formulario.cbUserPasswordChangeAction.Text;
         if Formulario.cbUserPasswordChangeMenuItem.ItemIndex >= 0 then
-          UserPasswordChangeActionMenuItem := Formulario.cbUserPasswordChangeMenuItem.Text;
-
+          UserPasswordChangeActionMenuItem :=
+            Formulario.cbUserPasswordChangeMenuItem.Text;
 
         for I := 0 to FormularioDono.ComponentCount - 1 do
         begin
-          if (FormularioDono.Components[I].Name = Controle_Action) and (Formulario.cbActionList.ItemIndex >= 0) then
-            ControlRight.ActionList := TActionList(FormularioDono.Components[I]);
+          if (FormularioDono.Components[I].Name = Controle_Action) and
+            (Formulario.cbActionList.ItemIndex >= 0) then
+            ControlRight.ActionList :=
+              TActionList(FormularioDono.Components[I]);
 
-          if (FormularioDono.Components[I].Name = Controle_ActionMainMenuBar ) and (Formulario.cbActionMainMenuBar.ItemIndex >= 0) then
-            ControlRight.ActionMainMenuBar := TActionMainMenuBar(UserControl.Owner.Components[I]);
+          if (FormularioDono.Components[I].Name = Controle_ActionMainMenuBar)
+            and (Formulario.cbActionMainMenuBar.ItemIndex >= 0) then
+            ControlRight.ActionMainMenuBar :=
+              TActionMainMenuBar(UserControl.Owner.Components[I]);
 
-          if (FormularioDono.Components[I].Name = Controle_ActionManager) and (Formulario.cbActionManager.ItemIndex >= 0) then
-            ControlRight.ActionManager := TActionManager(FormularioDono.Components[I]);
+          if (FormularioDono.Components[I].Name = Controle_ActionManager) and
+            (Formulario.cbActionManager.ItemIndex >= 0) then
+            ControlRight.ActionManager :=
+              TActionManager(FormularioDono.Components[I]);
 
-          if (FormularioDono.Components[I].Name = Controle_MainMenu) and (Formulario.cbMainMenu.ItemIndex >= 0) then
+          if (FormularioDono.Components[I].Name = Controle_MainMenu) and
+            (Formulario.cbMainMenu.ItemIndex >= 0) then
             ControlRight.MainMenu := TMainMenu(FormularioDono.Components[I]);
 
-          if (FormularioDono.Components[I].Name = UserActionMenuItem) and (Formulario.cbUserAction.ItemIndex >= 0) then
+          if (FormularioDono.Components[I].Name = UserActionMenuItem) and
+            (Formulario.cbUserAction.ItemIndex >= 0) then
             User.Action := TAction(FormularioDono.Components[I]);
-          if (FormularioDono.Components[I].Name = UserActionMenuItem) and (Formulario.cbUserMenuItem.ItemIndex >= 0) then
+          if (FormularioDono.Components[I].Name = UserActionMenuItem) and
+            (Formulario.cbUserMenuItem.ItemIndex >= 0) then
             User.MenuItem := TMenuItem(FormularioDono.Components[I]);
-          if (FormularioDono.Components[I].Name = UserPasswordChangeActionMenuItem) and (Formulario.cbUserPasswordChangeAction.ItemIndex >= 0) then
+          if (FormularioDono.Components[I]
+            .Name = UserPasswordChangeActionMenuItem) and
+            (Formulario.cbUserPasswordChangeAction.ItemIndex >= 0) then
             UserPasswordChange.Action := TAction(FormularioDono.Components[I]);
-          if (FormularioDono.Components[I].Name = UserPasswordChangeActionMenuItem) and (Formulario.cbUserPasswordChangeMenuItem.ItemIndex >= 0) then
-            UserPasswordChange.MenuItem := TMenuItem(FormularioDono.Components[I]);
+          if (FormularioDono.Components[I]
+            .Name = UserPasswordChangeActionMenuItem) and
+            (Formulario.cbUserPasswordChangeMenuItem.ItemIndex >= 0) then
+            UserPasswordChange.MenuItem :=
+              TMenuItem(FormularioDono.Components[I]);
         end;
 
-        User.UsePrivilegedField              := Formulario.ckUserUsePrivilegedField.Checked;
-        User.ProtectAdministrator            := Formulario.ckUserProtectAdministrator.Checked;
-        UserProfile.Active                   := Formulario.ckUserProfileActive.Checked;
-        UserPasswordChange.ForcePassword     := Formulario.ckUserPassowrdChangeForcePassword.Checked;
-        UserPasswordChange.MinPasswordLength := Formulario.spedtUserPasswordChangeMinPasswordLength.Value;
+        User.UsePrivilegedField := Formulario.ckUserUsePrivilegedField.Checked;
+        User.ProtectAdministrator :=
+          Formulario.ckUserProtectAdministrator.Checked;
+        UserProfile.Active := Formulario.ckUserProfileActive.Checked;
+        UserPasswordChange.ForcePassword :=
+          Formulario.ckUserPassowrdChangeForcePassword.Checked;
+        UserPasswordChange.MinPasswordLength :=
+          Formulario.spedtUserPasswordChangeMinPasswordLength.Value;
 
         LogControl.TableLog := Formulario.edtLogControlTableLog.Text;
-        LogControl.Active   := Formulario.ckLogControlActive.Checked;
+        LogControl.Active := Formulario.ckLogControlActive.Checked;
 
-        Login.MaxLoginAttempts           := Formulario.spedtMaxLoginAttempts.Value;
-        Login.GetLoginName               := TUCGetLoginName(Formulario.cbGetLoginName.ItemIndex);
-        Login.InitialLogin.User          := Formulario.edtInitialLoginUser.Text;
-        Login.InitialLogin.Password      := Formulario.edtInitialLoginPassword.Text;
-        Login.InitialLogin.Email         := Formulario.edtInitialLoginEmail.Text;
+        Login.MaxLoginAttempts := Formulario.spedtMaxLoginAttempts.Value;
+        Login.GetLoginName :=
+          TUCGetLoginName(Formulario.cbGetLoginName.ItemIndex);
+        Login.InitialLogin.User := Formulario.edtInitialLoginUser.Text;
+        Login.InitialLogin.Password := Formulario.edtInitialLoginPassword.Text;
+        Login.InitialLogin.Email := Formulario.edtInitialLoginEmail.Text;
         Login.InitialLogin.InitialRights := Formulario.mmInitialRights.Lines;
-        Login.AutoLogin.Active           := Formulario.ckLoginAutologinActive.Checked;
-        Login.AutoLogin.User             := Formulario.edtLoginAutoLoginUser.Text;
-        Login.AutoLogin.Password         := Formulario.edtLoginAutoLoginPassword.Text;
-        Login.AutoLogin.MessageOnError   := Formulario.ckLoginAutoLoginMessageOnError.Checked;
-        UserSettings.Login.TopImage      := Formulario.imgTop.Picture;
-        UserSettings.Login.LeftImage     := Formulario.imgLeft.Picture;
-        UserSettings.Login.BottomImage   := Formulario.imgBottom.Picture;
+        Login.AutoLogin.Active := Formulario.ckLoginAutologinActive.Checked;
+        Login.AutoLogin.User := Formulario.edtLoginAutoLoginUser.Text;
+        Login.AutoLogin.Password := Formulario.edtLoginAutoLoginPassword.Text;
+        Login.AutoLogin.MessageOnError :=
+          Formulario.ckLoginAutoLoginMessageOnError.Checked;
+        UserSettings.Login.TopImage := Formulario.imgTop.Picture;
+        UserSettings.Login.LeftImage := Formulario.imgLeft.Picture;
+        UserSettings.Login.BottomImage := Formulario.imgBottom.Picture;
       end;
 
       Modulo := (BorlandIDEServices as IOTAModuleServices).CurrentModule;
@@ -257,39 +270,43 @@ end;
 
 procedure ShowControlsEditor(Componente: TUCControls);
 var
-  FUCControl:  TUCControls;
-  FEditor:     IOTAEditor;
-  FModulo:     IOTAModule;
+  FUCControl: TUCControls;
+  FEditor: IOTAEditor;
+  FModulo: IOTAModule;
   FFormEditor: IOTAFormEditor;
-  I:           Integer;
+  I: Integer;
 begin
   FUCControl := Componente;
   if not Assigned(FUCControl.UserControl) then
   begin
-    MessageDlg('A propriedade UserControl tem que ser informada e o componente ' + #13 + #10 + 'tem que estar visível!', mtInformation, [mbOK], 0);
+    MessageDlg('A propriedade UserControl tem que ser informada e o componente '
+      + #13 + #10 + 'tem que estar visível!', mtInformation, [mbOK], 0);
     Exit;
   end;
 
   with TUCObjSel.Create(nil) do
   begin
-    FForm        := TCustomForm(FUCControl.Owner);
+    FForm := TCustomForm(FUCControl.Owner);
     FUserControl := FUCControl.UserControl;
     FInitialObjs := TStringList.Create;
     FUCControl.ListComponents(FForm.Name, FInitialObjs);
-    //TUCControls(Componente).ListComponents(FForm.Name, FInitialObjs);
-    lbGroup.Caption := FUCControl.GroupName;//TUCControls(Componente).GroupName;
+    // TUCControls(Componente).ListComponents(FForm.Name, FInitialObjs);
+    lbGroup.Caption := FUCControl.GroupName;
+    // TUCControls(Componente).GroupName;
     Show;
   end;
 
   try
-     FModulo := (BorlandIDEServices as IOTAModuleServices).FindFormModule(FUCControl.UserControl.Owner.Name);
+    FModulo := (BorlandIDEServices as IOTAModuleServices)
+      .FindFormModule(FUCControl.UserControl.Owner.Name);
   except
-     FModulo := Nil;
+    FModulo := Nil;
   end;
-  
+
   if FModulo = nil then
   begin
-    ShowMessage('Modulo ' + FUCControl.UserControl.Owner.Name + ' não encontrado!');
+    ShowMessage('Modulo ' + FUCControl.UserControl.Owner.Name +
+      ' não encontrado!');
     Exit;
   end
   else
@@ -305,7 +322,7 @@ begin
     end;
 end;
 
-{TUCControlsEditor}
+{ TUCControlsEditor }
 
 procedure TUCControlsEditor.Edit;
 begin
@@ -350,4 +367,3 @@ begin
 end;
 
 end.
-

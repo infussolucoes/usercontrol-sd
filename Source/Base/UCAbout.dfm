@@ -575,9 +575,9 @@ object AboutForm: TAboutForm
           OnClick = Image2Click
         end
         object lblVersao: TLabel
-          Left = 395
+          Left = 396
           Top = 81
-          Width = 72
+          Width = 71
           Height = 23
           Alignment = taRightJustify
           Anchors = [akTop, akRight]
@@ -826,8 +826,9 @@ object AboutForm: TAboutForm
           Top = 264
           Width = 75
           Height = 25
-          TabOrder = 0
           Kind = bkOK
+          NumGlyphs = 2
+          TabOrder = 0
         end
       end
     end
