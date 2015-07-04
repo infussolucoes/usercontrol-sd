@@ -9,6 +9,9 @@
         <Projects Include="UCADOConn\pckUCADOConn.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="UCFireDacCon\pckFireDacConn.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="pckUCADOConn:Make">
         <MSBuild Projects="UCADOConn\pckUCADOConn.dproj" Targets="Make"/>
     </Target>
+    <Target Name="pckFireDacConn">
+        <MSBuild Projects="UCFireDacCon\pckFireDacConn.dproj"/>
+    </Target>
+    <Target Name="pckFireDacConn:Clean">
+        <MSBuild Projects="UCFireDacCon\pckFireDacConn.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pckFireDacConn:Make">
+        <MSBuild Projects="UCFireDacCon\pckFireDacConn.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="pckUCMidasConn;pckUCADOConn"/>
+        <CallTarget Targets="pckUCMidasConn;pckUCADOConn;pckFireDacConn"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="pckUCMidasConn:Clean;pckUCADOConn:Clean"/>
+        <CallTarget Targets="pckUCMidasConn:Clean;pckUCADOConn:Clean;pckFireDacConn:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="pckUCMidasConn:Make;pckUCADOConn:Make"/>
+        <CallTarget Targets="pckUCMidasConn:Make;pckUCADOConn:Make;pckFireDacConn:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
