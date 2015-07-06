@@ -26,20 +26,12 @@ package pckUserControl_DT;
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'ShowDelphi - User Control'}
-{$DESIGNONLY}
+{$DESCRIPTION 'SWDelphi - User Control'}
 {$IMPLICITBUILD OFF}
 
 requires
   designide,
-  inet,
-  dbrtl,
-  vcldb,
-  VclSmp,
-  vclimg,
-  dsnap,
-  DbxCommonDriver,
-  dbexpress;
+  pckUserControl_RT;
 
 contains
   UCReg in '..\..\Source\Base\UCReg.pas',

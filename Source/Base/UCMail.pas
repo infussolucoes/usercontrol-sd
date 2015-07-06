@@ -1,33 +1,38 @@
-{-----------------------------------------------------------------------------
- Unit Name: UCMail
- Author:    QmD
- Date:      09-nov-2004
- Purpose: Send Mail messages (forget password, user add/change/password force/etc)
- History: included indy 10 support
------------------------------------------------------------------------------}
-
+{ -----------------------------------------------------------------------------
+  Unit Name: UCMail
+  Author:    QmD
+  Date:      09-nov-2004
+  Purpose: Send Mail messages (forget password, user add/change/password force/etc)
+  History: included indy 10 support
+  ----------------------------------------------------------------------------- }
 
 unit UCMail;
 
 interface
 
-{.$I 'UserControl.inc'}
-
+{ .$I 'UserControl.inc' }
 
 uses
   Classes,
   StdCtrls,
   Dialogs,
-  UCALSMTPClient,
   SysUtils,
+
+  {$IF CompilerVersion >= 23} {Delphi XE2}
+  System.UITypes,
+  {$IFEND}
+
+  ALSMTPClient,
+  ALInternetMessages,
+  ALStringList,
   UcConsts_Language;
 
 type
   TUCMailMessage = class(TPersistent)
   private
-    FAtivo:  Boolean;
+    FAtivo: Boolean;
     FTitulo: String;
-    FLines:  TStrings;
+    FLines: TStrings;
     procedure SetLines(const Value: TStrings);
   protected
   public
@@ -43,7 +48,7 @@ type
   TUCMEsqueceuSenha = class(TUCMailMessage)
   private
     FLabelLoginForm: String;
-    FMailEnviado:    String;
+    FMailEnviado: String;
   protected
   public
   published
@@ -55,45 +60,57 @@ type
 
   TMailUserControl = class(TComponent)
   private
-    FPorta:           Integer;
-    FEmailRemetente:  String;
-    FUsuario:         String;
-    FNomeRemetente:   String;
-    FSenha:           String;
-    FSMTPServer:      String;
+    FPorta: Integer;
+    FEmailRemetente: String;
+    FUsuario: String;
+    FNomeRemetente: String;
+    FSenha: String;
+    FSMTPServer: String;
     FAdicionaUsuario: TUCMailMessage;
-    FSenhaTrocada:    TUCMailMessage;
-    FAlteraUsuario:   TUCMailMessage;
-    FSenhaForcada:    TUCMailMessage;
-    FEsqueceuSenha:   TUCMEsqueceuSenha;
+    FSenhaTrocada: TUCMailMessage;
+    FAlteraUsuario: TUCMailMessage;
+    FSenhaForcada: TUCMailMessage;
+    FEsqueceuSenha: TUCMEsqueceuSenha;
     fAuthType: TAlSmtpClientAuthType;
-    function ParseMailMSG(Nome, Login, Senha, Email, Perfil, txt: String): String;
+    function ParseMailMSG(Nome, Login, Senha, Email, Perfil,
+      txt: String): String;
     procedure onStatus(Status: String);
-    function TrataSenha(Senha: String; Key: Word; GerarNova: Boolean; IDUser: Integer): String;
+    function TrataSenha(Senha: String; Key: Word; GerarNova: Boolean;
+      IDUser: Integer): String;
   protected
-    function EnviaEmailTp(Nome, Login, USenha, Email, Perfil: String; UCMSG: TUCMailMessage):Boolean;
+    function EnviaEmailTp(Nome, Login, USenha, Email, Perfil: String;
+      UCMSG: TUCMailMessage): Boolean;
   public
-    fUsercontrol : TComponent;
+    fUsercontrol: TComponent;
     constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
-    procedure   EnviaEmailAdicionaUsuario(Nome, Login, Senha, Email, Perfil: String; Key: Word);
-    procedure   EnviaEmailAlteraUsuario(Nome, Login, Senha, Email, Perfil: String; Key: Word);
-    procedure   EnviaEmailSenhaForcada(Nome, Login, Senha, Email, Perfil: String);
-    procedure   EnviaEmailSenhaTrocada(Nome, Login, Senha, Email, Perfil: String; Key: Word);
-    procedure   EnviaEsqueceuSenha(ID: Integer; Nome, Login, Senha, Email, Perfil: String );//Key: Word
+    destructor Destroy; override;
+    procedure EnviaEmailAdicionaUsuario(Nome, Login, Senha, Email,
+      Perfil: String; Key: Word);
+    procedure EnviaEmailAlteraUsuario(Nome, Login, Senha, Email, Perfil: String;
+      Key: Word);
+    procedure EnviaEmailSenhaForcada(Nome, Login, Senha, Email, Perfil: String);
+    procedure EnviaEmailSenhaTrocada(Nome, Login, Senha, Email, Perfil: String;
+      Key: Word);
+    procedure EnviaEsqueceuSenha(ID: Integer; Nome, Login, Senha, Email,
+      Perfil: String); // Key: Word
   published
-    property AuthType : TAlSmtpClientAuthType read fAuthType write fAuthType;
+    property AuthType: TAlSmtpClientAuthType read fAuthType write fAuthType;
     property ServidorSMTP: String read FSMTPServer write FSMTPServer;
     property Usuario: String read FUsuario write FUsuario;
     property Senha: String read FSenha write FSenha;
     property Porta: Integer read FPorta write FPorta default 0;
     property NomeRemetente: String read FNomeRemetente write FNomeRemetente;
     property EmailRemetente: String read FEmailRemetente write FEmailRemetente;
-    property AdicionaUsuario: TUCMailMessage read FAdicionaUsuario write FAdicionaUsuario;
-    property AlteraUsuario: TUCMailMessage read FAlteraUsuario write FAlteraUsuario;
-    property EsqueceuSenha: TUCMEsqueceuSenha read FEsqueceuSenha write FEsqueceuSenha;
-    property SenhaForcada: TUCMailMessage read FSenhaForcada write FSenhaForcada;
-    property SenhaTrocada: TUCMailMessage read FSenhaTrocada write FSenhaTrocada;
+    property AdicionaUsuario: TUCMailMessage read FAdicionaUsuario
+      write FAdicionaUsuario;
+    property AlteraUsuario: TUCMailMessage read FAlteraUsuario
+      write FAlteraUsuario;
+    property EsqueceuSenha: TUCMEsqueceuSenha read FEsqueceuSenha
+      write FEsqueceuSenha;
+    property SenhaForcada: TUCMailMessage read FSenhaForcada
+      write FSenhaForcada;
+    property SenhaTrocada: TUCMailMessage read FSenhaTrocada
+      write FSenhaTrocada;
   end;
 
 implementation
@@ -102,25 +119,29 @@ uses
   ucBase,
   UCEMailForm_U;
 
-function GeraSenha(Digitos: Integer; Min: Boolean; Mai: Boolean; Num: Boolean): string;
-  const
-    MinC = 'abcdef';
-    MaiC = 'ABCDEF';
-    NumC = '1234567890';
+function GeraSenha(Digitos: Integer; Min: Boolean; Mai: Boolean;
+  Num: Boolean): string;
+const
+  MinC = 'abcdef';
+  MaiC = 'ABCDEF';
+  NumC = '1234567890';
 var
-  p, q : Integer;
+  p, q: Integer;
   Char, Senha: String;
 begin
   Char := '';
-  If Min then Char := Char + MinC;
-  If Mai then Char := Char + MaiC;
-  If Num then Char := Char + NumC;
+  If Min then
+    Char := Char + MinC;
+  If Mai then
+    Char := Char + MaiC;
+  If Num then
+    Char := Char + NumC;
   for p := 1 to Digitos do
-    begin
-      Randomize;
-      q := Random(Length(Char)) + 1;
-      Senha := Senha + Char[q];
-    end;
+  begin
+    Randomize;
+    q := Random(Length(Char)) + 1;
+    Senha := Senha + Char[q];
+  end;
   Result := Senha;
 end;
 
@@ -130,7 +151,7 @@ procedure TUCMailMessage.Assign(Source: TPersistent);
 begin
   if Source is TUCMailMessage then
   begin
-    Self.Ativo  := TUCMailMessage(Source).Ativo;
+    Self.Ativo := TUCMailMessage(Source).Ativo;
     Self.Titulo := TUCMailMessage(Source).Titulo;
     Self.Mensagem.Assign(TUCMailMessage(Source).Mensagem);
   end
@@ -159,168 +180,137 @@ end;
 constructor TMailUserControl.Create(AOwner: TComponent);
 begin
   inherited;
-  AdicionaUsuario := TUCMailMessage.Create(self);
-  AdicionaUsuario.FLines.Add('<html> <head> <title>Inclusão de Senha</title> <style type="text/css"> <!-- body { 	margin-left: 0px; ' + #13#10 +
-                           'margin-top: 0px; 	margin-right: 0px; 	margin-bottom: 0px; } --> </style></head>' + #13#10 +
-                           '<body> <p>Atenção: <br>Senha criada com sucesso:</p>' +#13#10 +
-                           '<table width="100%" border="0" cellspacing="2" cellpadding="0"> ' +#13#10 +
-                           '<tr> ' +#13#10 +
-                           ' <td width="10%" align="right"><strong>Nome ..:&nbsp;</strong></td>' +#13#10 +
-                           '<td>:nome</td> ' +#13#10 +
-                           '</tr> ' +#13#10 +
-                           '<tr>' +
-                           '  <td align="right"><strong>Login ..:&nbsp;</strong></td>' +#13#10 +
-                           '  <td>:login</td>' +#13#10 +
-                           '</tr>' +#13#10 +
-                           '  <tr> ' +#13#10 +
-                           '    <td align="right"><strong>Nova Senha ..:&nbsp;</strong></td>' +#13#10 +
-                           '    <td>:senha</td>' +#13#10 +
-                           '  </tr> ' +#13#10 +
-                           '<tr> ' +#13#10 +
-                           '<td align="right"><strong>Email ..:&nbsp;</strong></td>' +#13#10 +
-                           '<td>:email</td>' +#13#10 +
-                           '</tr> ' +#13#10 +
-                           '<tr>' +#13#10 +
-                           '<td align="right"><strong>Perfil ..:&nbsp;</strong></td>' +#13#10 +
-                           '<td>:perfil</td> ' +#13#10 +
-                           '</tr>' +#13#10 +
-                           '</table>' +#13#10 +
-                           '<p>Atenciosamente,</p>' +#13#10 +
-                           '<p>Administrador do sistema</p></body></html>');
-  AdicionaUsuario.fTitulo := 'Inclusão de usuário';
+  AdicionaUsuario := TUCMailMessage.Create(Self);
+  AdicionaUsuario.FLines.Add
+    ('<html> <head> <title>Inclusão de Senha</title> <style type="text/css"> <!-- body { 	margin-left: 0px; '
+    + #13#10 +
+    'margin-top: 0px; 	margin-right: 0px; 	margin-bottom: 0px; } --> </style></head>'
+    + #13#10 + '<body> <p>Atenção: <br>Senha criada com sucesso:</p>' + #13#10 +
+    '<table width="100%" border="0" cellspacing="2" cellpadding="0"> ' + #13#10
+    + '<tr> ' + #13#10 +
+    ' <td width="10%" align="right"><strong>Nome ..:&nbsp;</strong></td>' +
+    #13#10 + '<td>:nome</td> ' + #13#10 + '</tr> ' + #13#10 + '<tr>' +
+    '  <td align="right"><strong>Login ..:&nbsp;</strong></td>' + #13#10 +
+    '  <td>:login</td>' + #13#10 + '</tr>' + #13#10 + '  <tr> ' + #13#10 +
+    '    <td align="right"><strong>Nova Senha ..:&nbsp;</strong></td>' + #13#10
+    + '    <td>:senha</td>' + #13#10 + '  </tr> ' + #13#10 + '<tr> ' + #13#10 +
+    '<td align="right"><strong>Email ..:&nbsp;</strong></td>' + #13#10 +
+    '<td>:email</td>' + #13#10 + '</tr> ' + #13#10 + '<tr>' + #13#10 +
+    '<td align="right"><strong>Perfil ..:&nbsp;</strong></td>' + #13#10 +
+    '<td>:perfil</td> ' + #13#10 + '</tr>' + #13#10 + '</table>' + #13#10 +
+    '<p>Atenciosamente,</p>' + #13#10 +
+    '<p>Administrador do sistema</p></body></html>');
+  AdicionaUsuario.FTitulo := 'Inclusão de usuário';
 
+  AlteraUsuario := TUCMailMessage.Create(Self);
+  AlteraUsuario.FLines.Add
+    ('<html> <head> <title>Alteração de Senha</title> <style type="text/css"> <!-- body { 	margin-left: 0px; '
+    + #13#10 +
+    'margin-top: 0px; 	margin-right: 0px; 	margin-bottom: 0px; } --> </style></head>'
+    + #13#10 +
+    '<body> <p>Atenção: <br> Você solicitou uma alteração de senha do sistema, sua senha foi alterada para a senha abaixo:</p>'
+    + #13#10 +
+    '<table width="100%" border="0" cellspacing="2" cellpadding="0"> ' + #13#10
+    + '<tr> ' + #13#10 +
+    ' <td width="10%" align="right"><strong>Nome ..:&nbsp;</strong></td>' +
+    #13#10 + '<td>:nome</td> ' + #13#10 + '</tr> ' + #13#10 + '<tr>' +
+    '  <td align="right"><strong>Login ..:&nbsp;</strong></td>' + #13#10 +
+    '  <td>:login</td>' + #13#10 + '</tr>' + #13#10 + '  <tr> ' + #13#10 +
+    '    <td align="right"><strong>Nova Senha ..:&nbsp;</strong></td>' + #13#10
+    + '    <td>:senha</td>' + #13#10 + '  </tr> ' + #13#10 + '<tr> ' + #13#10 +
+    '<td align="right"><strong>Email ..:&nbsp;</strong></td>' + #13#10 +
+    '<td>:email</td>' + #13#10 + '</tr> ' + #13#10 + '<tr>' + #13#10 +
+    '<td align="right"><strong>Perfil ..:&nbsp;</strong></td>' + #13#10 +
+    '<td>:perfil</td> ' + #13#10 + '</tr>' + #13#10 + '</table>' + #13#10 +
+    '<p>Atenciosamente,</p>' + #13#10 +
+    '<p>Administrador do sistema</p></body></html>');
+  AlteraUsuario.FTitulo := 'Alteração de usuário';
 
-  AlteraUsuario   := TUCMailMessage.Create(self);
-  AlteraUsuario.FLines.Add('<html> <head> <title>Alteração de Senha</title> <style type="text/css"> <!-- body { 	margin-left: 0px; ' + #13#10 +
-                           'margin-top: 0px; 	margin-right: 0px; 	margin-bottom: 0px; } --> </style></head>' + #13#10 +
-                           '<body> <p>Atenção: <br> Você solicitou uma alteração de senha do sistema, sua senha foi alterada para a senha abaixo:</p>' +#13#10 +
-                           '<table width="100%" border="0" cellspacing="2" cellpadding="0"> ' +#13#10 +
-                           '<tr> ' +#13#10 +
-                           ' <td width="10%" align="right"><strong>Nome ..:&nbsp;</strong></td>' +#13#10 +
-                           '<td>:nome</td> ' +#13#10 +
-                           '</tr> ' +#13#10 +
-                           '<tr>' +
-                           '  <td align="right"><strong>Login ..:&nbsp;</strong></td>' +#13#10 +
-                           '  <td>:login</td>' +#13#10 +
-                           '</tr>' +#13#10 +
-                           '  <tr> ' +#13#10 +
-                           '    <td align="right"><strong>Nova Senha ..:&nbsp;</strong></td>' +#13#10 +
-                           '    <td>:senha</td>' +#13#10 +
-                           '  </tr> ' +#13#10 +
-                           '<tr> ' +#13#10 +
-                           '<td align="right"><strong>Email ..:&nbsp;</strong></td>' +#13#10 +
-                           '<td>:email</td>' +#13#10 +
-                           '</tr> ' +#13#10 +
-                           '<tr>' +#13#10 +
-                           '<td align="right"><strong>Perfil ..:&nbsp;</strong></td>' +#13#10 +
-                           '<td>:perfil</td> ' +#13#10 +
-                           '</tr>' +#13#10 +
-                           '</table>' +#13#10 +
-                           '<p>Atenciosamente,</p>' +#13#10 +
-                           '<p>Administrador do sistema</p></body></html>');
-  AlteraUsuario.fTitulo := 'Alteração de usuário';
+  EsqueceuSenha := TUCMEsqueceuSenha.Create(Self);
+  EsqueceuSenha.FLines.Add
+    ('<html> <head> <title>Alteração de Senha</title> <style type="text/css"> <!-- body { 	margin-left: 0px; '
+    + #13#10 +
+    'margin-top: 0px; 	margin-right: 0px; 	margin-bottom: 0px; } --> </style></head>'
+    + #13#10 +
+    '<body> <p>Atenção: <br> Você solicitou um lembrete de senha do sistema, sua senha foi alterada para a senha abaixo:</p>'
+    + #13#10 +
+    '<table width="100%" border="0" cellspacing="2" cellpadding="0"> ' + #13#10
+    + '<tr> ' + #13#10 +
+    ' <td width="10%" align="right"><strong>Nome ..:&nbsp;</strong></td>' +
+    #13#10 + '<td>:nome</td> ' + #13#10 + '</tr> ' + #13#10 + '<tr>' +
+    '  <td align="right"><strong>Login ..:&nbsp;</strong></td>' + #13#10 +
+    '  <td>:login</td>' + #13#10 + '</tr>' + #13#10 + '  <tr> ' + #13#10 +
+    '    <td align="right"><strong>Nova Senha ..:&nbsp;</strong></td>' + #13#10
+    + '    <td>:senha</td>' + #13#10 + '  </tr> ' + #13#10 + '<tr> ' + #13#10 +
+    '<td align="right"><strong>Email ..:&nbsp;</strong></td>' + #13#10 +
+    '<td>:email</td>' + #13#10 + '</tr> ' + #13#10 + '<tr>' + #13#10 +
+    '<td align="right"><strong>Perfil ..:&nbsp;</strong></td>' + #13#10 +
+    '<td>:perfil</td> ' + #13#10 + '</tr>' + #13#10 + '</table>' + #13#10 +
+    '<p>Atenciosamente,</p>' + #13#10 +
+    '<p>Administrador do sistema</p></body></html>');
+  EsqueceuSenha.FTitulo := 'Alteração de Senha';
 
-  EsqueceuSenha   := TUCMEsqueceuSenha.Create(self);
-  EsqueceuSenha.FLines.Add('<html> <head> <title>Alteração de Senha</title> <style type="text/css"> <!-- body { 	margin-left: 0px; ' + #13#10 +
-                           'margin-top: 0px; 	margin-right: 0px; 	margin-bottom: 0px; } --> </style></head>' + #13#10 +
-                           '<body> <p>Atenção: <br> Você solicitou um lembrete de senha do sistema, sua senha foi alterada para a senha abaixo:</p>' +#13#10 +
-                           '<table width="100%" border="0" cellspacing="2" cellpadding="0"> ' +#13#10 +
-                           '<tr> ' +#13#10 +
-                           ' <td width="10%" align="right"><strong>Nome ..:&nbsp;</strong></td>' +#13#10 +
-                           '<td>:nome</td> ' +#13#10 +
-                           '</tr> ' +#13#10 +
-                           '<tr>' +
-                           '  <td align="right"><strong>Login ..:&nbsp;</strong></td>' +#13#10 +
-                           '  <td>:login</td>' +#13#10 +
-                           '</tr>' +#13#10 +
-                           '  <tr> ' +#13#10 +
-                           '    <td align="right"><strong>Nova Senha ..:&nbsp;</strong></td>' +#13#10 +
-                           '    <td>:senha</td>' +#13#10 +
-                           '  </tr> ' +#13#10 +
-                           '<tr> ' +#13#10 +
-                           '<td align="right"><strong>Email ..:&nbsp;</strong></td>' +#13#10 +
-                           '<td>:email</td>' +#13#10 +
-                           '</tr> ' +#13#10 +
-                           '<tr>' +#13#10 +
-                           '<td align="right"><strong>Perfil ..:&nbsp;</strong></td>' +#13#10 +
-                           '<td>:perfil</td> ' +#13#10 +
-                           '</tr>' +#13#10 +
-                           '</table>' +#13#10 +
-                           '<p>Atenciosamente,</p>' +#13#10 +
-                           '<p>Administrador do sistema</p></body></html>');
-  EsqueceuSenha.fTitulo := 'Alteração de Senha';
+  SenhaForcada := TUCMailMessage.Create(Self);
+  SenhaForcada.FLines.Add
+    ('<html> <head> <title>Alteração de Senha Forçada</title> <style type="text/css"> <!-- body { 	margin-left: 0px; '
+    + #13#10 +
+    'margin-top: 0px; 	margin-right: 0px; 	margin-bottom: 0px; } --> </style></head>'
+    + #13#10 +
+    '<body> <p>Atenção: <br> Você ou um administrador forçou a troca de sua senha do sistema, sua senha foi alterada para a senha abaixo:</p>'
+    + #13#10 +
+    '<table width="100%" border="0" cellspacing="2" cellpadding="0"> ' + #13#10
+    + '<tr> ' + #13#10 +
+    ' <td width="10%" align="right"><strong>Nome ..:&nbsp;</strong></td>' +
+    #13#10 + '<td>:nome</td> ' + #13#10 + '</tr> ' + #13#10 + '<tr>' +
+    '  <td align="right"><strong>Login ..:&nbsp;</strong></td>' + #13#10 +
+    '  <td>:login</td>' + #13#10 + '</tr>' + #13#10 + '  <tr> ' + #13#10 +
+    '    <td align="right"><strong>Nova Senha ..:&nbsp;</strong></td>' + #13#10
+    + '    <td>:senha</td>' + #13#10 + '  </tr> ' + #13#10 + '<tr> ' + #13#10 +
+    '<td align="right"><strong>Email ..:&nbsp;</strong></td>' + #13#10 +
+    '<td>:email</td>' + #13#10 + '</tr> ' + #13#10 + '<tr>' + #13#10 +
+    '<td align="right"><strong>Perfil ..:&nbsp;</strong></td>' + #13#10 +
+    '<td>:perfil</td> ' + #13#10 + '</tr>' + #13#10 + '</table>' + #13#10 +
+    '<p>Atenciosamente,</p>' + #13#10 +
+    '<p>Administrador do sistema</p></body></html>');
+  SenhaForcada.FTitulo := 'Troca de senha forçada';
 
-  SenhaForcada    := TUCMailMessage.Create(self);
-  SenhaForcada.FLines.Add('<html> <head> <title>Alteração de Senha Forçada</title> <style type="text/css"> <!-- body { 	margin-left: 0px; ' + #13#10 +
-                           'margin-top: 0px; 	margin-right: 0px; 	margin-bottom: 0px; } --> </style></head>' + #13#10 +
-                           '<body> <p>Atenção: <br> Você ou um administrador forçou a troca de sua senha do sistema, sua senha foi alterada para a senha abaixo:</p>' +#13#10 +
-                           '<table width="100%" border="0" cellspacing="2" cellpadding="0"> ' +#13#10 +
-                           '<tr> ' +#13#10 +
-                           ' <td width="10%" align="right"><strong>Nome ..:&nbsp;</strong></td>' +#13#10 +
-                           '<td>:nome</td> ' +#13#10 +
-                           '</tr> ' +#13#10 +
-                           '<tr>' +
-                           '  <td align="right"><strong>Login ..:&nbsp;</strong></td>' +#13#10 +
-                           '  <td>:login</td>' +#13#10 +
-                           '</tr>' +#13#10 +
-                           '  <tr> ' +#13#10 +
-                           '    <td align="right"><strong>Nova Senha ..:&nbsp;</strong></td>' +#13#10 +
-                           '    <td>:senha</td>' +#13#10 +
-                           '  </tr> ' +#13#10 +
-                           '<tr> ' +#13#10 +
-                           '<td align="right"><strong>Email ..:&nbsp;</strong></td>' +#13#10 +
-                           '<td>:email</td>' +#13#10 +
-                           '</tr> ' +#13#10 +
-                           '<tr>' +#13#10 +
-                           '<td align="right"><strong>Perfil ..:&nbsp;</strong></td>' +#13#10 +
-                           '<td>:perfil</td> ' +#13#10 +
-                           '</tr>' +#13#10 +
-                           '</table>' +#13#10 +
-                           '<p>Atenciosamente,</p>' +#13#10 +
-                           '<p>Administrador do sistema</p></body></html>');
-  SenhaForcada.fTitulo := 'Troca de senha forçada';
+  SenhaTrocada := TUCMailMessage.Create(Self);
+  SenhaTrocada.FLines.Add
+    ('<html> <head> <title>Alteração de Senha</title> <style type="text/css"> <!-- body { 	margin-left: 0px; '
+    + #13#10 +
+    'margin-top: 0px; 	margin-right: 0px; 	margin-bottom: 0px; } --> </style></head>'
+    + #13#10 +
+    '<body> <p>Atenção: <br> Você alterou sua senha do sistema, sua senha foi alterada para a senha abaixo:</p>'
+    + #13#10 +
+    '<table width="100%" border="0" cellspacing="2" cellpadding="0"> ' + #13#10
+    + '<tr> ' + #13#10 +
+    ' <td width="10%" align="right"><strong>Nome ..:&nbsp;</strong></td>' +
+    #13#10 + '<td>:nome</td> ' + #13#10 + '</tr> ' + #13#10 + '<tr>' +
+    '  <td align="right"><strong>Login ..:&nbsp;</strong></td>' + #13#10 +
+    '  <td>:login</td>' + #13#10 + '</tr>' + #13#10 + '  <tr> ' + #13#10 +
+    '    <td align="right"><strong>Nova Senha ..:&nbsp;</strong></td>' + #13#10
+    + '    <td>:senha</td>' + #13#10 + '  </tr> ' + #13#10 + '<tr> ' + #13#10 +
+    '<td align="right"><strong>Email ..:&nbsp;</strong></td>' + #13#10 +
+    '<td>:email</td>' + #13#10 + '</tr> ' + #13#10 + '<tr>' + #13#10 +
+    '<td align="right"><strong>Perfil ..:&nbsp;</strong></td>' + #13#10 +
+    '<td>:perfil</td> ' + #13#10 + '</tr>' + #13#10 + '</table>' + #13#10 +
+    '<p>Atenciosamente,</p>' + #13#10 +
+    '<p>Administrador do sistema</p></body></html>');
+  SenhaTrocada.FTitulo := 'Alteração de senha';
 
-  SenhaTrocada    := TUCMailMessage.Create(self);
-  SenhaTrocada.FLines.Add('<html> <head> <title>Alteração de Senha</title> <style type="text/css"> <!-- body { 	margin-left: 0px; ' + #13#10 +
-                           'margin-top: 0px; 	margin-right: 0px; 	margin-bottom: 0px; } --> </style></head>' + #13#10 +
-                           '<body> <p>Atenção: <br> Você alterou sua senha do sistema, sua senha foi alterada para a senha abaixo:</p>' +#13#10 +
-                           '<table width="100%" border="0" cellspacing="2" cellpadding="0"> ' +#13#10 +
-                           '<tr> ' +#13#10 +
-                           ' <td width="10%" align="right"><strong>Nome ..:&nbsp;</strong></td>' +#13#10 +
-                           '<td>:nome</td> ' +#13#10 +
-                           '</tr> ' +#13#10 +
-                           '<tr>' +
-                           '  <td align="right"><strong>Login ..:&nbsp;</strong></td>' +#13#10 +
-                           '  <td>:login</td>' +#13#10 +
-                           '</tr>' +#13#10 +
-                           '  <tr> ' +#13#10 +
-                           '    <td align="right"><strong>Nova Senha ..:&nbsp;</strong></td>' +#13#10 +
-                           '    <td>:senha</td>' +#13#10 +
-                           '  </tr> ' +#13#10 +
-                           '<tr> ' +#13#10 +
-                           '<td align="right"><strong>Email ..:&nbsp;</strong></td>' +#13#10 +
-                           '<td>:email</td>' +#13#10 +
-                           '</tr> ' +#13#10 +
-                           '<tr>' +#13#10 +
-                           '<td align="right"><strong>Perfil ..:&nbsp;</strong></td>' +#13#10 +
-                           '<td>:perfil</td> ' +#13#10 +
-                           '</tr>' +#13#10 +
-                           '</table>' +#13#10 +
-                           '<p>Atenciosamente,</p>' +#13#10 +
-                           '<p>Administrador do sistema</p></body></html>');
-  SenhaTrocada.fTitulo := 'Alteração de senha';
-
-  fAuthType       := alsmtpClientAuthPlain;
+  fAuthType := alsmtpClientAuthPlain;
   if csDesigning in ComponentState then
   begin
-    Porta                              := 25;
-    AdicionaUsuario.Ativo              := True;
-    AlteraUsuario.Ativo                := True;
-    EsqueceuSenha.Ativo                := True;
-    SenhaForcada.Ativo                 := True;
-    SenhaTrocada.Ativo                 := True;
-    EsqueceuSenha.LabelLoginForm       := RetornaLingua( ucPortuguesBr, 'Const_Log_LbEsqueciSenha');
-    EsqueceuSenha.MensagemEmailEnviado := RetornaLingua( ucPortuguesBr,'Const_Log_MsgMailSend');
+    Porta := 25;
+    AdicionaUsuario.Ativo := True;
+    AlteraUsuario.Ativo := True;
+    EsqueceuSenha.Ativo := True;
+    SenhaForcada.Ativo := True;
+    SenhaTrocada.Ativo := True;
+    EsqueceuSenha.LabelLoginForm := RetornaLingua(ucPortuguesBr,
+      'Const_Log_LbEsqueciSenha');
+    EsqueceuSenha.MensagemEmailEnviado := RetornaLingua(ucPortuguesBr,
+      'Const_Log_MsgMailSend');
   end;
 
 end;
@@ -336,59 +326,67 @@ begin
   inherited;
 end;
 
-procedure TMailUserControl.EnviaEmailAdicionaUsuario(Nome, Login, Senha, Email, Perfil: String; Key: Word);
+procedure TMailUserControl.EnviaEmailAdicionaUsuario(Nome, Login, Senha, Email,
+  Perfil: String; Key: Word);
 begin
-  Senha := TrataSenha(Senha, Key, False,0);
-  EnviaEmailTP(Nome, Login, Senha, Email, Perfil, AdicionaUsuario);
+  Senha := TrataSenha(Senha, Key, False, 0);
+  EnviaEmailTp(Nome, Login, Senha, Email, Perfil, AdicionaUsuario);
 end;
 
-procedure TMailUserControl.EnviaEmailAlteraUsuario(Nome, Login, Senha, Email, Perfil: String; Key: Word);
+procedure TMailUserControl.EnviaEmailAlteraUsuario(Nome, Login, Senha, Email,
+  Perfil: String; Key: Word);
 begin
-  Senha := TrataSenha(Senha, Key,False,0);
-  EnviaEmailTP(Nome, Login, Senha, Email, Perfil, AlteraUsuario);
+  Senha := TrataSenha(Senha, Key, False, 0);
+  EnviaEmailTp(Nome, Login, Senha, Email, Perfil, AlteraUsuario);
 end;
 
-procedure TMailUserControl.EnviaEmailSenhaForcada(Nome, Login, Senha, Email, Perfil: String);
+procedure TMailUserControl.EnviaEmailSenhaForcada(Nome, Login, Senha, Email,
+  Perfil: String);
 begin
-  EnviaEmailTP(Nome, Login, Senha, Email, Perfil, SenhaForcada);
+  EnviaEmailTp(Nome, Login, Senha, Email, Perfil, SenhaForcada);
 end;
 
-procedure TMailUserControl.EnviaEmailSenhaTrocada(Nome, Login, Senha, Email, Perfil: String; Key: Word);
+procedure TMailUserControl.EnviaEmailSenhaTrocada(Nome, Login, Senha, Email,
+  Perfil: String; Key: Word);
 begin
-  EnviaEmailTP(Nome, Login, Senha, Email, Perfil, SenhaTrocada);
+  EnviaEmailTp(Nome, Login, Senha, Email, Perfil, SenhaTrocada);
 end;
 
-function TMailUserControl.ParseMailMSG(Nome, Login, Senha, Email, Perfil, txt: String): String;
+function TMailUserControl.ParseMailMSG(Nome, Login, Senha, Email, Perfil,
+  txt: String): String;
 begin
-  Txt    := StringReplace(txt, ':nome', nome, [rfReplaceAll]);
-  Txt    := StringReplace(txt, ':login', login, [rfReplaceAll]);
-  Txt    := StringReplace(txt, ':senha', senha, [rfReplaceAll]);
-  Txt    := StringReplace(txt, ':email', email, [rfReplaceAll]);
-  Txt    := StringReplace(txt, ':perfil', perfil, [rfReplaceAll]);
-  Result := Txt;
+  txt := StringReplace(txt, ':nome', Nome, [rfReplaceAll]);
+  txt := StringReplace(txt, ':login', Login, [rfReplaceAll]);
+  txt := StringReplace(txt, ':senha', Senha, [rfReplaceAll]);
+  txt := StringReplace(txt, ':email', Email, [rfReplaceAll]);
+  txt := StringReplace(txt, ':perfil', Perfil, [rfReplaceAll]);
+  Result := txt;
 end;
 
-procedure TMailUserControl.onStatus( Status : String );
+procedure TMailUserControl.onStatus(Status: String);
 begin
-  if not Assigned(UCEMailForm) then Exit;
+  if not Assigned(UCEMailForm) then
+    Exit;
   UCEMailForm.lbStatus.Caption := Status;
   UCEMailForm.Update;
 end;
 
-Function TMailUserControl.EnviaEmailTp(Nome, Login, USenha, Email, Perfil: String; UCMSG: TUCMailMessage):Boolean;
+Function TMailUserControl.EnviaEmailTp(Nome, Login, USenha, Email,
+  Perfil: String; UCMSG: TUCMailMessage): Boolean;
 var
-  MailMsg :  TAlSmtpClient;
-  MailRecipients : TStringlist;
-  MailHeader : TALSMTPClientHeader;
+  MailMsg: TAlSmtpClient;
+  MailRecipients: TALStrings;
+  MailHeader: TALEmailHeader;
 begin
   Result := False;
-  if Trim(Email) = '' then Exit;
-  MailMsg                := TAlSmtpClient.Create;
-  MailMsg.OnStatus       := OnStatus;
-  MailRecipients         := TStringlist.Create;
-  MailHeader             := TALSMTPClientHeader.Create;
-  MailHeader.From        := EmailRemetente;
-  MailHeader.SendTo      := Email ;
+  if Trim(Email) = '' then
+    Exit;
+  MailMsg := TAlSmtpClient.Create;
+  // MailMsg.OnStatus       := OnStatus;
+  MailRecipients := TALStrings.Create;
+  MailHeader := TALEmailHeader.Create;
+  MailHeader.From := EmailRemetente;
+  MailHeader.SendTo := Email;
   MailHeader.ContentType := 'text/html';
   MailRecipients.Append(Email);
   MailHeader.Subject := UCMSG.Titulo;
@@ -399,18 +397,18 @@ begin
       UCEMailForm.lbStatus.Caption := '';
       UCEMailForm.Show;
       UCEMailForm.Update;
-      
-      MailMsg.SendMail(ServidorSMTP, FPorta, EmailRemetente,
-        MailRecipients, Usuario, Senha, fAuthType, MailHeader.RawHeaderText,
+
+      MailMsg.SendMail(ServidorSMTP, FPorta, EmailRemetente, MailRecipients,
+        Usuario, Senha, fAuthType, MailHeader.RawHeaderText,
         ParseMailMSG(Nome, Login, USenha, Email, Perfil, UCMSG.Mensagem.Text));
-      
+
       UCEMailForm.Update;
       Result := True;
     except
       on e: Exception do
       begin
         UCEMailForm.Close;
-        MessageDlg(E.Message,mtWarning,[mbok],0);
+        MessageDlg(e.Message, mtWarning, [mbok], 0);
         raise;
       end;
     end;
@@ -422,27 +420,35 @@ begin
   end;
 end;
 
-procedure TMailUserControl.EnviaEsqueceuSenha(ID: Integer; Nome, Login, Senha, Email, Perfil: String );
-Var NovaSenha : String;
+procedure TMailUserControl.EnviaEsqueceuSenha(ID: Integer;
+  Nome, Login, Senha, Email, Perfil: String);
+Var
+  NovaSenha: String;
 begin
   if Length(Trim(Email)) <> 0 then
-    Begin
-      try
-        NovaSenha := TrataSenha( Senha, 0 ,True,ID);
-        If EnviaEmailTP(Nome, Login, NovaSenha, Email, Perfil, EsqueceuSenha) = true then
-          Begin
-            TUserControl(fUsercontrol).ChangePassword( ID , NovaSenha );
-            MessageDlg(EsqueceuSenha.MensagemEmailEnviado, mtInformation, [mbOK], 0);
-          End
-        else MessageDlg('Não foi possivel enviar nova senha',mtInformation,[mbok],0);
-      except
-      end;
-    End;
+  Begin
+    try
+      NovaSenha := TrataSenha(Senha, 0, True, ID);
+      If EnviaEmailTp(Nome, Login, NovaSenha, Email, Perfil, EsqueceuSenha) = True
+      then
+      Begin
+        TUserControl(fUsercontrol).ChangePassword(ID, NovaSenha);
+        MessageDlg(EsqueceuSenha.MensagemEmailEnviado, mtInformation,
+          [mbok], 0);
+      End
+      else
+        MessageDlg('Não foi possivel enviar nova senha', mtInformation,
+          [mbok], 0);
+    except
+    end;
+  End;
 end;
 {$WARNINGS OFF}
-function TMailUserControl.TrataSenha(Senha: String; Key: Word; GerarNova : Boolean; IDUser: Integer ): String;
+
+function TMailUserControl.TrataSenha(Senha: String; Key: Word;
+  GerarNova: Boolean; IDUser: Integer): String;
 Var
-  Min , Mai : Boolean;
+  Min, Mai: Boolean;
 begin
   Min := True;
   Mai := True;
@@ -452,27 +458,27 @@ begin
     Min := False;
 
   if TUserControl(fUsercontrol).Criptografia = cPadrao then
+  Begin
+    if GerarNova = True then
     Begin
-      if GerarNova = True then
-        Begin
-          //Aqui o componente irar gerar uma nova senha e enviar para o usuario
-          Senha  := GeraSenha(10,Min,Mai,True);
-          Result := Senha;
-        End
-      else
-        Result := Decrypt(Senha, Key);
+      // Aqui o componente irar gerar uma nova senha e enviar para o usuario
+      Senha := GeraSenha(10, Min, Mai, True);
+      Result := Senha;
     End
+    else
+      Result := Decrypt(Senha, Key);
+  End
   else
+  Begin
+    if GerarNova = True then
     Begin
-      if GerarNova = True then
-        Begin
-          //Aqui o componente irar gerar uma nova senha e enviar para o usuario
-          Senha  := GeraSenha(10,Min,Mai,True);
-          Result := Senha;
-        End
-      else
-        Result := '';
-    End;
+      // Aqui o componente irar gerar uma nova senha e enviar para o usuario
+      Senha := GeraSenha(10, Min, Mai, True);
+      Result := Senha;
+    End
+    else
+      Result := '';
+  End;
 end;
 {$WARNINGS ON}
 

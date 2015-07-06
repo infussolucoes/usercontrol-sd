@@ -64,7 +64,7 @@ Type
   end;
 
   TUCUserHistory = class(TPersistent)
-  // armazenar menuitem ou action responsavel pelo historico
+    // armazenar menuitem ou action responsavel pelo historico
   private
     FAction: TAction;
     FMenuItem: TMenuItem;

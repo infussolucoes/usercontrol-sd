@@ -25,15 +25,13 @@ package pckUCMidasConn;
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'ShowDelphi - User Control Midas Connector'}
-{$IMPLICITBUILD ON}
+{$DESCRIPTION 'SWDelphi - User Control Midas Connector'}
+{$IMPLICITBUILD OFF}
 
 requires
   designide,
-  dbrtl,
-  dsnap,
-  rtl,
-  pckUserControl_DT;
+  pckUCDataConnector,
+  dsnap;
 
 contains
   UCMidasConn in '..\..\..\Source\Connectors\UCMidasConn\UCMidasConn.pas',

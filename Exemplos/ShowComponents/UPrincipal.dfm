@@ -1,9 +1,9 @@
-object frmPrincipal: TfrmPrincipal
+object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'frmPrincipal'
-  ClientHeight = 445
-  ClientWidth = 664
+  Caption = 'Visualizando os componentes Instalados'
+  ClientHeight = 299
+  ClientWidth = 573
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,19 +14,14 @@ object frmPrincipal: TfrmPrincipal
   PixelsPerInch = 96
   TextHeight = 13
   object UserControl1: TUserControl
-    AutoStart = True
     ApplicationID = 'ProjetoNovo'
-    ControlRight.ActionList = ActionList1
-    User.Action = actUsuarios
-    UserPasswordChange.Action = actTrocadoUsuario
-    UsersLogoff.Action = actlongoff
     LogControl.TableLog = 'UCLog'
     Language = ucPortuguesBr
     EncryptKey = 0
     Login.InitialLogin.User = 'admin'
     Login.InitialLogin.Email = 'usercontrol@usercontrol.net'
     Login.InitialLogin.Password = '123mudar'
-    Login.MaxLoginAttempts = 3
+    Login.MaxLoginAttempts = 0
     ExtraRights = <>
     TableUsers.FieldUserID = 'UCIdUser'
     TableUsers.FieldUserName = 'UCUserName'
@@ -54,8 +49,7 @@ object frmPrincipal: TfrmPrincipal
     TableUsersLogged.FieldMachineName = 'UCMachineName'
     TableUsersLogged.FieldData = 'UCData'
     TableUsersLogged.TableName = 'UCTabUsersLogged'
-    DataConnector = UCFireDACConn1
-    Left = 48
+    Left = 112
     Top = 32
   end
   object UCSettings1: TUCSettings
@@ -282,7 +276,7 @@ object frmPrincipal: TfrmPrincipal
     ChangePassword.BtCancel = 'Cancelar'
     ResetPassword.WindowCaption = 'Definir senha do usu'#225'rio : "%s"'
     ResetPassword.LabelPassword = 'Senha :'
-    BancoDados = SqlServer
+    BancoDados = Firebird
     Language = ucPortuguesBr
     UsersLogged.BtnMessage = '&Mensagem'
     UsersLogged.BtnRefresh = '&Atualizar'
@@ -296,58 +290,186 @@ object frmPrincipal: TfrmPrincipal
     UsersLogged.InputCaption = 'Mensagem'
     UsersLogged.InputText = 'Digite sua mensagem'
     UsersLogged.MsgSystem = 'Mensagem do sistema'
-    Left = 144
-    Top = 40
+    Left = 112
+    Top = 96
+  end
+  object UCControls1: TUCControls
+    Components = ''
+    Left = 112
+    Top = 160
+  end
+  object UCApplicationMessage1: TUCApplicationMessage
+    Active = True
+    Interval = 60000
+    TableMessages = 'UCTABMESSAGES'
+    Left = 112
+    Top = 224
+  end
+  object UCIdle1: TUCIdle
+    Timeout = 0
+    Left = 208
+    Top = 32
+  end
+  object MailUserControl1: TMailUserControl
+    AuthType = alsmtpClientAuthPlain
+    Porta = 25
+    AdicionaUsuario.Ativo = True
+    AdicionaUsuario.Titulo = 'Inclus'#227'o de usu'#225'rio'
+    AdicionaUsuario.Mensagem.Strings = (
+      
+        '<html> <head> <title>Inclus'#227'o de Senha</title> <style type="text' +
+        '/css"> <!-- body { '#9'margin-left: 0px; '#13#10'margin-top: 0px; '#9'margin' +
+        '-right: 0px; '#9'margin-bottom: 0px; } --> </style></head>'#13#10'<body> ' +
+        '<p>Aten'#231#227'o: <br>Senha criada com sucesso:</p>'#13#10'<table width="100' +
+        '%" border="0" cellspacing="2" cellpadding="0"> '#13#10'<tr> '#13#10' <td wid' +
+        'th="10%" align="right"><strong>Nome ..:&nbsp;</strong></td>'#13#10'<td' +
+        '>:nome</td> '#13#10'</tr> '#13#10'<tr>  <td align="right"><strong>Login ..:&' +
+        'nbsp;</strong></td>'#13#10'  <td>:login</td>'#13#10'</tr>'#13#10'  <tr> '#13#10'    <td ' +
+        'align="right"><strong>Nova Senha ..:&nbsp;</strong></td>'#13#10'    <t' +
+        'd>:senha</td>'#13#10'  </tr> '#13#10'<tr> '#13#10'<td align="right"><strong>Email ' +
+        '..:&nbsp;</strong></td>'#13#10'<td>:email</td>'#13#10'</tr> '#13#10'<tr>'#13#10'<td alig' +
+        'n="right"><strong>Perfil ..:&nbsp;</strong></td>'#13#10'<td>:perfil</t' +
+        'd> '#13#10'</tr>'#13#10'</table>'#13#10'<p>Atenciosamente,</p>'#13#10'<p>Administrador d' +
+        'o sistema</p></body></html>')
+    AlteraUsuario.Ativo = True
+    AlteraUsuario.Titulo = 'Altera'#231#227'o de usu'#225'rio'
+    AlteraUsuario.Mensagem.Strings = (
+      
+        '<html> <head> <title>Altera'#231#227'o de Senha</title> <style type="tex' +
+        't/css"> <!-- body { '#9'margin-left: 0px; '#13#10'margin-top: 0px; '#9'margi' +
+        'n-right: 0px; '#9'margin-bottom: 0px; } --> </style></head>'#13#10'<body>' +
+        ' <p>Aten'#231#227'o: <br> Voc'#234' solicitou uma altera'#231#227'o de senha do siste' +
+        'ma, sua senha foi alterada para a senha abaixo:</p>'#13#10'<table widt' +
+        'h="100%" border="0" cellspacing="2" cellpadding="0"> '#13#10'<tr> '#13#10' <' +
+        'td width="10%" align="right"><strong>Nome ..:&nbsp;</strong></td' +
+        '>'#13#10'<td>:nome</td> '#13#10'</tr> '#13#10'<tr>  <td align="right"><strong>Logi' +
+        'n ..:&nbsp;</strong></td>'#13#10'  <td>:login</td>'#13#10'</tr>'#13#10'  <tr> '#13#10'  ' +
+        '  <td align="right"><strong>Nova Senha ..:&nbsp;</strong></td>'#13#10 +
+        '    <td>:senha</td>'#13#10'  </tr> '#13#10'<tr> '#13#10'<td align="right"><strong>' +
+        'Email ..:&nbsp;</strong></td>'#13#10'<td>:email</td>'#13#10'</tr> '#13#10'<tr>'#13#10'<t' +
+        'd align="right"><strong>Perfil ..:&nbsp;</strong></td>'#13#10'<td>:per' +
+        'fil</td> '#13#10'</tr>'#13#10'</table>'#13#10'<p>Atenciosamente,</p>'#13#10'<p>Administr' +
+        'ador do sistema</p></body></html>')
+    EsqueceuSenha.Ativo = True
+    EsqueceuSenha.Titulo = 'Altera'#231#227'o de Senha'
+    EsqueceuSenha.Mensagem.Strings = (
+      
+        '<html> <head> <title>Altera'#231#227'o de Senha</title> <style type="tex' +
+        't/css"> <!-- body { '#9'margin-left: 0px; '#13#10'margin-top: 0px; '#9'margi' +
+        'n-right: 0px; '#9'margin-bottom: 0px; } --> </style></head>'#13#10'<body>' +
+        ' <p>Aten'#231#227'o: <br> Voc'#234' solicitou um lembrete de senha do sistema' +
+        ', sua senha foi alterada para a senha abaixo:</p>'#13#10'<table width=' +
+        '"100%" border="0" cellspacing="2" cellpadding="0"> '#13#10'<tr> '#13#10' <td' +
+        ' width="10%" align="right"><strong>Nome ..:&nbsp;</strong></td>'#13 +
+        #10'<td>:nome</td> '#13#10'</tr> '#13#10'<tr>  <td align="right"><strong>Login ' +
+        '..:&nbsp;</strong></td>'#13#10'  <td>:login</td>'#13#10'</tr>'#13#10'  <tr> '#13#10'    ' +
+        '<td align="right"><strong>Nova Senha ..:&nbsp;</strong></td>'#13#10'  ' +
+        '  <td>:senha</td>'#13#10'  </tr> '#13#10'<tr> '#13#10'<td align="right"><strong>Em' +
+        'ail ..:&nbsp;</strong></td>'#13#10'<td>:email</td>'#13#10'</tr> '#13#10'<tr>'#13#10'<td ' +
+        'align="right"><strong>Perfil ..:&nbsp;</strong></td>'#13#10'<td>:perfi' +
+        'l</td> '#13#10'</tr>'#13#10'</table>'#13#10'<p>Atenciosamente,</p>'#13#10'<p>Administrad' +
+        'or do sistema</p></body></html>')
+    EsqueceuSenha.LabelLoginForm = 'Esqueci a senha'
+    EsqueceuSenha.MensagemEmailEnviado = 'A senha foi enviada para o seu email.'
+    SenhaForcada.Ativo = True
+    SenhaForcada.Titulo = 'Troca de senha for'#231'ada'
+    SenhaForcada.Mensagem.Strings = (
+      
+        '<html> <head> <title>Altera'#231#227'o de Senha For'#231'ada</title> <style t' +
+        'ype="text/css"> <!-- body { '#9'margin-left: 0px; '#13#10'margin-top: 0px' +
+        '; '#9'margin-right: 0px; '#9'margin-bottom: 0px; } --> </style></head>' +
+        #13#10'<body> <p>Aten'#231#227'o: <br> Voc'#234' ou um administrador for'#231'ou a troc' +
+        'a de sua senha do sistema, sua senha foi alterada para a senha a' +
+        'baixo:</p>'#13#10'<table width="100%" border="0" cellspacing="2" cellp' +
+        'adding="0"> '#13#10'<tr> '#13#10' <td width="10%" align="right"><strong>Nome' +
+        ' ..:&nbsp;</strong></td>'#13#10'<td>:nome</td> '#13#10'</tr> '#13#10'<tr>  <td ali' +
+        'gn="right"><strong>Login ..:&nbsp;</strong></td>'#13#10'  <td>:login</' +
+        'td>'#13#10'</tr>'#13#10'  <tr> '#13#10'    <td align="right"><strong>Nova Senha ..' +
+        ':&nbsp;</strong></td>'#13#10'    <td>:senha</td>'#13#10'  </tr> '#13#10'<tr> '#13#10'<td' +
+        ' align="right"><strong>Email ..:&nbsp;</strong></td>'#13#10'<td>:email' +
+        '</td>'#13#10'</tr> '#13#10'<tr>'#13#10'<td align="right"><strong>Perfil ..:&nbsp;<' +
+        '/strong></td>'#13#10'<td>:perfil</td> '#13#10'</tr>'#13#10'</table>'#13#10'<p>Atenciosam' +
+        'ente,</p>'#13#10'<p>Administrador do sistema</p></body></html>')
+    SenhaTrocada.Ativo = True
+    SenhaTrocada.Titulo = 'Altera'#231#227'o de senha'
+    SenhaTrocada.Mensagem.Strings = (
+      
+        '<html> <head> <title>Altera'#231#227'o de Senha</title> <style type="tex' +
+        't/css"> <!-- body { '#9'margin-left: 0px; '#13#10'margin-top: 0px; '#9'margi' +
+        'n-right: 0px; '#9'margin-bottom: 0px; } --> </style></head>'#13#10'<body>' +
+        ' <p>Aten'#231#227'o: <br> Voc'#234' alterou sua senha do sistema, sua senha f' +
+        'oi alterada para a senha abaixo:</p>'#13#10'<table width="100%" border' +
+        '="0" cellspacing="2" cellpadding="0"> '#13#10'<tr> '#13#10' <td width="10%" ' +
+        'align="right"><strong>Nome ..:&nbsp;</strong></td>'#13#10'<td>:nome</t' +
+        'd> '#13#10'</tr> '#13#10'<tr>  <td align="right"><strong>Login ..:&nbsp;</st' +
+        'rong></td>'#13#10'  <td>:login</td>'#13#10'</tr>'#13#10'  <tr> '#13#10'    <td align="ri' +
+        'ght"><strong>Nova Senha ..:&nbsp;</strong></td>'#13#10'    <td>:senha<' +
+        '/td>'#13#10'  </tr> '#13#10'<tr> '#13#10'<td align="right"><strong>Email ..:&nbsp;' +
+        '</strong></td>'#13#10'<td>:email</td>'#13#10'</tr> '#13#10'<tr>'#13#10'<td align="right"' +
+        '><strong>Perfil ..:&nbsp;</strong></td>'#13#10'<td>:perfil</td> '#13#10'</tr' +
+        '>'#13#10'</table>'#13#10'<p>Atenciosamente,</p>'#13#10'<p>Administrador do sistema' +
+        '</p></body></html>')
+    Left = 208
+    Top = 96
+  end
+  object UCHist_DataSet1: TUCHist_DataSet
+    Left = 304
+    Top = 32
+  end
+  object UCControlHistorico1: TUCControlHistorico
+    Options.SaveNewRecord = True
+    Options.SaveDelete = True
+    Options.SavePostInsert = True
+    Options.SavePostEdit = True
+    Options.TypeSavePostEdit = tpSaveAllFields
+    TableHistory.TableName = 'UCTABHistory'
+    TableHistory.FieldApplicationID = 'ApplicationID'
+    TableHistory.FieldUserID = 'UserID'
+    TableHistory.FieldEventDate = 'EventDate'
+    TableHistory.FieldEventTime = 'EventTime'
+    TableHistory.FieldForm = 'Form'
+    TableHistory.FieldCaptionForm = 'FormCaption'
+    TableHistory.FieldEvent = 'Event'
+    TableHistory.FieldObs = 'Obs'
+    TableHistory.FieldTableName = 'tName'
+    HistoryMsg.Evento_Insert = 'Inserido'
+    HistoryMsg.Evento_Delete = 'Apagado'
+    HistoryMsg.Evento_Edit = 'Editado'
+    HistoryMsg.Evento_NewRecord = 'Novo registro'
+    HistoryMsg.Hist_All = 'Todos'
+    HistoryMsg.Msg_LimpHistorico = 'Excluir todo o conte'#250'do do hist'#243'rico ?'
+    HistoryMsg.Msg_MensConfirma = 'Confirma'#231#227'o'
+    HistoryMsg.Msg_LogEmptyHistory = 'Usu'#225'rio %s apagou todo o hist'#243'rico as %s'
+    HistoryMsg.LabelDescricao = 'Hist'#243'rico de tabelas'
+    HistoryMsg.LabelUser = 'Usu'#225'rio'
+    HistoryMsg.LabelForm = 'Formul'#225'rio'
+    HistoryMsg.LabelEvento = 'Evento'
+    HistoryMsg.LabelTabela = 'Tabela'
+    HistoryMsg.LabelDataEvento = 'Data'
+    HistoryMsg.LabelHoraEvento = 'Hora'
+    HistoryMsg.Msg_NewRecord = '%s inseriu um novo registro'
+    HistoryMsg.Hist_MsgExceptPropr = 'Favor informar a propriedade %s'
+    HistoryMsg.Hist_BtnFiltro = '&Aplicar Filtro'
+    HistoryMsg.Hist_BtnExcluir = '&Excluir Hist'#243'rico'
+    HistoryMsg.Hist_BtnFechar = '&Fechar'
+    Left = 304
+    Top = 96
   end
   object UCFireDACConn1: TUCFireDACConn
-    Connection = ADConnection1
-    Left = 144
-    Top = 120
+    Left = 440
+    Top = 32
   end
-  object ADConnection1: TADConnection
-    Params.Strings = (
-      'Database=clickcards'
-      'Password=sys'
-      'Server=localhost'
-      'OSAuthent=No'
-      'User_Name=sys'
-      'DriverID=MSSQL')
-    Connected = True
-    LoginPrompt = False
-    Left = 48
-    Top = 168
+  object UCMidasConn1: TUCMidasConn
+    BancoDados = bdFirebird
+    Left = 440
+    Top = 96
   end
-  object ActionList1: TActionList
-    Left = 48
-    Top = 232
-    object actform1: TAction
-      Caption = 'actform1'
-    end
-    object actform2: TAction
-      Caption = 'actform2'
-    end
-    object actUsuarios: TAction
-      Caption = 'Usu'#225'rios'
-    end
-    object actTrocadoUsuario: TAction
-      Caption = 'Troca de Usuario'
-    end
-    object actLog: TAction
-      Caption = 'Log'
-    end
-    object actlongoff: TAction
-      Caption = 'Trocar Usu'#225'rio'
-    end
-    object Action1: TAction
-      Caption = 'Action1'
-    end
+  object UCIBXConn1: TUCIBXConn
+    Left = 440
+    Top = 160
   end
-  object ADPhysMSSQLDriverLink1: TADPhysMSSQLDriverLink
-    Left = 200
-    Top = 200
-  end
-  object ADGUIxWaitCursor1: TADGUIxWaitCursor
-    Left = 208
-    Top = 256
+  object UCADOConn1: TUCADOConn
+    Left = 440
+    Top = 224
   end
 end

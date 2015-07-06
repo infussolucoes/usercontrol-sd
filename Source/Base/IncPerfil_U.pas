@@ -5,9 +5,9 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-{.$IFDEF DELPHI5_UP}
+  {.$IFDEF DELPHI5_UP}
   Variants,
-{.$ENDIF}
+  {.$ENDIF}
   Buttons,
   Classes,
   Controls,
@@ -19,19 +19,20 @@ uses
   Messages,
   StdCtrls,
   SysUtils,
-  UCBase,
-  Windows;
+  Windows,
+
+  UCBase;
 
 type
   TfrmIncluirPerfil = class(TForm)
     PanelTitulo: TPanel;
-    LbDescricao:   TLabel;
-    Image1:        TImage;
+    LbDescricao: TLabel;
+    Image1: TImage;
     PanelButao: TPanel;
-    btGravar:      TBitBtn;
-    btCancela:     TBitBtn;
+    btGravar: TBitBtn;
+    btCancela: TBitBtn;
     PanelAddPerfil: TPanel;
-    lbNome:        TLabel;
+    lbNome: TLabel;
     EditDescricao: TEdit;
     ComboBoxPerfil: TComboBox;
     procedure btCancelaClick(Sender: TObject);
@@ -39,18 +40,18 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
-    IDPerfilNovo : Integer;
-    PerfilDs : TDataset;
+    IDPerfilNovo: Integer;
+    PerfilDs: TDataset;
     function GetNewIdUser: Integer;
     procedure IncluiPerfil();
     procedure AlteraPerfil();
     procedure CopiaPerfil();
     { Private declarations }
   public
-    FAltera      : Boolean;
-    FUserControl : TUserControl;
-    FNewIdUser   : Integer;
-    FDataSetPerfilUsuario : TDataSet;
+    FAltera: Boolean;
+    FUserControl: TUserControl;
+    FNewIdUser: Integer;
+    FDataSetPerfilUsuario: TDataset;
   end;
 
 implementation
@@ -62,11 +63,8 @@ begin
   with FUserControl do
   begin
     DataConnector.UCExecSQL(Format('UPDATE %s SET %s = %s WHERE %s = %d',
-      [TableUsers.TableName,
-      TableUsers.FieldUserName,
-      QuotedStr(EditDescricao.Text),
-      TableUsers.FieldUserID,
-      FNewIdUser]));
+      [TableUsers.TableName, TableUsers.FieldUserName,
+      QuotedStr(EditDescricao.Text), TableUsers.FieldUserID, FNewIdUser]));
   end;
 end;
 
@@ -81,7 +79,7 @@ begin
 
   if LbDescricao.Caption = 'Selecione o Perfil para Copiar' then
   begin
-    CopiaPerfil;{ By Cleilson Sousa}
+    CopiaPerfil; { By Cleilson Sousa }
   end
   else
   begin
@@ -100,14 +98,14 @@ begin
   Close;
 end;
 
-procedure TfrmIncluirPerfil.CopiaPerfil; { By Cleilson Sousa}
+procedure TfrmIncluirPerfil.CopiaPerfil; { By Cleilson Sousa }
 var
-  IDPerfilVelho, I : Integer;
-  DSPermiss, DSPermissEX : TDataSet;
+  IDPerfilVelho, I: Integer;
+  DSPermiss, DSPermissEX: TDataset;
 begin
   PerfilDs.Filtered := False;
-  PerfilDs.Filter := 'Upper('+FUserControl.TableUsers.FieldUserName+') like ' +
-                        AnsiUpperCase(QuotedStr(ComboBoxPerfil.Text));
+  PerfilDs.Filter := 'Upper(' + FUserControl.TableUsers.FieldUserName +
+    ') like ' + AnsiUpperCase(QuotedStr(ComboBoxPerfil.Text));
   PerfilDs.Filtered := True;
 
   if PerfilDs.RecordCount = 1 then
@@ -116,33 +114,39 @@ begin
     begin
       IDPerfilVelho := PerfilDs.FieldByName(TableUsers.FieldUserID).AsInteger;
 
-      DSPermiss := DataConnector.UCGetSQLDataSet('SELECT * FROM ' + TableRights.TableName +
-                        ' WHERE ' + TableRights.FieldUserID + ' = ' + IntToStr(IDPerfilVelho));
+      DSPermiss := DataConnector.UCGetSQLDataSet
+        ('SELECT * FROM ' + TableRights.TableName + ' WHERE ' +
+        TableRights.FieldUserID + ' = ' + IntToStr(IDPerfilVelho));
 
-      DSPermissEX := DataConnector.UCGetSQLDataSet('SELECT * FROM ' + TableRights.TableName+'EX' +
-                        ' WHERE ' + TableRights.FieldUserID + ' = ' + IntToStr(IDPerfilVelho));
+      DSPermissEX := DataConnector.UCGetSQLDataSet
+        ('SELECT * FROM ' + TableRights.TableName + 'EX' + ' WHERE ' +
+        TableRights.FieldUserID + ' = ' + IntToStr(IDPerfilVelho));
 
-      with fUserControl.TableRights do
+      with FUserControl.TableRights do
       begin
-        fUserControl.DataConnector.UCExecSQL('Delete from ' + TableName + ' Where ' + FieldUserID +
-          ' = ' + IntToStr(IDPerfilNovo) + ' and ' + FieldModule + ' = ' + QuotedStr(fUserControl.ApplicationID));
-        fUserControl.DataConnector.UCExecSQL('Delete from ' + TableName + 'EX Where ' + FieldUserID +
-          ' = ' + IntToStr(IDPerfilNovo) + ' and ' + FieldModule + ' = ' + QuotedStr(fUserControl.ApplicationID));
+        FUserControl.DataConnector.UCExecSQL('Delete from ' + TableName +
+          ' Where ' + FieldUserID + ' = ' + IntToStr(IDPerfilNovo) + ' and ' +
+          FieldModule + ' = ' + QuotedStr(FUserControl.ApplicationID));
+        FUserControl.DataConnector.UCExecSQL('Delete from ' + TableName +
+          'EX Where ' + FieldUserID + ' = ' + IntToStr(IDPerfilNovo) + ' and ' +
+          FieldModule + ' = ' + QuotedStr(FUserControl.ApplicationID));
       end;
 
-      //Salva os dados utilizando o IDPerfilNovo pra onde fiz a copia.
+      // Salva os dados utilizando o IDPerfilNovo pra onde fiz a copia.
       DSPermiss.First;
       for I := 1 to DSPermiss.RecordCount do
       begin
-        fUserControl.AddRight(IDPerfilNovo, DSPermiss.FieldByName(TableRights.FieldComponentName).AsString);
+        FUserControl.AddRight(IDPerfilNovo,
+          DSPermiss.FieldByName(TableRights.FieldComponentName).AsString);
         DSPermiss.Next;
       end;
 
-      DSPermissEX.First; //Extra Rights
+      DSPermissEX.First; // Extra Rights
       for I := 1 to DSPermissEX.RecordCount do
       begin
-        fUserControl.AddRightEX(IDPerfilNovo, ApplicationID, DSPermissEX.FieldByName(TableRights.FieldFormName).AsString,
-                                DSPermissEX.FieldByName(TableRights.FieldComponentName).AsString);
+        FUserControl.AddRightEX(IDPerfilNovo, ApplicationID,
+          DSPermissEX.FieldByName(TableRights.FieldFormName).AsString,
+          DSPermissEX.FieldByName(TableRights.FieldComponentName).AsString);
         DSPermissEX.Next;
       end;
 
@@ -155,7 +159,8 @@ begin
   Close;
 end;
 
-procedure TfrmIncluirPerfil.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TfrmIncluirPerfil.FormClose(Sender: TObject;
+  var Action: TCloseAction);
 begin
   FreeAndNil(PerfilDs);
 end;
@@ -164,7 +169,8 @@ procedure TfrmIncluirPerfil.FormShow(Sender: TObject);
 var
   I: Integer;
 begin
-  if LbDescricao.Caption = 'Selecione o Perfil para Copiar' then { By Cleilson Sousa}
+  if LbDescricao.Caption = 'Selecione o Perfil para Copiar'
+  then { By Cleilson Sousa }
   begin
     EditDescricao.Visible := False;
     ComboBoxPerfil.Visible := True;
@@ -173,14 +179,18 @@ begin
     begin
       IDPerfilNovo := FDataSetPerfilUsuario.FieldByName('IdUser').AsInteger;
 
-      PerfilDs := DataConnector.UCGetSQLDataSet('SELECT ' + TableUsers.FieldUserID +','+ TableUsers.FieldUserName +
-        ' FROM ' + TableUsers.TableName + ' WHERE ' + TableUsers.FieldTypeRec + ' LIKE ''P''');
+      PerfilDs := DataConnector.UCGetSQLDataSet
+        ('SELECT ' + TableUsers.FieldUserID + ',' + TableUsers.FieldUserName +
+        ' FROM ' + TableUsers.TableName + ' WHERE ' + TableUsers.FieldTypeRec +
+        ' LIKE ''P''');
 
       PerfilDs.First;
       for I := 1 to PerfilDs.RecordCount do
       begin
-        if PerfilDs.FieldByName(TableUsers.FieldUserID).AsInteger <> IDPerfilNovo then
-          ComboBoxPerfil.Items.Add(PerfilDs.FieldByName(TableUsers.FieldUserName).AsString);
+        if PerfilDs.FieldByName(TableUsers.FieldUserID).AsInteger <> IDPerfilNovo
+        then
+          ComboBoxPerfil.Items.Add
+            (PerfilDs.FieldByName(TableUsers.FieldUserName).AsString);
 
         PerfilDs.Next;
       end;
@@ -193,32 +203,30 @@ var
   TempDs: TDataset;
 begin
   with FUserControl do
-    TempDS := DataConnector.UCGetSQLDataSet('SELECT ' + TableUsers.FieldUserID + ' as MaxUserID from ' + TableUsers.TableName +
-      ' ORDER BY ' + TableUsers.FieldUserID + ' DESC');
+    TempDs := DataConnector.UCGetSQLDataSet('SELECT ' + TableUsers.FieldUserID +
+      ' as MaxUserID from ' + TableUsers.TableName + ' ORDER BY ' +
+      TableUsers.FieldUserID + ' DESC');
   Result := TempDs.FieldByName('MaxUserID').AsInteger + 1;
-  TempDS.Close;
-  FreeAndNil(TempDS);
+  TempDs.Close;
+  FreeAndNil(TempDs);
 end;
 
 procedure TfrmIncluirPerfil.IncluiPerfil;
 var
-  FProfile:   String;
+  FProfile: String;
 begin
   with FUserControl do
   begin
     FNewIdUser := GetNewIdUser;
-    FProfile   := EditDescricao.Text;
+    FProfile := EditDescricao.Text;
 
     if Assigned(onAddProfile) then
       onAddProfile(TObject(Self.Owner.Owner), FProfile);
 
-    DataConnector.UCExecSQL(Format('INSERT INTO %s(%s, %s, %s) Values(%d,%s,%s)',
-      [TableUsers.TableName,
-      TableUsers.FieldUserID,
-      TableUsers.FieldUserName,
-      TableUsers.FieldTypeRec,
-      FNewIdUser,
-      QuotedStr(FProfile),
+    DataConnector.UCExecSQL
+      (Format('INSERT INTO %s(%s, %s, %s) Values(%d,%s,%s)',
+      [TableUsers.TableName, TableUsers.FieldUserID, TableUsers.FieldUserName,
+      TableUsers.FieldTypeRec, FNewIdUser, QuotedStr(FProfile),
       QuotedStr('P')]));
 
   end;

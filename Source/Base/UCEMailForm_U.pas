@@ -14,8 +14,8 @@ uses
 
 type
   TUCEMailForm = class(TForm)
-    Panel1:   TPanel;
-    img:      TImage;
+    Panel1: TPanel;
+    img: TImage;
     lbStatus: TLabel;
   private
     { Private declarations }
@@ -31,4 +31,3 @@ implementation
 {$R *.dfm}
 
 end.
-

@@ -25,19 +25,10 @@ package pckHistorico;
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
 {$ENDIF IMPLICITBUILDING}
-{$IMPLICITBUILD ON}
+{$DESCRIPTION 'SWDelphi - User Control Historico'}
+{$IMPLICITBUILD OFF}
 
 requires
-  rtl,
-  dbrtl,
-  vcl,
-  vclactnband,
-  vcldb,
-  VclSmp,
-  vclx,
-  DbxCommonDriver,
-  dbexpress,
-  inet,
   pckUserControl_DT;
 
 contains

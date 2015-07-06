@@ -1,4 +1,4 @@
-package pckUCGlobal;
+package pckUCIBXConn;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -25,16 +25,15 @@ package pckUCGlobal;
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'ShowDelphi - UC Global'}
+{$DESCRIPTION 'SWDelphi - User Control IBX Connector'}
 {$IMPLICITBUILD OFF}
 
 requires
-  rtl,
-  vcl,
-  dbrtl,
-  vclactnband,
-  vcldb,
   pckUCDataConnector,
-  VclSmp;
+  ibxpress;
+
+contains
+  UCIBXConn in '..\..\..\Source\Connectors\UCIBXConn\UCIBXConn.pas',
+  UCIBXConnReg in '..\..\..\Source\Connectors\UCIBXConn\UCIBXConnReg.pas';
 
 end.

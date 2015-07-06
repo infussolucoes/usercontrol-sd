@@ -18,31 +18,32 @@ uses
   Messages,
   StdCtrls,
   SysUtils,
-  UCBase,
-  Windows;
+  Windows,
+
+  UCBase;
 
 type
   TEnvMsgForm = class(TForm)
-    Panel1:      TPanel;
-    lbTitulo:    TLabel;
-    Image1:      TImage;
-    gbPara:      TGroupBox;
-    rbUsuario:   TRadioButton;
-    rbTodos:     TRadioButton;
-    dbUsuario:   TDBLookupComboBox;
-    gbMensagem:  TGroupBox;
-    lbAssunto:   TLabel;
-    lbMensagem:  TLabel;
+    Panel1: TPanel;
+    lbTitulo: TLabel;
+    Image1: TImage;
+    gbPara: TGroupBox;
+    rbUsuario: TRadioButton;
+    rbTodos: TRadioButton;
+    dbUsuario: TDBLookupComboBox;
+    gbMensagem: TGroupBox;
+    lbAssunto: TLabel;
+    lbMensagem: TLabel;
     EditAssunto: TEdit;
-    MemoMsg:     TMemo;
-    btEnvia:     TBitBtn;
-    btCancela:   TBitBtn;
+    MemoMsg: TMemo;
+    btEnvia: TBitBtn;
+    btCancela: TBitBtn;
     DataSource1: TDataSource;
     procedure btCancelaClick(Sender: TObject);
     procedure dbUsuarioCloseUp(Sender: TObject);
     procedure rbUsuarioClick(Sender: TObject);
     procedure btEnviaClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject); //added by fduenas
+    procedure FormCreate(Sender: TObject); // added by fduenas
   private
     { Private declarations }
   public
@@ -80,14 +81,18 @@ end;
 procedure TEnvMsgForm.btEnviaClick(Sender: TObject);
 begin
   if rbUsuario.Checked then
-    TUCApplicationMessage(MsgsForm.Owner).SendAppMessage(MsgsForm.DSUsuarios.FieldByName('IdUser').AsInteger, EditAssunto.Text, MemoMsg.Text)
+    TUCApplicationMessage(MsgsForm.Owner)
+      .SendAppMessage(MsgsForm.DSUsuarios.FieldByName('IdUser').AsInteger,
+      EditAssunto.Text, MemoMsg.Text)
   else
     with MsgsForm.DSUsuarios do
     begin
       First;
       while not EOF do
       begin
-        TUCApplicationMessage(MsgsForm.Owner).SendAppMessage(FieldByName('IdUser').AsInteger, EditAssunto.Text, MemoMsg.Text);
+        TUCApplicationMessage(MsgsForm.Owner)
+          .SendAppMessage(FieldByName('IdUser').AsInteger, EditAssunto.Text,
+          MemoMsg.Text);
         Next;
       end;
     end;
@@ -98,16 +103,16 @@ procedure TEnvMsgForm.FormCreate(Sender: TObject);
 begin
   with TUCApplicationMessage(Owner).UserControl.UserSettings.AppMessages do
   begin
-    Self.Caption       := MsgSend_WindowCaption;
-    lbTitulo.Caption   := MsgSend_Title;
-    gbpara.Caption     := MsgSend_GroupTo;
-    rbUsuario.Caption  := MsgSend_RadioUser;
-    rbTodos.Caption    := MsgSend_RadioAll;
+    Self.Caption := MsgSend_WindowCaption;
+    lbTitulo.Caption := MsgSend_Title;
+    gbPara.Caption := MsgSend_GroupTo;
+    rbUsuario.Caption := MsgSend_RadioUser;
+    rbTodos.Caption := MsgSend_RadioAll;
     gbMensagem.Caption := MsgSend_GroupMessage;
-    lbAssunto.Caption  := MsgSend_LabelSubject;
+    lbAssunto.Caption := MsgSend_LabelSubject;
     lbMensagem.Caption := MsgSend_LabelMessageText;
-    btCancela.Caption  := MsgSend_BtCancel;
-    btEnvia.Caption    := MsgSend_BtSend;
+    btCancela.Caption := MsgSend_BtCancel;
+    btEnvia.Caption := MsgSend_BtSend;
   end;
 end;
 

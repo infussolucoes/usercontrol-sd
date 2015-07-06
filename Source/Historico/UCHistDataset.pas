@@ -62,13 +62,13 @@ begin
     fOnAfterPost(DataSet);
 
   If ((DataSetInEdit = False) and (fControl.Options.SavePostInsert)) then
-  // quando inserindo
+    // quando inserindo
     AddHistory(fControl.UserControl.ApplicationID, Screen.ActiveCustomForm.Name,
       Screen.ActiveCustomForm.Caption, fControl.HistoryMsg.Evento_Insert,
       GetValueFields, DataSet.Name, fControl.UserControl.CurrentUser.UserId);
 
   If ((DataSetInEdit = True) and (fControl.Options.SavePostEdit)) then
-  // quando editando
+    // quando editando
     AddHistory(fControl.UserControl.ApplicationID, Screen.ActiveCustomForm.Name,
       Screen.ActiveCustomForm.Caption, fControl.HistoryMsg.Evento_Edit,
       GetValueFields, DataSet.Name, fControl.UserControl.CurrentUser.UserId);
@@ -150,8 +150,8 @@ begin
       Begin
         If DataSetInEdit = False then // inserindo ou deletando
           try
-            Result := Result + Format('%-20s = %s ', [FieldName, AsString])
-              + #13#10;
+            Result := Result + Format('%-20s = %s ', [FieldName, AsString]
+              ) + #13#10;
           except
           end
         else

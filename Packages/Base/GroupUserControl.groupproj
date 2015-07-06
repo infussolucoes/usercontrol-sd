@@ -6,16 +6,19 @@
         <Projects Include="pckUCDataConnector.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="pckUCGlobal.dproj">
+        <Projects Include="pckUserControl_DT.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="pckUserControl_DT.dproj">
+        <Projects Include="..\Historico\pckHistorico.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="pckUserControl_RT.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\Historico\pckHistorico.dproj">
+        <Projects Include="pckmd5.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="pckAlcinoe.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -35,15 +38,6 @@
     <Target Name="pckUCDataConnector:Make">
         <MSBuild Projects="pckUCDataConnector.dproj" Targets="Make"/>
     </Target>
-    <Target Name="pckUCGlobal">
-        <MSBuild Projects="pckUCGlobal.dproj"/>
-    </Target>
-    <Target Name="pckUCGlobal:Clean">
-        <MSBuild Projects="pckUCGlobal.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="pckUCGlobal:Make">
-        <MSBuild Projects="pckUCGlobal.dproj" Targets="Make"/>
-    </Target>
     <Target Name="pckUserControl_DT">
         <MSBuild Projects="pckUserControl_DT.dproj"/>
     </Target>
@@ -52,15 +46,6 @@
     </Target>
     <Target Name="pckUserControl_DT:Make">
         <MSBuild Projects="pckUserControl_DT.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="pckUserControl_RT">
-        <MSBuild Projects="pckUserControl_RT.dproj"/>
-    </Target>
-    <Target Name="pckUserControl_RT:Clean">
-        <MSBuild Projects="pckUserControl_RT.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="pckUserControl_RT:Make">
-        <MSBuild Projects="pckUserControl_RT.dproj" Targets="Make"/>
     </Target>
     <Target Name="pckHistorico">
         <MSBuild Projects="..\Historico\pckHistorico.dproj"/>
@@ -71,14 +56,41 @@
     <Target Name="pckHistorico:Make">
         <MSBuild Projects="..\Historico\pckHistorico.dproj" Targets="Make"/>
     </Target>
+    <Target Name="pckUserControl_RT">
+        <MSBuild Projects="pckUserControl_RT.dproj"/>
+    </Target>
+    <Target Name="pckUserControl_RT:Clean">
+        <MSBuild Projects="pckUserControl_RT.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pckUserControl_RT:Make">
+        <MSBuild Projects="pckUserControl_RT.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pckmd5">
+        <MSBuild Projects="pckmd5.dproj"/>
+    </Target>
+    <Target Name="pckmd5:Clean">
+        <MSBuild Projects="pckmd5.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pckmd5:Make">
+        <MSBuild Projects="pckmd5.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pckAlcinoe">
+        <MSBuild Projects="pckAlcinoe.dproj"/>
+    </Target>
+    <Target Name="pckAlcinoe:Clean">
+        <MSBuild Projects="pckAlcinoe.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pckAlcinoe:Make">
+        <MSBuild Projects="pckAlcinoe.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="pckUCDataConnector;pckUCGlobal;pckUserControl_DT;pckUserControl_RT;pckHistorico"/>
+        <CallTarget Targets="pckUCDataConnector;pckUserControl_DT;pckHistorico;pckUserControl_RT;pckmd5;pckAlcinoe"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="pckUCDataConnector:Clean;pckUCGlobal:Clean;pckUserControl_DT:Clean;pckUserControl_RT:Clean;pckHistorico:Clean"/>
+        <CallTarget Targets="pckUCDataConnector:Clean;pckUserControl_DT:Clean;pckHistorico:Clean;pckUserControl_RT:Clean;pckmd5:Clean;pckAlcinoe:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="pckUCDataConnector:Make;pckUCGlobal:Make;pckUserControl_DT:Make;pckUserControl_RT:Make;pckHistorico:Make"/>
+        <CallTarget Targets="pckUCDataConnector:Make;pckUserControl_DT:Make;pckHistorico:Make;pckUserControl_RT:Make;pckmd5:Make;pckAlcinoe:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

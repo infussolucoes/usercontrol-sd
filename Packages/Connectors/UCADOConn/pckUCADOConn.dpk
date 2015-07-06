@@ -25,12 +25,12 @@ package pckUCADOConn;
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'ShowDelphi - User Control ADO Connectors'}
-{$IMPLICITBUILD ON}
+{$DESCRIPTION 'SWDelphi - User Control ADO Connector'}
+{$IMPLICITBUILD OFF}
 
 requires
-  adortl,
-  pckUserControl_DT;
+  pckUCDataConnector,
+  adortl;
 
 contains
   UCADOConn in '..\..\..\Source\Connectors\UCADOConn\UCADOConn.pas',
