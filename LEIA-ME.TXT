@@ -1,0 +1,38 @@
+PARA TIRAR DÚVIDAS SOBRE O COMPONENTE UTILIZE - http://www.djsystem.com.br/acbr/forum
+
++---------------------------------------------------------+
+|                                                         |
+|   Projeto: Componentes UserControl SWDelphi Edition     |
+|                      Versão 2.4                         |
+|                                                         |
+|  Biblioteca de componentes Delphi para                  |
+|  o controle de usuários.                                |
+|                                                         |
+|  http://infussolucoes.github.io/usercontrol-sd/         |
+|                                                         |
++---------------------------------------------------------+
+
+INDICE
+
+1. Descrição
+2. Licença
+3. Compatibilidade
+4. Como executar os Demos.
+5. Instalação
+6. Componentes
+7. Autores e Colaboradores
+8. Como posso ajudar no projeto
+9. Vantagens e Desvantagens
+10. Tarefas que ainda precisam ser iniciadas, melhoradas ou completadas
+11. Histórico do desenvolvimento
+
+--------------------------------------------------------------------------------
+
+1. DESCRIÇÃO
+============
+
+
+11. HISTÓRICO DO DESENVOLVIMENTO
+================================
+
+  Por favor, leia o arquivo: "UCSW-change-log.TXT"
