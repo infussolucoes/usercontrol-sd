@@ -1,0 +1,11 @@
+Para compilar o instalador, é necessário estar instalado os componentes do Jedi.
+
+Eles são totalmente free e disponíveis com instalador para várias versões do Delphi.
+
+São divididos em duas bibliotecas
+
+(JCL) Você pode baixar em:
+http://jcl.sourceforge.net/daily/
+
+(JVCL) Você pode baixar em:
+http://jvcl.sourceforge.net/daily/
