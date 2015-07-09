@@ -83,8 +83,8 @@ contains
   ALWininetHttpClient in '..\..\Source\Terceiros\Alcinoe\ALWininetHttpClient.pas',
   ALWinSock in '..\..\Source\Terceiros\Alcinoe\ALWinSock.pas',
   ALXmlDoc in '..\..\Source\Terceiros\Alcinoe\ALXmlDoc.pas',
-  ALZLibEx in '..\..\Source\Terceiros\Alcinoe\ALZLibEx.pas',
-  ALZLibExApi in '..\..\Source\Terceiros\Alcinoe\ALZLibExApi.pas',
-  ALZLibExGZ in '..\..\Source\Terceiros\Alcinoe\ALZLibExGZ.pas';
+  ALZLibEx in '..\..\Source\Terceiros\ZLibExGZ\ALZLibEx.pas',
+  ALZLibExApi in '..\..\Source\Terceiros\ZLibExGZ\ALZLibExApi.pas',
+  ALZLibExGZ in '..\..\Source\Terceiros\ZLibExGZ\ALZLibExGZ.pas';
 
 end.

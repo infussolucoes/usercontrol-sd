@@ -1051,8 +1051,8 @@ uses {$IF CompilerVersion >= 23} {Delphi XE2}
   Contnrs,
 {$IFEND}
   ALString,
-  ALZLibExAPI,
-  ALZLibEx;
+  AcbrZLibExAPI,
+  AcbrZLibEx;
 
 { ************************ }
 {$IFDEF SUPPORTS_EXTENDED}
