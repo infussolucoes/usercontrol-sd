@@ -1,7 +1,7 @@
 object FrmPrincipal: TFrmPrincipal
   Left = 0
   Top = 0
-  ActiveControl = btnInstalar
+  ActiveControl = edtDirDestino
   Caption = 'Instalador do UserControl ShowDelphi Edition'
   ClientHeight = 599
   ClientWidth = 736
@@ -22,7 +22,7 @@ object FrmPrincipal: TFrmPrincipal
     Top = 0
     Width = 736
     Height = 599
-    ActivePage = wizPgInstalacao
+    ActivePage = wizPgConfiguracao
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -878,6 +878,23 @@ object FrmPrincipal: TFrmPrincipal
         Caption = 
           'Por favor, fechar todas as instancias que est'#227'o abertas do Delph' +
           'i antes de prosseguir com a instala'#231#227'o.'
+        WordWrap = True
+      end
+      object Label14: TLabel
+        Left = 33
+        Top = 344
+        Width = 436
+        Height = 26
+        Caption = 
+          'Aten'#231#227'o, o instalador '#233' ainda experimental, os paths da pasta So' +
+          'urce devem ser adicionados manualmente no library do Delphi ap'#243's' +
+          ' a instala'#231#227'o.'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
         WordWrap = True
       end
       object edtDirDestino: TEdit

@@ -125,6 +125,7 @@ type
     Label25: TLabel;
     Image1: TImage;
     Label13: TLabel;
+    Label14: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure edtDelphiVersionChange(Sender: TObject);
@@ -144,7 +145,7 @@ type
       var Stop: Boolean);
   private
     FCountErros: Integer;
-    oACBr: TJclBorRADToolInstallations;
+    oUserControl: TJclBorRADToolInstallations;
     iVersion: Integer;
     tPlatform: TJclBDSPlatform;
     sDirRoot: string;
@@ -196,7 +197,7 @@ var
   I: Integer;
   PathsAtuais: String;
 begin
-  with oACBr.Installations[iVersion] do
+  with oUserControl.Installations[iVersion] do
   begin
     // tentar ler o path configurado na ide do delphi, se não existir ler
     // a atual para complementar e fazer o override
@@ -263,10 +264,11 @@ procedure TFrmPrincipal.AddLibrarySearchPath;
           if ((oDirList.Attr and faDirectory) <> 0) and (oDirList.Name <> '.')
             and (oDirList.Name <> '..') and (oDirList.Name <> '__history') then
           begin
-            with oACBr.Installations[iVersion] do
+            with oUserControl.Installations[iVersion] do
             begin
-              AddToLibrarySearchPath(ADirRoot + oDirList.Name, tPlatform);
               AddToLibraryBrowsingPath(ADirRoot + oDirList.Name, tPlatform);
+              //AddToLibrarySearchPath(ADirRoot + oDirList.Name, tPlatform);  //-< Há algum problema
+
               // RemoveFromLibrarySearchPath(ADirRoot + oDirList.Name, tPlatform);
             end;
             // -- Procura subpastas
@@ -284,23 +286,22 @@ begin
   FindDirs(IncludeTrailingPathDelimiter(sDirRoot) + 'Source');
 
   // --
-  with oACBr.Installations[iVersion] do
+  with oUserControl.Installations[iVersion] do
   begin
-
     AddToLibraryBrowsingPath(sDirLibrary, tPlatform);
     AddToLibrarySearchPath(sDirLibrary, tPlatform);
     AddToDebugDCUPath(sDirLibrary, tPlatform);
   end;
 
   // -- adicionar a library path ao path do windows
-  //AddLibraryPathToDelphiPath(sDirLibrary, 'UserControl');
+  AddLibraryPathToDelphiPath(sDirLibrary, 'UserControl');
 
   // -- ************ C++ Builder *************** //
   if ckbBCB.Checked then
   begin
-    if oACBr.Installations[iVersion] is TJclBDSInstallation then
+    if oUserControl.Installations[iVersion] is TJclBDSInstallation then
     begin
-      with TJclBDSInstallation(oACBr.Installations[iVersion]) do
+      with TJclBDSInstallation(oUserControl.Installations[iVersion]) do
       begin
         AddToCppSearchPath(sDirLibrary, tPlatform);
         AddToCppLibraryPath(sDirLibrary, tPlatform);
@@ -317,7 +318,7 @@ begin
   Sender.Options.Clear;
 
   // não utilizar o dcc32.cfg
-  if oACBr.Installations[iVersion].SupportsNoConfig then
+  if oUserControl.Installations[iVersion].SupportsNoConfig then
     Sender.Options.Add('--no-config');
 
   // -B = Build all units
@@ -340,15 +341,15 @@ begin
   Sender.Options.Add('-DRELEASE');
   // -U<paths> = Unit directories
   // -U<paths> = Unit directories
-  Sender.AddPathOption('U', oACBr.Installations[iVersion].LibFolderName[tPlatform]);
-  Sender.AddPathOption('U', oACBr.Installations[iVersion].LibrarySearchPath[tPlatform]);
+  Sender.AddPathOption('U', oUserControl.Installations[iVersion].LibFolderName[tPlatform]);
+  Sender.AddPathOption('U', oUserControl.Installations[iVersion].LibrarySearchPath[tPlatform]);
   Sender.AddPathOption('U', sDirLibrary);
 
   // -I<paths> = Include directories
-  //Sender.AddPathOption('I', oACBr.Installations[iVersion].LibrarySearchPath[tPlatform]);
+  Sender.AddPathOption('I', oUserControl.Installations[iVersion].LibrarySearchPath[tPlatform]);
 
   // -R<paths> = Resource directories
-  Sender.AddPathOption('R', oACBr.Installations[iVersion].LibrarySearchPath
+  Sender.AddPathOption('R', oUserControl.Installations[iVersion].LibrarySearchPath
     [tPlatform]);
 
 
@@ -370,12 +371,12 @@ begin
     Sender.AddPathOption('NH', sDirLibrary);
   end;
   //
-  with oACBr.Installations[iVersion] do
+  with oUserControl.Installations[iVersion] do
   begin
     // -- Path para instalar os pacotes do Rave no D7, nas demais versões
     // -- o path existe.
     if VersionNumberStr = 'd7' then
-      Sender.AddPathOption('U', oACBr.Installations[iVersion].RootDir +
+      Sender.AddPathOption('U', oUserControl.Installations[iVersion].RootDir +
         '\Rave5\Lib');
 
     // -- Na versão XE2 por motivo da nova tecnologia FireMonkey, deve-se adicionar
@@ -474,7 +475,7 @@ begin
       begin
         WriteToTXT(AnsiString(PathArquivoLog), AnsiString(''));
 
-        if oACBr.Installations[iVersion].CompilePackage(sDirPackage + NomePacote, sDirLibrary, sDirLibrary) then
+        if oUserControl.Installations[iVersion].CompilePackage(sDirPackage + NomePacote, sDirLibrary, sDirLibrary) then
         begin
           lstMsgInstalacao.Items.Add(Format('Pacote "%s" compilado com sucesso.', [NomePacote]));
           lstMsgInstalacao.ItemIndex := lstMsgInstalacao.Count - 1;
@@ -518,7 +519,7 @@ begin
               begin
                 WriteToTXT(AnsiString(PathArquivoLog), AnsiString(''));
 
-                if oACBr.Installations[iVersion].InstallPackage(sDirPackage + NomePacote, sDirLibrary, sDirLibrary) then
+                if oUserControl.Installations[iVersion].InstallPackage(sDirPackage + NomePacote, sDirLibrary, sDirLibrary) then
                 begin
                   lstMsgInstalacao.Items.Add(Format('Pacote "%s" instalado com sucesso.', [NomePacote]));
                   lstMsgInstalacao.ItemIndex := lstMsgInstalacao.Count - 1;
@@ -534,7 +535,7 @@ begin
               begin
                 WriteToTXT(AnsiString(PathArquivoLog), AnsiString(''));
 
-                if oACBr.Installations[iVersion].UninstallPackage(sDirPackage + NomePacote, sDirLibrary, sDirLibrary) then
+                if oUserControl.Installations[iVersion].UninstallPackage(sDirPackage + NomePacote, sDirLibrary, sDirLibrary) then
                 begin
                   lstMsgInstalacao.Items.Add(Format('Pacote "%s" removido com sucesso...', [NomePacote]));
                   lstMsgInstalacao.ItemIndex := lstMsgInstalacao.Count - 1;
@@ -600,16 +601,16 @@ end;
 procedure TFrmPrincipal.edtDelphiVersionChange(Sender: TObject);
 begin
   iVersion := edtDelphiVersion.ItemIndex;
-  sPathBin := IncludeTrailingPathDelimiter(oACBr.Installations[iVersion]
+  sPathBin := IncludeTrailingPathDelimiter(oUserControl.Installations[iVersion]
     .BinFolderName);
   // -- Plataforma só habilita para Delphi XE2
   // -- Desabilita para versão diferente de Delphi XE2
-  edtPlatform.Enabled := oACBr.Installations[iVersion].VersionNumber >= 9;
-  if oACBr.Installations[iVersion].VersionNumber < 9 then
+  edtPlatform.Enabled := oUserControl.Installations[iVersion].VersionNumber >= 9;
+  if oUserControl.Installations[iVersion].VersionNumber < 9 then
     edtPlatform.ItemIndex := 0;
 
   // C++ Builder a partir do D2006, versões anteriores tem IDE independentes.
-  ckbBCB.Enabled := MatchText(oACBr.Installations[iVersion].VersionNumberStr,
+  ckbBCB.Enabled := MatchText(oUserControl.Installations[iVersion].VersionNumberStr,
     ['d10', 'd11', 'd12', 'd14', 'd15', 'd16', 'd17', 'd18', 'd19', 'd20',
     'd21', 'd22', 'd23', 'd24']);
   if not ckbBCB.Enabled then
@@ -653,13 +654,13 @@ procedure TFrmPrincipal.ExtrairDiretorioPacote(NomePacote: string);
 
 begin
   sDirPackage := '';
-  // FindDirPackage(sDirRoot + 'Pacotes\Delphi', NomePacote);
+
   FindDirPackage(sDirRoot + 'Packages\', NomePacote);
 end;
 
 procedure TFrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  oACBr.Free;
+  oUserControl.Free;
 end;
 
 procedure TFrmPrincipal.FormCreate(Sender: TObject);
@@ -671,57 +672,57 @@ begin
   sDirLibrary := '';
   sDirPackage := '';
 
-  oACBr := TJclBorRADToolInstallations.Create;
+  oUserControl := TJclBorRADToolInstallations.Create;
 
   // popular o combobox de versões do delphi instaladas na máquina
-  for iFor := 0 to oACBr.Count - 1 do
+  for iFor := 0 to oUserControl.Count - 1 do
   begin
-    if oACBr.Installations[iFor].VersionNumberStr = 'd3' then
+    if oUserControl.Installations[iFor].VersionNumberStr = 'd3' then
       edtDelphiVersion.Items.Add('Delphi 3')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd4' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd4' then
       edtDelphiVersion.Items.Add('Delphi 4')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd5' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd5' then
       edtDelphiVersion.Items.Add('Delphi 5')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd6' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd6' then
       edtDelphiVersion.Items.Add('Delphi 6')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd7' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd7' then
       edtDelphiVersion.Items.Add('Delphi 7')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd9' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd9' then
       edtDelphiVersion.Items.Add('Delphi 2005')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd10' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd10' then
       edtDelphiVersion.Items.Add('Delphi 2006')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd11' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd11' then
       edtDelphiVersion.Items.Add('Delphi 2007')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd12' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd12' then
       edtDelphiVersion.Items.Add('Delphi 2009')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd14' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd14' then
       edtDelphiVersion.Items.Add('Delphi 2010')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd15' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd15' then
       edtDelphiVersion.Items.Add('Delphi XE')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd16' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd16' then
       edtDelphiVersion.Items.Add('Delphi XE2')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd17' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd17' then
       edtDelphiVersion.Items.Add('Delphi XE3')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd18' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd18' then
       edtDelphiVersion.Items.Add('Delphi XE4')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd19' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd19' then
       edtDelphiVersion.Items.Add('Delphi XE5')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd20' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd20' then
       edtDelphiVersion.Items.Add('Delphi XE6')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd21' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd21' then
       edtDelphiVersion.Items.Add('Delphi XE7')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd22' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd22' then
       edtDelphiVersion.Items.Add('Delphi XE8')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd23' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd23' then
       edtDelphiVersion.Items.Add('Delphi XE9')
-    else if oACBr.Installations[iFor].VersionNumberStr = 'd24' then
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd24' then
       edtDelphiVersion.Items.Add('Delphi XE10');
 
     // -- Evento disparado antes de iniciar a execução do processo.
-    oACBr.Installations[iFor].DCC32.OnBeforeExecute := BeforeExecute;
+    oUserControl.Installations[iFor].DCC32.OnBeforeExecute := BeforeExecute;
 
     // -- Evento para saidas de mensagens.
-    oACBr.Installations[iFor].OutputCallback := OutputCallLine;
+    oUserControl.Installations[iFor].OutputCallback := OutputCallLine;
   end;
 
   if edtDelphiVersion.Items.Count > 0 then
@@ -927,7 +928,7 @@ var
   sTipo: String;
 begin
   iVersion := edtDelphiVersion.ItemIndex;
-  sVersao := AnsiUpperCase(oACBr.Installations[iVersion].VersionNumberStr);
+  sVersao := AnsiUpperCase(oUserControl.Installations[iVersion].VersionNumberStr);
   sDirRoot := IncludeTrailingPathDelimiter(edtDirDestino.Text);
 
   sTipo := 'Lib\Delphi\';
