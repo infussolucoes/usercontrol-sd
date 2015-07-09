@@ -293,7 +293,7 @@ begin
   end;
 
   // -- adicionar a library path ao path do windows
-  AddLibraryPathToDelphiPath(sDirLibrary, 'UserControl');
+  //AddLibraryPathToDelphiPath(sDirLibrary, 'UserControl');
 
   // -- ************ C++ Builder *************** //
   if ckbBCB.Checked then
