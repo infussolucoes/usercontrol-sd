@@ -1,7 +1,7 @@
 object FrmPrincipal: TFrmPrincipal
   Left = 0
   Top = 0
-  ActiveControl = edtDirDestino
+  ActiveControl = btnInstalar
   Caption = 'Instalador do UserControl ShowDelphi Edition'
   ClientHeight = 599
   ClientWidth = 736
@@ -22,7 +22,7 @@ object FrmPrincipal: TFrmPrincipal
     Top = 0
     Width = 736
     Height = 599
-    ActivePage = wizPgConfiguracao
+    ActivePage = wizPgInstalacao
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1

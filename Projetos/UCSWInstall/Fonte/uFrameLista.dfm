@@ -163,10 +163,10 @@ object framePacotes: TframePacotes
   object Label10: TLabel
     Left = 291
     Top = 222
-    Width = 182
+    Width = 96
     Height = 13
     Margins.Left = 5
-    Caption = 'DBExpress Components - Uso Remoto'
+    Caption = 'Retrocompitibilidade'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clMaroon
     Font.Height = -11
@@ -195,6 +195,20 @@ object framePacotes: TframePacotes
     Height = 13
     Margins.Left = 5
     Caption = 'DBExpress Components'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 291
+    Top = 239
+    Width = 113
+    Height = 13
+    Margins.Left = 5
+    Caption = 'Para uso com Datasnap'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clMaroon
     Font.Height = -11
@@ -420,6 +434,26 @@ object framePacotes: TframePacotes
     Font.Style = []
     ParentFont = False
     TabOrder = 9
+    OnClick = VerificarCheckboxes
+  end
+  object pckUCDataSnapConn_dpk: TCheckBox
+    Tag = 9
+    Left = 65
+    Top = 238
+    Width = 163
+    Height = 17
+    Margins.Left = 25
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    Caption = 'pckUCDataSnapConn.dpk'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 11
     OnClick = VerificarCheckboxes
   end
 end

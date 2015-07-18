@@ -267,9 +267,9 @@ procedure TFrmPrincipal.AddLibrarySearchPath;
             with oUserControl.Installations[iVersion] do
             begin
               AddToLibraryBrowsingPath(ADirRoot + oDirList.Name, tPlatform);
+              RemoveFromLibrarySearchPath(ADirRoot + oDirList.Name, tPlatform);
               //AddToLibrarySearchPath(ADirRoot + oDirList.Name, tPlatform);  //-< Há algum problema
 
-              // RemoveFromLibrarySearchPath(ADirRoot + oDirList.Name, tPlatform);
             end;
             // -- Procura subpastas
             FindDirs(ADirRoot + oDirList.Name);
