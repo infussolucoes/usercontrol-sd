@@ -108,6 +108,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
+    SQLstmt : String;
     IDPerfilNovo: Integer;
     PerfilDs: TDataset;
     function GetNewIdUser: Integer;
@@ -160,6 +161,7 @@ begin
       IncluiPerfil;
     end;
   end;
+
   FDataSetPerfilUsuario.Close;
   FDataSetPerfilUsuario.Open;
   FDataSetPerfilUsuario.Locate('IDUser', FNewIdUser, []);
