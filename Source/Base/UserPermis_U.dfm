@@ -438,10 +438,6 @@ object UserPermis: TUserPermis
     TabWidth = 155
     object PageMenu: TTabSheet
       Caption = 'Menu Controle de Usuarios'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object TreeMenu: TTreeView
         Left = 0
         Top = 0
@@ -463,10 +459,6 @@ object UserPermis: TUserPermis
     object PageAction: TTabSheet
       Caption = 'Menu Controle de Usuarios'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object TreeAction: TTreeView
         Left = 0
         Top = 0
@@ -487,10 +479,6 @@ object UserPermis: TUserPermis
     object PageControls: TTabSheet
       Caption = 'Controles'
       ImageIndex = 2
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object TreeControls: TTreeView
         Left = 0
         Top = 0
@@ -513,7 +501,7 @@ object UserPermis: TUserPermis
     Left = 336
     Top = 144
     Bitmap = {
-      494C010103000500680010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101030005006C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

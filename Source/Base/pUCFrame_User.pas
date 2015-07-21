@@ -146,7 +146,9 @@ begin
   FfrmIncluirUsuario := TfrmIncluirUsuario.Create(Self);
   FfrmIncluirUsuario.FUsercontrol := Self.FUsercontrol;
   SetWindowUser(True);
+  Application.NormalizeTopMosts;
   FfrmIncluirUsuario.ShowModal;
+  Application.RestoreTopMosts;
   FreeAndNil(FfrmIncluirUsuario);
 end;
 

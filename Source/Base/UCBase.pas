@@ -3607,8 +3607,8 @@ begin
     if Assigned(UserControl) then
       UserControl.DeleteLoginMonitor(Self);
 
-  Self.FVerifThread.Terminate;
-  // FreeAndNil(FVerifThread);
+//  Self.FVerifThread.Terminate;
+//  FreeAndNil(FVerifThread);
   inherited Destroy;
 end;
 

@@ -150,7 +150,7 @@ begin
 
   SpeedPerfil.Visible := FUsercontrol.UserProfile.Active;
   SpeedLog.Visible := FUsercontrol.LogControl.Active;
-  SpeedUserLog.Visible := False; // FUsercontrol.UsersLogged.Active;
+  SpeedUserLog.Visible := FUsercontrol.UsersLogged.Active;
 
   SpeedUserClick(Sender);
   Caption := FUsercontrol.UserSettings.UsersForm.WindowCaption;

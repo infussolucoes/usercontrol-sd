@@ -20,7 +20,7 @@ object UCFrame_Log: TUCFrame_Log
     Ctl3D = True
     DataSource = DataSource1
     DefaultDrawing = False
-    Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
+    Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
     ParentCtl3D = False
     ReadOnly = True
     TabOrder = 0
@@ -253,7 +253,7 @@ object UCFrame_Log: TUCFrame_Log
     Left = 136
     Top = 153
     Bitmap = {
-      494C010104000600180010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010104000600240010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

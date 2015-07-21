@@ -841,7 +841,7 @@ begin
   TreeAction.Repaint;
   TreeMenu.Repaint;
   FChangingTree := False;
-  PC.ActivePageIndex := 2;
+  PC.ActivePageIndex := 1;
   PageAction.Caption := 'Menu Controle de Usuarios';
   PageMenu.Caption := 'Menu Controle de Usuarios';
 end;
