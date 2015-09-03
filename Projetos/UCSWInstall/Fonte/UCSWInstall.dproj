@@ -89,11 +89,11 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <VerInfo_Build>11</VerInfo_Build>
+        <VerInfo_Build>12</VerInfo_Build>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Locale>1046</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=Comunidade ShowDelphi;FileDescription=Instalador dos componentes UserControl ShowDelphi Edition;FileVersion=1.0.0.11;InternalName=;LegalCopyright=Comunidade ShowDelphi;LegalTrademarks=Comunidade ShowDelphi;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Comunidade ShowDelphi;FileDescription=Instalador dos componentes UserControl ShowDelphi Edition;FileVersion=1.0.0.12;InternalName=;LegalCopyright=Comunidade ShowDelphi;LegalTrademarks=Comunidade ShowDelphi;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
