@@ -184,7 +184,7 @@ implementation
 
 uses
 {$WARNINGS off} FileCtrl, {$WARNINGS on} ShellApi, IniFiles, StrUtils, Math,
-  Registry;
+  Registry, IWSystem;
 
 procedure TFrmPrincipal.AddLibraryPathToDelphiPath(const APath,
   AProcurarRemover: String);
@@ -814,6 +814,9 @@ begin
 
   // Gravar as configurações em um .ini para utilizar depois
   GravarConfiguracoes;
+
+  //if not DirectoryExists() then
+
 end;
 
 procedure TFrmPrincipal.wizPgInstalacaoEnterPage(Sender: TObject;
@@ -943,6 +946,13 @@ begin
     tPlatform := bpWin64;
     sDirLibrary := sDirRoot + sTipo + 'Lib' + sVersao + 'x64';
   end;
+
+  { Cria os diretorios }
+  if not (DirectoryExists(sDirRoot + sTipo)) then
+    MkDir(sDirRoot + sTipo);
+
+  if not (DirectoryExists(sDirLibrary)) then
+    MkDir(sDirLibrary);
 end;
 
 procedure TFrmPrincipal.URLClick(Sender: TObject);
