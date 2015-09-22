@@ -1,9 +1,9 @@
 object Form1: TForm1
   Left = 408
   Top = 246
-  Width = 435
-  Height = 175
-  Caption = 'Tutorial UserControl'
+  Caption = 'Tutorial UserControl - www.showdelphi.com.br'
+  ClientHeight = 196
+  ClientWidth = 543
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,8 +16,8 @@ object Form1: TForm1
   PixelsPerInch = 96
   TextHeight = 13
   object MainMenu1: TMainMenu
-    Left = 8
-    Top = 8
+    Left = 40
+    Top = 56
     object Cadastro1: TMenuItem
       Caption = 'Cadastro'
       object Bancos1: TMenuItem
@@ -66,5 +66,62 @@ object Form1: TForm1
         Caption = 'Mensagens'
       end
     end
+  end
+  object ucMyControl: TUserControl
+    AutoStart = True
+    ApplicationID = 'NewProject'
+    ControlRight.MainMenu = MainMenu1
+    User.MenuItem = CadastrodeUsurios1
+    UserPasswordChange.MenuItem = rocarSenha1
+    UsersLogoff.MenuItem = Executarlogon1
+    LogControl.Active = False
+    LogControl.TableLog = 'UCLog'
+    Language = ucPortuguesBr
+    EncryptKey = 0
+    Login.InitialLogin.User = 'Admin'
+    Login.InitialLogin.Email = 'meu_imeio@soujedy.com.br'
+    Login.InitialLogin.Password = '#delphi'
+    Login.MaxLoginAttempts = 0
+    ExtraRights = <>
+    TableUsers.FieldUserID = 'UCIdUser'
+    TableUsers.FieldUserName = 'UCUserName'
+    TableUsers.FieldLogin = 'UCLogin'
+    TableUsers.FieldPassword = 'UCPassword'
+    TableUsers.FieldEmail = 'UCEmail'
+    TableUsers.FieldPrivileged = 'UCPrivileged'
+    TableUsers.FieldTypeRec = 'UCTypeRec'
+    TableUsers.FieldProfile = 'UCProfile'
+    TableUsers.FieldKey = 'UCKey'
+    TableUsers.FieldDateExpired = 'UCPASSEXPIRED'
+    TableUsers.FieldUserExpired = 'UCUserExpired'
+    TableUsers.FieldUserDaysSun = 'UCUserDaysSun'
+    TableUsers.FieldUserInative = 'UCInative'
+    TableUsers.TableName = 'UCTabUsers'
+    TableRights.FieldUserID = 'UCIdUser'
+    TableRights.FieldModule = 'UCModule'
+    TableRights.FieldComponentName = 'UCCompName'
+    TableRights.FieldFormName = 'UCFormName'
+    TableRights.FieldKey = 'UCKey'
+    TableRights.TableName = 'UCTabRights'
+    TableUsersLogged.FieldLogonID = 'UCIdLogon'
+    TableUsersLogged.FieldUserID = 'UCIdUser'
+    TableUsersLogged.FieldApplicationID = 'UCApplicationId'
+    TableUsersLogged.FieldMachineName = 'UCMachineName'
+    TableUsersLogged.FieldData = 'UCData'
+    TableUsersLogged.TableName = 'UCTabUsersLogged'
+    DataConnector = UCIBXConn1
+    Left = 200
+    Top = 48
+  end
+  object MyConn: TUCDBXConn
+    Connection = dmUC.cnxUC
+    Left = 136
+    Top = 16
+  end
+  object UCIBXConn1: TUCIBXConn
+    Connection = dmUC.IBDatabase1
+    Transaction = dmUC.IBTransaction1
+    Left = 136
+    Top = 144
   end
 end

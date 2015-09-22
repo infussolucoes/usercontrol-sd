@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus;
+  Dialogs, Menus, UCBase, UCDataConnector, UCDBXConn, UCIBXConn;
 
 type
   TForm1 = class(TForm)
@@ -25,6 +25,9 @@ type
     rocarSenha1: TMenuItem;
     N3: TMenuItem;
     Executarlogon1: TMenuItem;
+    ucMyControl: TUserControl;
+    MyConn: TUCDBXConn;
+    UCIBXConn1: TUCIBXConn;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }

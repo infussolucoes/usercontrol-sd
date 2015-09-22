@@ -4,14 +4,6 @@
 
 SET SQL DIALECT 3;
 
-SET NAMES NONE;
-
-CREATE DATABASE 'C:\Aplicat_UserControl\DBase\Aplicativo_UC.fdb'
-USER 'SYSDBA' PASSWORD 'masterkey'
-PAGE_SIZE 1024
-DEFAULT CHARACTER SET NONE;
-
-
 
 /******************************************************************************/
 /****                                Tables                                ****/

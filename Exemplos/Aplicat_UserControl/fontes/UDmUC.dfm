@@ -1,7 +1,7 @@
 object dmUC: TdmUC
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Height = 103
+  Height = 296
   Width = 236
   object cnxUC: TSQLConnection
     ConnectionName = 'FBConnection'
@@ -9,9 +9,7 @@ object dmUC: TdmUC
     LoginPrompt = False
     Params.Strings = (
       'DriverName=Firebird'
-      
-        'Database=D:\Meus documentos\'#193'rea de trabalho\Aplicat_UserControl' +
-        '\DBase\APLICATIVO_UC.FDB'
+      'Database=D:\APLICATIVO_UC.FDB'
       'RoleName=RoleName'
       'User_Name=sysdba'
       'Password=masterkey'
@@ -27,52 +25,21 @@ object dmUC: TdmUC
     Left = 32
     Top = 16
   end
-  object MyConn: TUCDBXConn
-    Connection = cnxUC
-    Left = 80
-    Top = 16
+  object IBDatabase1: TIBDatabase
+    DatabaseName = '127.0.0.1:D:\APLICATIVO_UC.FDB'
+    Params.Strings = (
+      'user_name=sysdba'
+      'password=masterkey')
+    LoginPrompt = False
+    DefaultTransaction = IBTransaction1
+    ServerType = 'IBServer'
+    AllowStreamedConnected = False
+    Left = 40
+    Top = 104
   end
-  object ucMyControl: TUserControl
-    AutoStart = True
-    ApplicationID = 'NewProject'
-    ControlRight.MainMenu = Form1.MainMenu1
-    LogControl.Active = False
-    LogControl.TableLog = 'UCLog'
-    Language = ucPortuguesBr
-    EncryptKey = 0
-    Login.InitialLogin.User = 'Admin'
-    Login.InitialLogin.Email = 'meu_imeio@soujedy.com.br'
-    Login.InitialLogin.Password = '#delphi'
-    Login.MaxLoginAttempts = 0
-    ExtraRights = <>
-    TableUsers.FieldUserID = 'UCIdUser'
-    TableUsers.FieldUserName = 'UCUserName'
-    TableUsers.FieldLogin = 'UCLogin'
-    TableUsers.FieldPassword = 'UCPassword'
-    TableUsers.FieldEmail = 'UCEmail'
-    TableUsers.FieldPrivileged = 'UCPrivileged'
-    TableUsers.FieldTypeRec = 'UCTypeRec'
-    TableUsers.FieldProfile = 'UCProfile'
-    TableUsers.FieldKey = 'UCKey'
-    TableUsers.FieldDateExpired = 'UCPASSEXPIRED'
-    TableUsers.FieldUserExpired = 'UCUserExpired'
-    TableUsers.FieldUserDaysSun = 'UCUserDaysSun'
-    TableUsers.FieldUserInative = 'UCInative'
-    TableUsers.TableName = 'UCTabUsers'
-    TableRights.FieldUserID = 'UCIdUser'
-    TableRights.FieldModule = 'UCModule'
-    TableRights.FieldComponentName = 'UCCompName'
-    TableRights.FieldFormName = 'UCFormName'
-    TableRights.FieldKey = 'UCKey'
-    TableRights.TableName = 'UCTabRights'
-    TableUsersLogged.FieldLogonID = 'UCIdLogon'
-    TableUsersLogged.FieldUserID = 'UCIdUser'
-    TableUsersLogged.FieldApplicationID = 'UCApplicationId'
-    TableUsersLogged.FieldMachineName = 'UCMachineName'
-    TableUsersLogged.FieldData = 'UCData'
-    TableUsersLogged.TableName = 'UCTabUsersLogged'
-    DataConnector = MyConn
-    Left = 136
-    Top = 16
+  object IBTransaction1: TIBTransaction
+    DefaultDatabase = IBDatabase1
+    Left = 40
+    Top = 160
   end
 end

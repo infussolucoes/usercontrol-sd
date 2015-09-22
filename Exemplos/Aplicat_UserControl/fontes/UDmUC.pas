@@ -4,13 +4,13 @@ interface
 
 uses
   SysUtils, Classes, DB, SqlExpr, UCBase, UCDBXConn, Data.DBXFirebird,
-  UCDataConnector;
+  UCDataConnector, IBX.IBDatabase, UCIBXConn;
 
 type
   TdmUC = class(TDataModule)
     cnxUC: TSQLConnection;
-    MyConn: TUCDBXConn;
-    ucMyControl: TUserControl;
+    IBDatabase1: TIBDatabase;
+    IBTransaction1: TIBTransaction;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -29,7 +29,8 @@ uses UPrincipal;
 
 procedure TdmUC.DataModuleCreate(Sender: TObject);
 begin
-   cnxUC.Connected := True;
+   //cnxUC.Connected := True;
+   IBDatabase1.Open;
 end;
 
 end.
