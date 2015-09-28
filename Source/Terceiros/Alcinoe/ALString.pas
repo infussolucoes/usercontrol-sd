@@ -10771,9 +10771,9 @@ Begin
       $0456 { і } :
         InternalAddCharsToResult([$00EC]); { ì }
       $0407 { Ї } :
-        InternalAddCharsToResult([$00CF]); { i with trema }
-      $0457 { i with trema  } :
-        InternalAddCharsToResult([$00EF]); { i with trema  }
+        InternalAddCharsToResult([$00CF]); { Ï }
+      $0457 { ї } :
+        InternalAddCharsToResult([$00EF]); { ï }
       $0419 { Й } :
         InternalAddCharsToResult([$004A]); { J }
       $0439 { й } :
