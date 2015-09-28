@@ -10772,8 +10772,8 @@ Begin
         InternalAddCharsToResult([$00EC]); { ì }
       $0407 { Ї } :
         InternalAddCharsToResult([$00CF]); { Ï }
-      $0457 { ї } :
-        InternalAddCharsToResult([$00EF]); { ï }
+      $0457 { Ï } :
+        InternalAddCharsToResult([$00EF]); { Ï }
       $0419 { Й } :
         InternalAddCharsToResult([$004A]); { J }
       $0439 { й } :
