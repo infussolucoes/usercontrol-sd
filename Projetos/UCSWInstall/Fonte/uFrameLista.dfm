@@ -216,6 +216,20 @@ object framePacotes: TframePacotes
     Font.Style = []
     ParentFont = False
   end
+  object Label8: TLabel
+    Left = 291
+    Top = 256
+    Width = 106
+    Height = 13
+    Margins.Left = 5
+    Caption = 'Para uso com Zeos Lib'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
   object pckUCDataConnector_dpk: TCheckBox
     Left = 18
     Top = 16
@@ -454,6 +468,26 @@ object framePacotes: TframePacotes
     Font.Style = []
     ParentFont = False
     TabOrder = 11
+    OnClick = VerificarCheckboxes
+  end
+  object pckZeosConn_dpk: TCheckBox
+    Tag = 9
+    Left = 65
+    Top = 255
+    Width = 163
+    Height = 17
+    Margins.Left = 25
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    Caption = 'pckZeosConn.dpk'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 12
     OnClick = VerificarCheckboxes
   end
 end
