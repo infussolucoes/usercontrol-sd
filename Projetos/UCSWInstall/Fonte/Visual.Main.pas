@@ -714,9 +714,9 @@ begin
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd22' then
       edtDelphiVersion.Items.Add('Delphi XE8')
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd23' then
-      edtDelphiVersion.Items.Add('Delphi XE9')
+      edtDelphiVersion.Items.Add('Delphi 10 Seattle')
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd24' then
-      edtDelphiVersion.Items.Add('Delphi XE10');
+      edtDelphiVersion.Items.Add('Delphi 11 Seattle');
 
     // -- Evento disparado antes de iniciar a execução do processo.
     oUserControl.Installations[iFor].DCC32.OnBeforeExecute := BeforeExecute;
