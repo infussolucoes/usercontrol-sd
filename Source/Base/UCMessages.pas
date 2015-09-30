@@ -72,11 +72,11 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  Classes,
-  Dialogs,
-  Forms,
-  Graphics,
-  SysUtils,
+  system.Classes,
+  vcl.Dialogs,
+  vcl.Forms,
+  vcl.Graphics,
+  system.SysUtils,
 
 
   UCConsts_language;
@@ -693,18 +693,18 @@ end;
 
 destructor TUCUserSettings.Destroy;
 begin
-  SysUtils.FreeAndNil(FAppMessagesMSG);
-  SysUtils.FreeAndNil(FLoginFormMSG);
-  SysUtils.FreeAndNil(FUserCommomMSG);
-  SysUtils.FreeAndNil(FCadUserFormMSG);
-  SysUtils.FreeAndNil(FAddUserFormMSG);
-  SysUtils.FreeAndNil(FAddProfileFormMSG);
-  SysUtils.FreeAndNil(FPermissFormMSG);
-  SysUtils.FreeAndNil(FProfileUserFormMSG);
-  SysUtils.FreeAndNil(FTrocaSenhaFormMSG);
-  SysUtils.FreeAndNil(FResetPassword);
-  SysUtils.FreeAndNil(FLogControlFormMSG);
-  SysUtils.FreeAndNil(fUsersLogged);
+  system.SysUtils.FreeAndNil(FAppMessagesMSG);
+  system.SysUtils.FreeAndNil(FLoginFormMSG);
+  system.SysUtils.FreeAndNil(FUserCommomMSG);
+  system.SysUtils.FreeAndNil(FCadUserFormMSG);
+  system.SysUtils.FreeAndNil(FAddUserFormMSG);
+  system.SysUtils.FreeAndNil(FAddProfileFormMSG);
+  system.SysUtils.FreeAndNil(FPermissFormMSG);
+  system.SysUtils.FreeAndNil(FProfileUserFormMSG);
+  system.SysUtils.FreeAndNil(FTrocaSenhaFormMSG);
+  system.SysUtils.FreeAndNil(FResetPassword);
+  system.SysUtils.FreeAndNil(FLogControlFormMSG);
+  system.SysUtils.FreeAndNil(fUsersLogged);
   inherited;
 end;
 
@@ -810,8 +810,8 @@ end;
 
 destructor TUCUserCommonMSG.Destroy;
 begin
-  SysUtils.FreeAndNil(FChangePasswordError);
-  SysUtils.FreeAndNil(FFirstMSG);
+  system.SysUtils.FreeAndNil(FChangePasswordError);
+  system.SysUtils.FreeAndNil(FFirstMSG);
   inherited;
 end;
 
@@ -852,9 +852,9 @@ end;
 
 destructor TUCLoginFormMSG.Destroy;
 begin
-  SysUtils.FreeAndNil(FTopImage);
-  SysUtils.FreeAndNil(FLeftImage);
-  SysUtils.FreeAndNil(FBottomImage);
+  system.SysUtils.FreeAndNil(FTopImage);
+  system.SysUtils.FreeAndNil(FLeftImage);
+  system.SysUtils.FreeAndNil(FBottomImage);
   inherited;
 end;
 

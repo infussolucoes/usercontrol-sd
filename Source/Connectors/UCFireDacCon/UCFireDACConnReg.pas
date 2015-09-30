@@ -69,7 +69,7 @@ unit UCFireDACConnReg;
 
 interface
 
-uses Classes;
+uses system.Classes;
 
 procedure Register;
 

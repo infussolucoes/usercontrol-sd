@@ -73,28 +73,30 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-{$IFDEF DELPHI5_UP}
-{$ELSE}
-  Variants,
-{$ENDIF}
-  Buttons,
-  Classes,
-  Controls,
-  Db,
-  DBGrids,
-  Dialogs,
-  ExtCtrls,
-  Forms,
-  Graphics,
-  Grids,
-  Messages,
-  StdCtrls,
-  SysUtils,
-  Windows, FMTBcd, SqlExpr,
+System.Variants,
+  vcl.Buttons,
+  System.Classes,
+  vcl.Controls,
+  Data.DB,
+  vcl.DBCtrls,
+  vcl.Dialogs,
+  vcl.ExtCtrls,
+  vcl.Forms,
+  vcl.Graphics,
+  Winapi.Messages,
+  Vcl.Samples.Spin,
+  vcl.StdCtrls,
+  system.SysUtils,
+  winapi.Windows,
+  vcl.DBGrids,
+  vcl.Grids,
 
-  {$IF CompilerVersion >= 23} {Delphi XE2}
+
+  Data.FMTBcd, data.SqlExpr,
+
+
   System.UITypes,
-  {$IFEND}
+
 
   IncPerfil_U,
   UcBase,

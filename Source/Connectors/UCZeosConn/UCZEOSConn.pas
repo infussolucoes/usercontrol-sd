@@ -79,9 +79,9 @@ unit UCZEOSConn;
 interface
 
 uses
-  Classes,
-  DB,
-  SysUtils,
+  system.Classes,
+  Data.DB,
+  system.SysUtils,
   UCDataConnector,
   ZConnection;
 

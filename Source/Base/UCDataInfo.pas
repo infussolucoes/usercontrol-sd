@@ -70,7 +70,7 @@ unit UCDataInfo;
 interface
 
 uses
-  Classes;
+  System.Classes;
 
 type
   TUCTableUsers = class(TPersistent)

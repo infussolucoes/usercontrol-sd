@@ -80,7 +80,7 @@ unit UCFireDACConn;
 interface
 
 uses
-  UCDataConnector, SysUtils, Classes, UCBase, DB, FireDAC.Stan.Intf,
+  UCDataConnector, system.SysUtils, system.Classes, UCBase, Data.DB, FireDAC.Stan.Intf,
   FireDAC.Stan.Option,
   FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,

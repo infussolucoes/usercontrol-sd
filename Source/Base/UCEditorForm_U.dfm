@@ -95,7 +95,7 @@ object UCEditorForm: TUCEditorForm
       Left = 220
       Top = 0
       Width = 374
-      Height = 80
+      Height = 73
       Align = alRight
       AutoSize = True
       Picture.Data = {
@@ -364,6 +364,7 @@ object UCEditorForm: TUCEditorForm
         06CF6FB4C7C7FE3D5249F0ABC4CF6EB18D0C295E770BA8B27FF1EAFA2B637F74
         FE546C6FEE9FCA8B01F355CFC1EF15CBB443A2F18C906E62EBFF007D515F4D5B
         A36F3F29E9E945689684B3FFD9}
+      ExplicitHeight = 80
     end
   end
   object pnlCentro: TPanel
@@ -1255,10 +1256,6 @@ object UCEditorForm: TUCEditorForm
       object tabLogin: TTabSheet
         Caption = 'Login'
         ImageIndex = 2
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Label14: TLabel
           Left = 115
           Top = 25

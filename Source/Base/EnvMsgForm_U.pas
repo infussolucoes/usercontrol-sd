@@ -73,20 +73,20 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  Variants,
-  Buttons,
-  Classes,
-  Controls,
-  DB,
-  DBCtrls,
-  Dialogs,
-  ExtCtrls,
-  Forms,
-  Graphics,
-  Messages,
-  StdCtrls,
-  SysUtils,
-  Windows,
+  System.Variants,
+  Vcl.Buttons,
+  System.Classes,
+  Vcl.Controls,
+  Data.DB,
+  Vcl.DBCtrls,
+  Vcl.Dialogs,
+  Vcl.ExtCtrls,
+  Vcl.Forms,
+  Vcl.Graphics,
+  Winapi.Messages,
+  Vcl.StdCtrls,
+  System.SysUtils,
+  winapi.Windows,
 
   UCBase;
 

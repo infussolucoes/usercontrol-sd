@@ -82,10 +82,11 @@ unit UCDBXConn;
 interface
 
 uses
-  Classes,
-  DB,SimpleDS,
-  SqlExpr,
-  SysUtils,
+  system.Classes,
+  Data.DB,
+  SimpleDS,
+  Data.SqlExpr,
+  system.SysUtils,
   UCDataConnector;
 
 type

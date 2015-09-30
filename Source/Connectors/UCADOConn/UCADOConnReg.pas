@@ -70,7 +70,7 @@ unit UCADOConnReg;
 interface
 
 uses
-  Classes,
+  system.Classes,
   UCADOConn;
 
 procedure Register;

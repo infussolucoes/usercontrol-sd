@@ -70,8 +70,20 @@ unit pUCGeral;
 interface
 
 uses
-  Buttons, Classes, ComCtrls, Controls, DB, DBGrids, Dialogs, ExtCtrls, Forms,
-  Graphics, Grids, Messages, StdCtrls, SysUtils, Variants, Windows,
+  System.Variants,
+  vcl.Buttons,
+  System.Classes,
+  vcl.Controls,
+  Data.DB,
+  vcl.DBCtrls,
+  vcl.Dialogs,
+  vcl.ExtCtrls,
+  vcl.Forms,
+  vcl.Graphics,
+  Winapi.Messages,
+  vcl.StdCtrls,
+  system.SysUtils,
+  winapi.Windows,
 
   UcBase;
 

@@ -73,14 +73,14 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  Messages,
-  Buttons,
-  Classes,
-  Controls,
-  ExtCtrls,
-  Forms,
-  jpeg,
-  StdCtrls;
+  winapi.Messages,
+  vcl.Buttons,
+  system.Classes,
+  vcl.Controls,
+  vcl.ExtCtrls,
+  vcl.Forms,
+  Vcl.Imaging.jpeg,
+  vcl.StdCtrls;
 
 type
   TAboutForm = class(TForm)
@@ -121,9 +121,9 @@ type
 implementation
 
 uses
-  ShellAPI,
+  winapi.ShellAPI,
   UCBase,
-  Windows;
+  winapi.Windows;
 
 {$R *.dfm}
 

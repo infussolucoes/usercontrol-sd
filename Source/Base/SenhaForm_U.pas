@@ -73,21 +73,24 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  Buttons,
-  Classes,
-  Controls,
-  Dialogs,
-  Forms,
-  Graphics,
-  Messages,
-  StdCtrls,
-  SysUtils,
-  Variants,
-  Windows,
+  System.Variants,
+  vcl.Buttons,
+  System.Classes,
+  vcl.Controls,
+  Data.DB,
+  vcl.DBCtrls,
+  vcl.Dialogs,
+  vcl.ExtCtrls,
+  vcl.Forms,
+  vcl.Graphics,
+  Winapi.Messages,
+  vcl.StdCtrls,
+  system.SysUtils,
+  winapi.Windows,
 
-  {$IF CompilerVersion >= 23} {Delphi XE2}
+
   System.UITypes,
-  {$IFEND}
+
 
   UCBase;
 

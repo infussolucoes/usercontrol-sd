@@ -73,25 +73,25 @@ interface
 { .$I 'UserControl.inc' }
 
 uses
-  ActnCtrls,
-  ActnList,
-  ActnMan,
-  ActnMenus,
-  Buttons,
-  Classes,
-  ComCtrls,
-  Contnrs,
-  Controls,
-  Dialogs,
-  ExtCtrls,
-  ExtDlgs,
-  Forms,
-  Graphics,
-  jpeg,
-  Menus,
-  Spin,
-  StdCtrls,
-  ToolWin,
+  vcl.ActnCtrls,
+  vcl.ActnList,
+  vcl.ActnMan,
+  vcl.ActnMenus,
+  vcl.Buttons,
+  system.Classes,
+  vcl.ComCtrls,
+  system.Contnrs,
+  vcl.Controls,
+  vcl.Dialogs,
+  vcl.ExtCtrls,
+  vcl.ExtDlgs,
+  vcl.Forms,
+  vcl.Graphics,
+  Vcl.Imaging.jpeg,
+  vcl.Menus,
+  Vcl.Samples.Spin,
+  vcl.StdCtrls,
+  vcl.ToolWin,
   UCBase, System.Actions;
 
 type
@@ -242,11 +242,11 @@ implementation
 
 uses
   LoginWindow_U,
-  ShellAPI,
-  SysUtils,
+  winapi.ShellAPI,
+  system.SysUtils,
   UcConsts_Language,
   UCMessages,
-  Windows;
+  winapi.Windows;
 
 {$R *.dfm}
 
@@ -531,7 +531,7 @@ begin
       ShowModal;
     end;
   finally
-    SysUtils.FreeAndNil(frmLogin);
+    system.SysUtils.FreeAndNil(frmLogin);
   end;
 end;
 

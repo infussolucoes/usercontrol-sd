@@ -70,7 +70,7 @@ unit UCZEOSConnReg;
 
 interface
 
-uses Classes;
+uses system.Classes;
 
 procedure Register;
 

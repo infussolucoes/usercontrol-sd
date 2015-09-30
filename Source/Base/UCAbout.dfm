@@ -26,8 +26,6 @@ object AboutForm: TAboutForm
     Caption = 'pnlFundo'
     Color = 6435072
     TabOrder = 0
-    ExplicitWidth = 506
-    ExplicitHeight = 520
     object pnlComponentes: TPanel
       Left = 1
       Top = 1
@@ -38,8 +36,6 @@ object AboutForm: TAboutForm
       BevelOuter = bvNone
       Color = 6435072
       TabOrder = 0
-      ExplicitWidth = 474
-      ExplicitHeight = 561
       object Panel1: TPanel
         Left = 0
         Top = 2

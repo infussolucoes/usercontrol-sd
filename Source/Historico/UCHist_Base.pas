@@ -70,8 +70,8 @@ unit UCHist_Base;
 interface
 
 uses
-  SysUtils,
-  Classes, Forms,
+  system.SysUtils,
+  system.Classes, vcl.Forms,
   UCConsts_Language,
   UCHist_Type,
   UCBase;

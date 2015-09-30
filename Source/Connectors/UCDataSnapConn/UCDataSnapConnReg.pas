@@ -70,10 +70,10 @@ unit UCDataSnapConnReg;
 interface
 
 uses
-  Classes,
+  system.Classes,
   DesignEditors,
   DesignIntf,
-  TypInfo;
+  system.TypInfo;
 
 procedure Register;
 

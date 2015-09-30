@@ -73,26 +73,37 @@ interface
 {$I 'UserControl.inc'}
 
 uses
+
+  System.Variants,
+  vcl.Buttons,
+  System.Classes,
+  vcl.Controls,
+  Data.DB,
+  vcl.DBCtrls,
+  vcl.Dialogs,
+  vcl.ExtCtrls,
+  vcl.Forms,
+  vcl.Graphics,
+  Winapi.Messages,
+  Vcl.Samples.Spin,
+  vcl.StdCtrls,
+  system.SysUtils,
+  winapi.Windows,
+  vcl.DBGrids,
+  vcl.Grids,
+
   UCBase,
-  {.$IFDEF UCACTMANAGER}
-  ActnMan,
-  ActnMenus,
-  {.$ENDIF}
-  {.$IFDEF DELPHI5_UP}
-  Variants,
-  {.$ENDIF}
-  Buttons,
-  Classes,
-  ComCtrls,
-  Controls,
-  DB,
-  ExtCtrls,
-  Forms,
-  Graphics,
-  ImgList,
-  Menus,
-  StdCtrls, System.ImageList;
-  //ImageList;
+
+  Vcl.ActnMan,
+  Vcl.ActnMenus,
+
+
+  vcl.ComCtrls,
+
+  vcl.ImgList,
+  vcl.Menus,
+
+  System.ImageList;
 
 type
   PTreeMenu = ^TTreeMenu;
@@ -191,11 +202,7 @@ var
 implementation
 
 uses
-  ActnList,
-  Messages,
-  SysUtils,
-  Windows,
-
+  Vcl.ActnList,
   pUCFrame_Profile;
 
 {$R *.dfm}

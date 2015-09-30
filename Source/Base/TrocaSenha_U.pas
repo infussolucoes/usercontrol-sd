@@ -72,8 +72,6 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-
-{$IF CompilerVersion >= 23}
   System.UITypes,
   System.Variants,
   Vcl.Buttons,
@@ -87,23 +85,6 @@ uses
   Vcl.StdCtrls,
   System.SysUtils,
   WinApi.Windows,
-{$ELSE}
-{$IFDEF DELPHI5_UP}
-{$ELSE}
-  Variants,
-{$ENDIF}
-  Buttons,
-  Classes,
-  Controls,
-  Dialogs,
-  ExtCtrls,
-  Forms,
-  Graphics,
-  Messages,
-  StdCtrls,
-  SysUtils,
-  Windows,
-{$IFEND}
 
   UCBase; { Por Vicente Barros Leonel }
 

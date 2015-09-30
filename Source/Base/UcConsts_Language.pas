@@ -69,7 +69,7 @@ unit UcConsts_Language;
 
 interface
 
-Uses SysUtils;
+Uses system.SysUtils;
 
 Type
   TUCLanguage = (ucPortuguesBr, ucEnglish, ucSpanish, ucFrench);

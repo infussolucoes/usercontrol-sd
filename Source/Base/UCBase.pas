@@ -73,27 +73,25 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  ActnList,
-  ActnMan,
-  ActnMenus,
-  Classes,
-  Controls,
-  DB,
-  ExtActns,
-  Forms,
-  Graphics,
+  Vcl.ActnList,
+  Vcl.ActnMan,
+  Vcl.ActnMenus,
+  System.Classes,
+  Vcl.Controls,
+  Data.DB,
+  Vcl.ExtActns,
+  Vcl.Forms,
+  Vcl.Graphics,
   md5,
-  Menus,
-  StdCtrls,
-  SysUtils,
+  Vcl.Menus,
+  Vcl.StdCtrls,
+  System.SysUtils,
   {.$IFDEF DELPHI5_UP}
-  Variants,
+  System.Variants,
   {.$ENDIF}
-  Windows,
+  WinApi.Windows,
 
-  {$IF CompilerVersion >= 23} {Delphi XE2}
   System.UITypes,
-  {$IFEND}
 
   UcConsts_Language,
   UCDataConnector,
@@ -763,8 +761,8 @@ implementation
 {$R UCLock.res}
 
 uses
-  DBGrids,
-  Dialogs,
+  vcl.DBGrids,
+  vcl.Dialogs,
   LoginWindow_U,
   MsgRecForm_U,
   MsgsForm_U,
@@ -1132,7 +1130,7 @@ begin
   try
     Result := (DataSet.RecordCount > 0);
   finally
-    SysUtils.FreeAndNil(DataSet);
+    System.SysUtils.FreeAndNil(DataSet);
   end;
 end;
 
@@ -2175,7 +2173,7 @@ begin
   if Assigned(SLControls) then
     for Contador := 0 to Pred(SLControls.Count) do
       FLoginMonitorList.Delete(StrToInt(SLControls[Contador]));
-  SysUtils.FreeAndNil(SLControls);
+  System.SysUtils.FreeAndNil(SLControls);
 end;
 
 procedure TUserControl.NotificationLoginMonitor;
@@ -3364,8 +3362,8 @@ end;
 
 destructor TUCLogin.Destroy;
 begin
-  SysUtils.FreeAndNil(Self.FAutoLogin);
-  SysUtils.FreeAndNil(Self.FInitialLogin);
+  System.SysUtils.FreeAndNil(Self.FAutoLogin);
+  System.SysUtils.FreeAndNil(Self.FInitialLogin);
 
   inherited Destroy;
 end;
@@ -4260,9 +4258,9 @@ end;
 destructor TUCCurrentUser.Destroy;
 begin
   if Assigned(FPerfilUsuario) then
-    SysUtils.FreeAndNil(FPerfilUsuario);
+    System.SysUtils.FreeAndNil(FPerfilUsuario);
   if Assigned(FPerfilGrupo) then
-    SysUtils.FreeAndNil(FPerfilGrupo);
+    System.SysUtils.FreeAndNil(FPerfilGrupo);
   inherited;
 end;
 

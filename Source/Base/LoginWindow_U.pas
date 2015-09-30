@@ -73,21 +73,21 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-{$IFDEF DELPHI5_UP}
-  Variants,
-{$ENDIF}
-  Buttons,
-  Classes,
-  Controls,
-  Dialogs,
-  ExtCtrls,
-  Forms,
-  Graphics,
-  Math,
-  Messages,
-  StdCtrls,
-  SysUtils,
-  Windows, ComCtrls,
+  System.Variants,
+  vcl.Buttons,
+  System.Classes,
+  vcl.Controls,
+  Data.DB,
+  vcl.Dialogs,
+  vcl.ExtCtrls,
+  vcl.Forms,
+  vcl.Graphics,
+  system.math,
+  Winapi.Messages,
+  vcl.StdCtrls,
+  system.SysUtils,
+  winapi.Windows,
+  vcl.ComCtrls,
 
   UCBase;
 

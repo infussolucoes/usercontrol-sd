@@ -71,21 +71,21 @@ unit MsgRecForm_U;
 interface
 
 uses
-{$IFDEF VER130}
-{$ELSE}
-  Variants,
-{$ENDIF}
-  Buttons,
-  Classes,
-  Controls,
-  Dialogs,
-  ExtCtrls,
-  Forms,
-  Graphics,
-  Messages,
-  StdCtrls,
-  SysUtils,
-  Windows,
+  System.Variants,
+  vcl.Buttons,
+  System.Classes,
+  vcl.Controls,
+  Data.DB,
+  vcl.DBCtrls,
+  vcl.Dialogs,
+  vcl.ExtCtrls,
+  vcl.Forms,
+  vcl.Graphics,
+  Winapi.Messages,
+  Vcl.Samples.Spin,
+  vcl.StdCtrls,
+  system.SysUtils,
+  winapi.Windows,
 
   UCBase;
 

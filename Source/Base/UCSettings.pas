@@ -70,8 +70,8 @@ unit UCSettings;
 interface
 
 uses
-  Classes,
-  Forms,
+  system.Classes,
+  vcl.Forms,
 
   UCMessages,
   UcConsts_Language;
@@ -157,8 +157,8 @@ procedure RetornaSqlBancoDados(fBanco: TUCTypeBancoDados;
 implementation
 
 uses
-  Graphics,
-  SysUtils,
+  vcl.Graphics,
+  system.SysUtils,
 
   UCBase;
 
