@@ -8,5 +8,7 @@ que possível.
 Versões Suportadas
 
 Delphi XE 7
+
 Delphi XE 8
+
 Delphi 10 Seattle
