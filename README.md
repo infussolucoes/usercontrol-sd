@@ -13,4 +13,12 @@ Delphi XE 8
 
 Delphi 10 Seattle
 
+Conectors Suportados até o momento:
+ADOConnector
+IBXConnector
+DBXConnector
+FireDACConnector
+ZeosConnector
+DataSnapConnector.
+
 
