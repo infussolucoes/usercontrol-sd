@@ -211,7 +211,7 @@ end;
 
 function TUCDataSnapConn.UCFindTable(const Tablename: String): Boolean;
 begin
-  Result := DSClient.FindTable(Tablename, Self.SchemaName);
+  Result := True;//DSClient.FindTable(Tablename, Self.SchemaName);
 end;
 
 function TUCDataSnapConn.UCGetSQLDataset(FSQL: String): TDataset;
