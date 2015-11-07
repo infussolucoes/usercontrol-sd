@@ -214,6 +214,16 @@ begin
   Begin
     If DataSet.Fields[Aux].IsBlob = False then
     Begin
+
+      { Fields que não devem ser testados - Giovani Da Cruz }
+      if (DataSet.Fields[Aux] is TDataSetField) or
+         (DataSet.Fields[Aux] is TAggregateField) or
+         (DataSet.Fields[Aux].FieldKind <> fkData)
+      then
+      begin
+        Continue;
+      end;
+
       With DataSet.Fields[Aux] do
       Begin
         If DataSetInEdit = False then // inserindo ou deletando
