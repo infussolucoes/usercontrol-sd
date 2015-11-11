@@ -73,7 +73,7 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-System.Variants,
+  System.Variants,
   vcl.Buttons,
   System.Classes,
   vcl.Controls,
@@ -91,7 +91,13 @@ System.Variants,
   vcl.ComCtrls,
   vcl.DBGrids,
 
-  UCBase, System.ImageList, Vcl.ImgList, Vcl.Grids;
+  UCBase,
+
+  {$IF CompilerVersion >= 22.0}
+      System.ImageList,
+  {$IFEND}
+
+  Vcl.ImgList, Vcl.Grids;
 
 type
   TUCFrame_Log = class(TFrame)

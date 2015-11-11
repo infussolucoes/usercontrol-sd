@@ -90,8 +90,12 @@ uses
   winapi.Windows,
   vcl.ComCtrls,
   vcl.ImgList,
-  vcl.ToolWin,
-  System.ImageList;
+
+  {$IF CompilerVersion >= 22.0}
+      System.ImageList,
+  {$IFEND}
+
+  vcl.ToolWin;
 
 type
   TPointMsg = ^PPointMsg;

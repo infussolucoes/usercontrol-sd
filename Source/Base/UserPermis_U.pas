@@ -101,9 +101,12 @@ uses
   vcl.ComCtrls,
 
   vcl.ImgList,
-  vcl.Menus,
 
-  System.ImageList;
+  {$IF CompilerVersion >= 22.0}
+      System.ImageList,
+  {$IFEND}
+
+  vcl.Menus;
 
 type
   PTreeMenu = ^TTreeMenu;
