@@ -18,6 +18,6 @@ Delphi 10 Seattle
 Conectors Suportados até o momento:
 ADOConnector, IBXConnector, DBXConnector, FireDACConnector, ZeosConnector, DataSnapConnector.
 
-Visite a comunidade: showdelphi.com.br
+Visite a comunidade: http://showdelphi.com.br
 
 
