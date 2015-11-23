@@ -91,9 +91,10 @@ uses
   vcl.ComCtrls,
   vcl.ImgList,
 
-  {$IF CompilerVersion >= 22.0}
+  // Delphi XE 8 ou superior
+  {$IFDEF DELPHI21_UP}
       System.ImageList,
-  {$IFEND}
+  {$ENDIF}
 
   vcl.ToolWin;
 

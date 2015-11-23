@@ -1,7 +1,7 @@
 object FrmPrincipal: TFrmPrincipal
   Left = 0
   Top = 0
-  ActiveControl = wizPgInicio
+  ActiveControl = edtDirDestino
   Caption = 'Instalador do UserControl ShowDelphi Edition'
   ClientHeight = 599
   ClientWidth = 736
@@ -22,7 +22,7 @@ object FrmPrincipal: TFrmPrincipal
     Top = 0
     Width = 736
     Height = 599
-    ActivePage = wizPgInicio
+    ActivePage = wizPgConfiguracao
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -802,9 +802,6 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label2: TLabel
         Left = 33
         Top = 93
@@ -900,6 +897,21 @@ object FrmPrincipal: TFrmPrincipal
         ParentFont = False
         WordWrap = True
       end
+      object Label15: TLabel
+        Left = 33
+        Top = 416
+        Width = 504
+        Height = 16
+        Caption = 
+          'Obs. O Instalador deve ser executado junto com a pasta dos arqui' +
+          'vos fontes!'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clRed
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold, fsUnderline]
+        ParentFont = False
+      end
       object edtDirDestino: TEdit
         Left = 33
         Top = 109
@@ -979,9 +991,6 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       inline frameDpk: TframePacotes
         Left = 0
         Top = 70
@@ -1028,9 +1037,6 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgInstalacaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object btnVisualizarLogCompilacao: TSpeedButton
         Left = 33
         Top = 519
@@ -1119,9 +1125,6 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label3: TLabel
         Left = 55
         Top = 138

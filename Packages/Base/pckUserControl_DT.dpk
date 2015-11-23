@@ -33,7 +33,7 @@ requires
   designide,
   pckUserControl_RT;
 
-contains
+Contains
   UCReg in '..\..\Source\Base\UCReg.pas',
   UCObjSel_U in '..\..\Source\Base\UCObjSel_U.pas',
   UCAbout in '..\..\Source\Base\UCAbout.pas',

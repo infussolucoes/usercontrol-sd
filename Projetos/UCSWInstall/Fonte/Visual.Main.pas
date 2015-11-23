@@ -126,6 +126,7 @@ type
     Image1: TImage;
     Label13: TLabel;
     Label14: TLabel;
+    Label15: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure edtDelphiVersionChange(Sender: TObject);
