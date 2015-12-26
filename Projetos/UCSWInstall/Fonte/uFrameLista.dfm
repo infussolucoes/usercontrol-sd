@@ -230,6 +230,20 @@ object framePacotes: TframePacotes
     Font.Style = []
     ParentFont = False
   end
+  object Label11: TLabel
+    Left = 291
+    Top = 273
+    Width = 135
+    Height = 13
+    Margins.Left = 5
+    Caption = 'Para uso com Conex'#227'o Rest'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
   object pckUCDataConnector_dpk: TCheckBox
     Left = 18
     Top = 16
@@ -488,6 +502,26 @@ object framePacotes: TframePacotes
     Font.Style = []
     ParentFont = False
     TabOrder = 12
+    OnClick = VerificarCheckboxes
+  end
+  object pckUCRestConn_dpk: TCheckBox
+    Tag = 9
+    Left = 65
+    Top = 272
+    Width = 163
+    Height = 17
+    Margins.Left = 25
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    Caption = 'pckUCRestConn.dpk'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 13
     OnClick = VerificarCheckboxes
   end
 end

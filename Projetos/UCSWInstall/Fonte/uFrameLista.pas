@@ -104,6 +104,8 @@ type
     Label4: TLabel;
     pckZeosConn_dpk: TCheckBox;
     Label8: TLabel;
+    pckUCRestConn_dpk: TCheckBox;
+    Label11: TLabel;
     procedure btnPacotesMarcarTodosClick(Sender: TObject);
     procedure btnPacotesDesmarcarTodosClick(Sender: TObject);
     procedure VerificarCheckboxes(Sender: TObject);
