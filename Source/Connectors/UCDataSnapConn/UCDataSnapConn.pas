@@ -135,6 +135,9 @@ end;
 
 procedure TUCDataSnapConn.DataSetBeforeOpen(DataSet: TDataSet);
 begin
+  if not (Connection.Connected) then
+    Connection.Open;
+
   DSClient.GetDataSet(DataSet.Filter);
 end;
 
@@ -201,6 +204,9 @@ end;
 
 procedure TUCDataSnapConn.UCExecSQL(FSQL: String);
 begin
+  if not (Connection.Connected) then
+    Connection.Open;
+
   DSClient.ExecuteSQL(FSQL);
 end;
 
