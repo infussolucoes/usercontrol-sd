@@ -18,6 +18,9 @@ Delphi 10 Seattle
 Conectors Suportados até o momento:
 ADOConnector, IBXConnector, DBXConnector, FireDACConnector, ZeosConnector, DataSnapConnector.
 
+O RestConnector é experimental.
+O Midas Connector é somente até o Delphi XE 8.
+
 Visite a comunidade: http://showdelphi.com.br
 
 
