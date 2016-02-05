@@ -1,9 +1,9 @@
-object Form1: TForm1
+object FrmPrincipal: TFrmPrincipal
   Left = 408
   Top = 246
   Caption = 'Tutorial UserControl - www.showdelphi.com.br'
-  ClientHeight = 196
-  ClientWidth = 543
+  ClientHeight = 306
+  ClientWidth = 619
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,7 +12,7 @@ object Form1: TForm1
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
-  OnClose = FormClose
+  Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
   object MainMenu1: TMainMenu
@@ -22,33 +22,32 @@ object Form1: TForm1
       Caption = 'Cadastro'
       object Bancos1: TMenuItem
         Caption = 'Bancos'
+        OnClick = Bancos1Click
       end
       object Clientes1: TMenuItem
         Caption = 'Clientes'
+        OnClick = Clientes1Click
       end
       object Cidades1: TMenuItem
         Caption = 'Cidades'
+        OnClick = Cidades1Click
       end
       object Produtos1: TMenuItem
         Caption = 'Produtos'
+        OnClick = Produtos1Click
       end
       object N1: TMenuItem
         Caption = '-'
       end
       object Sair1: TMenuItem
         Caption = 'Sair'
+        OnClick = Sair1Click
       end
     end
-    object Sistema1: TMenuItem
-      Caption = 'Sistema'
+    object Seguranca1: TMenuItem
+      Caption = 'Seguran'#231'a'
       object CadastrodeUsurios1: TMenuItem
         Caption = 'Cadastro de Usu'#225'rios'
-      end
-      object CadastrodePerfil1: TMenuItem
-        Caption = 'Cadastro de Perfil'
-      end
-      object RegistrodeLogins1: TMenuItem
-        Caption = 'Registro de Login'#39's'
       end
       object rocarSenha1: TMenuItem
         Caption = 'Trocar Senha'
@@ -64,6 +63,14 @@ object Form1: TForm1
       end
       object Mensagens1: TMenuItem
         Caption = 'Mensagens'
+        OnClick = Mensagens1Click
+      end
+    end
+    object estes1: TMenuItem
+      Caption = 'Testes'
+      object GerarLog1: TMenuItem
+        Caption = 'Gerar Log'
+        OnClick = GerarLog1Click
       end
     end
   end
@@ -74,15 +81,32 @@ object Form1: TForm1
     User.MenuItem = CadastrodeUsurios1
     UserPasswordChange.MenuItem = rocarSenha1
     UsersLogoff.MenuItem = Executarlogon1
-    LogControl.Active = False
     LogControl.TableLog = 'UCLog'
     Language = ucPortuguesBr
     EncryptKey = 0
     Login.InitialLogin.User = 'Admin'
-    Login.InitialLogin.Email = 'meu_imeio@soujedy.com.br'
+    Login.InitialLogin.Email = 'teste@teste.com.br'
     Login.InitialLogin.Password = '#delphi'
     Login.MaxLoginAttempts = 0
-    ExtraRights = <>
+    ExtraRights = <
+      item
+        FormName = 'FrmCliente'
+        CompName = 'BtnIncluir'
+        Caption = 'Incluir'
+        GroupName = 'Tela de Clientes'
+      end
+      item
+        FormName = 'FrmCliente'
+        CompName = 'BtnAlterar'
+        Caption = 'Alterar'
+        GroupName = 'Tela de Clientes'
+      end
+      item
+        FormName = 'FrmCliente'
+        CompName = 'BtnExcluir'
+        Caption = 'Excluir'
+        GroupName = 'Tela de Clientes'
+      end>
     TableUsers.FieldUserID = 'UCIdUser'
     TableUsers.FieldUserName = 'UCUserName'
     TableUsers.FieldLogin = 'UCLogin'
@@ -113,15 +137,18 @@ object Form1: TForm1
     Left = 200
     Top = 48
   end
-  object MyConn: TUCDBXConn
-    Connection = dmUC.cnxUC
-    Left = 136
-    Top = 16
-  end
   object UCIBXConn1: TUCIBXConn
     Connection = dmUC.IBDatabase1
     Transaction = dmUC.IBTransaction1
-    Left = 136
-    Top = 144
+    Left = 200
+    Top = 168
+  end
+  object UCApplicationMessage1: TUCApplicationMessage
+    Active = True
+    Interval = 60000
+    TableMessages = 'UCTABMESSAGES'
+    UserControl = ucMyControl
+    Left = 344
+    Top = 168
   end
 end
