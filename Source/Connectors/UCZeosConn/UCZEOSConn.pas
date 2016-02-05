@@ -106,7 +106,7 @@ type
 implementation
 
 uses
-  ZDataset, Dialogs;
+  ZDataset, Vcl.Dialogs;
 
 { TUCZEOSConn }
 
