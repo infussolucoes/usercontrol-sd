@@ -98,11 +98,11 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
-        <VerInfo_Build>22</VerInfo_Build>
+        <VerInfo_Build>23</VerInfo_Build>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Locale>1046</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=Comunidade ShowDelphi;FileDescription=Instalador dos componentes UserControl ShowDelphi Edition;FileVersion=1.0.0.22;InternalName=;LegalCopyright=Comunidade ShowDelphi;LegalTrademarks=Comunidade ShowDelphi;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Comunidade ShowDelphi;FileDescription=Instalador dos componentes UserControl ShowDelphi Edition;FileVersion=1.0.0.23;InternalName=;LegalCopyright=Comunidade ShowDelphi;LegalTrademarks=Comunidade ShowDelphi;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
