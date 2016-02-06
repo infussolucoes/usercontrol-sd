@@ -163,6 +163,8 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       Width = 81
       Height = 25
       Caption = '&Gravar'
+      TabOrder = 0
+      OnClick = btGravarClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -215,8 +217,6 @@ object frmIncluirUsuario: TfrmIncluirUsuario
         6FCE726FCE726FCE726FFF00FF9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A
         9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A}
       NumGlyphs = 2
-      TabOrder = 0
-      OnClick = btGravarClick
     end
     object btCancela: TBitBtn
       Left = 8
@@ -224,6 +224,8 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       Width = 81
       Height = 25
       Caption = '&Cancelar'
+      TabOrder = 1
+      OnClick = btCancelaClick
       Glyph.Data = {
         66030000424D6603000000000000660200002800000010000000100000000100
         08000000000000010000120B0000120B00008C0000008C00000000000000FFFF
@@ -253,8 +255,6 @@ object frmIncluirUsuario: TfrmIncluirUsuario
         14212E44757D69577902024D0D08011218241F3253016140790202024D0A0C01
         0E1C2A390156787902020202024D4D1A1B2735334C797902020202020202024D
         4D4D4D4D4D0202020202}
-      TabOrder = 1
-      OnClick = btCancelaClick
     end
   end
   object Panel2: TPanel
@@ -452,6 +452,7 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       Width = 265
       Height = 21
       Style = csDropDownList
+      ItemHeight = 13
       TabOrder = 3
       Items.Strings = (
         'Ativo'

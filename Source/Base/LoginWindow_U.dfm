@@ -147,6 +147,8 @@ object frmLoginWindow: TfrmLoginWindow
         Width = 100
         Height = 25
         Caption = 'OK'
+        TabOrder = 2
+        OnClick = btOKClick
         Glyph.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
           2000000000000004000000000000000000000000000000000000C8D0D400C8D0
@@ -182,8 +184,6 @@ object frmLoginWindow: TfrmLoginWindow
           D400C8D0D400C8D0D400C8D0D400C6CACD00BB9A8A00B99A8B00C8D0D400C8D0
           D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0
           D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400}
-        TabOrder = 2
-        OnClick = btOKClick
       end
       object BtCancela: TBitBtn
         Left = 177
@@ -192,6 +192,8 @@ object frmLoginWindow: TfrmLoginWindow
         Height = 25
         Cancel = True
         Caption = 'Cancelar'
+        TabOrder = 3
+        OnClick = BtCancelaClick
         Glyph.Data = {
           36040000424D3604000000000000360000002800000010000000100000000100
           2000000000000004000000000000000000000000000000000000C8D0D400ACB3
@@ -227,8 +229,6 @@ object frmLoginWindow: TfrmLoginWindow
           D400C8D0D400C8D0D400949CC900424DBE009097C500C8D0D400C8D0D400C8D0
           D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0
           D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400}
-        TabOrder = 3
-        OnClick = BtCancelaClick
       end
     end
   end

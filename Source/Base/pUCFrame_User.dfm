@@ -1,8 +1,8 @@
 object UCFrame_User: TUCFrame_User
   Left = 0
   Top = 0
-  Width = 695
-  Height = 554
+  Width = 712
+  Height = 571
   Anchors = [akLeft, akTop, akRight, akBottom]
   TabOrder = 0
   TabStop = True
@@ -20,6 +20,8 @@ object UCFrame_User: TUCFrame_User
       Height = 25
       Cursor = crHandPoint
       Caption = '&Adicionar'
+      TabOrder = 0
+      OnClick = btAdicClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -72,8 +74,6 @@ object UCFrame_User: TUCFrame_User
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
-      TabOrder = 0
-      OnClick = btAdicClick
     end
     object BtAlt: TBitBtn
       Left = 9
@@ -82,6 +82,8 @@ object UCFrame_User: TUCFrame_User
       Height = 25
       Cursor = crHandPoint
       Caption = '&Alterar'
+      TabOrder = 1
+      OnClick = BtAltClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -134,8 +136,6 @@ object UCFrame_User: TUCFrame_User
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
-      TabOrder = 1
-      OnClick = BtAltClick
     end
     object BtExclui: TBitBtn
       Left = 9
@@ -144,6 +144,8 @@ object UCFrame_User: TUCFrame_User
       Height = 25
       Cursor = crHandPoint
       Caption = '&Excluir'
+      TabOrder = 2
+      OnClick = BtExcluiClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -196,8 +198,6 @@ object UCFrame_User: TUCFrame_User
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
-      TabOrder = 2
-      OnClick = BtExcluiClick
     end
     object BtAcess: TBitBtn
       Left = 9
@@ -206,6 +206,8 @@ object UCFrame_User: TUCFrame_User
       Height = 25
       Cursor = crHandPoint
       Caption = '&Acessos'
+      TabOrder = 3
+      OnClick = BtAcessClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -258,8 +260,6 @@ object UCFrame_User: TUCFrame_User
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
-      TabOrder = 3
-      OnClick = BtAcessClick
     end
     object BtPass: TBitBtn
       Left = 9
@@ -268,6 +268,8 @@ object UCFrame_User: TUCFrame_User
       Height = 25
       Cursor = crHandPoint
       Caption = '&Senha'
+      TabOrder = 4
+      OnClick = BtPassClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000C8D0D4C8D0D4
@@ -320,8 +322,6 @@ object UCFrame_User: TUCFrame_User
         D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8CDCFC8C9CABDBEBEB4
         B6B7BBC1C4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4}
       NumGlyphs = 2
-      TabOrder = 4
-      OnClick = BtPassClick
     end
   end
   object DbGridUser: TDBGrid
@@ -338,7 +338,7 @@ object UCFrame_User: TUCFrame_User
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
+    TitleFont.Name = 'MS Sans Serif'
     TitleFont.Style = []
     OnDblClick = BtAltClick
     Columns = <

@@ -1,6 +1,6 @@
 object FormUserPerf: TFormUserPerf
-  Left = 0
-  Top = 0
+  Left = 355
+  Top = 126
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Controle de Usu'#225'rios'
@@ -43,7 +43,6 @@ object FormUserPerf: TFormUserPerf
       Font.Style = [fsBold]
       ParentFont = False
       Layout = tlCenter
-      ExplicitHeight = 18
     end
     object Image1: TImage
       Left = 0
@@ -130,7 +129,6 @@ object FormUserPerf: TFormUserPerf
         0000000000000000000000000000000000000000000000000000000000000000
         000000000000000000000000000000000000}
       Transparent = True
-      ExplicitHeight = 35
     end
   end
   object Panel2: TPanel
@@ -148,7 +146,6 @@ object FormUserPerf: TFormUserPerf
       Width = 98
       Height = 60
       Cursor = crHandPoint
-      Align = alTop
       GroupIndex = 1
       Down = True
       Caption = '&Usu'#225'rios'
@@ -232,11 +229,6 @@ object FormUserPerf: TFormUserPerf
         00000000000000000000}
       Layout = blGlyphTop
       OnClick = SpeedUserClick
-      OnMouseEnter = SpeedUserMouseEnter
-      OnMouseLeave = SpeedUserMouseLeave
-      ExplicitLeft = -4
-      ExplicitTop = 6
-      ExplicitWidth = 95
     end
     object SpeedPerfil: TSpeedButton
       Left = 1
@@ -244,7 +236,6 @@ object FormUserPerf: TFormUserPerf
       Width = 98
       Height = 60
       Cursor = crHandPoint
-      Align = alTop
       GroupIndex = 1
       Caption = '&Perfil'
       Flat = True
@@ -327,10 +318,6 @@ object FormUserPerf: TFormUserPerf
         000000009CB0FF7893FF}
       Layout = blGlyphTop
       OnClick = SpeedPerfilClick
-      OnMouseEnter = SpeedUserMouseEnter
-      OnMouseLeave = SpeedUserMouseLeave
-      ExplicitLeft = -4
-      ExplicitTop = 45
     end
     object SpeedLog: TSpeedButton
       Left = 1
@@ -338,7 +325,6 @@ object FormUserPerf: TFormUserPerf
       Width = 98
       Height = 60
       Cursor = crHandPoint
-      Align = alTop
       GroupIndex = 1
       Caption = '&Log'
       Flat = True
@@ -421,10 +407,6 @@ object FormUserPerf: TFormUserPerf
         00000000000000000000}
       Layout = blGlyphTop
       OnClick = SpeedLogClick
-      OnMouseEnter = SpeedUserMouseEnter
-      OnMouseLeave = SpeedUserMouseLeave
-      ExplicitLeft = 2
-      ExplicitTop = 109
     end
     object SpeedUserLog: TSpeedButton
       Left = 1
@@ -432,7 +414,6 @@ object FormUserPerf: TFormUserPerf
       Width = 98
       Height = 60
       Cursor = crHandPoint
-      Align = alTop
       GroupIndex = 1
       Caption = 'Usu'#225'rios Logados'
       Flat = True
@@ -515,10 +496,6 @@ object FormUserPerf: TFormUserPerf
         00000000000000000000}
       Layout = blGlyphTop
       OnClick = SpeedUserLogClick
-      OnMouseEnter = SpeedUserMouseEnter
-      OnMouseLeave = SpeedUserMouseLeave
-      ExplicitLeft = -4
-      ExplicitTop = 173
     end
     object SBSair: TSpeedButton
       Left = 1
@@ -526,7 +503,6 @@ object FormUserPerf: TFormUserPerf
       Width = 98
       Height = 60
       Cursor = crHandPoint
-      Align = alTop
       GroupIndex = 1
       Caption = 'Fechar'
       Flat = True
@@ -589,8 +565,6 @@ object FormUserPerf: TFormUserPerf
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       Layout = blGlyphTop
       OnClick = SBSairClick
-      ExplicitLeft = -4
-      ExplicitTop = 321
     end
   end
   object Panel3: TPanel

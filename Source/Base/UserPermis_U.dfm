@@ -1,9 +1,9 @@
 object UserPermis: TUserPermis
   Left = 255
   Top = 154
+  Width = 600
+  Height = 565
   Caption = 'Seguran'#231'a'
-  ClientHeight = 531
-  ClientWidth = 592
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -177,6 +177,8 @@ object UserPermis: TUserPermis
       Width = 81
       Height = 25
       Caption = '&Liberar'
+      TabOrder = 0
+      OnClick = BtLiberaClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000C8D0D4C8D0D4
@@ -229,8 +231,6 @@ object UserPermis: TUserPermis
         D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C2C8CBBDC2C4B5B5B5B5
         B5B5B5B5B5BDC2C4C2C8CBC8D0D4C8D0D4C8D0D4C8D0D4C8D0D4}
       NumGlyphs = 2
-      TabOrder = 0
-      OnClick = BtLiberaClick
     end
     object BtBloqueia: TBitBtn
       Left = 8
@@ -238,6 +238,8 @@ object UserPermis: TUserPermis
       Width = 81
       Height = 25
       Caption = '&Bloquear'
+      TabOrder = 1
+      OnClick = BtBloqueiaClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000C8D0D4C8D0D4
@@ -290,8 +292,6 @@ object UserPermis: TUserPermis
         D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8
         D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4}
       NumGlyphs = 2
-      TabOrder = 1
-      OnClick = BtBloqueiaClick
     end
     object BtGrava: TBitBtn
       Left = 8
@@ -299,6 +299,8 @@ object UserPermis: TUserPermis
       Width = 81
       Height = 25
       Caption = '&Gravar'
+      TabOrder = 2
+      OnClick = BtGravaClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -351,8 +353,6 @@ object UserPermis: TUserPermis
         6FCE726FCE726FCE726FFF00FF9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A
         9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A}
       NumGlyphs = 2
-      TabOrder = 2
-      OnClick = BtGravaClick
     end
     object BtCancel: TBitBtn
       Left = 8
@@ -360,6 +360,8 @@ object UserPermis: TUserPermis
       Width = 81
       Height = 25
       Caption = '&Cancelar'
+      TabOrder = 3
+      OnClick = BtCancelClick
       Glyph.Data = {
         66030000424D6603000000000000660200002800000010000000100000000100
         08000000000000010000120B0000120B00008C0000008C00000000000000FFFF
@@ -389,8 +391,6 @@ object UserPermis: TUserPermis
         14212E44757D69577902024D0D08011218241F3253016140790202024D0A0C01
         0E1C2A390156787902020202024D4D1A1B2735334C797902020202020202024D
         4D4D4D4D4D0202020202}
-      TabOrder = 3
-      OnClick = BtCancelClick
     end
     object GroupBox1: TGroupBox
       Left = 8
@@ -425,7 +425,7 @@ object UserPermis: TUserPermis
     Top = 35
     Width = 495
     Height = 496
-    ActivePage = PageControls
+    ActivePage = PageMenu
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlack
@@ -438,10 +438,6 @@ object UserPermis: TUserPermis
     TabWidth = 155
     object PageMenu: TTabSheet
       Caption = 'Menu Controle de Usuarios'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object TreeMenu: TTreeView
         Left = 0
         Top = 0
@@ -463,10 +459,6 @@ object UserPermis: TUserPermis
     object PageAction: TTabSheet
       Caption = 'Menu Controle de Usuarios'
       ImageIndex = 1
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object TreeAction: TTreeView
         Left = 0
         Top = 0

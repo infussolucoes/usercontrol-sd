@@ -1,6 +1,6 @@
 object MsgsForm: TMsgsForm
-  Left = 144
-  Top = 150
+  Left = 225
+  Top = 281
   BorderStyle = bsDialog
   Caption = 'Mensagens do Sistema'
   ClientHeight = 452
@@ -69,42 +69,42 @@ object MsgsForm: TMsgsForm
     Width = 598
     Height = 52
     ButtonHeight = 44
-    ButtonWidth = 88
+    ButtonWidth = 94
     Caption = 'Op'#231#245'es'
     Images = ImageList2
     ShowCaptions = True
     TabOrder = 1
     object btnova: TToolButton
       Left = 0
-      Top = 0
+      Top = 2
       Caption = '&Nova Mensagem'
       ImageIndex = 0
       OnClick = btnovaClick
     end
     object btResponder: TToolButton
-      Left = 88
-      Top = 0
+      Left = 94
+      Top = 2
       Caption = '&Responder'
       ImageIndex = 1
       OnClick = btResponderClick
     end
     object btEncaminhar: TToolButton
-      Left = 176
-      Top = 0
+      Left = 188
+      Top = 2
       Caption = 'E&ncaminhar'
       ImageIndex = 2
       OnClick = btEncaminharClick
     end
     object btExcluir: TToolButton
-      Left = 264
-      Top = 0
+      Left = 282
+      Top = 2
       Caption = '&Excluir'
       ImageIndex = 3
       OnClick = btExcluirClick
     end
     object btClose: TToolButton
-      Left = 352
-      Top = 0
+      Left = 376
+      Top = 2
       Caption = '&Fechar'
       ImageIndex = 4
       OnClick = btCloseClick

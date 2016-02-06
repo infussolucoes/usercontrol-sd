@@ -21,7 +21,7 @@ object Frame_Profile: TFrame_Profile
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
-    TitleFont.Name = 'Tahoma'
+    TitleFont.Name = 'MS Sans Serif'
     TitleFont.Style = []
     OnDblClick = BtnAcePerClick
     Columns = <
@@ -48,6 +48,8 @@ object Frame_Profile: TFrame_Profile
       Height = 25
       Cursor = crHandPoint
       Caption = '&Adicionar'
+      TabOrder = 0
+      OnClick = BtnAddPerClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -100,8 +102,6 @@ object Frame_Profile: TFrame_Profile
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
-      TabOrder = 0
-      OnClick = BtnAddPerClick
     end
     object BtnAltPer: TBitBtn
       Left = 7
@@ -110,6 +110,8 @@ object Frame_Profile: TFrame_Profile
       Height = 25
       Cursor = crHandPoint
       Caption = '&Alterar'
+      TabOrder = 1
+      OnClick = BtnAltPerClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -162,8 +164,6 @@ object Frame_Profile: TFrame_Profile
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
-      TabOrder = 1
-      OnClick = BtnAltPerClick
     end
     object BtnExcPer: TBitBtn
       Left = 7
@@ -172,6 +172,8 @@ object Frame_Profile: TFrame_Profile
       Height = 25
       Cursor = crHandPoint
       Caption = '&Excluir'
+      TabOrder = 2
+      OnClick = BtnExcPerClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -224,8 +226,6 @@ object Frame_Profile: TFrame_Profile
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
-      TabOrder = 2
-      OnClick = BtnExcPerClick
     end
     object BtnAcePer: TBitBtn
       Left = 7
@@ -234,6 +234,8 @@ object Frame_Profile: TFrame_Profile
       Height = 25
       Cursor = crHandPoint
       Caption = '&Acessos'
+      TabOrder = 3
+      OnClick = BtnAcePerClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -286,8 +288,6 @@ object Frame_Profile: TFrame_Profile
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
-      TabOrder = 3
-      OnClick = BtnAcePerClick
     end
     object BtnCopiaPer: TBitBtn
       Left = 7
@@ -296,6 +296,8 @@ object Frame_Profile: TFrame_Profile
       Height = 25
       Cursor = crHandPoint
       Caption = '&Copiar'
+      TabOrder = 4
+      OnClick = BtnCopiaPerClick
       Glyph.Data = {
         36030000424D3603000000000000360000002800000010000000100000000100
         18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
@@ -323,8 +325,6 @@ object Frame_Profile: TFrame_Profile
         FFFFFFFFFFFFFDFFFFB78183DC9D64FF00FFFF00FF138E21199F29FF00FFFF00
         FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887B78183FF00FFFF
         00FFFF00FFFF00FF0A7D12FF00FFFF00FFFF00FFFF00FFFF00FF}
-      TabOrder = 4
-      OnClick = BtnCopiaPerClick
     end
   end
   object DataPerfil: TDataSource

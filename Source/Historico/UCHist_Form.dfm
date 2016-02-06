@@ -1,6 +1,6 @@
 object FrmHistorico: TFrmHistorico
-  Left = 99
-  Top = 127
+  Left = 600
+  Top = 230
   BorderStyle = bsDialog
   Caption = 'Historico de Tabelas'
   ClientHeight = 453
@@ -983,7 +983,6 @@ object FrmHistorico: TFrmHistorico
       Font.Style = [fsBold]
       ParentFont = False
       Layout = tlCenter
-      ExplicitHeight = 24
     end
   end
   object Panel2: TPanel
@@ -1032,6 +1031,7 @@ object FrmHistorico: TFrmHistorico
       Width = 163
       Height = 21
       Style = csDropDownList
+      ItemHeight = 13
       TabOrder = 0
       OnChange = ComboUserChange
     end
@@ -1041,6 +1041,7 @@ object FrmHistorico: TFrmHistorico
       Width = 163
       Height = 21
       Style = csDropDownList
+      ItemHeight = 13
       TabOrder = 1
       OnChange = ComboUserChange
     end
@@ -1051,6 +1052,8 @@ object FrmHistorico: TFrmHistorico
       Height = 25
       Caption = '&Aplicar Filtro'
       Enabled = False
+      TabOrder = 2
+      OnClick = BitBtn1Click
       Glyph.Data = {
         36050000424D3605000000000000360400002800000010000000100000000100
         08000000000000010000530B0000530B0000000100000001000000310000004A
@@ -1094,8 +1097,6 @@ object FrmHistorico: TFrmHistorico
         0E0D070401000213131313130312110F0D0B0909040100021313130312110C0A
         0806090909040100021303030303030303030303030303030303131313131313
         1313131313131313131313131313131313131313131313131313}
-      TabOrder = 2
-      OnClick = BitBtn1Click
     end
     object BitBtn2: TBitBtn
       Left = 16
@@ -1103,6 +1104,8 @@ object FrmHistorico: TFrmHistorico
       Width = 145
       Height = 25
       Caption = '&Excluir Hist'#243'rico'
+      TabOrder = 3
+      OnClick = BitBtn2Click
       Glyph.Data = {
         36030000424D3603000000000000360000002800000010000000100000000100
         18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
@@ -1130,8 +1133,6 @@ object FrmHistorico: TFrmHistorico
         FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
-      TabOrder = 3
-      OnClick = BitBtn2Click
     end
     object BitBtn3: TBitBtn
       Left = 16
@@ -1139,6 +1140,8 @@ object FrmHistorico: TFrmHistorico
       Width = 145
       Height = 25
       Caption = '&Fechar'
+      TabOrder = 4
+      OnClick = BitBtn3Click
       Glyph.Data = {
         36030000424D3603000000000000360000002800000010000000100000000100
         18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
@@ -1166,8 +1169,6 @@ object FrmHistorico: TFrmHistorico
         FF00FFFF00FF824B4B9C5657CB6C6DCF6E6E4E1E1F824B4B824B4B824B4B824B
         4B824B4B824B4BFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF824B4B82
         4B4B4E1E1FFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
-      TabOrder = 4
-      OnClick = BitBtn3Click
     end
     object ComboEvento: TComboBox
       Left = 7
@@ -1175,6 +1176,7 @@ object FrmHistorico: TFrmHistorico
       Width = 163
       Height = 21
       Style = csDropDownList
+      ItemHeight = 13
       TabOrder = 5
       OnChange = ComboUserChange
     end
@@ -1184,6 +1186,7 @@ object FrmHistorico: TFrmHistorico
       Width = 163
       Height = 21
       Style = csDropDownList
+      ItemHeight = 13
       TabOrder = 6
       OnChange = ComboUserChange
     end

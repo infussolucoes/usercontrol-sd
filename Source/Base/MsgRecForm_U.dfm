@@ -1,6 +1,6 @@
 object MsgRecForm: TMsgRecForm
-  Left = 215
-  Top = 162
+  Left = 289
+  Top = 282
   BorderStyle = bsDialog
   Caption = 'Mensagem'
   ClientHeight = 336
@@ -211,6 +211,8 @@ object MsgRecForm: TMsgRecForm
     Width = 79
     Height = 25
     Caption = '&Fechar'
+    TabOrder = 1
+    OnClick = btFecharClick
     Glyph.Data = {
       B6020000424DB602000000000000B60100002800000010000000100000000100
       08000000000000010000120B0000120B0000600000006000000000000000FFFF
@@ -234,8 +236,6 @@ object MsgRecForm: TMsgRecForm
       254307474D4B4D3F4502020245302A2B292D07474D4B4D3F4502020245352E2C
       2E3207474D4B4D3F450202024545332F343107464A494A3F450202020202453C
       3744074545454545450202020202020245450702020202020202}
-    TabOrder = 1
-    OnClick = btFecharClick
   end
   object stData: TStaticText
     Left = 397

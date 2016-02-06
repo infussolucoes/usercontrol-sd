@@ -54,9 +54,9 @@ object AboutForm: TAboutForm
           474
           104)
         object lblVersao: TLabel
-          Left = 396
+          Left = 395
           Top = 81
-          Width = 71
+          Width = 72
           Height = 23
           Alignment = taRightJustify
           Anchors = [akTop, akRight]
@@ -315,9 +315,8 @@ object AboutForm: TAboutForm
           Top = 360
           Width = 75
           Height = 25
-          Kind = bkOK
-          NumGlyphs = 2
           TabOrder = 0
+          Kind = bkOK
         end
         object Memo1: TMemo
           Left = 17
