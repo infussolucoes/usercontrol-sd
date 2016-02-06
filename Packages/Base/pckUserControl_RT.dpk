@@ -1,6 +1,7 @@
 package pckUserControl_RT;
 
 {$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
@@ -22,24 +23,52 @@ package pckUserControl_RT;
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'SWDelphi - User Control RT'}
 {$IMPLICITBUILD OFF}
-{$DEFINE DEBUG}
+
+{ .$I 'UserControl.inc' }
 
 requires
   pckMD5,
   pckUCDataConnector,
-  
-  {$IFDEF DELPHI16}
-  pckAlcinoe,
-  DbxCommonDriver,
-  {$ELSE}
   inet,
-  {$ENDIF}
-
   vclactnband,
   vcldb,
   VclSmp,
+
+  {$IFDEF VER230}
+  pckAlcinoe,
+  {$ENDIF}
+
+  {$IFDEF VER240}
+  pckAlcinoe,
+  {$ENDIF}
+
+  {$IFDEF VER250}
+  pckAlcinoe,
+  {$ENDIF}
+
+  {$IFDEF VER260}
+  pckAlcinoe,
+  {$ENDIF}
+
+  {$IFDEF VER270}
+  pckAlcinoe,
+  {$ENDIF}
+
+  {$IFDEF VER280}
+  pckAlcinoe,
+  {$ENDIF}
+
+  {$IFDEF VER290}
+  pckAlcinoe,
+  {$ENDIF}
+
+  {$IFDEF VER300}
+  pckAlcinoe,
+  {$ENDIF}
   dbexpress;
 
 contains
