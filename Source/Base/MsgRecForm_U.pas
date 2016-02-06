@@ -71,21 +71,21 @@ unit MsgRecForm_U;
 interface
 
 uses
-  System.Variants,
-  vcl.Buttons,
-  System.Classes,
-  vcl.Controls,
-  Data.DB,
-  vcl.DBCtrls,
-  vcl.Dialogs,
-  vcl.ExtCtrls,
-  vcl.Forms,
-  vcl.Graphics,
-  Winapi.Messages,
-  Vcl.Samples.Spin,
-  vcl.StdCtrls,
-  system.SysUtils,
-  winapi.Windows,
+  Variants,
+  Buttons,
+  Classes,
+  Controls,
+  DB,
+  DBCtrls,
+  Dialogs,
+  ExtCtrls,
+  Forms,
+  Graphics,
+  Messages,
+  Spin,
+  StdCtrls,
+  SysUtils,
+  Windows,
 
   UCBase;
 

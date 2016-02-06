@@ -91,7 +91,7 @@ unit UCDataSnapProxy;
 
 interface
 
-uses Datasnap.DSProxy;
+uses DSProxy;
 
 type
   TDSUserRemote = class(TDSAdminClient)

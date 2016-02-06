@@ -72,11 +72,11 @@ interface
 {$I '..\Base\UserControl.inc'}
 
 uses
-  winapi.Windows, winapi.Messages, system.SysUtils, system.Variants,
-  system.Classes, vcl.Graphics, vcl.Controls, vcl.Forms,
-  UCHist_Base, vcl.Dialogs, vcl.StdCtrls, vcl.Buttons, vcl.Grids, vcl.DBGrids,
-  vcl.ExtCtrls, vcl.DBCtrls,
-  Data.DB;
+  Windows, Messages, SysUtils, Variants,
+  Classes, Graphics, Controls, Forms,
+  UCHist_Base, Dialogs, StdCtrls, Buttons, Grids, DBGrids,
+  ExtCtrls, DBCtrls,
+  DB;
 
 Type
   TAuxObj = class(TObject)

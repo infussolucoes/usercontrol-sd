@@ -73,26 +73,29 @@ interface
 { .$I 'UserControl.inc' }
 
 uses
-  vcl.ActnCtrls,
-  vcl.ActnList,
-  vcl.ActnMan,
-  vcl.ActnMenus,
-  vcl.Buttons,
-  system.Classes,
-  vcl.ComCtrls,
+  ActnCtrls,
+  ActnList,
+  ActnMan,
+  ActnMenus,
+  Buttons,
+  Classes,
+  ComCtrls,
+  {$IF CompilerVersion >= 23}
   system.Contnrs,
-  vcl.Controls,
-  vcl.Dialogs,
-  vcl.ExtCtrls,
-  vcl.ExtDlgs,
-  vcl.Forms,
-  vcl.Graphics,
-  Vcl.Imaging.jpeg,
-  vcl.Menus,
-  Vcl.Samples.Spin,
-  vcl.StdCtrls,
-  vcl.ToolWin,
-  UCBase, System.Actions;
+  {$IFEND}
+  Controls,
+  Dialogs,
+  ExtCtrls,
+  ExtDlgs,
+  Forms,
+  Graphics,
+  jpeg,
+  Menus,
+  Spin,
+  StdCtrls,
+  ToolWin,
+  UCBase, 
+  System.Actions;
 
 type
   TUCEditorForm = class(TForm)
@@ -242,11 +245,11 @@ implementation
 
 uses
   LoginWindow_U,
-  winapi.ShellAPI,
-  system.SysUtils,
+  ShellAPI,
+  SysUtils,
   UcConsts_Language,
   UCMessages,
-  winapi.Windows;
+  Windows;
 
 {$R *.dfm}
 
@@ -531,7 +534,7 @@ begin
       ShowModal;
     end;
   finally
-    system.SysUtils.FreeAndNil(frmLogin);
+    SysUtils.FreeAndNil(frmLogin);
   end;
 end;
 

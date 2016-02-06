@@ -70,7 +70,7 @@ unit UCIBXConnReg;
 interface
 
 uses
-  system.Classes;
+  Classes;
 
 procedure Register;
 

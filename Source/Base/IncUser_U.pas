@@ -73,26 +73,26 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  System.Variants,
-  vcl.Buttons,
-  System.Classes,
-  vcl.Controls,
-  Data.DB,
-  vcl.DBCtrls,
-  vcl.Dialogs,
-  vcl.ExtCtrls,
-  vcl.Forms,
-  vcl.Graphics,
-  Winapi.Messages,
-  Vcl.Samples.Spin,
-  vcl.StdCtrls,
-  system.SysUtils,
-  winapi.Windows,
+  Variants,
+  Buttons,
+  Classes,
+  Controls,
+  DB,
+  DBCtrls,
+  Dialogs,
+  ExtCtrls,
+  Forms,
+  Graphics,
+  Messages,
+  Spin,
+  StdCtrls,
+  SysUtils,
+  Windows,
 
-
+  {$IF CompilerVersion >= 23}
   System.UITypes,
-
-
+  {$IFEND}
+  
   UCBase;
 
 type
@@ -288,7 +288,7 @@ begin
       Result := DataSet.Fields[0].AsInteger + 1;
       DataSet.Close;
     finally
-      System.SysUtils.FreeAndNil(DataSet);
+      SysUtils.FreeAndNil(DataSet);
     end;
   end;
 end;

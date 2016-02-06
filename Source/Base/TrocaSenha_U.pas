@@ -72,19 +72,22 @@ interface
 {$I 'UserControl.inc'}
 
 uses
+  {$IF CompilerVersion >= 23}
   System.UITypes,
-  System.Variants,
-  Vcl.Buttons,
-  System.Classes,
-  Vcl.Controls,
-  Vcl.Dialogs,
-  Vcl.ExtCtrls,
-  Vcl.Forms,
-  Vcl.Graphics,
-  Winapi.Messages,
-  Vcl.StdCtrls,
-  System.SysUtils,
-  WinApi.Windows,
+  {$IFEND}
+
+  Variants,
+  Buttons,
+  Classes,
+  Controls,
+  Dialogs,
+  ExtCtrls,
+  Forms,
+  Graphics,
+  Messages,
+  StdCtrls,
+  SysUtils,
+  Windows,
 
   UCBase; { Por Vicente Barros Leonel }
 

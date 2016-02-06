@@ -70,7 +70,7 @@ unit UCZEOSConnReg;
 
 interface
 
-uses system.Classes;
+uses Classes;
 
 procedure Register;
 
@@ -82,4 +82,5 @@ procedure Register;
 begin
   RegisterComponents('UC Connectors', [TUCZEOSConn]);
 end;
+
 end.

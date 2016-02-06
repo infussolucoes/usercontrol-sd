@@ -32,6 +32,6 @@ requires
   rtl;
 
 contains
-  md5 in '..\..\Source\Base\md5.pas';
+  UCmd5 in '..\..\Source\Base\UCmd5.pas';
 
 end.

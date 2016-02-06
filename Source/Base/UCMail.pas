@@ -79,12 +79,14 @@ interface
 { .$I 'UserControl.inc' }
 
 uses
-  system.Classes,
-  vcl.StdCtrls,
-  vcl.Dialogs,
-  system.SysUtils,
+  Classes,
+  StdCtrls,
+  Dialogs,
+  SysUtils,
 
+  {$IF CompilerVersion >= 23}
   System.UITypes,
+  {$IFEND}
 
   ALSMTPClient,
   ALInternetMessages,
@@ -230,7 +232,7 @@ end;
 
 destructor TUCMailMessage.Destroy;
 begin
-  System.SysUtils.FreeAndNil(FLines);
+  SysUtils.FreeAndNil(FLines);
   inherited;
 end;
 
@@ -381,11 +383,11 @@ end;
 
 destructor TMailUserControl.Destroy;
 begin
-  System.SysUtils.FreeAndNil(FAdicionaUsuario);
-  System.SysUtils.FreeAndNil(FAlteraUsuario);
-  System.SysUtils.FreeAndNil(FEsqueceuSenha);
-  System.SysUtils.FreeAndNil(FSenhaForcada);
-  System.SysUtils.FreeAndNil(FSenhaTrocada);
+  SysUtils.FreeAndNil(FAdicionaUsuario);
+  SysUtils.FreeAndNil(FAlteraUsuario);
+  SysUtils.FreeAndNil(FEsqueceuSenha);
+  SysUtils.FreeAndNil(FSenhaForcada);
+  SysUtils.FreeAndNil(FSenhaTrocada);
 
   inherited;
 end;

@@ -73,30 +73,30 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  System.Variants,
-  vcl.Buttons,
-  System.Classes,
-  vcl.Controls,
-  Data.DB,
-  vcl.DBCtrls,
-  vcl.Dialogs,
-  vcl.ExtCtrls,
-  vcl.Forms,
-  vcl.Graphics,
-  Winapi.Messages,
-  Vcl.Samples.Spin,
-  vcl.StdCtrls,
-  system.SysUtils,
-  winapi.Windows,
-  vcl.ComCtrls,
-  vcl.ImgList,
+  Variants,
+  Buttons,
+  Classes,
+  Controls,
+  DB,
+  DBCtrls,
+  Dialogs,
+  ExtCtrls,
+  Forms,
+  Graphics,
+  Messages,
+  Spin,
+  StdCtrls,
+  SysUtils,
+  Windows,
+  ComCtrls,
+  ImgList,
 
   // Delphi XE 8 ou superior
   {$IFDEF DELPHI21_UP}
       System.ImageList,
   {$ENDIF}
 
-  vcl.ToolWin;
+  ToolWin;
 
 type
   TPointMsg = ^PPointMsg;
@@ -421,10 +421,10 @@ begin
     Dispose(FListaTPointMsg[I]);
 
   if Assigned(DSMsgs) then
-    System.SysUtils.FreeAndNil(DSMsgs);
+    SysUtils.FreeAndNil(DSMsgs);
 
   if Assigned(DSUsuarios) then
-    System.SysUtils.FreeAndNil(DSUsuarios);
+    SysUtils.FreeAndNil(DSUsuarios);
 end;
 
 procedure TMsgsForm.FormCreate(Sender: TObject);

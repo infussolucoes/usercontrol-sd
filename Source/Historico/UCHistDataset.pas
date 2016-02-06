@@ -69,8 +69,8 @@ unit UCHistDataset;
 
 interface
 
-uses system.SysUtils, system.Classes, UCHist_Type, UCHist_Base, vcl.Forms,
-data.Db, UCConsts_Language;
+uses SysUtils, Classes, UCHist_Type, UCHist_Base, Forms,
+Db, UCConsts_Language;
 
 Type
   TUCHist_DataSet = class(TComponent)

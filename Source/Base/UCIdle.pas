@@ -69,8 +69,8 @@ unit UCIdle;
 
 interface
 
-uses system.Classes, UCBase, vcl.Dialogs, winapi.Windows, vcl.Forms,
-vcl.ExtCtrls, winapi.Messages, system.SysUtils;
+uses Classes, UCBase, Dialogs, Windows, Forms,
+ExtCtrls, Messages, SysUtils;
 
 type
 

@@ -72,7 +72,7 @@ unit UCDBXConnReg;
 interface
 
 uses
-  system.Classes;
+  Classes;
 
 procedure Register;
 

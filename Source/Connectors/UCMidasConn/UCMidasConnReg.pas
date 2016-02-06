@@ -72,10 +72,10 @@ interface
 //{$I 'UserControl.inc'}
 
 uses
-  system.Classes,
+  Classes,
   DesignEditors,
   DesignIntf,
-  system.TypInfo;
+  TypInfo;
 
 type
   TUCProviderNameProperty = class(TStringProperty)

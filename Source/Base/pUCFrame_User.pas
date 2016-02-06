@@ -73,28 +73,28 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  System.Variants,
-  vcl.Buttons,
-  System.Classes,
-  vcl.Controls,
-  Data.DB,
-  vcl.DBCtrls,
-  vcl.Dialogs,
-  vcl.ExtCtrls,
-  vcl.Forms,
-  vcl.Graphics,
-  Winapi.Messages,
-  Vcl.Samples.Spin,
-  vcl.StdCtrls,
-  system.SysUtils,
-  winapi.Windows,
-  vcl.DBGrids,
-  vcl.Grids,
+  Variants,
+  Buttons,
+  Classes,
+  Controls,
+  DB,
+  DBCtrls,
+  Dialogs,
+  ExtCtrls,
+  Forms,
+  Graphics,
+  Messages,
+  Spin,
+  StdCtrls,
+  SysUtils,
+  Windows,
+  DBGrids,
+  Grids,
 
 
-
+  {$IF CompilerVersion >= 23}
   System.UITypes,
-
+  {$IFEND}
 
   IncUser_U,
   SenhaForm_U,

@@ -83,9 +83,9 @@ unit UCDataSnapConn;
 interface
 
 uses
-  System.Classes,
-  Data.DB,
-  System.SysUtils, Data.SqlExpr, UCDataSnapProxy, Datasnap.DBClient,
+  Classes,
+  DB,
+  SysUtils, SqlExpr, UCDataSnapProxy, DBClient,
   UCDataConnector;
 
 type

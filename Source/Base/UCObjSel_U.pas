@@ -73,23 +73,23 @@ uses
 
   system.Variants,
 
-  vcl.ActnList,
-  vcl.Buttons,
-  system.Classes,
-  vcl.ComCtrls,
-  vcl.Controls,
-  Data.DB,
-  vcl.Dialogs,
-  vcl.ExtCtrls,
-  vcl.Forms,
-  vcl.Graphics,
-  vcl.Menus,
-  winapi.Messages,
-  vcl.StdCtrls,
-  system.SysUtils,
+  ActnList,
+  Buttons,
+  Classes,
+  ComCtrls,
+  Controls,
+  DB,
+  Dialogs,
+  ExtCtrls,
+  Forms,
+  Graphics,
+  Menus,
+  Messages,
+  StdCtrls,
+  SysUtils,
   UCBase,
   UcConsts_Language,
-  winapi.Windows;
+  Windows;
 
 type
   TQControl = class(TControl)

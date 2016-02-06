@@ -69,7 +69,7 @@ unit UCHist_Type;
 
 interface
 
-uses system.SysUtils, system.Classes, vcl.Menus, vcl.ActnList;
+uses SysUtils, Classes, Menus, ActnList;
 
 Type
   TUCHistoryMSG = class(TPersistent)

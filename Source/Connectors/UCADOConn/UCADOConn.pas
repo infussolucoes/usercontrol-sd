@@ -80,10 +80,10 @@ unit UCADOConn;
 interface
 
 uses
-  Data.Win.ADODB,
-  system.Classes,
-  Data.DB,
-  system.SysUtils,
+  ADODB,
+  Classes,
+  DB,
+  SysUtils,
   UCDataConnector;
 
 type

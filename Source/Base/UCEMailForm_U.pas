@@ -72,12 +72,12 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  System.Classes,
-  vcl.Controls,
-  vcl.ExtCtrls,
-  vcl.Forms,
-  vcl.Graphics,
-  vcl.StdCtrls;
+  Classes,
+  Controls,
+  ExtCtrls,
+  Forms,
+  Graphics,
+  StdCtrls;
 
 type
   TUCEMailForm = class(TForm)

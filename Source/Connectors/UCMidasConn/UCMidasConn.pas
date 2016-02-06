@@ -84,10 +84,10 @@ interface
 //{$I 'UserControl.inc'}
 
 uses
-  system.Classes,
-  Data.DB,
-  Datasnap.DBClient,
-  system.SysUtils,
+  Classes,
+  DB,
+  DBClient,
+  SysUtils,
   UCDataConnector;
 
 type
@@ -151,8 +151,8 @@ const
 implementation
 
 uses
-  Datasnap.Midas,
-  Datasnap.Provider;
+  Midas,
+  Provider;
 
 { TUCMidasConn }
 

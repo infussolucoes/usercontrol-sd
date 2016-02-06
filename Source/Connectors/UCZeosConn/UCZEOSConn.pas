@@ -79,9 +79,9 @@ unit UCZEOSConn;
 interface
 
 uses
-  system.Classes,
-  Data.DB,
-  system.SysUtils,
+  Classes,
+  DB,
+  SysUtils,
   UCDataConnector,
   ZConnection;
 
@@ -106,7 +106,7 @@ type
 implementation
 
 uses
-  ZDataset, Vcl.Dialogs;
+  ZDataset, Dialogs;
 
 { TUCZEOSConn }
 

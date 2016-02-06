@@ -72,12 +72,12 @@ interface
 { .$I 'UserControl.inc' }
 
 uses
-  system.Classes,
-  vcl.Controls,
+  Classes,
+  Controls,
   DesignEditors,
   DesignIntf,
   ToolsAPI,
-  System.TypInfo,
+  TypInfo,
   UCBase;
 
 type
@@ -114,9 +114,9 @@ procedure ShowUserControlsEditor(Componente: TUserControl);
 implementation
 
 uses
-  vcl.Dialogs,
-  vcl.Forms,
-  system.SysUtils,
+  Dialogs,
+  Forms,
+  SysUtils,
   UCAbout,
   UCIdle,
   UCObjSel_U,
@@ -331,7 +331,7 @@ begin
       end;
     end;
   finally
-    system.SysUtils.FreeAndNil(Formulario);
+    SysUtils.FreeAndNil(Formulario);
   end;
 end;
 

@@ -73,26 +73,29 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  Vcl.ActnList,
-  Vcl.ActnMan,
-  Vcl.ActnMenus,
-  System.Classes,
-  Vcl.Controls,
-  Data.DB,
-  Vcl.ExtActns,
-  Vcl.Forms,
-  Vcl.Graphics,
-  md5,
-  Vcl.Menus,
-  Vcl.StdCtrls,
-  System.SysUtils,
+  ActnList,
+  ActnMan,
+  ActnMenus,
+  Classes,
+  Controls,
+  DB,
+  ExtActns,
+  Forms,
+  Graphics,
+  
+  Menus,
+  StdCtrls,
+  SysUtils,
   {.$IFDEF DELPHI5_UP}
-  System.Variants,
+  Variants,
   {.$ENDIF}
-  WinApi.Windows,
+  Windows,
 
+  {$IF CompilerVersion >= 23}
   System.UITypes,
+  {$IFEND}  
 
+  UCmd5,
   UcConsts_Language,
   UCDataConnector,
   UCDataInfo,
@@ -761,8 +764,8 @@ implementation
 {$R UCLock.res}
 
 uses
-  vcl.DBGrids,
-  vcl.Dialogs,
+  DBGrids,
+  Dialogs,
   LoginWindow_U,
   MsgRecForm_U,
   MsgsForm_U,
@@ -3212,7 +3215,7 @@ end;
 
 function MD5Sum(strValor: String): String;
 begin
-  Result := md5.MD5Print(md5.MD5String(strValor));
+  Result := UCmd5.MD5Print(UCmd5.MD5String(strValor));
 end;
 
 {$IFDEF DELPHI9_UP} {$ENDREGION} {$ENDIF}
