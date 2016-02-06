@@ -33,12 +33,16 @@ requires
   dbrtl,
   dsnap,
   dbxcds,
+
+  {$IFDEF DELPHI12_UP}
   DbxCommonDriver,
-  dbexpress,
   DbxClientDriver,
+  {$ELSE}
+
+  {$ENDIF}
+  dbexpress,
   pckUCDataConnector,
   pckMD5,
-  pckAlcinoe,
   pckUserControl_RT;
 
 contains

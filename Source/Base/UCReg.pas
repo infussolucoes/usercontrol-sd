@@ -121,13 +121,13 @@ uses
   UCIdle,
   UCObjSel_U,
   UCEditorForm_U,
-  vcl.ActnList,
-  vcl.ActnMan,
-  vcl.ActnMenus,
-  vcl.Menus,
-  vcl.StdCtrls,
+  ActnList,
+  ActnMan,
+  ActnMenus,
+  Menus,
+  StdCtrls,
   UCSettings,
-  system.Variants,
+  Variants,
   UcMail;
 
 procedure Register;

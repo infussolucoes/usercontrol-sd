@@ -82,6 +82,7 @@ uses
   ComCtrls,
   {$IF CompilerVersion >= 23}
   system.Contnrs,
+  system.Actions,
   {$IFEND}
   Controls,
   Dialogs,
@@ -94,8 +95,7 @@ uses
   Spin,
   StdCtrls,
   ToolWin,
-  UCBase, 
-  System.Actions;
+  UCBase;
 
 type
   TUCEditorForm = class(TForm)

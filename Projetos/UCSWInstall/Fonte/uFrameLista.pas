@@ -106,6 +106,8 @@ type
     Label8: TLabel;
     pckUCRestConn_dpk: TCheckBox;
     Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
     procedure btnPacotesMarcarTodosClick(Sender: TObject);
     procedure btnPacotesDesmarcarTodosClick(Sender: TObject);
     procedure VerificarCheckboxes(Sender: TObject);
@@ -212,9 +214,12 @@ begin
   // instalação mínima do ACBr
    pckUCDataConnector_dpk.Checked := True;
    pckmd5_dpk.Checked    := True;
-   pckAlcinoe_dpk.Checked := True;
+
    pckUserControl_RT_dpk.Checked := True;
    pckUserControl_DT_dpk.Checked := True;
+
+   { Obrigatório somente para versão XE 2 ou superior }
+   //pckAlcinoe_dpk.Checked := True;
 
   // if not FUtilizarBotoesMarcar then
   // begin

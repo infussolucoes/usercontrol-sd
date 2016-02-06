@@ -41,8 +41,6 @@ requires
   vcldb,
   VclSmp,
   dbexpress,
-  pckMD5,
-  pckAlcinoe,
   pckUserControl_RT;
 
 contains

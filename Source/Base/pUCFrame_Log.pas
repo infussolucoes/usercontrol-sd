@@ -73,23 +73,23 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  System.Variants,
-  vcl.Buttons,
-  System.Classes,
-  vcl.Controls,
-  Data.DB,
-  vcl.DBCtrls,
-  vcl.Dialogs,
-  vcl.ExtCtrls,
-  vcl.Forms,
-  vcl.Graphics,
-  Winapi.Messages,
-  Vcl.Samples.Spin,
-  vcl.StdCtrls,
-  system.SysUtils,
-  winapi.Windows,
-  vcl.ComCtrls,
-  vcl.DBGrids,
+  Variants,
+  Buttons,
+  Classes,
+  Controls,
+  DB,
+  DBCtrls,
+  Dialogs,
+  ExtCtrls,
+  Forms,
+  Graphics,
+  Messages,
+  Spin,
+  StdCtrls,
+  SysUtils,
+  Windows,
+  ComCtrls,
+  DBGrids,
 
   UCBase,
 
@@ -98,7 +98,7 @@ uses
       System.ImageList,
   {$ENDIF}
 
-  Vcl.ImgList, Vcl.Grids;
+  ImgList, Grids;
 
 type
   TUCFrame_Log = class(TFrame)
@@ -152,9 +152,9 @@ end;
 procedure TUCFrame_Log.ComboNivelDrawItem(Control: TWinControl; Index: Integer;
   Rect: TRect; State: TOwnerDrawState);
 var
-  TempImg: vcl.Graphics.TBitmap;
+  TempImg: Graphics.TBitmap;
 begin
-  TempImg := vcl.Graphics.TBitmap.Create;
+  TempImg := Graphics.TBitmap.Create;
   ImageList1.GetBitmap(Index, TempImg);
   ComboNivel.Canvas.Draw(Rect.Left + 5, Rect.Top + 1, TempImg);
   ComboNivel.Canvas.TextRect(Rect, Rect.Left + 30, Rect.Top + 2,
@@ -166,7 +166,7 @@ end;
 procedure TUCFrame_Log.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: Integer; Column: TColumn; State: TGridDrawState);
 var
-  TempImg: vcl.Graphics.TBitmap;
+  TempImg: Graphics.TBitmap;
   FData: System.TDateTime;
   TempData: String;
 begin
@@ -177,7 +177,7 @@ begin
   begin
     if Column.Field.AsInteger >= 0 then
     begin
-      TempImg := vcl.Graphics.TBitmap.Create;
+      TempImg := Graphics.TBitmap.Create;
       ImageList1.GetBitmap(Column.Field.AsInteger, TempImg);
       DBGrid1.Canvas.Draw((((Rect.Left + Rect.Right) - TempImg.Width) div 2),
         Rect.Top, TempImg);

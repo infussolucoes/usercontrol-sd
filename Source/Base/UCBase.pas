@@ -1133,7 +1133,7 @@ begin
   try
     Result := (DataSet.RecordCount > 0);
   finally
-    System.SysUtils.FreeAndNil(DataSet);
+    SysUtils.FreeAndNil(DataSet);
   end;
 end;
 
@@ -2176,7 +2176,7 @@ begin
   if Assigned(SLControls) then
     for Contador := 0 to Pred(SLControls.Count) do
       FLoginMonitorList.Delete(StrToInt(SLControls[Contador]));
-  System.SysUtils.FreeAndNil(SLControls);
+ SysUtils.FreeAndNil(SLControls);
 end;
 
 procedure TUserControl.NotificationLoginMonitor;
@@ -3365,8 +3365,8 @@ end;
 
 destructor TUCLogin.Destroy;
 begin
-  System.SysUtils.FreeAndNil(Self.FAutoLogin);
-  System.SysUtils.FreeAndNil(Self.FInitialLogin);
+  SysUtils.FreeAndNil(Self.FAutoLogin);
+  SysUtils.FreeAndNil(Self.FInitialLogin);
 
   inherited Destroy;
 end;
@@ -4261,9 +4261,9 @@ end;
 destructor TUCCurrentUser.Destroy;
 begin
   if Assigned(FPerfilUsuario) then
-    System.SysUtils.FreeAndNil(FPerfilUsuario);
+    SysUtils.FreeAndNil(FPerfilUsuario);
   if Assigned(FPerfilGrupo) then
-    System.SysUtils.FreeAndNil(FPerfilGrupo);
+    SysUtils.FreeAndNil(FPerfilGrupo);
   inherited;
 end;
 

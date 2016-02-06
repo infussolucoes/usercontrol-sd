@@ -2,7 +2,6 @@ package pckUserControl_DT;
 
 {$R *.res}
 {$R '..\..\Source\Base\UCReg.dcr'}
-{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
@@ -24,16 +23,35 @@ package pckUserControl_DT;
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
-{$DEFINE DEBUG}
-{$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'SWDelphi - User Control'}
 {$IMPLICITBUILD OFF}
+{$DEFINE DEBUG}
 
 requires
+  {$IFDEF VER150}
+  vcljpg,
+  {$ENDIF}  
+
+  {$IFDEF VER160}
+  vcljpg,
+  {$ENDIF} 
+
+  {$IFDEF VER170}
+  vcljpg,
+  {$ENDIF} 
+
+  {$IFDEF VER180}
+  vcljpg,
+  {$ENDIF} 
+
+  {$IFDEF VER190}
+  vcljpg,
+  {$ENDIF} 
+  
   designide,
   pckUserControl_RT;
 
-Contains
+contains
   UCReg in '..\..\Source\Base\UCReg.pas',
   UCObjSel_U in '..\..\Source\Base\UCObjSel_U.pas',
   UCAbout in '..\..\Source\Base\UCAbout.pas',

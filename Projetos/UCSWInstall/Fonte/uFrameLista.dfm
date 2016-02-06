@@ -134,11 +134,11 @@ object framePacotes: TframePacotes
   end
   object Label6: TLabel
     Left = 291
-    Top = 170
-    Width = 99
+    Top = 315
+    Width = 188
     Height = 13
     Margins.Left = 5
-    Caption = 'FireDac Components'
+    Caption = 'FireDac Components (XE 5 ou superior)'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clMaroon
     Font.Height = -11
@@ -148,7 +148,7 @@ object framePacotes: TframePacotes
   end
   object Label7: TLabel
     Left = 291
-    Top = 187
+    Top = 170
     Width = 79
     Height = 13
     Margins.Left = 5
@@ -162,11 +162,11 @@ object framePacotes: TframePacotes
   end
   object Label10: TLabel
     Left = 291
-    Top = 222
-    Width = 96
+    Top = 205
+    Width = 210
     Height = 13
     Margins.Left = 5
-    Caption = 'Retrocompitibilidade'
+    Caption = 'Uso Midas (Somente para vers'#245'es <= XE 8)'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clMaroon
     Font.Height = -11
@@ -190,7 +190,7 @@ object framePacotes: TframePacotes
   end
   object Label3: TLabel
     Left = 291
-    Top = 205
+    Top = 188
     Width = 114
     Height = 13
     Margins.Left = 5
@@ -204,11 +204,11 @@ object framePacotes: TframePacotes
   end
   object Label4: TLabel
     Left = 291
-    Top = 239
-    Width = 113
+    Top = 334
+    Width = 202
     Height = 13
     Margins.Left = 5
-    Caption = 'Para uso com Datasnap'
+    Caption = 'Para uso com Datasnap (XE 5 ou superior)'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clMaroon
     Font.Height = -11
@@ -218,7 +218,7 @@ object framePacotes: TframePacotes
   end
   object Label8: TLabel
     Left = 291
-    Top = 256
+    Top = 223
     Width = 106
     Height = 13
     Margins.Left = 5
@@ -232,16 +232,46 @@ object framePacotes: TframePacotes
   end
   object Label11: TLabel
     Left = 291
-    Top = 273
-    Width = 135
+    Top = 352
+    Width = 224
     Height = 13
     Margins.Left = 5
-    Caption = 'Para uso com Conex'#227'o Rest'
+    Caption = 'Para uso com Conex'#227'o Rest (XE 5 ou superior)'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clMaroon
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = []
+    ParentFont = False
+  end
+  object Label12: TLabel
+    Left = 291
+    Top = 55
+    Width = 196
+    Height = 13
+    Margins.Left = 5
+    Caption = 'Obrigat'#243'rio para Delphi XE 2 ou superior.'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsUnderline]
+    ParentFont = False
+  end
+  object Label13: TLabel
+    Left = 65
+    Top = 289
+    Width = 438
+    Height = 16
+    Margins.Left = 5
+    Caption = 
+      'Somente para vers'#245'es iguais ou superiores ao Delphi XE 5 update ' +
+      '2'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
     ParentFont = False
   end
   object pckUCDataConnector_dpk: TCheckBox
@@ -307,7 +337,7 @@ object framePacotes: TframePacotes
   object pckFireDacConn_dpk: TCheckBox
     Tag = 9
     Left = 65
-    Top = 169
+    Top = 314
     Width = 163
     Height = 17
     Margins.Left = 25
@@ -327,7 +357,7 @@ object framePacotes: TframePacotes
   object pckUCIBXConn_dpk: TCheckBox
     Tag = 9
     Left = 65
-    Top = 186
+    Top = 169
     Width = 163
     Height = 17
     Margins.Left = 25
@@ -347,7 +377,7 @@ object framePacotes: TframePacotes
   object pckUCMidasConn_dpk: TCheckBox
     Tag = 9
     Left = 65
-    Top = 221
+    Top = 204
     Width = 163
     Height = 17
     Margins.Left = 25
@@ -394,7 +424,6 @@ object framePacotes: TframePacotes
     Margins.Right = 0
     Margins.Bottom = 0
     Caption = 'pckAlcinoe.dpk'
-    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -447,7 +476,7 @@ object framePacotes: TframePacotes
   object pckUCDBXConn_dpk: TCheckBox
     Tag = 9
     Left = 65
-    Top = 204
+    Top = 187
     Width = 163
     Height = 17
     Margins.Left = 25
@@ -467,7 +496,7 @@ object framePacotes: TframePacotes
   object pckUCDataSnapConn_dpk: TCheckBox
     Tag = 9
     Left = 65
-    Top = 238
+    Top = 333
     Width = 163
     Height = 17
     Margins.Left = 25
@@ -487,7 +516,7 @@ object framePacotes: TframePacotes
   object pckZeosConn_dpk: TCheckBox
     Tag = 9
     Left = 65
-    Top = 255
+    Top = 222
     Width = 163
     Height = 17
     Margins.Left = 25
@@ -507,7 +536,7 @@ object framePacotes: TframePacotes
   object pckUCRestConn_dpk: TCheckBox
     Tag = 9
     Left = 65
-    Top = 272
+    Top = 351
     Width = 163
     Height = 17
     Margins.Left = 25

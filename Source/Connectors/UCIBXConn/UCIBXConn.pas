@@ -78,11 +78,19 @@ unit UCIBXConn;
 interface
 
 uses
-  system.Classes,
-  Data.DB,
+  Classes,
+  DB,
+
+  {$IF CompilerVersion >= 23}
   IBX.IBDataBase,
-  IBX.IBQuery,
-  system.SysUtils,
+  IBX.IBQuery, 
+  {$ELSE}
+  IBDataBase,
+  IBQuery,
+  {$IFEND}
+
+
+  SysUtils,
   UCDataConnector;
 
 type
@@ -129,7 +137,7 @@ begin
     TempList.Text := UpperCase(TempList.Text);
     Result        := TempList.IndexOf(UpperCase(TableName)) > -1;
   finally
-    system.SysUtils.FreeAndNil(TempList);
+    SysUtils.FreeAndNil(TempList);
   end;
 end;
 

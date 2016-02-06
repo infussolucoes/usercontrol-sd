@@ -1,7 +1,6 @@
 package pckUserControl_RT;
 
 {$R *.res}
-{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
@@ -23,17 +22,22 @@ package pckUserControl_RT;
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
-{$DEFINE DEBUG}
-{$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'SWDelphi - User Control RT'}
 {$IMPLICITBUILD OFF}
+{$DEFINE DEBUG}
 
 requires
   pckMD5,
   pckUCDataConnector,
+  
+  {$IFDEF DELPHI16}
   pckAlcinoe,
-  vclactnband,
   DbxCommonDriver,
+  {$ELSE}
+  inet,
+  {$ENDIF}
+
+  vclactnband,
   vcldb,
   VclSmp,
   dbexpress;
@@ -59,6 +63,7 @@ contains
   UCMail in '..\..\source\Base\UCMail.pas',
   UCEMailForm_U in '..\..\source\Base\UCEMailForm_U.pas',
   IncUser_U in '..\..\source\Base\IncUser_U.pas',
+  UCALSMTPClient in '..\..\source\Base\UCALSMTPClient.pas',
   IncPerfil_U in '..\..\source\Base\IncPerfil_U.pas';
 
 end.

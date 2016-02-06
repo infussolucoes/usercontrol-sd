@@ -71,7 +71,7 @@ interface
 
 uses
 
-  system.Variants,
+  Variants,
 
   ActnList,
   Buttons,
