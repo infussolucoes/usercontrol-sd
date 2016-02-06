@@ -7,7 +7,11 @@ que possível.
 
 Fórum oficial: http://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
 
-Versões Suportadas em 32 e 64 bits:
+O componente deverá ter suporte do Delphi 7 até o Delphi 10 Seatle.
+
+Versões testadas até o momento:
+
+Delphi 7
 
 Delphi XE 7
 
@@ -20,6 +24,8 @@ ADOConnector, IBXConnector, DBXConnector, FireDACConnector, ZeosConnector, DataS
 
 O RestConnector é experimental.
 O Midas Connector é somente até o Delphi XE 8.
+
+O componente é compatível com a compilação em 64 bits.
 
 Visite a comunidade: http://showdelphi.com.br
 
