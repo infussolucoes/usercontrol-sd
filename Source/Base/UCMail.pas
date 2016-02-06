@@ -86,11 +86,13 @@ uses
 
   {$IF CompilerVersion >= 23}
   System.UITypes,
-  {$IFEND}
-
   ALSMTPClient,
   ALInternetMessages,
   ALStringList,
+  {$ELSE}
+  UCALSMTPClient,
+  {$IFEND}
+
   UcConsts_Language;
 
 type
@@ -441,16 +443,30 @@ Function TMailUserControl.EnviaEmailTp(Nome, Login, USenha, Email,
   Perfil: String; UCMSG: TUCMailMessage): Boolean;
 var
   MailMsg: TAlSmtpClient;
+
+{$IF CompilerVersion >= 23}
   MailRecipients: TALStrings;
   MailHeader: TALEmailHeader;
+{$ELSE}
+  MailRecipients : TStringlist;
+  MailHeader : TALSMTPClientHeader;
+{$IFEND}
 begin
   Result := False;
   if Trim(Email) = '' then
     Exit;
   MailMsg := TAlSmtpClient.Create;
+
+  {$IF CompilerVersion >= 23}
   // MailMsg.OnStatus       := OnStatus;
   MailRecipients := TALStrings.Create;
   MailHeader := TALEmailHeader.Create;
+  {$ELSE}
+  MailMsg                := TAlSmtpClient.Create;
+  MailMsg.OnStatus       := OnStatus;
+  MailRecipients         := TStringlist.Create;
+  {$IFEND}
+
   MailHeader.From := EmailRemetente;
   MailHeader.SendTo := Email;
   MailHeader.ContentType := 'text/html';
