@@ -29,21 +29,13 @@ package pckUCDBXConn;
 {$IMPLICITBUILD OFF}
 
 requires
-  rtl,
-  dbrtl,
-  dsnap,
-  dbxcds,
-
+  pckUCDataConnector,
   {$IFDEF DELPHI12_UP}
   DbxCommonDriver,
-  DbxClientDriver,
-  {$ELSE}
-
   {$ENDIF}
+  dsnap,
   dbexpress,
-  pckUCDataConnector,
-  pckMD5,
-  pckUserControl_RT;
+  dbxcds;
 
 contains
   UCDBXConn in '..\..\..\Source\Connectors\UCDBXConn\UCDBXConn.pas',

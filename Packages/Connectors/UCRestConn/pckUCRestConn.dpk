@@ -25,17 +25,20 @@ package pckUCRestConn;
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
 {$ENDIF IMPLICITBUILDING}
-{$IMPLICITBUILD ON}
+{$DESCRIPTION 'SWDelphi - User Control Rest Connector'}
+{$IMPLICITBUILD OFF}
 
 requires
-  rtl,
+  pckUCDataConnector,
   DbxCommonDriver,
-  dbrtl,
   DataSnapClient,
+  DataSnapCommon,
   DbxClientDriver,
   CustomIPTransport,
-  pckUCDataConnector,
-  pckUCDataSnapConn;
+  FireDAC,
+  FireDACCommonDriver,
+  FireDACCommon,
+  DataSnapFireDAC;
 
 contains
   UCRestConn in '..\..\..\Source\Connectors\UCRestConn\UCRestConn.pas',

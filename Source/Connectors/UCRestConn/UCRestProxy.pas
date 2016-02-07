@@ -91,10 +91,7 @@ unit UCRestProxy;
 
 interface
 
-uses Datasnap.DSProxyRest,
-System.Classes,
-System.SysUtils, Data.DB,
-Data.FireDACJSONReflect;
+uses Datasnap.DSProxyRest, Data.FireDACJSONReflect;
 
 type
   TDSUserRemote = class(TDSAdminRestClient)

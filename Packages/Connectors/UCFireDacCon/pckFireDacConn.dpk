@@ -30,18 +30,11 @@ package pckFireDacConn;
 
 requires
   pckUCDataConnector,
-  vclactnband,
   vcl,
-  DbxCommonDriver,
-  inet,
   vclFireDAC,
   FireDAC,
   FireDACCommonDriver,
-  FireDACCommon,
-  vcldb,
-  VclSmp,
-  dbexpress,
-  pckUserControl_RT;
+  FireDACCommon;
 
 contains
   UCFireDACConnReg in '..\..\..\Source\Connectors\UCFireDacCon\UCFireDACConnReg.pas',

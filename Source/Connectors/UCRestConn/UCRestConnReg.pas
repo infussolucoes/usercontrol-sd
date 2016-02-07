@@ -70,10 +70,7 @@ unit UCRestConnReg;
 interface
 
 uses
-  system.Classes,
-  DesignEditors,
-  DesignIntf,
-  system.TypInfo;
+  system.Classes;
 
 procedure Register;
 

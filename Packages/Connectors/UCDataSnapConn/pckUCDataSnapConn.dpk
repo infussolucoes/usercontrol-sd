@@ -29,25 +29,13 @@ package pckUCDataSnapConn;
 {$IMPLICITBUILD OFF}
 
 requires
-  designide,
   pckUCDataConnector,
   DbxCommonDriver,
   DataSnapClient,
-  DataSnapCommon,
   DbxClientDriver,
   CustomIPTransport,
-  FireDAC,
-  FireDACCommonDriver,
-  FireDACCommon,
   dsnap,
-  dbexpress,
-  dbxcds,
-  DataSnapFireDAC,
-  IndyIPClient,
-  IndyIPCommon,
-  IndySystem,
-  IndyProtocols,
-  IndyCore;
+  dbexpress;
 
 contains
   UCDataSnapConn in '..\..\..\Source\Connectors\UCDataSnapConn\UCDataSnapConn.pas',
