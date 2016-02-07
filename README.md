@@ -27,6 +27,8 @@ O Midas Connector é somente até o Delphi XE 8.
 
 O componente é compatível com a compilação em 64 bits.
 
+Para ver uma descrição completa dos componentes acesse: http://showdelphi.com.br/descricao-dos-componentes-usercontrol/
+
 Visite a comunidade: http://showdelphi.com.br
 
 
