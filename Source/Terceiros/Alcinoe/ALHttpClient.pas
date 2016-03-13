@@ -69,7 +69,7 @@ interface
 {$LEGACYIFEND ON} // http://docwiki.embarcadero.com/RADStudio/XE4/en/Legacy_IFEND_(Delphi)
 {$IFEND}
 
-uses {$IF CompilerVersion >= 23} {Delphi XE2}
+uses {$IF CompilerVersion >= 28} {Delphi XE2}
   System.SysUtils,
   System.Classes,
   System.NetEncoding,
@@ -677,7 +677,7 @@ end;
 { ************************************************ }
 function TALHTTPCookie.GetHeaderValue: AnsiString;
 begin
-  {$IF CompilerVersion >= 25}
+  {$IF CompilerVersion >= 28}
   Result := ALFormat('%s=%s; ', [TNetEncoding.URL.Encode(String(FName)), TNetEncoding.URL.Encode(String(FValue))]);
   {$ELSE}
   Result := ALFormat('%s=%s; ', [HTTPEncode(FName), HTTPEncode(FValue)]);
@@ -1379,7 +1379,7 @@ begin
     LStr := ParamValues[i];
     LPos := AlPos(ParamValues.NameValueSeparator, LStr);
     if LPos > 0 then
-      {$IF CompilerVersion >= 25}
+      {$IF CompilerVersion >= 28}
       ParamValues[i] := TNetEncoding.URL.Encode(AlCopyStr(String(LStr), 1, LPos - 1)) + '=' +
         TNetEncoding.URL.Encode(AlCopyStr(String(LStr), LPos + 1, MaxInt));
       {$ELSE}
@@ -2606,7 +2606,7 @@ begin
         Str := aPostDataStrings[i];
         P := AlPos(aPostDataStrings.NameValueSeparator, Str);
         if P > 0 then
-          {$IF CompilerVersion >= 25}
+          {$IF CompilerVersion >= 28}
           Str := TNetEncoding.URL.Encode(AlCopyStr(String(Str), 1, P - 1)) + '=' +
             TNetEncoding.URL.Encode(AlCopyStr(String(Str), P + 1, MaxInt))
           {$ELSE}
@@ -2615,7 +2615,7 @@ begin
           {$IFEND}
 
         else
-          {$IF CompilerVersion >= 25}
+          {$IF CompilerVersion >= 28}
           Str := TNetEncoding.URL.Encode(String(Str));
           {$ELSE}
           Str := HTTPEncode(Str);
@@ -2729,7 +2729,7 @@ begin
     P := AlPos(aParams.NameValueSeparator, Str);
     if EncodeParams then
     begin
-      {$IF CompilerVersion >= 25}
+      {$IF CompilerVersion >= 28}
       if P > 0 then
         Query := Query + TNetEncoding.URL.Encode(AlCopyStr(Str, 1, P - 1)) + '=' +
           TNetEncoding.URL.Encode(AlCopyStr(Str, P + 1, MaxInt)) +
@@ -2844,7 +2844,7 @@ begin
         Str := aPostDataStrings[i];
         P := AlPos(aPostDataStrings.NameValueSeparator, Str);
 
-        {$IF CompilerVersion >= 25}
+        {$IF CompilerVersion >= 28}
         if P > 0 then
           Str := TNetEncoding.URL.Encode(AlCopyStr(Str, 1, P - 1)) + '=' +
             TNetEncoding.URL.Encode(AlCopyStr(Str, P + 1, MaxInt))
