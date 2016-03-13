@@ -222,6 +222,9 @@ end;
 
 function TUCDataSnapConn.UCGetSQLDataset(FSQL: String): TDataset;
 begin
+  if not (Connection.Connected) then
+    Connection.Open;
+
   Result := TClientDataSet.Create(Self);
   Result.Filter := FSQL;
 
