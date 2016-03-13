@@ -13,6 +13,8 @@ Versões testadas até o momento:
 
 Delphi 7
 
+Delphi XE 6
+
 Delphi XE 7
 
 Delphi XE 8
