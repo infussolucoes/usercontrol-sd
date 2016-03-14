@@ -1,405 +1,72 @@
-{------------------------------------------------------------------------------}
-{ VERXXX to DELPHIX                                                            }
-{------------------------------------------------------------------------------}
+{ **************************************************************************** }
+{ Projeto: Componentes User Control ShowDelphi Edition                         }
+{ Biblioteca multiplataforma de componentes Delphi para o controle de usuários }
+{                                                                              }
+{ Baseado nos pacotes Open Source User Control 2.31 RC1                        }
+{
+Autor da versão Original: Rodrigo Alves Cordeiro
 
-{$IFDEF VER110}
-  {$DEFINE DELPHI3}
-{$ENDIF}
+Colaboradores da versão original
+Alexandre Oliveira Campioni - alexandre.rural@netsite.com.br
+Bernard Grandmougin
+Carlos Guerra
+Daniel Wszelaki
+Everton Ramos [BS2 Internet]
+Francisco Dueñas - fduenas@flashmail.com
+Germán H. Cravero
+Luciano Almeida Pimenta [ClubeDelphi.net]
+Luiz Benevenuto - luiz@siffra.com
+Luiz Fernando Severnini
+Peter van Mierlo
+Rodolfo Ferezin Moreira - rodolfo.fm@bol.com.br
+Rodrigo Palhano (WertherOO)
+Ronald Marconi
+Sergiy Sekela (Dr.Web)
+Stefan Nawrath
+Vicente Barros Leonel [ Fknyght ]
 
-{$IFDEF VER120}
-  {$DEFINE DELPHI4}
-{$ENDIF}
+*******************************************************************************}
+{ Versão ShowDelphi Edition                                                    }
+{                                                                              }
+{ Direitos Autorais Reservados (c) 2015   Giovani Da Cruz                      }
+{                                                                              }
+{ Colaboradores nesse arquivo:                                                 }
+{                                                                              }
+{ Você pode obter a última versão desse arquivo na pagina do projeto           }
+{ User Control ShowDelphi Edition                                              }
+{ Componentes localizado em http://infussolucoes.github.io/usercontrol-sd/     }
+{                                                                              }
+{ Esta biblioteca é software livre; você pode redistribuí-la e/ou modificá-la  }
+{ sob os termos da Licença Pública Geral Menor do GNU conforme publicada pela  }
+{ Free Software Foundation; tanto a versão 2.1 da Licença, ou (a seu critério) }
+{ qualquer versão posterior.                                                   }
+{                                                                              }
+{ Esta biblioteca é distribuída na expectativa de que seja útil, porém, SEM    }
+{ NENHUMA GARANTIA; nem mesmo a garantia implícita de COMERCIABILIDADE OU      }
+{ ADEQUAÇÃO A UMA FINALIDADE ESPECÍFICA. Consulte a Licença Pública Geral Menor}
+{ do GNU para mais detalhes. (Arquivo LICENÇA.TXT ou LICENSE.TXT)              }
+{                                                                              }
+{ Você deve ter recebido uma cópia da Licença Pública Geral Menor do GNU junto }
+{ com esta biblioteca; se não, escreva para a Free Software Foundation, Inc.,  }
+{ no endereço 59 Temple Street, Suite 330, Boston, MA 02111-1307 USA.          }
+{ Você também pode obter uma copia da licença em:                              }
+{ http://www.opensource.org/licenses/lgpl-license.php                          }
+{                                                                              }
+{                                                                              }
+{ Comunidade Show Delphi - www.showdelphi.com.br                               }
+{                                                                              }
+{ Giovani Da Cruz  -  giovani@infus.inf.br  -  www.infus.inf.br                }
+{                                                                              }
+{ ****************************************************************************** }
 
-{$IFDEF VER130}
-  {$DEFINE DELPHI5}
-{$ENDIF}
-
-{$IFDEF VER140}
-  {$DEFINE DELPHI6}
-{$ENDIF}
-
-{$IFDEF VER150}
-  {$DEFINE DELPHI7}
-{$ENDIF}
-
-{$IFDEF VER160}
-  {$DEFINE DELPHI8}
-{$ENDIF}
-
-{$IFDEF VER170}
-  {$DEFINE DELPHI9}
-{$ENDIF}
-
-{$IFDEF VER180}
-  {$DEFINE DELPHI10}
-{$ENDIF}
-
-{$IFDEF VER190}
-  {$DEFINE DELPHI11}
-{$ENDIF}
-
-{$IFDEF VER200}
-  {$DEFINE DELPHI12}
-{$ENDIF}
-
-{$IFDEF VER210}
-  {$DEFINE DELPHI13}
-{$ENDIF}
-
-{$IFDEF VER220}
-  {$DEFINE DELPHI14}
-{$ENDIF}
-
-{$IFDEF VER230}
-  {$DEFINE DELPHI15}
-{$ENDIF}
-
-{$IFDEF VER240}
-  {$DEFINE DELPHI16}
-{$ENDIF}
-
-{$IFDEF VER250}
-  {$DEFINE DELPHI17}
-{$ENDIF}
-
-{$IFDEF VER260}
-  {$DEFINE DELPHI18}
-{$ENDIF}
-
-{$IFDEF VER270}
-  {$DEFINE DELPHI19}
-{$ENDIF}
-
-{$IFDEF VER280}
-  {$DEFINE DELPHI20}
-{$ENDIF}
-
-{$IFDEF VER290}
-  {$DEFINE DELPHI21}
-{$ENDIF}
-
-{$IFDEF VER300}
-  {$DEFINE DELPHI22}
-{$ENDIF}
-{------------------------------------------------------------------------------}
-{ DELPHIX_UP from DELPHIX mappings                                             }
-{------------------------------------------------------------------------------}
-
-{$IFDEF DELPHI22}
-  {$DEFINE DELPHI22_UP}
-  {$DEFINE DELPHI21_UP}
-  {$DEFINE DELPHI20_UP}
-  {$DEFINE DELPHI18_UP}
-  {$DEFINE DELPHI17_UP}
-  {$DEFINE DELPHI16_UP}
-  {$DEFINE DELPHI15_UP}
-  {$DEFINE DELPHI14_UP}
-  {$DEFINE DELPHI13_UP}
-  {$DEFINE DELPHI12_UP}
-  {$DEFINE DELPHI11_UP}
-  {$DEFINE DELPHI10_UP}
-  {$DEFINE DELPHI9_UP}
-  {$DEFINE DELPHI8_UP}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI21}
-  {$DEFINE DELPHI21_UP}
-  {$DEFINE DELPHI20_UP}
-  {$DEFINE DELPHI18_UP}
-  {$DEFINE DELPHI17_UP}
-  {$DEFINE DELPHI16_UP}
-  {$DEFINE DELPHI15_UP}
-  {$DEFINE DELPHI14_UP}
-  {$DEFINE DELPHI13_UP}
-  {$DEFINE DELPHI12_UP}
-  {$DEFINE DELPHI11_UP}
-  {$DEFINE DELPHI10_UP}
-  {$DEFINE DELPHI9_UP}
-  {$DEFINE DELPHI8_UP}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI20}
-  {$DEFINE DELPHI20_UP}
-  {$DEFINE DELPHI18_UP}
-  {$DEFINE DELPHI17_UP}
-  {$DEFINE DELPHI16_UP}
-  {$DEFINE DELPHI15_UP}
-  {$DEFINE DELPHI14_UP}
-  {$DEFINE DELPHI13_UP}
-  {$DEFINE DELPHI12_UP}
-  {$DEFINE DELPHI11_UP}
-  {$DEFINE DELPHI10_UP}
-  {$DEFINE DELPHI9_UP}
-  {$DEFINE DELPHI8_UP}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI19}
-  {$DEFINE DELPHI19_UP}
-  {$DEFINE DELPHI18_UP}
-  {$DEFINE DELPHI17_UP}
-  {$DEFINE DELPHI16_UP}
-  {$DEFINE DELPHI15_UP}
-  {$DEFINE DELPHI14_UP}
-  {$DEFINE DELPHI13_UP}
-  {$DEFINE DELPHI12_UP}
-  {$DEFINE DELPHI11_UP}
-  {$DEFINE DELPHI10_UP}
-  {$DEFINE DELPHI9_UP}
-  {$DEFINE DELPHI8_UP}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI18}
-  {$DEFINE DELPHI18_UP}
-  {$DEFINE DELPHI17_UP}
-  {$DEFINE DELPHI16_UP}
-  {$DEFINE DELPHI15_UP}
-  {$DEFINE DELPHI14_UP}
-  {$DEFINE DELPHI13_UP}
-  {$DEFINE DELPHI12_UP}
-  {$DEFINE DELPHI11_UP}
-  {$DEFINE DELPHI10_UP}
-  {$DEFINE DELPHI9_UP}
-  {$DEFINE DELPHI8_UP}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI17}
-  {$DEFINE DELPHI17_UP}
-  {$DEFINE DELPHI16_UP}
-  {$DEFINE DELPHI15_UP}
-  {$DEFINE DELPHI14_UP}
-  {$DEFINE DELPHI13_UP}
-  {$DEFINE DELPHI12_UP}
-  {$DEFINE DELPHI11_UP}
-  {$DEFINE DELPHI10_UP}
-  {$DEFINE DELPHI9_UP}
-  {$DEFINE DELPHI8_UP}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI16}
-  {$DEFINE DELPHI16_UP}
-  {$DEFINE DELPHI15_UP}
-  {$DEFINE DELPHI14_UP}
-  {$DEFINE DELPHI13_UP}
-  {$DEFINE DELPHI12_UP}
-  {$DEFINE DELPHI11_UP}
-  {$DEFINE DELPHI10_UP}
-  {$DEFINE DELPHI9_UP}
-  {$DEFINE DELPHI8_UP}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI15}
-  {$DEFINE DELPHI15_UP}
-  {$DEFINE DELPHI14_UP}
-  {$DEFINE DELPHI13_UP}
-  {$DEFINE DELPHI12_UP}
-  {$DEFINE DELPHI11_UP}
-  {$DEFINE DELPHI10_UP}
-  {$DEFINE DELPHI9_UP}
-  {$DEFINE DELPHI8_UP}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI14}
-  {$DEFINE DELPHI14_UP}
-  {$DEFINE DELPHI13_UP}
-  {$DEFINE DELPHI12_UP}
-  {$DEFINE DELPHI11_UP}
-  {$DEFINE DELPHI10_UP}
-  {$DEFINE DELPHI9_UP}
-  {$DEFINE DELPHI8_UP}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI13}
-  {$DEFINE DELPHI13_UP}
-  {$DEFINE DELPHI12_UP}
-  {$DEFINE DELPHI11_UP}
-  {$DEFINE DELPHI10_UP}
-  {$DEFINE DELPHI9_UP}
-  {$DEFINE DELPHI8_UP}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI12}
-  {$DEFINE DELPHI12_UP}
-  {$DEFINE DELPHI11_UP}
-  {$DEFINE DELPHI10_UP}
-  {$DEFINE DELPHI9_UP}
-  {$DEFINE DELPHI8_UP}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI11}
-  {$DEFINE DELPHI11_UP}
-  {$DEFINE DELPHI10_UP}
-  {$DEFINE DELPHI9_UP}
-  {$DEFINE DELPHI8_UP}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI10}
-  {$DEFINE DELPHI10_UP}
-  {$DEFINE DELPHI9_UP}
-  {$DEFINE DELPHI8_UP}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI9}
-  {$DEFINE DELPHI9_UP}
-  {$DEFINE DELPHI8_UP}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI8}
-  {$DEFINE DELPHI8_UP}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI7}
-  {$DEFINE DELPHI7_UP}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI6}
-  {$DEFINE DELPHI6_UP}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI5}
-  {$DEFINE DELPHI5_UP}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI4}
-  {$DEFINE DELPHI4_UP}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI3}
-  {$DEFINE DELPHI3_UP}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI2}
-  {$DEFINE DELPHI2_UP}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
-
-{$IFDEF DELPHI1}
-  {$DEFINE DELPHI1_UP}
-{$ENDIF}
+{ ******************************************************************************
+  |* Historico
+  |*
+  ******************************************************************************* }
+// utilizar para facilitar a manutenção do UserControl.inc, já que ele era uma cópia
+// da jedi, essa mudança permite uma evolução melhor do arquivo.
+//------------------------------------------------------------------------------
+{$I UserControl_jedi.inc}
 
 (*
 

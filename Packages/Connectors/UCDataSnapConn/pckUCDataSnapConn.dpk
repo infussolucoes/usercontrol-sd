@@ -1,7 +1,6 @@
 package pckUCDataSnapConn;
 
 {$R *.res}
-{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
@@ -24,7 +23,6 @@ package pckUCDataSnapConn;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
-{$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'SWDelphi - User Control DataSnap Connector'}
 {$IMPLICITBUILD OFF}
 

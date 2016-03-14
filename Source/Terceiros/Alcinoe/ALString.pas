@@ -903,7 +903,7 @@ begin
     if WithoutHyphen then
     begin
       SetLength(Result, 32);
-{$IF CompilerVersion >= 24}{ Delphi XE3 }
+{$IF CompilerVersion >= 25}{ Delphi XE3 }
       System.Ansistrings.{$IFEND}StrLFmt(PAnsiChar(Result), 32,
         '%.8x%.4x%.4x%.2x%.2x%.2x%.2x%.2x%.2x%.2x%.2x', // do not localize
         [Guid.D1, Guid.D2, Guid.D3, Guid.D4[0], Guid.D4[1], Guid.D4[2],
@@ -912,7 +912,7 @@ begin
     else
     begin
       SetLength(Result, 36);
-{$IF CompilerVersion >= 24}{ Delphi XE3 }
+{$IF CompilerVersion >= 25}{ Delphi XE3 }
       System.Ansistrings.{$IFEND}StrLFmt(PAnsiChar(Result), 36,
         '%.8x-%.4x-%.4x-%.2x%.2x-%.2x%.2x%.2x%.2x%.2x%.2x', // do not localize
         [Guid.D1, Guid.D2, Guid.D3, Guid.D4[0], Guid.D4[1], Guid.D4[2],
@@ -924,7 +924,7 @@ begin
     if WithoutHyphen then
     begin
       SetLength(Result, 34);
-{$IF CompilerVersion >= 24}{ Delphi XE3 }
+{$IF CompilerVersion >= 25}{ Delphi XE3 }
       System.Ansistrings.{$IFEND}StrLFmt(PAnsiChar(Result), 34,
         '{%.8x%.4x%.4x%.2x%.2x%.2x%.2x%.2x%.2x%.2x%.2x}', // do not localize
         [Guid.D1, Guid.D2, Guid.D3, Guid.D4[0], Guid.D4[1], Guid.D4[2],
@@ -933,7 +933,7 @@ begin
     else
     begin
       SetLength(Result, 38);
-{$IF CompilerVersion >= 24}{ Delphi XE3 }
+{$IF CompilerVersion >= 25}{ Delphi XE3 }
       System.Ansistrings.{$IFEND}StrLFmt(PAnsiChar(Result), 38,
         '{%.8x-%.4x-%.4x-%.2x%.2x-%.2x%.2x%.2x%.2x%.2x%.2x}', // do not localize
         [Guid.D1, Guid.D2, Guid.D3, Guid.D4[0], Guid.D4[1], Guid.D4[2],
@@ -3561,7 +3561,7 @@ var
     Item := AItem;
     if Assigned(AItem) then
       NumChar :=
-      {$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrLen(Item)
+      {$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrLen(Item)
     else
       NumChar := 0;
     if (ItemLen > -1) and (NumChar > ItemLen) then
@@ -3675,7 +3675,7 @@ begin
           Inc(FormatPtr);
         if FormatStartPtr <> FormatPtr then
         begin
-{$IF CompilerVersion >= 24}{ Delphi XE3 }
+{$IF CompilerVersion >= 25}{ Delphi XE3 }
           System.Ansistrings.{$IFEND}StrLCopy(StrBuf, FormatStartPtr,
             Integer(FormatPtr - FormatStartPtr));
           if not ALTryStrToInt(AnsiString(StrBuf), FirstNumber) then
@@ -3718,7 +3718,7 @@ begin
           Inc(FormatPtr);
         if FormatStartPtr <> FormatPtr then
         begin
-{$IF CompilerVersion >= 24}{ Delphi XE3 }
+{$IF CompilerVersion >= 25}{ Delphi XE3 }
           System.Ansistrings.{$IFEND}StrLCopy(StrBuf, FormatStartPtr,
             Integer(FormatPtr - FormatStartPtr));
           if not ALTryStrToInt(AnsiString(StrBuf), Width) then
@@ -3743,7 +3743,7 @@ begin
           {$IF CompilerVersion >= 25}{ Delphi XE4 } (Char(FormatPtr^).IsNumber)
           {$ELSE} (TCharacter.IsNumber(Char(FormatPtr^))) {$IFEND} do
             Inc(FormatPtr);
-{$IF CompilerVersion >= 24}{ Delphi XE3 }
+{$IF CompilerVersion >= 25}{ Delphi XE3 }
           System.Ansistrings.{$IFEND}StrLCopy(StrBuf, FormatStartPtr,
             Integer(FormatPtr - FormatStartPtr));
           if not ALTryStrToInt(AnsiString(StrBuf), Precision) then
@@ -4689,19 +4689,19 @@ var
           case SysLocale.PriLangID of
             LANG_JAPANESE:
               Result := ALCopyStr(Result, 1,
-                {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+                {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
                 Ansistrings.{$IFEND}CharToElementLen(Result, 1));
             LANG_CHINESE:
               if (SysLocale.SubLangID = SUBLANG_CHINESE_TRADITIONAL) and
-                ({$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+                ({$IF CompilerVersion >= 25}{ Delphi XE3 } System.
                 Ansistrings.{$IFEND}ElementToCharLen(Result, Length(Result)) = 4)
               then
               begin
                 P := Buffer +
-                {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+                {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
                   Ansistrings.{$IFEND}CharToElementIndex(Result, 3) - 1;
                 SetString(Result, P,
-                  {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+                  {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
                   Ansistrings.{$IFEND}CharToElementLen(P, 2));
               end;
           end;
@@ -4801,7 +4801,7 @@ var
         // Continue;
         // end;
         ALFormat :=
-        {$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrNextChar(ALFormat);
+        {$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrNextChar(ALFormat);
         Token := Starter;
         if Token in ['a' .. 'z'] then
           Dec(Token, 32);
@@ -4884,11 +4884,11 @@ var
                   'A', 'a':
                     if not BetweenQuotes then
                     begin
-                      if (({$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+                      if (({$IF CompilerVersion >= 25}{ Delphi XE3 } System.
                         Ansistrings.{$IFEND}StrLIComp(P, 'AM/PM', 5) = 0) or
-                        ({$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+                        ({$IF CompilerVersion >= 25}{ Delphi XE3 } System.
                         Ansistrings.{$IFEND}StrLIComp(P, 'A/P', 3) = 0) or
-                        ({$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+                        ({$IF CompilerVersion >= 25}{ Delphi XE3 } System.
                         Ansistrings.{$IFEND}StrLIComp(P, 'AMPM', 4) = 0)) then
                         Use12HourClock := True;
                       Break;
@@ -4946,7 +4946,7 @@ var
             begin
               GetTime;
               P := ALFormat - 1;
-              if {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+              if {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
                 Ansistrings.{$IFEND}StrLIComp(P, 'AM/PM', 5) = 0 then
               begin
                 if Hour >= 12 then
@@ -4955,7 +4955,7 @@ var
                 Inc(ALFormat, 4);
                 Use12HourClock := True;
               end
-              else if {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+              else if {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
                 Ansistrings.{$IFEND}StrLIComp(P, 'A/P', 3) = 0 then
               begin
                 if Hour >= 12 then
@@ -4964,7 +4964,7 @@ var
                 Inc(ALFormat, 2);
                 Use12HourClock := True;
               end
-              else if {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+              else if {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
                 Ansistrings.{$IFEND}StrLIComp(P, 'AMPM', 4) = 0 then
               begin
                 if Hour < 12 then
@@ -4974,14 +4974,14 @@ var
                 Inc(ALFormat, 3);
                 Use12HourClock := True;
               end
-              else if {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+              else if {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
                 Ansistrings.{$IFEND}StrLIComp(P, 'AAAA', 4) = 0 then
               begin
                 GetDate;
                 AppendString(AFormatSettings.LongDayNames[DayOfWeek(DateTime)]);
                 Inc(ALFormat, 3);
               end
-              else if {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+              else if {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
                 Ansistrings.{$IFEND}StrLIComp(P, 'AAA', 3) = 0 then
               begin
                 GetDate;
@@ -7542,7 +7542,7 @@ begin
     if Unicode then
       Result := FloatToText(PWideChar(Buf), Value, ValueType, ffGeneral, 15, 0)
     else
-      Result := {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+      Result := {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
         Ansistrings.{$IFEND}FloatToText(PAnsiChar(Buf), Value, ValueType,
         ffGeneral, 15, 0)
   else
@@ -8416,7 +8416,7 @@ begin
   Inc(Src);
   DropCount := 1;
   P := Src;
-  Src := {$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrScan(Src, Quote);
+  Src := {$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrScan(Src, Quote);
   while Src <> nil do // count adjacent pairs of quote chars
   begin
     Inc(Src);
@@ -8424,11 +8424,11 @@ begin
       Break;
     Inc(Src);
     Inc(DropCount);
-    Src := {$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrScan(Src, Quote);
+    Src := {$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrScan(Src, Quote);
   end;
   EndSuffix := Ord(Src = nil); // Has an ending quoatation mark?
   if Src = nil then
-    Src := {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+    Src := {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
       Ansistrings.{$IFEND}StrEnd(P);
   if ((Src - P) <= 1 - EndSuffix) or ((Src - P - DropCount) = EndSuffix) then
     Exit;
@@ -8438,7 +8438,7 @@ begin
   begin
     SetLength(Result, Src - P - DropCount + EndSuffix);
     Dest := PAnsiChar(Result);
-    Src := {$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrScan(P, Quote);
+    Src := {$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrScan(P, Quote);
     while Src <> nil do
     begin
       Inc(Src);
@@ -8448,11 +8448,11 @@ begin
       Inc(Dest, Src - P);
       Inc(Src);
       P := Src;
-      Src := {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+      Src := {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
         Ansistrings.{$IFEND}StrScan(Src, Quote);
     end;
     if Src = nil then
-      Src := {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+      Src := {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
         Ansistrings.{$IFEND}StrEnd(P);
     ALMove(P^, Dest^, Src - P - 1 + EndSuffix);
   end;
@@ -8530,7 +8530,7 @@ begin
   while Result > 0 do
   begin
     if (S[Result] <> #0) and
-      ({$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrScan(P, S[Result]) <> nil) then
+      ({$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrScan(P, S[Result]) <> nil) then
       Exit;
     Dec(Result);
   end;

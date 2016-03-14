@@ -1,54 +1,39 @@
 package pckUserControl_DT;
 
+{$I UserControl.inc}
 {$R *.res}
-{$R '..\..\Source\Base\UCReg.dcr'}
+//{$R '..\..\Source\Base\UCReg.dcr'}
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
-{$DEBUGINFO OFF}
+{$DEBUGINFO ON}
 {$EXTENDEDSYNTAX ON}
 {$IMPORTEDDATA ON}
 {$IOCHECKS ON}
 {$LOCALSYMBOLS ON}
 {$LONGSTRINGS ON}
 {$OPENSTRINGS ON}
-{$OPTIMIZATION OFF}
+{$OPTIMIZATION ON}
 {$OVERFLOWCHECKS OFF}
 {$RANGECHECKS OFF}
 {$REFERENCEINFO ON}
 {$SAFEDIVIDE OFF}
-{$STACKFRAMES ON}
+{$STACKFRAMES OFF}
 {$TYPEDADDRESS OFF}
 {$VARSTRINGCHECKS ON}
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$DESCRIPTION 'SWDelphi - User Control'}
-{$IMPLICITBUILD OFF}
-{$DEFINE DEBUG}
+{$IMPLICITBUILD ON}
 
 requires
-  {$IFDEF VER150}
-  vcljpg,
-  {$ENDIF}  
-
-  {$IFDEF VER160}
-  vcljpg,
-  {$ENDIF} 
-
-  {$IFDEF VER170}
-  vcljpg,
-  {$ENDIF} 
-
-  {$IFDEF VER180}
-  vcljpg,
-  {$ENDIF} 
-
-  {$IFDEF VER190}
-  vcljpg,
-  {$ENDIF} 
-  
   designide,
+  {$IFDEF DELPHI12_UP} 
+    vclimg,
+  {$ELSE} 
+    vcljpg,
+  {$ENDIF}  
   pckUserControl_RT;
 
 contains

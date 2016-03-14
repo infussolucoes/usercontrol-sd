@@ -417,7 +417,7 @@ implementation
 Uses {$IF CompilerVersion >= 23} {Delphi XE2}
   System.Sysutils,
   System.RTLConsts,
-{$IF CompilerVersion >= 24}{Delphi XE3} System.Ansistrings, {$IFEND}
+{$IF CompilerVersion >= 25}{Delphi XE3} System.Ansistrings, {$IFEND}
 {$ELSE}
   Sysutils,
   RTLConsts,
@@ -818,7 +818,7 @@ end;
 { ************************************* }
 function TALStrings.GetText: PAnsiChar;
 begin
-  Result := {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+  Result := {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
     Ansistrings.{$IFEND}StrNew(PAnsiChar(GetTextStr));
 end;
 
@@ -1114,7 +1114,7 @@ begin
         while P^ <> #0 do
         begin
           Start := P;
-          LB := {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+          LB := {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
             Ansistrings.{$IFEND}StrPos(P, PAnsiChar(LineBreak));
           while (P^ <> #0) and (P <> LB) do
             Inc(P);

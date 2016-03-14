@@ -334,7 +334,7 @@ implementation
 uses {$IF CompilerVersion >= 23} {Delphi XE2}
   Winapi.Windows,
   System.DateUtils,
-{$IF CompilerVersion >= 24}{Delphi XE3} System.Ansistrings, {$IFEND}
+{$IF CompilerVersion >= 25}{Delphi XE3} System.Ansistrings, {$IFEND}
 {$ELSE}
   Windows,
   DateUtils,
@@ -626,7 +626,7 @@ var
   PathBuffer: array [0 .. 1023] of AnsiChar;
   Size: integer;
 begin
-{$IF CompilerVersion >= 24}{ Delphi XE3 }
+{$IF CompilerVersion >= 25}{ Delphi XE3 }
   System.Ansistrings.{$IFEND}StrCopy(PathBuffer, PAnsiChar(URI));
   Size := SizeOf(PathBuffer);
   if ECB.ServerSupportFunction(ECB.ConnID, HSE_REQ_MAP_URL_TO_PATH, @PathBuffer,
@@ -935,7 +935,7 @@ end;
 { **************************************************************** }
 procedure TALISAPIResponse.SetLogMessage(const Value: AnsiString);
 begin
-{$IF CompilerVersion >= 24}{ Delphi XE3 }
+{$IF CompilerVersion >= 25}{ Delphi XE3 }
   System.Ansistrings.{$IFEND}StrPLCopy(TALISAPIRequest(HTTPRequest)
     .ECB.lpszLogData, Value, HSE_LOG_BUFFER_LEN - 1);
 end;

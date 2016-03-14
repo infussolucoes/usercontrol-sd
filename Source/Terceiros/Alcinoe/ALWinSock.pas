@@ -74,7 +74,7 @@ uses {$IF CompilerVersion >= 23} {Delphi XE2}
   Winapi.Windows,
   System.SysUtils,
   Winapi.WinSock2,
-{$IF CompilerVersion >= 24}{Delphi XE3} System.Ansistrings, {$IFEND}
+{$IF CompilerVersion >= 25}{Delphi XE3} System.Ansistrings, {$IFEND}
 {$ELSE}
   Windows,
   SysUtils,
@@ -132,7 +132,7 @@ begin
     SockAddrIn.sin_addr.s_addr := inet_addr(PAnsiChar(IPAddr));
     hostEnt := gethostbyaddr(@SockAddrIn.sin_addr.s_addr, 4, AF_INET);
     if hostEnt <> nil then
-      Result := {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+      Result := {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
         Ansistrings.{$IFEND}StrPas(hostEnt^.h_name)
     else
       Result := '';
@@ -186,7 +186,7 @@ begin
 
     if GetHostName(Buffer, SizeOf(Buffer)) <> 0 then
       raise EALException.Create('Winsock GetHostName failed');
-    Result := {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+    Result := {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
       Ansistrings.{$IFEND}StrPas(Buffer);
 
   finally

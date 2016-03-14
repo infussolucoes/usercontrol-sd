@@ -1,7 +1,7 @@
 package pckUserControl_RT;
 
+{$I UserControl.inc}
 {$R *.res}
-{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
@@ -24,11 +24,9 @@ package pckUserControl_RT;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
-{$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'SWDelphi - User Control RT'}
 {$IMPLICITBUILD OFF}
 
-{ .$I 'UserControl.inc' }
 
 requires
   pckMD5,
@@ -37,36 +35,7 @@ requires
   vclactnband,
   vcldb,
   VclSmp,
-
-  {$IFDEF VER230}
-  pckAlcinoe,
-  {$ENDIF}
-
-  {$IFDEF VER240}
-  pckAlcinoe,
-  {$ENDIF}
-
-  {$IFDEF VER250}
-  pckAlcinoe,
-  {$ENDIF}
-
-  {$IFDEF VER260}
-  pckAlcinoe,
-  {$ENDIF}
-
-  {$IFDEF VER270}
-  pckAlcinoe,
-  {$ENDIF}
-
-  {$IFDEF VER280}
-  pckAlcinoe,
-  {$ENDIF}
-
-  {$IFDEF VER290}
-  pckAlcinoe,
-  {$ENDIF}
-
-  {$IFDEF VER300}
+  {$IFDEF DELPHIXE2_UP}
   pckAlcinoe,
   {$ENDIF}
   dbexpress;

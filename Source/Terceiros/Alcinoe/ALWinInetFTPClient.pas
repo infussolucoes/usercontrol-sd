@@ -256,7 +256,7 @@ implementation
 
 uses {$IF CompilerVersion >= 23} {Delphi XE2}
   System.SysUtils,
-{$IF CompilerVersion >= 24}{Delphi XE3} System.Ansistrings, {$IFEND}
+{$IF CompilerVersion >= 25}{Delphi XE3} System.Ansistrings, {$IFEND}
 {$ELSE}
   SysUtils,
 {$IFEND}
@@ -317,7 +317,7 @@ var
       Pointer(GetModuleHandle('wininet.dll')), ErrCode, 0, PAnsiChar(ErrMsg),
       Length(ErrMsg), nil);
     SetLength(ErrMsg,
-      {$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrLen(PAnsiChar(ErrMsg)));
+      {$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrLen(PAnsiChar(ErrMsg)));
   end;
 
 begin
@@ -337,7 +337,7 @@ begin
           SetLength(ErrMsg, ErrMsgln);
           InternetGetLastResponseInfoA(ErrCode, PAnsiChar(ErrMsg), ErrMsgln);
           SetLength(ErrMsg,
-            {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+            {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
             Ansistrings.{$IFEND}StrLen(PAnsiChar(ErrMsg)));
         end
         else
@@ -345,7 +345,7 @@ begin
       end
       else
         SetLength(ErrMsg,
-          {$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrLen(PAnsiChar(ErrMsg)));
+          {$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrLen(PAnsiChar(ErrMsg)));
     end
     else
       internalFormatMessageFromErrCode;

@@ -154,7 +154,7 @@ implementation
 uses {$IF CompilerVersion >= 23} {Delphi XE2}
   Winapi.Windows,
   System.RTLConsts,
-{$IF CompilerVersion >= 24}{Delphi XE3} System.Ansistrings, {$IFEND}
+{$IF CompilerVersion >= 25}{Delphi XE3} System.Ansistrings, {$IFEND}
 {$ELSE}
   Windows,
   RTLConsts,
@@ -523,7 +523,7 @@ begin
         while P^ <> #0 do
         begin
           Strings.Add(P);
-          Inc(P, {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+          Inc(P, {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
             Ansistrings.{$IFEND}StrLen(P) + 1);
         end;
       end;
@@ -554,7 +554,7 @@ var
         while P^ <> #0 do
         begin
           Strings.Add(P);
-          Inc(P, {$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+          Inc(P, {$IF CompilerVersion >= 25}{ Delphi XE3 } System.
             Ansistrings.{$IFEND}StrLen(P) + 1);
         end;
       end;

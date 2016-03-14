@@ -1321,7 +1321,7 @@ implementation
 uses {$IF CompilerVersion >= 23} {Delphi XE2}
   System.Math,
   System.Variants,
-{$IF CompilerVersion >= 24}{Delphi XE3} System.Ansistrings, {$IFEND}
+{$IF CompilerVersion >= 25}{Delphi XE3} System.Ansistrings, {$IFEND}
 {$ELSE}
   Math,
   Variants,
@@ -1622,7 +1622,7 @@ begin
   while (CurPos <> nil) do
   begin
     NextPos :=
-    {$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrScan
+    {$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrScan
       (CurPos, Delimiter);
     if (NextPos = nil) then
       CurStr := CurPos
@@ -1642,7 +1642,7 @@ begin
         CurValue := ALCopyStr(CurStr, EqualPos + 1, length(CurStr) - EqualPos);
         CurStr := ALCopyStr(CurStr, 0, EqualPos - 1);
       end;
-{$IF CompilerVersion >= 24}{ Delphi XE3 }
+{$IF CompilerVersion >= 25}{ Delphi XE3 }
       System.Ansistrings.{$IFEND}StrLower(PAnsiChar(CurStr));
       CurStr := ALTrim(CurStr);
       CurValue := ALTrim(CurValue);
@@ -1896,7 +1896,7 @@ begin
   begin
     for Result := low(TALFBXCharacterSet) to High(TALFBXCharacterSet) do
       if (len = length(cALFBXCharacterSetStr[Result])) and
-        ({$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrIComp(PAnsiChar(cALFBXCharacterSetStr[Result]), PAnsiChar(CharacterSet)) = 0) then
+        ({$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrIComp(PAnsiChar(cALFBXCharacterSetStr[Result]), PAnsiChar(CharacterSet)) = 0) then
         Exit;
     raise Exception.CreateFmt(cALFBX_CHARSETNOTFOUND, [CharacterSet]);
   end;
@@ -2728,7 +2728,7 @@ begin
   while (CurPos <> nil) do
   begin
     NextPos :=
-    {$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrScan
+    {$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrScan
       (CurPos, Delimiter);
     if (NextPos = nil) then
       CurStr := CurPos
@@ -2749,7 +2749,7 @@ begin
         CurValue := ALCopyStr(CurStr, EqualPos + 1, length(CurStr) - EqualPos);
         CurStr := ALCopyStr(CurStr, 0, EqualPos - 1);
       end;
-{$IF CompilerVersion >= 24}{ Delphi XE3 }
+{$IF CompilerVersion >= 25}{ Delphi XE3 }
       System.Ansistrings.{$IFEND}StrLower(PAnsiChar(CurStr));
       CurStr := ALTrim(CurStr);
       CurValue := ALTrim(CurValue);
@@ -5492,7 +5492,7 @@ var
 begin
   for i := 0 to GetAllocatedFields - 1 do
     if FXSQLDA.sqlvar[i].AliasNameLength = length(name) then
-      if {$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrLIComp(PAnsiChar(@FXSQLDA.sqlvar[i].AliasName), PAnsiChar(Name), FXSQLDA.sqlvar[i].AliasNameLength) = 0 then
+      if {$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrLIComp(PAnsiChar(@FXSQLDA.sqlvar[i].AliasName), PAnsiChar(Name), FXSQLDA.sqlvar[i].AliasNameLength) = 0 then
       begin
         index := i;
         Result := true;
@@ -6576,7 +6576,7 @@ begin
     for i := 0 to FXSQLDA.sqln - 2 do
       if not((FXSQLDA.sqlvar[i].RelNameLength = FXSQLDA.sqlvar[i + 1]
         .RelNameLength) and
-        ({$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrIComp(FXSQLDA.sqlvar[i].RelName, FXSQLDA.sqlvar[i + 1].RelName) = 0)) then
+        ({$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrIComp(FXSQLDA.sqlvar[i].RelName, FXSQLDA.sqlvar[i + 1].RelName) = 0)) then
         Exit;
   if FXSQLDA.sqln > 0 then
     SetString(Result, FXSQLDA.sqlvar[0].RelName,
@@ -7142,7 +7142,7 @@ begin
       'b', 'B':
         begin
           if not((Dest > 0) and (AnsiChar(src[-1]) in Identifiers)) and
-            ({$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+            ({$IF CompilerVersion >= 25}{ Delphi XE3 } System.
             Ansistrings.{$IFEND}StrIComp(PAnsiChar(ALCopyStr(src, 0, 5)),
             'begin') = 0) and not(AnsiChar(src[5]) in Identifiers) then
             while (src^ <> #0) do
@@ -7155,7 +7155,7 @@ begin
       'd', 'D':
         begin
           if not((Dest > 0) and (AnsiChar(src[-1]) in Identifiers)) and
-            ({$IF CompilerVersion >= 24}{ Delphi XE3 } System.
+            ({$IF CompilerVersion >= 25}{ Delphi XE3 } System.
             Ansistrings.{$IFEND}StrIComp(PAnsiChar(ALCopyStr(src, 0, 7)),
             'declare') = 0) and not(AnsiChar(src[7]) in Identifiers) then
             while (src^ <> #0) do
@@ -7201,7 +7201,7 @@ var
 begin
   for Field := 0 to FXSQLDA.sqln - 1 do
     if FXSQLDA.sqlvar[Field].ParamNameLength = length(name) then
-      if {$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrLIComp(@FXSQLDA.sqlvar[Field].ParamName, PAnsiChar(Name), FXSQLDA.sqlvar[Field].ParamNameLength) = 0 then
+      if {$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrLIComp(@FXSQLDA.sqlvar[Field].ParamName, PAnsiChar(Name), FXSQLDA.sqlvar[Field].ParamNameLength) = 0 then
       begin
         Result := true;
         Index := Field;

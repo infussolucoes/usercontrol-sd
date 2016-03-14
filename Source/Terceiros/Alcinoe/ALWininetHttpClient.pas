@@ -370,7 +370,7 @@ implementation
 
 uses {$IF CompilerVersion >= 23} {Delphi XE2}
   System.SysUtils,
-{$IF CompilerVersion >= 24}{Delphi XE3} System.Ansistrings, {$IFEND}
+{$IF CompilerVersion >= 25}{Delphi XE3} System.Ansistrings, {$IFEND}
 {$ELSE}
   SysUtils,
 {$IFEND}
@@ -445,7 +445,7 @@ begin
       Pointer(GetModuleHandle('wininet.dll')), ErrCode, 0, PAnsiChar(S),
       Length(S), nil);
     SetLength(S,
-      {$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrLen(PAnsiChar(S)));
+      {$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}StrLen(PAnsiChar(S)));
     raise EALHTTPClientException.CreateFmt('%s - URL:%s', [ALtrim(S), URL]);
     { Do not localize }
   end;

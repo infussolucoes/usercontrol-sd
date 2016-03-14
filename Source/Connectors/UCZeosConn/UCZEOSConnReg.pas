@@ -80,7 +80,7 @@ uses UCZEOSConn;
 
 procedure Register;
 begin
-  RegisterComponents('UC Connectors', [TUCZEOSConn]);
+  RegisterComponents('SWDelphi - UC Connectors', [TUCZEOSConn]);
 end;
 
 end.

@@ -129,7 +129,7 @@ const
 implementation
 
 uses {$IF CompilerVersion >= 23} {Delphi XE2}
-{$IF CompilerVersion >= 24}{Delphi XE3} System.Ansistrings, {$IFEND}
+{$IF CompilerVersion >= 25}{Delphi XE3} System.Ansistrings, {$IFEND}
   System.SysUtils;
 {$ELSE}
 SysUtils;
@@ -204,7 +204,7 @@ begin
 
   // init buffers according to retrieved data
   szDomain :=
-  {$IF CompilerVersion >= 24}{ Delphi XE3 } System.Ansistrings.{$IFEND}AnsiStrAlloc(cbDomain);
+  {$IF CompilerVersion >= 25}{ Delphi XE3 } System.Ansistrings.{$IFEND}AnsiStrAlloc(cbDomain);
   SID := AllocMem(cbSID);
   try
 
@@ -213,7 +213,7 @@ begin
       szDomain, cbDomain, NameUse);
 
   finally
-{$IF CompilerVersion >= 24}{ Delphi XE3 }
+{$IF CompilerVersion >= 25}{ Delphi XE3 }
     System.Ansistrings.{$IFEND}StrDispose(szDomain);
     FreeMem(SID);
   end;
