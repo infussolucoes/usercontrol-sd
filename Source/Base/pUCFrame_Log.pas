@@ -94,7 +94,7 @@ uses
   UCBase,
 
   // Delphi XE 8 ou superior
-  {$IFDEF DELPHI21_UP}
+  {$IFDEF DELPHI22_UP}
       System.ImageList,
   {$ENDIF}
 
