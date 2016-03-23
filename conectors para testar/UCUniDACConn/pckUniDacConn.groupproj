@@ -1,0 +1,31 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{9e0c44c1-7f19-426e-959f-54b897d52e85}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <ProjectExtensions>
+    <Borland.Personality>Default.Personality</Borland.Personality>
+    <Borland.ProjectType />
+    <BorlandProject>
+  <BorlandProject xmlns=""> <Default.Personality> </Default.Personality> </BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Target Name="pckUniDacConn">
+    <MSBuild Projects="pckUniDacConn.dproj" Targets="" />
+  </Target>
+  <Target Name="pckUniDacConn:Clean">
+    <MSBuild Projects="pckUniDacConn.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="pckUniDacConn:Make">
+    <MSBuild Projects="pckUniDacConn.dproj" Targets="Make" />
+  </Target>
+  <Target Name="Build">
+    <CallTarget Targets="pckUniDacConn" />
+  </Target>
+  <Target Name="Clean">
+    <CallTarget Targets="pckUniDacConn:Clean" />
+  </Target>
+  <Target Name="Make">
+    <CallTarget Targets="pckUniDacConn:Make" />
+  </Target>
+</Project>

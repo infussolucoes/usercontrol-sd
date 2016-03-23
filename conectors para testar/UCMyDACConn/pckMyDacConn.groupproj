@@ -1,0 +1,34 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{9e0c44c1-7f19-426e-959f-54b897d52e85}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Projects Include="pckMyDacConn.dproj" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Default.Personality</Borland.Personality>
+    <Borland.ProjectType />
+    <BorlandProject>
+<BorlandProject xmlns=""><Default.Personality></Default.Personality></BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Target Name="pckMyDacConn">
+    <MSBuild Projects="pckMyDacConn.dproj" Targets="" />
+  </Target>
+  <Target Name="pckMyDacConn:Clean">
+    <MSBuild Projects="pckMyDacConn.dproj" Targets="Clean" />
+  </Target>
+  <Target Name="pckMyDacConn:Make">
+    <MSBuild Projects="pckMyDacConn.dproj" Targets="Make" />
+  </Target>
+  <Target Name="Build">
+    <CallTarget Targets="pckMyDacConn" />
+  </Target>
+  <Target Name="Clean">
+    <CallTarget Targets="pckMyDacConn:Clean" />
+  </Target>
+  <Target Name="Make">
+    <CallTarget Targets="pckMyDacConn:Make" />
+  </Target>
+  <Import Condition="Exists('$(MSBuildBinPath)\Borland.Group.Targets')" Project="$(MSBuildBinPath)\Borland.Group.Targets" />
+</Project>
