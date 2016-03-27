@@ -35,9 +35,6 @@ requires
   vclactnband,
   vcldb,
   VclSmp,
-  {$IFDEF DELPHIXE2_UP}
-  pckAlcinoe,
-  {$ENDIF}
   dbexpress;
 
 contains

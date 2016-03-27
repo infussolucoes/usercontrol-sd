@@ -72,14 +72,7 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  Classes,
-  Dialogs,
-  Forms,
-  Graphics,
-  SysUtils,
-
-
-  UCConsts_language;
+  Classes, Dialogs, Forms, Graphics, SysUtils, UCConsts_language;
 
 type
   TUCAppMessagesMSG = class(TPersistent)

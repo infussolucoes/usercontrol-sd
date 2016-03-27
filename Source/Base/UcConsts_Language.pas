@@ -74,10 +74,19 @@ Uses SysUtils;
 Type
   TUCLanguage = (ucPortuguesBr, ucEnglish, ucSpanish, ucFrench);
 
+
+ResourceString   
+	rsSobreTitulo = 'UserControl ShowDelphi Edition VCL'; 
+	rsSobreDescricao = 'UserControl ShowDelphi E. http://showdelphi.com.br/' + #13#10 +	
+                     'Componentes Controle de Usuários' + #13#10 +                        
+                     'Lesser General Public License version 2.0';						
+	rsSobreLicencaStatus = 'LGPLv2';
+	
+	RsENoSplashServices = 'Unable to get Borland Splash Services';
+
 Const
   MaxArray = 227;
 
-Const
   UC_PTBR: Array [0 .. MaxArray, 0 .. 1] of string = (('Const_Contr_TitleLabel',
     'Seleção de Componentes do Form. :'), ('Const_Contr_GroupLabel', 'Grupo :'),
     ('Const_Contr_CompDispLabel', 'Componentes Disponíveis :'),

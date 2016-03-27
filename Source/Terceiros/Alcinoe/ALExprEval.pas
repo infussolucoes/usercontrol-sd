@@ -1050,9 +1050,7 @@ uses {$IF CompilerVersion >= 23} {Delphi XE2}
   Math,
   Contnrs,
 {$IFEND}
-  ALString,
-  ALZLibExAPI,
-  ALZLibEx;
+  ALString;
 
 { ************************ }
 {$IFDEF SUPPORTS_EXTENDED}

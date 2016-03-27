@@ -69,16 +69,11 @@ unit UCReg;
 
 interface
 
-{ .$I 'UserControl.inc' }
+{$I 'UserControl.inc'}
 
 uses
-  Classes,
-  Controls,
-  DesignEditors,
-  DesignIntf,
-  ToolsAPI,
-  TypInfo,
-  UCBase;
+  Classes, Controls, DesignEditors, DesignIntf,  TypInfo, UCBase,
+	{$IFDEF DELPHI9_UP}ToolsApi, Windows, Graphics{$ENDIF};
 
 type
   TUCComponentsVarProperty = class(TStringProperty)
@@ -111,25 +106,53 @@ procedure Register;
 procedure ShowControlsEditor(Componente: TUCControls);
 procedure ShowUserControlsEditor(Componente: TUserControl);
 
+{$IFDEF  DELPHI9_UP}
+	{$R UCReg.dcr}
+{$ENDIF}
+
 implementation
 
 uses
-  Dialogs,
-  Forms,
-  SysUtils,
-  UCAbout,
-  UCIdle,
-  UCObjSel_U,
-  UCEditorForm_U,
-  ActnList,
-  ActnMan,
-  ActnMenus,
-  Menus,
-  StdCtrls,
-  UCSettings,
-  Variants,
-  UcMail;
+  Dialogs, Forms, SysUtils, UCAbout, UCIdle, UCObjSel_U, UCEditorForm_U, ActnList,
+  ActnMan, ActnMenus, Menus, StdCtrls, UCSettings, Variants, UcMail, UcConsts_Language;
 
+{$IFDEF  RTL170_UP}
+var
+  AboutBoxServices: IOTAAboutBoxServices = nil;
+  AboutBoxIndex: Integer = 0;
+
+procedure RegisterAboutBox;
+var
+  ProductImage: HBITMAP;
+begin
+  Supports(BorlandIDEServices,IOTAAboutBoxServices, AboutBoxServices);
+  Assert(Assigned(AboutBoxServices), '');
+  ProductImage := LoadBitmap(FindResourceHInstance(HInstance), 'USERCONTROL24');
+  AboutBoxIndex := AboutBoxServices.AddPluginInfo(rsSobreTitulo , rsSobreDescricao,
+    ProductImage, False, rsSobreLicencaStatus);
+end;
+
+procedure UnregisterAboutBox;
+begin
+  if (AboutBoxIndex <> 0) and Assigned(AboutBoxServices) then
+  begin
+    AboutBoxServices.RemovePluginInfo(AboutBoxIndex);
+    AboutBoxIndex := 0;
+    AboutBoxServices := nil;
+  end;
+end;
+
+procedure AddSplash;
+var
+  bmp: TBitmap;
+begin
+  bmp := TBitmap.Create;
+  bmp.LoadFromResourceName(HInstance, 'USERCONTROL48');
+  SplashScreenServices.AddPluginBitmap(rsSobreTitulo,bmp.Handle,false,rsSobreLicencaStatus,'');
+  bmp.Free;
+end;
+{$ENDIF}
+	
 procedure Register;
 begin
   RegisterComponents('SWDelphi - UC Main', [TUserControl, TUCSettings,
@@ -432,5 +455,19 @@ function TUserControlEditor.GetVerbCount: Integer;
 begin
   Result := 1;
 end;
+
+{$IFDEF RTL170_UP}
+initialization
+	AddSplash;
+	RegisterAboutBox;
+	
+finalization
+	UnregisterAboutBox;
+{$ENDIF}
+
+{$IFDEF FPC}
+initialization
+   //{$I XXXXX.lrs}
+{$ENDIF}
 
 end.

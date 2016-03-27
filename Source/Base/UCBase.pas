@@ -73,35 +73,16 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  ActnList,
-  ActnMan,
-  ActnMenus,
-  Classes,
-  Controls,
-  DB,
-  ExtActns,
-  Forms,
-  Graphics,
-  
-  Menus,
-  StdCtrls,
-  SysUtils,
+  ActnList, ActnMan, ActnMenus, Classes, Controls, DB, ExtActns, Forms, Graphics,  
+  Menus, StdCtrls, SysUtils,
   {.$IFDEF DELPHI5_UP}
   Variants,
   {.$ENDIF}
   Windows,
-
   {$IF CompilerVersion >= 23}
   System.UITypes,
-  {$IFEND}  
-
-  UCmd5,
-  UcConsts_Language,
-  UCDataConnector,
-  UCDataInfo,
-  UCMail,
-  UCMessages,
-  UCSettings;
+  {$IFEND}
+  UCmd5, UcConsts_Language, UCDataConnector, UCDataInfo, UCMail, UCMessages, UCSettings;
 
 const
   llBaixo = 0;
