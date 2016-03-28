@@ -10,6 +10,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.Title := 'Instalador UserControl Show delphi Edition';
   Application.CreateForm(TFrmPrincipal, FrmPrincipal);
   Application.Run;
 

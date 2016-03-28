@@ -94,7 +94,6 @@ type
     pckUCMidasConn_dpk: TCheckBox;
     Label10: TLabel;
     pckmd5_dpk: TCheckBox;
-    pckAlcinoe_dpk: TCheckBox;
     pckUserControl_RT_dpk: TCheckBox;
     pckUserControl_DT_dpk: TCheckBox;
     Label2: TLabel;
@@ -106,7 +105,6 @@ type
     Label8: TLabel;
     pckUCRestConn_dpk: TCheckBox;
     Label11: TLabel;
-    Label12: TLabel;
     Label13: TLabel;
     procedure btnPacotesMarcarTodosClick(Sender: TObject);
     procedure btnPacotesDesmarcarTodosClick(Sender: TObject);
