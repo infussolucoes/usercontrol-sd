@@ -1,7 +1,7 @@
 object FrmPrincipal: TFrmPrincipal
   Left = 0
   Top = 0
-  ActiveControl = edtDirDestino
+  ActiveControl = wizPgInicio
   Caption = 'Instalador do UserControl ShowDelphi Edition'
   ClientHeight = 548
   ClientWidth = 736
@@ -22,7 +22,7 @@ object FrmPrincipal: TFrmPrincipal
     Top = 71
     Width = 736
     Height = 477
-    ActivePage = wizPgConfiguracao
+    ActivePage = wizPgInicio
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -804,6 +804,9 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
+      ExplicitLeft = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label2: TLabel
         Left = 33
         Top = 47
@@ -985,6 +988,9 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
+      ExplicitLeft = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       inline frameDpk: TframePacotes
         Left = 0
         Top = 0
@@ -1089,12 +1095,6 @@ object FrmPrincipal: TFrmPrincipal
           Left = 17
           ExplicitLeft = 17
         end
-        inherited pckAlcinoe_dpk: TCheckBox
-          Left = 17
-          Checked = True
-          State = cbChecked
-          ExplicitLeft = 17
-        end
         inherited pckUserControl_RT_dpk: TCheckBox
           Left = 17
           ExplicitLeft = 17
@@ -1144,6 +1144,9 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgInstalacaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
+      ExplicitLeft = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object btnVisualizarLogCompilacao: TSpeedButton
         Left = 33
         Top = 519
@@ -1233,6 +1236,9 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
+      ExplicitLeft = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label9: TLabel
         Left = 39
         Top = 330

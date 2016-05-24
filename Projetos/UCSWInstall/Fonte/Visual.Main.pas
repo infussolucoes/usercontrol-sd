@@ -193,7 +193,7 @@ implementation
 
 uses
 {$WARNINGS off} FileCtrl, {$WARNINGS on} ShellApi, IniFiles, StrUtils, Math,
-  Registry, IWSystem, System.Types, System.IOUtils;
+  Registry, System.Types, System.IOUtils;
 
 procedure TFrmPrincipal.AddLibraryPathToDelphiPath(const APath,
   AProcurarRemover: String);
