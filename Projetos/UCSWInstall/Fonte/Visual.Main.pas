@@ -106,7 +106,7 @@ type
     wizPgInicio: TJvWizardInteriorPage;
     Label6: TLabel;
     lblUrlForum1: TLabel;
-    lblUrlACBr1: TLabel;
+    lblUrlUserControl1: TLabel;
     Label19: TLabel;
     Label21: TLabel;
     Label11: TLabel;
@@ -223,7 +223,7 @@ begin
       ListaPaths.StrictDelimiter := True;
       ListaPaths.DelimitedText   := PathsAtuais;
 
-      // verificar se existe algo do ACBr e remover do environment variable PATH do delphi
+      // verificar se existe algo do UserControl e remover do environment variable PATH do delphi
       if Trim(AProcurarRemover) <> '' then
       begin
         for I := ListaPaths.Count - 1 downto 0 do
@@ -462,7 +462,7 @@ begin
     (*if ckbRemoverArquivosAntigos.Checked then
     begin
       if Application.MessageBox(
-        'você optou por limpar arquivos antigos do ACBr do seu computador, essa ação pode demorar vários minutos, deseja realmente continuar com está ação?',
+        'você optou por limpar arquivos antigos do UserControl do seu computador, essa ação pode demorar vários minutos, deseja realmente continuar com está ação?',
         'Limpar',
         MB_YESNO + MB_DEFBUTTON2
       ) = ID_YES then
@@ -837,7 +837,7 @@ begin
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd23' then
       edtDelphiVersion.Items.Add('Delphi 10 Seattle')
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd24' then
-      edtDelphiVersion.Items.Add('Delphi 11 Seattle');
+      edtDelphiVersion.Items.Add('Delphi 10.1 Berlin');
 
     // -- Evento disparado antes de iniciar a execução do processo.
     oUserControl.Installations[iFor].DCC32.OnBeforeExecute := BeforeExecute;

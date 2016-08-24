@@ -1,7 +1,7 @@
 object FrmPrincipal: TFrmPrincipal
   Left = 0
   Top = 0
-  ActiveControl = wizPgInicio
+  ActiveControl = frameDpk.pckHistorico_dpk
   Caption = 'Instalador do UserControl ShowDelphi Edition'
   ClientHeight = 548
   ClientWidth = 736
@@ -22,7 +22,7 @@ object FrmPrincipal: TFrmPrincipal
     Top = 71
     Width = 736
     Height = 477
-    ActivePage = wizPgInicio
+    ActivePage = wizPgPacote
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -107,7 +107,7 @@ object FrmPrincipal: TFrmPrincipal
         ParentFont = False
         OnClick = URLClick
       end
-      object lblUrlACBr1: TLabel
+      object lblUrlUserControl1: TLabel
         Left = 101
         Top = 282
         Width = 219
@@ -197,11 +197,11 @@ object FrmPrincipal: TFrmPrincipal
       object Label20: TLabel
         Left = 33
         Top = 207
-        Width = 457
+        Width = 488
         Height = 13
         Caption = 
-          'Ajude o projeto UserControl SW Delphi Edition, participe da comu' +
-          'nidade pelo site:'
+          'Ajude o projeto UserControl Show Delphi Edition, participe da co' +
+          'munidade pelo site:'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
         Font.Height = -11
@@ -804,9 +804,6 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label2: TLabel
         Left = 33
         Top = 47
@@ -988,9 +985,6 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       inline frameDpk: TframePacotes
         Left = 0
         Top = 0
@@ -1069,6 +1063,8 @@ object FrmPrincipal: TFrmPrincipal
         end
         inherited pckUCDataConnector_dpk: TCheckBox
           Left = 17
+          Checked = True
+          State = cbChecked
           ExplicitLeft = 17
         end
         inherited pckHistorico_dpk: TCheckBox
@@ -1093,14 +1089,20 @@ object FrmPrincipal: TFrmPrincipal
         end
         inherited pckmd5_dpk: TCheckBox
           Left = 17
+          Checked = True
+          State = cbChecked
           ExplicitLeft = 17
         end
         inherited pckUserControl_RT_dpk: TCheckBox
           Left = 17
+          Checked = True
+          State = cbChecked
           ExplicitLeft = 17
         end
         inherited pckUserControl_DT_dpk: TCheckBox
           Left = 17
+          Checked = True
+          State = cbChecked
           ExplicitLeft = 17
         end
         inherited pckUCDBXConn_dpk: TCheckBox
@@ -1144,9 +1146,6 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgInstalacaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object btnVisualizarLogCompilacao: TSpeedButton
         Left = 33
         Top = 519
@@ -1236,9 +1235,6 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label9: TLabel
         Left = 39
         Top = 330

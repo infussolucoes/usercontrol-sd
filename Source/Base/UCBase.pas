@@ -2113,12 +2113,19 @@ begin
   if not Assigned(FControlList) then
     Exit;
   SLControls := TStringList.Create;
-  for Contador := 0 to Pred(FControlList.Count) do
-    if TUCControls(FControlList.Items[Contador]) = UCControl then
-      SLControls.Add(IntToStr(Contador));
 
-  for Contador := 0 to Pred(SLControls.Count) do
-    FControlList.Delete(StrToInt(SLControls[Contador]));
+  try
+    for Contador := 0 to Pred(FControlList.Count) do
+      if TUCControls(FControlList.Items[Contador]) = UCControl then
+        SLControls.Add(IntToStr(Contador));
+  except
+  end;
+
+  try
+    for Contador := 0 to Pred(SLControls.Count) do
+      FControlList.Delete(StrToInt(SLControls[Contador]));
+  except
+  end;
 
   FreeAndNil(SLControls);
 end;
