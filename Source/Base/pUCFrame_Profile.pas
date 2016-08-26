@@ -92,7 +92,7 @@ uses
   Grids,
 
 
-  FMTBcd, SqlExpr,
+  FMTBcd,
 
   {$IF CompilerVersion >= 23}
   System.UITypes,

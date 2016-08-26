@@ -34,8 +34,8 @@ requires
   inet,
   vclactnband,
   vcldb,
-  VclSmp,
-  dbexpress;
+  VclSmp;
+//,dbexpress;
 
 contains
   TrocaSenha_U in '..\..\source\Base\TrocaSenha_U.pas',
