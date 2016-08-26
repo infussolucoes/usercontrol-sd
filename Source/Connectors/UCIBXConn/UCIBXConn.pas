@@ -80,16 +80,8 @@ interface
 uses
   Classes,
   DB,
-
-  {$IF CompilerVersion >= 23}
   IBX.IBDataBase,
-  IBX.IBQuery, 
-  {$ELSE}
-  IBDataBase,
-  IBQuery,
-  {$IFEND}
-
-
+  IBX.IBQuery,
   SysUtils,
   UCDataConnector;
 
