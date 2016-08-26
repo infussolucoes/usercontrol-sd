@@ -72,8 +72,7 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  Classes, Controls, DesignEditors, DesignIntf,  TypInfo, UCBase,
-	{$IFDEF DELPHI9_UP}ToolsApi, Windows, Graphics{$ENDIF};
+  Classes, Controls, DesignEditors, DesignIntf,  TypInfo, UCBase, ToolsApi, Windows, Graphics;
 
 type
   TUCComponentsVarProperty = class(TStringProperty)

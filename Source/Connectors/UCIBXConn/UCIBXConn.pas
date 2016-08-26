@@ -80,8 +80,8 @@ interface
 uses
   Classes,
   DB,
-  IBX.IBDataBase,
-  IBX.IBQuery,
+  IBDataBase,
+  IBQuery,
   SysUtils,
   UCDataConnector;
 
