@@ -13,6 +13,8 @@ Versões testadas até o momento:
 
 Delphi 7
 
+Delphi 2010
+
 Delphi XE 3
 
 Delphi XE 6
