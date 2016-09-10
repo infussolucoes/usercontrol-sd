@@ -133,7 +133,7 @@ var
 begin
   try
     TempList := TStringList.Create;;
-    FConnection.GetTableNames('', '', '', TempList, [osMy], [tkTable]);
+    FConnection.GetTableNames('', '', '', TempList, [osMy], [tkTable], False);
     TempList.Text := UpperCase(TempList.Text);
     Result := TempList.IndexOf(UpperCase(Tablename)) > -1;
   finally
