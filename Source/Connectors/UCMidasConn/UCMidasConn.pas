@@ -3,8 +3,8 @@
   Author   : Luiz Benevenuto
   Date     : 31/07/2005
   Purpose  : Midas Suporte ( DataSnap )
-  E-mail   : luiz@siffra.com
-  URL      : www.siffra.com
+  E-mail   : luiz.benevenuto@gmail.com
+  URL      : www.siffra.com.br
   UC       : www.usercontrol.net
 
   registered in UCMidasConnReg.pas
