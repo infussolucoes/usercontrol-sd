@@ -444,7 +444,9 @@ var
   MailMsg: TAlSmtpClient;
 
 {$IF CompilerVersion >= 23}
+  // - Ajuste de Emers0n em 01/12/2016
   MailRecipients: TALStringList;
+
   MailHeader: TALEmailHeader;
 {$ELSE}
   MailRecipients: TStringList;
@@ -458,6 +460,8 @@ begin
 
 {$IF CompilerVersion >= 23}
   // MailMsg.OnStatus := OnStatus;
+
+
   MailRecipients := TALStringList.Create;
   MailHeader := TALEmailHeader.Create;
 {$ELSE}
