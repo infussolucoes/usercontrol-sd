@@ -88,6 +88,9 @@ uses
   SysUtils, SqlExpr, UCDataSnapProxy, DBClient,
   UCDataConnector;
 
+const
+  CONNECTION_ERROR = 'UC: Operação não realizada por falta de conexão!';
+
 type
   TUCDataSnapConn = class(TUCDataConnector)
   private
@@ -207,7 +210,14 @@ begin
   if not (Connection.Connected) then
     Connection.Open;
 
-  DSClient.ExecuteSQL(FSQL);
+  if (Connection.Connected) then
+  begin
+    DSClient.ExecuteSQL(FSQL);
+  end
+  else
+  begin
+    raise Exception.Create(CONNECTION_ERROR);
+  end;
 end;
 
 function TUCDataSnapConn.UCFindDataConnection: Boolean;
@@ -225,14 +235,21 @@ begin
   if not (Connection.Connected) then
     Connection.Open;
 
-  Result := TClientDataSet.Create(Self);
-  Result.Filter := FSQL;
+  if (Connection.Connected) then
+  begin
+    Result := TClientDataSet.Create(Self);
+    Result.Filter := FSQL;
 
-  TClientDataSet(Result).RemoteServer := Self.RemoteServer;
-  TClientDataSet(Result).ProviderName := Self.ProviderName;
+    TClientDataSet(Result).RemoteServer := Self.RemoteServer;
+    TClientDataSet(Result).ProviderName := Self.ProviderName;
 
-  Result.BeforeOpen := DataSetBeforeOpen;
-  Result.Open;
+    Result.BeforeOpen := DataSetBeforeOpen;
+    Result.Open;
+  end
+  else
+  begin
+    raise Exception.Create(CONNECTION_ERROR);
+  end;
 end;
 
 end.
