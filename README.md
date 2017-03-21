@@ -38,7 +38,13 @@ ADOConnector, IBXConnector, DBXConnector, FireDACConnector, ZeosConnector, DataS
 O RestConnector é experimental.
 O Midas Connector é somente até o Delphi XE 8.
 
-O componente é compatível com a compilação em 64 bits.
+Há ainda outros connectors na pasta "conectors para testar", no entando estes connector não foram
+testados pela nossa equipe.
+Lista dos connectors para teste:
+AboluteBase, AstaConn, BDEConn, DBISAMConn, FIBConn, IBOConn, MDOConn, MyDACConn,
+NexusDBConn, ODACConn, UIBConn, UniDACConn.
+
+O componente UserControl é compatível com a compilação em 64 bits.
 
 Para ver uma descrição completa dos componentes acesse: http://showdelphi.com.br/descricao-dos-componentes-usercontrol/
 
