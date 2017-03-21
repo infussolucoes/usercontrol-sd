@@ -7,7 +7,7 @@ que possível.
 
 Fórum oficial: http://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
 
-O componente deverá ter suporte do Delphi 7 até o Delphi 10 Seatle.
+O componente tem suporte do Delphi 7 até o Delphi 10.1 Berlin.
 
 Versões testadas até o momento:
 
@@ -26,6 +26,11 @@ Delphi XE 8
 Delphi 10 Seattle
 
 Delphi 10.1 Berlin
+
+Obs: Quem estiver utilizando a versão Starter do Berlin, precisa realizar a instalação manualmente,
+pois o delphi não gera as bpls se você utilizar o instalador.
+Lembramos também que o Berlin Starter, por padrão, não tem componentes de conexão instalados, logo
+recomendamos a instalação do Zeos que é Open Source, assim será possível de utilizar o UserControl. 
 
 Conectors Suportados até o momento:
 ADOConnector, IBXConnector, DBXConnector, FireDACConnector, ZeosConnector, DataSnapConnector.
