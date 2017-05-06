@@ -8,12 +8,19 @@ Delphi 10.2 Tokyo.
   
 
 Adicionado PRIMARY KEY as Seguintes Tabelas:
+
    1 - UCTABUSERS
+   
    2 - UCTABMESSAGES
    
+   
 Adicionado Novas Tabelas:
+
    1 - UCDEPARTMENT     Lotação do Usuário.
+   
    2 - UCEMPRESA        Empresa     
+   
+   
    3 - UCUSERTYPE       Futuro definir se e administardor ou outros para da acesso ao cadstro de usuario e
 						liberar apenas direitos que ele possua para ususrio que cadastra.
 						
