@@ -32,6 +32,9 @@ Pesquisa por Nome ou Login.
  ![alt text](https://github.com/maurilima/usercontrol-sd/blob/master/TelaCadastro.PNG)
  
  
+ No resto o componente permanece igual!!...
+ 
+ 
 Testado e Intsalado No Delphi Tokyo Manual.
 
 O UCSWInstall esta dando um erro, acho que devido ao D. Tokyo, que na compilação tenta carregar as depencias.
