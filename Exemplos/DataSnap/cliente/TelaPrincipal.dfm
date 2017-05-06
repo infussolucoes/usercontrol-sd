@@ -187,6 +187,7 @@ object FrmPrincipal: TFrmPrincipal
       'HostName=localhost'
       'port=211')
     AfterConnect = SQLConnection1AfterConnect
+    BeforeDisconnect = SQLConnection1BeforeDisconnect
     Left = 360
     Top = 48
     UniqueId = '{1E8853CA-2353-4C02-8599-073DD29DA348}'

@@ -48,6 +48,7 @@ type
     procedure Clientes1Click(Sender: TObject);
     procedure Bancos1Click(Sender: TObject);
     procedure GerarLog1Click(Sender: TObject);
+    procedure SQLConnection1BeforeDisconnect(Sender: TObject);
   private
     FClasseLigacao: TSMUserControlClient;
     function GetClasseLigacao: TSMUserControlClient;
@@ -86,7 +87,6 @@ begin
 
   if Assigned(FClasseLigacao) then
     FreeAndNil(FClasseLigacao);
-
 end;
 
 procedure TFrmPrincipal.FormCreate(Sender: TObject);
@@ -139,6 +139,12 @@ end;
 procedure TFrmPrincipal.SQLConnection1AfterConnect(Sender: TObject);
 begin
   UCDataSnapConn1.DSClient := Self.ClasseLigacao; // <- Importante para o funcionamento
+end;
+
+procedure TFrmPrincipal.SQLConnection1BeforeDisconnect(Sender: TObject);
+begin
+  if Assigned(FClasseLigacao) then
+    FreeAndNil(FClasseLigacao);
 end;
 
 end.
