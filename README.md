@@ -29,6 +29,8 @@ Adicionado Opções na Tela de Manutenção de Usuario:
 
 Pesquisa por Nome ou Login.
  obs. Quando se tem poucos usaurios fica facil manter e navegar pelas teclas de navegação, mas quando se tem mais de 1000 usuários,  como eu tenho, fica muito dificil navegar ate encontar o usuario para edição.
+ ![alt text](https://github.com/maurilima/usercontrol-sd/blob/master/Tela%20Cadastro.PNG)
+ 
  
 Testado e Intsalado No Delphi Tokyo Manual.
 
