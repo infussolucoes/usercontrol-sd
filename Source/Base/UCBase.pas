@@ -124,6 +124,8 @@ type
   private
     FPerfilUsuario: TDataSet;
     FPerfilGrupo: TDataSet;
+    FLotacao      : TDataSet;   //   Mauri
+    FEmpresa      : TDataSet;   // Empresa
   public
     UserID: Integer;
     Profile: Integer;
@@ -138,13 +140,17 @@ type
     Privileged: Boolean;
     UserNotExpired: Boolean;
     UserDaysExpired: Integer;
+    UserDepartment : String;  // Lotacao do Usuario - Mauri 21/02/2008
+    UserEmpresa    : Integer; // EMpresa Mauri 26/01/2017
+    UserType       : Integer;  //  Mauri 23/06/2012
+
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   published
-    property PerfilUsuario: TDataSet read FPerfilUsuario write FPerfilUsuario;
-    // Cadastro de Usuarios
-    property PerfilGrupo: TDataSet read FPerfilGrupo write FPerfilGrupo;
-    // Cadastro de Perfil
+    property PerfilUsuario: TDataSet read FPerfilUsuario write FPerfilUsuario;  // Cadastro de Usuarios
+    property PerfilGrupo: TDataSet read FPerfilGrupo write FPerfilGrupo;   // Cadastro de Perfil
+    property Lotacao: TDataSet read FLotacao write FLotacao; //Cadastro de Lotacao - Mauri
+    property Empresa: TDataSet read FEmpresa write FEmpresa;  // Cadastro de Empresa  06/01/2017
   end;
 
   TUCUser = class(TPersistent)
@@ -367,9 +373,9 @@ type
     var CustomForm: TCustomForm) of object; // Cesar: 13/07/2005
   TOnAddUser = procedure(Sender: TObject; var Login, Password, Name,
     Mail: String; var Profile: Integer; var Privuser: Boolean) of object;
-  TOnChangeUser = procedure(Sender: TObject; IdUser: Integer;
-    var Login, Name, Mail: String; var Profile: Integer; var Privuser: Boolean)
-    of object;
+  TOnChangeUser = procedure(Sender: TObject; IDUser: Integer; var Login, Name, Mail: String; var Profile: Integer;
+                  var Privuser: Boolean ; Department : string; UserType :Integer; UserEmpresa: Integer  ) of object;
+                  // Mauri
   TOnDeleteUser = procedure(Sender: TObject; IdUser: Integer;
     var CanDelete: Boolean; var ErrorMsg: String) of object;
   TOnAddProfile = procedure(Sender: TObject; var Profile: String) of object;
@@ -387,6 +393,7 @@ type
 
   TUCLoginMode = (lmActive, lmPassive);
   TUCCriptografia = (cPadrao, cMD5);
+  TUCUserType     = ( ucAdmin,ucSupervisor,ucGerente, ucUsuario );       // mauri  23/12/2012
 
   TUserControl = class(TComponent) // Classe principal
   private
@@ -438,6 +445,10 @@ type
     FUsersLogoff: TUCUserLogoff;
     fLanguage: TUCLanguage;
     FMailUserControl: TMailUserControl;
+    FTableUserDepartment  : TUCTableUserDepartment;  //  Lotacao Mauri
+    FTableUserEmpresa     : TUCTableUserEmpresa;         // Empresa  06/01/2017
+    FUserType             : Integer;      //  Mauri 23/06/2012
+
     procedure SetExtraRights(Value: TUCExtraRights);
     procedure ActionCadUser(Sender: TObject);
     procedure ActionTrocaSenha(Sender: TObject);
@@ -485,6 +496,8 @@ type
     procedure CriaTabelaRights(ExtraRights: Boolean = False);
     procedure CriaTabelaUsuarios(TableExists: Boolean);
     procedure CriaTabelaMsgs(const TableName: String);
+    procedure CriaTabelaDepartment(TableExists: Boolean);  {Mauri }
+    procedure CriaTabelaEmpresa(TableExists : Boolean);     // Empresa  06/01/2017
     // -----
 
     // Atualiza Versao
@@ -505,8 +518,9 @@ type
     procedure Execute;
     procedure StartLogin;
     procedure ShowChangePassword;
-    procedure ChangeUser(IdUser: Integer; Login, Name, Mail: String;
-      Profile, UserExpired, UserDaysSun, Status: Integer; Privuser: Boolean);
+    procedure ChangeUser(IDUser: Integer; Login, Name, Mail: String; Profile, UserExpired, UserDaysSun,
+              Status: Integer; PrivUser: Boolean; Department : String; UserType : Integer; UserEmpresa: Integer );
+              // Mauri
     procedure ChangePassword(IdUser: Integer; NewPassword: String);
     procedure AddRight(IdUser: Integer; ItemRight: TObject;
       FullPath: Boolean = True); overload;
@@ -518,8 +532,8 @@ type
       SoVerificarUsuarioAdmin: Boolean = False): Integer; // Boolean;
     function GetLocalUserName: String;
     function GetLocalComputerName: String;
-    function AddUser(Login, Password, Name, Mail: String;
-      Profile, UserExpired, DaysExpired: Integer; Privuser: Boolean): Integer;
+    function AddUser(Login, Password, Name, Mail: String; Profile, UserExpired,
+              DaysExpired: Integer; PrivUser: Boolean; Department: String; UserType : Integer; UserEmpresa :Integer): Integer; // Mauri
     function ExisteUsuario(Login: String): Boolean;
     property CurrentUser: TUCCurrentUser read FCurrentUser write FCurrentUser;
     property UserSettings: TUCUserSettings read FUserSettings
@@ -561,11 +575,17 @@ type
     property TableRights: TUCTableRights read FTableRights write FTableRights;
     property TableUsersLogged: TUCTableUsersLogged read FTableUsersLogged
       write FTableUsersLogged;
+    property TableUserDepartment: TUCTableUserDepartment read FTableUserDepartment write FTableUserDepartment;  // Bay Mauri
+    property TableUserEmpresa : TUCTableUserEmpresa  read FTableUserEmpresa write FTableUserEmpresa;   // Mauri  Empresa  06/01/2017
+    property UserType  : Integer read FUserType write FUserType ;  // mauri 23/06/2012
+
 
     property DataConnector: TUCDataConnector read FDataConnector
       write SetDataConnector;
     property CheckValidationKey: Boolean read FCheckValidationKey
       write FCheckValidationKey default False;
+
+
     // Eventos
     property OnLogin: TOnLogin read FOnLogin write FOnLogin;
     property OnStartApplication: TNotifyEvent read FOnStartApplication
@@ -775,6 +795,8 @@ begin
   FTableUsers := TUCTableUsers.Create(Self);
   FTableRights := TUCTableRights.Create(Self);
   FTableUsersLogged := TUCTableUsersLogged.Create(Self);
+  FTableUserDepartment:= TUcTableUserDepartment.Create(Self);  // Mauri 03/07/2008
+  FTableUserEmpresa    := TUCTableUserEmpresa.Create(Self);    // Mauri  Empresa  06/01/2017
 
   if csDesigning in ComponentState then
   begin
@@ -821,6 +843,16 @@ begin
       if FieldUserInative = '' then
         FieldUserInative := RetornaLingua(fLanguage,
           'Const_TableUser_FieldUserInative');
+                //  Lotacao - Mauri
+      if FieldUserDepartment = '' then
+        FieldUserDepartment := RetornaLingua(fLanguage, 'Const_TableUser_FieldUserDepartment'); { Mauri Lima }
+      //   Tipo Usuario      Mauri
+      if FieldUserType = '' then
+        FieldUserType := RetornaLingua(fLanguage, 'Const_TableUser_FieldUserType'); { mauri }
+
+      if FieldUserEmpresa = '' then
+        FieldUserEmpresa := RetornaLingua(fLanguage, 'Const_TableUser_FieldUserEmpresa'); // Empresa  Mauri Lima  26/01/2017
+
     end;
 
     with TableRights do
@@ -863,6 +895,32 @@ begin
       if FieldData = '' then
         FieldData := RetornaLingua(fLanguage,
           'Const_TableUsersLogged_FieldData');
+    end;
+
+    //  Lotacao - Department  - Mauri
+    with TableUserDepartment do
+    begin
+      if TableName = '' then
+        TableName := RetornaLingua(fLanguage, 'Const_TableDepartment_TableName');
+      if FieldIDDepartment = '' then
+        FieldIDDepartment := RetornaLingua(fLanguage, 'Const_TableDepartment_FieldIDDepartment');
+      if FieldNameDepartment = '' then
+        FieldNameDepartment := RetornaLingua(fLanguage, 'Const_TableDepartment_FieldNameDepartment');
+      if FieldStatusDepartment = '' then
+         FieldStatusDepartment := RetornaLingua(fLanguage, 'Const_TableDepartment_FieldStatusDepartment');
+
+    end;
+
+    // Empresa Mauri 26/01/2017
+
+    with TableUserEmpresa do
+    begin
+      if TableName = '' then
+        TableName := RetornaLingua(fLanguage, 'Const_TableEmpresa_TableName');
+      if FieldIDEmpresa = '' then
+        FieldIDEmpresa := RetornaLingua(fLanguage, 'Const_TableEmpresa_FieldIDEmpresa');
+      if FieldNameEmpresa = '' then
+        FieldNameEmpresa := RetornaLingua(fLanguage, 'Const_TableEmpresa_FieldNameEmpresa');
     end;
 
     if LogControl.TableLog = '' then
@@ -1015,6 +1073,16 @@ begin
         Exception.Create(RetornaLingua(fLanguage, 'MsgExceptUsersTable') + #13 +
           #10 + 'FieldUserInative***');
 
+      //  Lotacao - Mauri
+      if FieldUserDepartment = '' then
+        FieldUserDepartment := RetornaLingua(fLanguage, 'Const_TableUser_FieldUserDepartment'); { Mauri Lima }
+      //   Tipo Usuario      Mauri
+      if FieldUserType = '' then
+        FieldUserType := RetornaLingua(fLanguage, 'Const_TableUser_FieldUserType'); { mauri }
+
+      if FieldUserEmpresa = '' then
+        FieldUserEmpresa := RetornaLingua(fLanguage, 'Const_TableUser_FieldUserEmpresa'); // Empresa  Mauri Lima  26/01/2017
+
     end;
 
     with TableRights do
@@ -1036,6 +1104,32 @@ begin
       if FieldKey = '' then
         Exception.Create(RetornaLingua(fLanguage, 'MsgExceptRightsTable') + #13
           + #10 + 'FieldKey***');
+    end;
+
+    //  Lotacao - Department  - Mauri
+    with TableUserDepartment do
+    begin
+      if TableName = '' then
+        TableName := RetornaLingua(fLanguage, 'Const_TableDepartment_TableName');
+      if FieldIDDepartment = '' then
+        FieldIDDepartment := RetornaLingua(fLanguage, 'Const_TableDepartment_FieldIDDepartment');
+      if FieldNameDepartment = '' then
+        FieldNameDepartment := RetornaLingua(fLanguage, 'Const_TableDepartment_FieldSatusDepartment');
+      if FieldStatusDepartment = '' then
+         FieldStatusDepartment := RetornaLingua(fLanguage, 'Const_TableDepartment_FieldStatusDepartment');
+
+    end;
+
+    // Empresa Mauri 26/01/2017
+
+    with TableUserEmpresa do
+    begin
+      if TableName = '' then
+        TableName := RetornaLingua(fLanguage, 'Const_TableEmpresa_TableName');
+      if FieldIDEmpresa = '' then
+        FieldIDEmpresa := RetornaLingua(fLanguage, 'Const_TableEmpresa_FieldIDEmpresa');
+      if FieldNameEmpresa = '' then
+        FieldNameEmpresa := RetornaLingua(fLanguage, 'Const_TableEmpresa_FieldNameEmpresa');
     end;
 
     if Assigned(OnStartApplication) then
@@ -1408,12 +1502,17 @@ begin
     UserID := Dados.FieldByName(TableUsers.FieldUserID).AsInteger;
     UserName := Dados.FieldByName(TableUsers.FieldUserName).AsString;
     UserLogin := Dados.FieldByName(TableUsers.FieldLogin).AsString;
-    DateExpiration := StrToDateDef
-      (Dados.FieldByName(TableUsers.FieldDateExpired).AsString, now);
-    UserNotExpired := Dados.FieldByName(TableUsers.FieldUserExpired)
-      .AsInteger = -1;
+    DateExpiration := StrToDateDef(Dados.FieldByName(TableUsers.FieldDateExpired).AsString, now);
+    UserNotExpired := Dados.FieldByName(TableUsers.FieldUserExpired).AsInteger = -1;
     UserDaysExpired := Dados.FieldByName(TableUsers.FieldUserDaysSun).AsInteger;
     PassLivre := Pass;
+    UserDepartment  := Dados.FieldByName(TableUsers.FieldUserDepartment).AsString;
+     // mauri
+    UserEmpresa     := Dados.FieldByName(TableUsers.FieldUserEmpresa).AsInteger;
+    // Empresa Mauri 26/01/2017
+    UserType        :=Dados.FieldByName(TableUsers.FieldUserType).AsInteger;
+    // mauri
+
     case Self.Criptografia of
       cPadrao:
         Password := Decrypt(Dados.FieldByName(TableUsers.FieldPassword)
@@ -1587,8 +1686,8 @@ begin
   ApplyRights;
 end;
 
-function TUserControl.AddUser(Login, Password, Name, Mail: String;
-  Profile, UserExpired, DaysExpired: Integer; Privuser: Boolean): Integer;
+function TUserControl.AddUser(Login, Password, Name, Mail: String; Profile, UserExpired, DaysExpired: Integer; PrivUser: Boolean;
+                              Department: String; UserType : Integer; UserEmpresa: Integer): Integer;  // MAuri
 var
   Key: String;
   SQLstmt: String;
@@ -1635,15 +1734,45 @@ begin
 
   with TableUsers do
   begin
-    SQLstmt :=
-      Format('INSERT INTO %s( %s, %s, %s, %s, %s, %s, %s, %s, %s , %s , %s , %s , %s ) VALUES(%d, %s, %s, %s, %s, %s, %d, %s, %s , %s , %d , %d , %s )',
-      [TableName, FieldUserID, FieldUserName, FieldLogin, FieldPassword,
-      FieldEmail, FieldPrivileged, FieldProfile, FieldTypeRec, FieldKey,
-      FieldDateExpired, FieldUserExpired, FieldUserDaysSun, FieldUserInative,
-      Result, QuotedStr(Name), QuotedStr(Login), QuotedStr(Senha),
-      QuotedStr(Mail), BoolToStr(Privuser), Profile, QuotedStr('U'),
-      QuotedStr(Key), QuotedStr(FormatDateTime('dd/mm/yyyy',
-      Date + FLogin.fDaysOfSunExpired)), UserExpired, DaysExpired, '0']);
+
+    SQLStmt := Format('INSERT INTO  %s( %s, %s, %s, %s, %s, %s, %s, %s, %s , %s , %s , %s , %s, %s, %s, %s ) '+  // Mauri
+                              ' VALUES( %d, %s, %s, %s, %s, %s, %d, %s, %s , %s , %d , %d , %s, %s, %d, %d )',   // Mauri
+      [TableName,
+      FieldUserID,
+      FieldUserName,
+      FieldLogin,
+      FieldPassword,
+      FieldEmail,
+      FieldPrivileged,
+      FieldProfile,
+      FieldTypeRec,
+      FieldKey,
+      FieldDateExpired,
+      FieldUserExpired,
+      FieldUserDaysSun,
+      FieldUserInative,
+      FieldUserDepartment,     { Mauri }
+      FieldUserType ,          { Mauri }
+      FieldUserEmpresa,        { Mauri Empresa 26/01/2017 }
+      Result,                   // Id do Usuario
+      QuotedStr(Name),
+      QuotedStr(Login),
+      QuotedStr(Senha),
+      QuotedStr(Mail),
+      BoolToStr(PrivUser),
+      Profile,
+      QuotedStr('U'),
+      QuotedStr(Key),
+      QuotedStr(FormatDateTime('dd/mm/yyyy', Date + FLogin.fDaysOfSunExpired)),
+      UserExpired,
+      DaysExpired,
+       '0',
+      QuotedStr(Department),  { Mauri}
+      UserType,     //   Mauri
+      UserEmpresa   { Mauri Empresa 26/01/2017 }
+      ]);
+
+
     if Assigned(DataConnector) then
       DataConnector.UCExecSQL(SQLstmt);
   end;
@@ -1721,8 +1850,9 @@ begin
     OnChangePassword(Self, IdUser, Login, Senha, NewPassword);
 end;
 
-procedure TUserControl.ChangeUser(IdUser: Integer; Login, Name, Mail: String;
-  Profile, UserExpired, UserDaysSun, Status: Integer; Privuser: Boolean);
+procedure TUserControl.ChangeUser(IDUser: Integer; Login, Name, Mail: String; Profile,
+          UserExpired, UserDaysSun, Status: Integer; PrivUser: Boolean; Department : String; UserType : Integer; UserEmpresa: Integer) ;
+          //  Mauri
 var
   Key: String;
   Password: String;
@@ -1759,22 +1889,40 @@ begin
         IntToStr(Profile) + ', ' + FieldKey + ' = ' + QuotedStr(Key) + ', ' +
         FieldUserExpired + ' = ' + IntToStr(UserExpired) + ' , ' +
         FieldUserDaysSun + ' = ' + IntToStr(UserDaysSun) + ' , ' +
-        FieldUserInative + ' = ' + IntToStr(Status) + ' where ' + FieldUserID +
-        ' = ' + IntToStr(IdUser));
+        FieldUserInative + ' = ' + IntToStr(Status) +  ' , ' +
+        FieldUserDepartment + ' = ' + QuotedStr(Department) +' , '+      //  Lotacao Mauri
+        FieldUserType + ' = '+ IntToStr(UserType)+' , '+                 // Tipo de Usaurio  Mauri
+        FieldUserEmpresa +  '= ' + IntToStr(UserEmpresa)+                // Empresa Mauri 26/01/2017
+        ' where ' + FieldUserID +        ' = ' + IntToStr(IdUser));
   if Assigned(OnChangeUser) then
-    OnChangeUser(Self, IdUser, Login, Name, Mail, Profile, Privuser);
+    OnChangeUser(Self, IdUser, Login, Name, Mail, Profile, Privuser,  Department, UserType , UserEmPresa);  // Mauri;
+                                                                      // Empresa 26/01/2017
 end;
 
 procedure TUserControl.CriaTabelaMsgs(const TableName: String);
+var
+   SQLStmt : string;
 begin
   if Assigned(DataConnector) then
-    DataConnector.UCExecSQL('CREATE TABLE ' + TableName + ' ( ' + 'IdMsg   ' +
-      UserSettings.Type_Int + ' , ' + 'UsrFrom ' + UserSettings.Type_Int + ' , '
+   begin
+      SQLStmt := 'CREATE TABLE ' + TableName + ' ( ' + 'IdMsg ' +
+      UserSettings.Type_Int + ' NOT NULL  , ' + 'UsrFrom ' + UserSettings.Type_Int + ' , '
       + 'UsrTo   ' + UserSettings.Type_Int + ' , ' + 'Subject ' +
       UserSettings.Type_VarChar + '(50),' + 'Msg     ' +
       UserSettings.Type_VarChar + '(255),' + 'DtSend  ' +
       UserSettings.Type_VarChar + '(12),' + 'DtReceive  ' +
-      UserSettings.Type_VarChar + '(12) )');
+      UserSettings.Type_VarChar + '(12) )';
+      if Assigned(DataConnector) then
+        DataConnector.UCExecSQL(SQLstmt);
+       //     Criar Chave Primaria para a Tabela     Mauri 06/05/2017
+       SQLStmt := Format('ALTER TABLE %s ADD CONSTRAINT PK_%s PRIMARY KEY (IdMsg)',
+                          [TableName, TableName, UserSettings.Type_Int]);
+
+      if Assigned(DataConnector) then
+        DataConnector.UCExecSQL(SQLstmt);
+
+
+   end;
 end;
 
 destructor TUserControl.Destroy;
@@ -1797,6 +1945,8 @@ begin
   FTableUsers.Free;
   FTableRights.Free;
   FTableUsersLogged.Free;
+  FTableUserDepartment.Free;     // Mauri
+  FTableUserEmpresa.Free;  // Mauri
 
   if Assigned(FControlList) then
     FControlList.Free;
@@ -1848,6 +1998,10 @@ begin
       if not DataConnector.UCFindTable(LogControl.TableLog) then
         CriaTabelaLog;
     End;
+
+    CriaTabelaDepartment(DataConnector.UCFindTable(FTableUserDepartment.TableName)); //  Mauri Lima
+    CriaTabelaEmpresa(DataConnector.UCFindTable(FTableUserEmpresa.TableName)); //  Empresa Mauri Lima 26/01/2017
+
 
     CriaTabelaUsuarios(DataConnector.UCFindTable(FTableUsers.TableName));
 
@@ -2542,6 +2696,7 @@ begin
         [TableName, FieldUserID, UserSettings.Type_Int, FieldModule,
         UserSettings.Type_VarChar, FieldComponentName,
         UserSettings.Type_VarChar, FieldKey, TipoCampo]);
+
       if Assigned(DataConnector) then
         DataConnector.UCExecSQL(SQLstmt);
     end
@@ -2553,6 +2708,7 @@ begin
         UserSettings.Type_VarChar, FieldComponentName,
         UserSettings.Type_VarChar, FieldFormName, UserSettings.Type_VarChar,
         FieldKey, TipoCampo]);
+
       if Assigned(DataConnector) then
         DataConnector.UCExecSQL(SQLstmt);
     end;
@@ -2681,44 +2837,55 @@ begin
   if not TableExists then
     with TableUsers do
     begin
-      SQLstmt := Format('Create Table %s ' + // TableName
-        '( ' + '%s %s, ' + // FieldUserID
-        '%s %s(30), ' + // FieldUserName
-        '%s %s(30), ' + // FieldLogin
-        '%s %s, ' + // FieldPassword
-        '%s %s(10), ' + // FieldDateExpired
-        '%s %s , ' + // FieldUserExpired
-        '%s %s , ' + // FieldUserDaysSun
-        '%s %s(150), ' + '%s %s, ' + '%s %s(1), ' + '%s %s, ' + '%s %s,' +
-        // FieldKey
-        '%s %s )', [TableName, FieldUserID, UserSettings.Type_Int,
 
+      SQLStmt := Format('Create Table %s ' + // TableName
+        '( ' +
+        '%s %s NOT NULL, ' +           // FieldUserID    Adicionado NOT null para poder usar como Chave Primaria
+                                       //   Mauri 06/05/2017
+        '%s %s(30), ' +                // FieldUserName
+        '%s %s(30), ' +                // FieldLogin
+        '%s %s, ' +                    // FieldPassword
+        '%s %s(10), ' +                // FieldDateExpired
+        '%s %s, ' +                    // FieldUserExpired
+        '%s %s, ' +                    // FieldUserDaysSun
+        '%s %s(150), ' +               // FieldMail
+        '%s %s, ' +                    // Privileged
+        '%s %s(1), ' +                 // TypeRec
+        '%s %s, ' +                    // Profile
+        '%s %s, ' +                    // FieldKey
+        '%s %s, '+                     // UInative
+        '%s %s, '+                     // UserType Mauri
+        '%s %s(10), ' +                // User Department       Mauri
+        '%s %s '+                      // UserEmpresa Mauri
+        ')',
+        [TableName,
+        FieldUserID, UserSettings.Type_Int,
         FieldUserName, UserSettings.Type_VarChar,
-
         FieldLogin, UserSettings.Type_VarChar,
-
         FieldPassword, TipoCampo,
-
         FieldDateExpired, UserSettings.Type_Char,
-
         FieldUserExpired, UserSettings.Type_Int,
-
         FieldUserDaysSun, UserSettings.Type_Int,
-
-        FieldEmail, UserSettings.Type_VarChar,
-
+        FieldEmail, UserSettings.Type_Varchar,
         FieldPrivileged, UserSettings.Type_Int,
-
         FieldTypeRec, UserSettings.Type_Char,
-
         FieldProfile, UserSettings.Type_Int,
-
         FieldKey, TipoCampo,
-
-        FieldUserInative, UserSettings.Type_Int]);
+        FieldUserInative, UserSettings.Type_Int,
+        FieldUserType, UserSettings.Type_Int,       // Mauri 26/01/2017   Tipo de Usaurio
+        FieldUserDepartment, UserSettings.Type_VarChar,
+        FieldUserEmpresa, UserSettings.Type_Int     // Mauri 26/01/2017 Empresa do Usaurio
+        ]);
 
       if Assigned(DataConnector) then
         DataConnector.UCExecSQL(SQLstmt);
+       //     Criar Chave Primaria para a Tabela     Mauri 06/05/2017
+       SQLStmt := Format('ALTER TABLE %s ADD CONSTRAINT PK_%s PRIMARY KEY (%s)',
+                          [TableName, TableName, FieldUserID, UserSettings.Type_Int]);
+
+      if Assigned(DataConnector) then
+        DataConnector.UCExecSQL(SQLstmt);
+
     end;
 
   case Self.Login.CharCaseUser of
@@ -2750,7 +2917,9 @@ begin
     if DataSetUsuario.IsEmpty then
       IDUsuario := AddUser(UsuarioInicial, PasswordInicial,
         Login.InitialLogin.User, Login.InitialLogin.Email, 0, 0,
-        Login.DaysOfSunExpired, True)
+        Login.DaysOfSunExpired,
+           True,'',0,0) //  Mauri      0 = admin
+
     else
       IDUsuario := DataSetUsuario.FieldByName('idUser').AsInteger;
 
@@ -4256,5 +4425,72 @@ begin
 end;
 
 {$IFDEF DELPHI9_UP} {$ENDREGION} {$ENDIF}
+{$IFDEF DELPHI9_UP} {$REGION 'TDepartment'} {$ENDIF}
+
+
+procedure TUserControl.CriaTabelaDepartment(TableExists: Boolean);   { MAuri }
+Var
+  SQLStmt:          String;
+
+begin
+  if not TableExists then
+    with TableUserDepartment do
+    begin
+      SQLStmt := Format('Create Table %s( %s %s(10) NOT NULL, %s %s(50), %s %s(1))',
+        [TableName,
+          FieldIDDepartment, UserSettings.Type_VarChar,
+          FieldNameDepartment, UserSettings.Type_VarChar,
+          FieldStatusDepartment, UserSettings.Type_VarChar
+        ]);
+
+      if Assigned(DataConnector) then
+        DataConnector.UCExecSQL(SQLstmt);
+       //     Criar Chave Primaria para a Tabela     Mauri 06/05/2017
+       SQLStmt := Format('ALTER TABLE %s ADD CONSTRAINT PK_%s PRIMARY KEY (%s)',
+                          [TableName, TableName, FieldIDDepartment, UserSettings.Type_VarChar]);
+
+      if Assigned(DataConnector) then
+        DataConnector.UCExecSQL(SQLstmt);
+
+    end;
+
+end;
+{$IFDEF DELPHI9_UP} {$ENDREGION} {$ENDIF}
+
+{$IFDEF DELPHI9_UP} {$REGION 'TEmpresa'} {$ENDIF}
+
+procedure TUserControl.CriaTabelaEmpresa(TableExists: Boolean);
+Var
+  SQLStmt:          String;
+
+begin
+  if not TableExists then
+    with TableUserEmpresa do
+    begin
+      SQLStmt := Format('Create Table %s( %s %s NOT NULL, %s %s(60))',
+        [TableName,
+        FieldIDEmpresa,
+        UserSettings.Type_Int,
+
+        FieldNameEmpresa,
+        UserSettings.Type_VarChar
+
+        ]);
+
+      if Assigned(DataConnector) then
+        DataConnector.UCExecSQL(SQLstmt);
+       //     Criar Chave Primaria para a Tabela     Mauri 06/05/2017
+       SQLStmt := Format('ALTER TABLE %s ADD CONSTRAINT PK_%s PRIMARY KEY (%s)',
+                          [TableName, TableName, FieldIDEmpresa, UserSettings.Type_Int]);
+
+      if Assigned(DataConnector) then
+        DataConnector.UCExecSQL(SQLstmt);
+
+
+    end;
+end;
+{$IFDEF DELPHI9_UP} {$ENDREGION} {$ENDIF}
+
+
 
 end.

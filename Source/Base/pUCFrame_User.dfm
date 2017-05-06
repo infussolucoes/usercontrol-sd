@@ -6,22 +6,27 @@ object UCFrame_User: TUCFrame_User
   Anchors = [akLeft, akTop, akRight, akBottom]
   TabOrder = 0
   TabStop = True
+  object Label1: TLabel
+    Left = 172
+    Top = 24
+    Width = 133
+    Height = 13
+    Caption = 'Digite o Usu'#225'rio a Pesquisar'
+  end
   object Panel3: TPanel
-    Left = 597
+    Left = 607
     Top = 0
-    Width = 98
-    Height = 554
+    Width = 85
+    Height = 543
     BevelOuter = bvNone
     TabOrder = 0
     object btAdic: TBitBtn
-      Left = 9
+      Left = 0
       Top = 10
       Width = 81
       Height = 25
       Cursor = crHandPoint
       Caption = '&Adicionar'
-      TabOrder = 0
-      OnClick = btAdicClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -74,16 +79,16 @@ object UCFrame_User: TUCFrame_User
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
+      TabOrder = 0
+      OnClick = btAdicClick
     end
     object BtAlt: TBitBtn
-      Left = 9
+      Left = 0
       Top = 41
       Width = 81
       Height = 25
       Cursor = crHandPoint
       Caption = '&Alterar'
-      TabOrder = 1
-      OnClick = BtAltClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -136,16 +141,16 @@ object UCFrame_User: TUCFrame_User
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
+      TabOrder = 1
+      OnClick = BtAltClick
     end
     object BtExclui: TBitBtn
-      Left = 9
+      Left = 0
       Top = 72
       Width = 81
       Height = 25
       Cursor = crHandPoint
       Caption = '&Excluir'
-      TabOrder = 2
-      OnClick = BtExcluiClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -198,16 +203,16 @@ object UCFrame_User: TUCFrame_User
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
+      TabOrder = 2
+      OnClick = BtExcluiClick
     end
     object BtAcess: TBitBtn
-      Left = 9
+      Left = 0
       Top = 134
       Width = 81
       Height = 25
       Cursor = crHandPoint
       Caption = '&Acessos'
-      TabOrder = 3
-      OnClick = BtAcessClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -260,16 +265,16 @@ object UCFrame_User: TUCFrame_User
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
+      TabOrder = 3
+      OnClick = BtAcessClick
     end
     object BtPass: TBitBtn
-      Left = 9
+      Left = 0
       Top = 103
       Width = 81
       Height = 25
       Cursor = crHandPoint
       Caption = '&Senha'
-      TabOrder = 4
-      OnClick = BtPassClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000C8D0D4C8D0D4
@@ -322,13 +327,15 @@ object UCFrame_User: TUCFrame_User
         D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8CDCFC8C9CABDBEBEB4
         B6B7BBC1C4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4}
       NumGlyphs = 2
+      TabOrder = 4
+      OnClick = BtPassClick
     end
   end
   object DbGridUser: TDBGrid
     Left = 0
-    Top = 0
+    Top = 69
     Width = 601
-    Height = 554
+    Height = 474
     Ctl3D = True
     DataSource = DataUser
     Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
@@ -338,7 +345,7 @@ object UCFrame_User: TUCFrame_User
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
-    TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
     OnDblClick = BtAltClick
     Columns = <
@@ -346,7 +353,7 @@ object UCFrame_User: TUCFrame_User
         Expanded = False
         FieldName = 'Nome'
         Title.Alignment = taCenter
-        Width = 239
+        Width = 218
         Visible = True
       end
       item
@@ -364,14 +371,48 @@ object UCFrame_User: TUCFrame_User
         Visible = True
       end>
   end
+  object rgPesUser: TRadioGroup
+    Left = 3
+    Top = 17
+    Width = 161
+    Height = 42
+    Caption = ' Pesquisar por :  '
+    Columns = 2
+    ItemIndex = 0
+    Items.Strings = (
+      'Login'
+      'Nome')
+    TabOrder = 2
+  end
+  object EdPesUser: TEdit
+    Left = 172
+    Top = 40
+    Width = 338
+    Height = 19
+    Ctl3D = False
+    ParentCtl3D = False
+    TabOrder = 3
+    OnEnter = EdPesUserEnter
+    OnKeyPress = EdPesUserKeyPress
+  end
   object DataUser: TDataSource
     AutoEdit = False
-    Left = 296
+    Left = 240
     Top = 152
   end
   object DataPerfil: TDataSource
     AutoEdit = False
     Left = 328
     Top = 152
+  end
+  object DataEmpresa: TDataSource
+    AutoEdit = False
+    Left = 328
+    Top = 216
+  end
+  object DataLotacao: TDataSource
+    AutoEdit = False
+    Left = 248
+    Top = 208
   end
 end

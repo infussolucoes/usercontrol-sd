@@ -1,9 +1,9 @@
 object FrmPrincipal: TFrmPrincipal
   Left = 408
   Top = 246
-  Width = 627
-  Height = 360
   Caption = 'Tutorial UserControl - www.showdelphi.com.br'
+  ClientHeight = 301
+  ClientWidth = 611
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -121,6 +121,8 @@ object FrmPrincipal: TFrmPrincipal
     TableUsers.FieldUserDaysSun = 'UCUserDaysSun'
     TableUsers.FieldUserInative = 'UCInative'
     TableUsers.TableName = 'UCTabUsers'
+    TableUsers.FieldUserDepartment = 'UCDepartment'
+    TableUsers.FieldUserType = 'UCUserType'
     TableRights.FieldUserID = 'UCIdUser'
     TableRights.FieldModule = 'UCModule'
     TableRights.FieldComponentName = 'UCCompName'
@@ -133,15 +135,11 @@ object FrmPrincipal: TFrmPrincipal
     TableUsersLogged.FieldMachineName = 'UCMachineName'
     TableUsersLogged.FieldData = 'UCData'
     TableUsersLogged.TableName = 'UCTabUsersLogged'
-    DataConnector = UCIBXConn1
+    TableUserDepartment.FieldIDDepartment = 'UcIDepartment'
+    TableUserDepartment.TableName = 'UCDepartment'
+    UserType = 0
     Left = 200
     Top = 48
-  end
-  object UCIBXConn1: TUCIBXConn
-    Connection = dmUC.IBDatabase1
-    Transaction = dmUC.IBTransaction1
-    Left = 200
-    Top = 168
   end
   object UCApplicationMessage1: TUCApplicationMessage
     Active = True

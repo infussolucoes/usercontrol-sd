@@ -1,5 +1,40 @@
 # User Control ShowDelphi Edition
 
+Esta Versao do componente Deriva da Versão da Comunidade Show Delphi com "Fork" no dia 05/05/2017
+
+Versões testadas até o momento:
+
+Delphi 10.2 Tokyo.
+  
+
+Adicionado PRIMARY KEY as Seguintes Tabelas:
+   1 - UCTABUSERS
+   2 - UCTABMESSAGES
+   
+Adicionado Novas Tabelas:
+   1 - UCDEPARTMENT     Lotação do Usuário.
+   2 - UCEMPRESA        Empresa     
+   3 - UCUSERTYPE       Futuro definir se e administardor ou outros para da acesso ao cadstro de usuario e
+						liberar apenas direitos que ele possua para ususrio que cadastra.
+						
+						
+Adicionado Opções na Tela de Manutenção de Usuario:
+
+Pesquisa por Nome ou Login.
+ obs. Quando se tem poucos usaurios fica facil manter e navegar pelas teclas de navegação, mas quando se tem mais de 1000
+      usuarios fica muito dificil navegar ate encontar o usuario para edição.
+ 
+Testado e Intsalado No Delphi Tokyo Manual.
+
+O UCSWInstall esta dando um erro, acho que devido ao D. Tokyo, que na compilação tenta carregar as depencias.
+
+Fiz Uam pequena Modificao para adicionar o D. Tkyo na Relação. Mas não estudei mas a fundo o erro.
+   
+
+README ORIGINAL do Componente.
+
+Mantido todos os Autores  e outros.
+-- --------------------------------------------------------------------------------------------------
 Uma versão dos Componentes User Control mantido pela Comunidade Show Delphi.
 A comunidade tem o objetivo de manter esta biblioteca de componentes
 compatíveis com as novas versões do Delphi, realizando melhorias, sempre 
@@ -49,5 +84,7 @@ O componente UserControl é compatível com a compilação em 64 bits.
 Para ver uma descrição completa dos componentes acesse: http://showdelphi.com.br/descricao-dos-componentes-usercontrol/
 
 Visite a comunidade: http://showdelphi.com.br
+
+
 
 

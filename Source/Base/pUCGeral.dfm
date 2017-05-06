@@ -43,6 +43,7 @@ object FormUserPerf: TFormUserPerf
       Font.Style = [fsBold]
       ParentFont = False
       Layout = tlCenter
+      ExplicitHeight = 18
     end
     object Image1: TImage
       Left = 0

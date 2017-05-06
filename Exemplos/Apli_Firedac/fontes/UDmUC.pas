@@ -10,14 +10,14 @@ uses
   FireDAC.Phys, FireDAC.Phys.FB, FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait,
   FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.Phys.IBBase,
-  FireDAC.Stan.StorageJSON;
+  FireDAC.Stan.StorageJSON, FireDAC.Comp.UI;
 
 type
   TdmUC = class(TDataModule)
     FDConnection1: TFDConnection;
-    FDStanStorageJSONLink1: TFDStanStorageJSONLink;
     FDPhysFBDriverLink1: TFDPhysFBDriverLink;
     QryBanco: TFDQuery;
+    FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -37,9 +37,11 @@ uses
 
 procedure TdmUC.DataModuleCreate(Sender: TObject);
 begin
-  FDConnection1.Close;
-  FDConnection1.Params.Database := gsAppPath + '..\DBase\APLICATIVO_UC.FDB';
-  FDConnection1.Open;
+//  FDConnection1.Close;
+//  FDConnection1.Params.Database :=
+//  gsAppPath + '..\DBase\APLICATIVO_UC.FDB';
+//  FDConnection1.Open;
+//gsAppPath
 end;
 
 end.

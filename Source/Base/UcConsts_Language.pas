@@ -85,101 +85,111 @@ ResourceString
 	RsENoSplashServices = 'Unable to get Borland Splash Services';
 
 Const
-  MaxArray = 227;
+  MaxArray = 237; //  227;
 
-  UC_PTBR: Array [0 .. MaxArray, 0 .. 1] of string = (('Const_Contr_TitleLabel',
-    'Seleção de Componentes do Form. :'), ('Const_Contr_GroupLabel', 'Grupo :'),
+  UC_PTBR: Array [0 .. MaxArray, 0 .. 1] of string = (('Const_Contr_TitleLabel','Seleção de Componentes do Form. :'),
+    ('Const_Contr_GroupLabel', 'Grupo :'),
     ('Const_Contr_CompDispLabel', 'Componentes Disponíveis :'),
     ('Const_Contr_CompSelLabel', 'Componentes Selecionados :'),
     ('Const_Contr_BtOK', '&OK'), ('Const_Contr_BTCancel', '&Cancelar'),
-    ('Const_Contr_DescCol', 'Descrição'), ('Const_Contr_BtSellAllHint',
-    'Selecionar Todos'), ('Const_Contr_BtSelHint', 'Selecionar'),
-    ('Const_Contr_BtUnSelHint', 'Desmarcar'), ('Const_Contr_BtUnSelAllHint',
-    'Desmarcar Todos'), ('Const_Msgs_BtNew', '&Nova Mensagem'),
-    ('Const_Msgs_BtReplay', '&Responder'), ('Const_Msgs_BtForward',
-    'E&ncaminhar'), ('Const_Msgs_BtDelete', '&Excluir'),
-    ('Const_Msgs_BtClose', '&Fechar'), ('Const_Msgs_WindowCaption',
-    'Mensagens do Sistema'), ('Const_Msgs_ColFrom', 'Remetente'),
-    ('Const_Msgs_ColSubject', 'Assunto'), ('Const_Msgs_ColDate', 'Data'),
+    ('Const_Contr_DescCol', 'Descrição'), ('Const_Contr_BtSellAllHint', 'Selecionar Todos'),
+    ('Const_Contr_BtSelHint', 'Selecionar'),
+    ('Const_Contr_BtUnSelHint', 'Desmarcar'),
+    ('Const_Contr_BtUnSelAllHint',  'Desmarcar Todos'),
+    ('Const_Msgs_BtNew', '&Nova Mensagem'),
+    ('Const_Msgs_BtReplay', '&Responder'),
+    ('Const_Msgs_BtForward','E&ncaminhar'),
+    ('Const_Msgs_BtDelete', '&Excluir'),
+    ('Const_Msgs_BtClose', '&Fechar'),
+    ('Const_Msgs_WindowCaption', 'Mensagens do Sistema'),
+    ('Const_Msgs_ColFrom', 'Remetente'),
+    ('Const_Msgs_ColSubject', 'Assunto'),
+    ('Const_Msgs_ColDate', 'Data'),
     ('Const_Msgs_PromptDelete', 'Confirma excluir as mensagens selecionadas ?'),
     ('Const_Msgs_PromptDelete_WindowCaption', 'Apagar mensagens'),
     ('Const_Msgs_NoMessagesSelected', 'Não existem mensagens selecionadas'),
     ('Const_Msgs_NoMessagesSelected_WindowCaption', 'Informação'),
-    ('Const_MsgRec_BtClose', '&Fechar'), ('Const_MsgRec_WindowCaption',
-    'Mensagem'), ('Const_MsgRec_Title', 'Mensagem Recebida'),
-    ('Const_MsgRec_LabelFrom', 'De :'), ('Const_MsgRec_LabelDate', 'Data'),
-    ('Const_MsgRec_LabelSubject', 'Assunto'), ('Const_MsgRec_LabelMessage',
-    'Mensagem'), ('Const_MsgSend_BtSend', '&Enviar'),
-    ('Const_MsgSend_BtCancel', '&Cancelar'), ('Const_MsgSend_WindowCaption',
-    'Mensagem'), ('Const_MsgSend_Title', 'Enviar Nova Mensagem'),
-    ('Const_MsgSend_GroupTo', 'Para'), ('Const_MsgSend_RadioUser', 'Usuário :'),
-    ('Const_MsgSend_RadioAll', 'Todos'), ('Const_MsgSend_GroupMessage',
-    'Mensagem'), ('Const_MsgSend_LabelSubject', 'Assunto'),
+    ('Const_MsgRec_BtClose', '&Fechar'),
+    ('Const_MsgRec_WindowCaption','Mensagem'),
+    ('Const_MsgRec_Title', 'Mensagem Recebida'),
+    ('Const_MsgRec_LabelFrom', 'De :'),
+    ('Const_MsgRec_LabelDate', 'Data'),
+    ('Const_MsgRec_LabelSubject', 'Assunto'),
+    ('Const_MsgRec_LabelMessage', 'Mensagem'),
+    ('Const_MsgSend_BtSend', '&Enviar'),
+    ('Const_MsgSend_BtCancel', '&Cancelar'),
+    ('Const_MsgSend_WindowCaption', 'Mensagem'),
+    ('Const_MsgSend_Title', 'Enviar Nova Mensagem'),
+    ('Const_MsgSend_GroupTo', 'Para'),
+    ('Const_MsgSend_RadioUser', 'Usuário :'),
+    ('Const_MsgSend_RadioAll', 'Todos'),
+    ('Const_MsgSend_GroupMessage', 'Mensagem'),
+    ('Const_MsgSend_LabelSubject', 'Assunto'),
     ('Const_MsgSend_LabelMessageText', 'Texto da mensagem'),
-    ('MsgExceptConnection',
-    'Não informado o Connection, Transaction ou Database do componente %s'),
+    ('MsgExceptConnection', 'Não informado o Connection, Transaction ou Database do componente %s'),
     ('MsgExceptTransaction', 'Não informado o Transaction do componente %s'),
     ('MsgExceptDatabase', 'Não informado o Database do componente %s'),
     ('MsgExceptPropriedade', 'Favor informar a propriedade %s'),
-    ('MsgExceptUserMngMenu',
-    'Informe na propriedade UsersForm.MenuItem ou UsersForm.Action o Item responsável pelo controle de usuários'),
-    ('MsgExceptUserProfile',
-    'Informe na propriedade UsersProfile.MenuItem ou UsersProfile.Action o Item responsável pelo controle de Perfil de usuários'),
-    ('MsgExceptChagePassMenu',
-    'Informe na propriedade ChangePasswordForm.MenuItem or .Action o Item que permite ao usuário alterar sua senha'),
-    ('MsgExceptAppID',
-    'Na propriedade ApplicationID informe um nome para identificar a aplicação na tabela de permissões'),
-    ('MsgExceptUsersTable',
-    'Na propriedade TableUsers informe o nome da tabela que será criada para armazenar os dados dos usuários'),
-    ('MsgExceptRightsTable',
-    'Na propriedade TableRights informe o nome da tabela que será criada para armazenar as permissões dos usuários'),
+    ('MsgExceptUserMngMenu', 'Informe na propriedade UsersForm.MenuItem ou UsersForm.Action o Item responsável pelo controle de usuários'),
+    ('MsgExceptUserProfile', 'Informe na propriedade UsersProfile.MenuItem ou UsersProfile.Action o Item responsável pelo controle de Perfil de usuários'),
+    ('MsgExceptChagePassMenu', 'Informe na propriedade ChangePasswordForm.MenuItem or .Action o Item que permite ao usuário alterar sua senha'),
+    ('MsgExceptAppID', 'Na propriedade ApplicationID informe um nome para identificar a aplicação na tabela de permissões'),
+    ('MsgExceptUsersTable', 'Na propriedade TableUsers informe o nome da tabela que será criada para armazenar os dados dos usuários'),
+    ('MsgExceptRightsTable', 'Na propriedade TableRights informe o nome da tabela que será criada para armazenar as permissões dos usuários'),
     ('MsgExceptConnector', 'Propriedade DataConnector não definida!'),
-    ('Const_Men_AutoLogonError', 'Falha de Auto Logon!' + #13 + #10 +
-    'Informe um usuário e senha válidos.'), ('Const_Men_SenhaDesabitada',
-    'Retirada senha do Login %s'), ('Const_Men_SenhaAlterada',
-    'Senha alterada com sucesso!'), ('Const_Men_MsgInicial',
-    'ATENÇÃO Login Inicial:' + #13 + #10 + #13 + #10 + 'Usuário : :user' + #13 +
-    #10 + 'Senha : :password' + #13 + #10 + #13 + #10 +
-    'Defina as permissões para este usuário.'), ('Const_Men_MaxTentativas',
-    '%d Tentativas de login inválido. Por motivos de segurança o ' + #13 + #10 +
-    'sistema será fechado.'), ('Const_Men_LoginInvalido',
-    'Usuário ou Senha inválidos!'), ('Const_Men_UsuarioExiste',
-    'O Usuário "%s" já está cadastrado no sistema !!'),
+    ('Const_Men_AutoLogonError', 'Falha de Auto Logon!' + #13 + #10 +   'Informe um usuário e senha válidos.'),
+    ('Const_Men_SenhaDesabitada', 'Retirada senha do Login %s'),
+    ('Const_Men_SenhaAlterada', 'Senha alterada com sucesso!'),
+    ('Const_Men_MsgInicial', 'ATENÇÃO Login Inicial:' + #13 + #10 + #13 + #10 + 'Usuário : :user' + #13 +  #10 + 'Senha : :password' + #13 + #10 + #13 + #10 + 'Defina as permissões para este usuário.'),
+    ('Const_Men_MaxTentativas', '%d Tentativas de login inválido. Por motivos de segurança o ' + #13 + #10 + 'sistema será fechado.'),
+    ('Const_Men_LoginInvalido', 'Usuário ou Senha inválidos!'),
+    ('Const_Men_UsuarioExiste', 'O Usuário "%s" já está cadastrado no sistema !!'),
     ('Const_Men_PasswordExpired', 'Atenção, sua senha expirou, favor troca-la'),
-    ('Const_Log_BtCancelar', '&Cancelar'), ('Const_Log_BtOK', '&OK'),
-    ('Const_Log_LabelSenha', 'Senha :'), ('Const_Log_LabelUsuario',
-    'Usuário :'), ('Const_Log_WindowCaption', 'Login'),
+    ('Const_Log_BtCancelar', '&Cancelar'),
+    ('Const_Log_BtOK', '&OK'),
+    ('Const_Log_LabelSenha', 'Senha :'),
+    ('Const_Log_LabelUsuario', 'Usuário :'), ('Const_Log_WindowCaption', 'Login'),
     ('Const_Log_LbEsqueciSenha', 'Esqueci a senha'),
     ('Const_Log_MsgMailSend', 'A senha foi enviada para o seu email.'),
-    ('Const_Log_LabelTentativa', 'Tentativa : '), ('Const_Log_LabelTentativas',
-    'Máximo de Tentativas : '), ('Const_LogC_WindowCaption', 'Segurança'),
-    ('Const_LogC_LabelDescricao', 'Log do Sistema'), ('Const_LogC_LabelUsuario',
-    'Usuário :'), ('Const_LogC_LabelData', 'Data :'),
-    ('Const_LogC_LabelNivel', 'Nível mínimo :'), ('Const_LogC_ColunaAppID',
-    'AppID'), ('Const_LogC_ColunaNivel', 'Nível'), ('Const_LogC_ColunaMensagem',
-    'Mensagem'), ('Const_LogC_ColunaUsuario', 'Usuário'),
-    ('Const_LogC_ColunaData', 'Data'), ('Const_LogC_BtFiltro',
-    '&Aplicar Filtro'), ('Const_LogC_BtExcluir', '&Excluir Log'),
-    ('Const_LogC_BtFechar', '&Fechar'), ('Const_LogC_ConfirmaExcluir',
-    'Confirma excluir todos os registros de log selecionados ?'),
+    ('Const_Log_LabelTentativa', 'Tentativa : '),
+    ('Const_Log_LabelTentativas', 'Máximo de Tentativas : '),
+    ('Const_LogC_WindowCaption', 'Segurança'),
+    ('Const_LogC_LabelDescricao', 'Log do Sistema'),
+    ('Const_LogC_LabelUsuario', 'Usuário :'), ('Const_LogC_LabelData', 'Data :'),
+    ('Const_LogC_LabelNivel', 'Nível mínimo :'),
+    ('Const_LogC_ColunaAppID', 'AppID'),
+    ('Const_LogC_ColunaNivel', 'Nível'),
+    ('Const_LogC_ColunaMensagem', 'Mensagem'),
+    ('Const_LogC_ColunaUsuario', 'Usuário'),
+    ('Const_LogC_ColunaData', 'Data'),
+    ('Const_LogC_BtFiltro', '&Aplicar Filtro'),
+    ('Const_LogC_BtExcluir', '&Excluir Log'),
+    ('Const_LogC_BtFechar', '&Fechar'),
+    ('Const_LogC_ConfirmaExcluir', 'Confirma excluir todos os registros de log selecionados ?'),
     ('Const_LogC_ConfirmaDelete_WindowCaption', 'Confirma exclusão'),
-    ('Const_LogC_Todos', 'Todos'), ('Const_LogC_Low', 'Baixo'),
-    ('Const_LogC_Normal', 'Normal'), ('Const_LogC_High', 'Alto'),
-    ('Const_LogC_Critic', 'Crítico'), ('Const_LogC_ExcluirEfectuada',
-    'Exclusão de log´s do sistema : Usuário = "%s" | Data = %s a %s | Nível <= %s'),
-    ('Const_Cad_WindowCaption', 'Segurança'), ('Const_Cad_LabelDescricao',
-    'Cadastro de Usuários'), ('Const_Cad_ColunaNome', 'Nome'),
-    ('Const_Cad_ColunaLogin', 'Login'), ('Const_Cad_ColunaEmail', 'Email'),
-    ('Const_Cad_BtAdicionar', '&Adicionar'), ('Const_Cad_BtAlterar',
-    'A&lterar'), ('Const_Cad_BtExcluir', '&Excluir'),
-    ('Const_Cad_BtPermissoes', 'A&cessos'), ('Const_Cad_BtSenha', '&Senha'),
-    ('Const_Cad_BtFechar', '&Fechar'), ('Const_Cad_ConfirmaExcluir',
-    'Confirma excluir o usuário "%s" ?'),
+    ('Const_LogC_Todos', 'Todos'),
+    ('Const_LogC_Low', 'Baixo'),
+    ('Const_LogC_Normal', 'Normal'),
+    ('Const_LogC_High', 'Alto'),
+    ('Const_LogC_Critic', 'Crítico'),
+    ('Const_LogC_ExcluirEfectuada', 'Exclusão de log´s do sistema : Usuário = "%s" | Data = %s a %s | Nível <= %s'),
+    ('Const_Cad_WindowCaption', 'Segurança'),
+    ('Const_Cad_LabelDescricao', 'Cadastro de Usuários'), ('Const_Cad_ColunaNome', 'Nome'),
+    ('Const_Cad_ColunaLogin', 'Login'),
+    ('Const_Cad_ColunaEmail', 'Email'),
+    ('Const_Cad_BtAdicionar', '&Adicionar'),
+    ('Const_Cad_BtAlterar', 'A&lterar'),
+    ('Const_Cad_BtExcluir', '&Excluir'),
+    ('Const_Cad_BtPermissoes', 'A&cessos'),
+    ('Const_Cad_BtSenha', '&Senha'),
+    ('Const_Cad_BtFechar', '&Fechar'),
+    ('Const_Cad_ConfirmaExcluir', 'Confirma excluir o usuário "%s" ?'),
     ('Const_Cad_ConfirmaDelete_WindowCaption', 'Excluir usuário'),
-    ('Const_Prof_WindowCaption', 'Segurança'), ('Const_Prof_LabelDescricao',
-    'Perfil de Usuários'), ('Const_Prof_ColunaNome', 'Perfil'),
-    ('Const_Prof_BtAdicionar', '&Adicionar'), ('Const_Prof_BtAlterar',
-    'A&lterar'), ('Const_Prof_BtExcluir', '&Excluir'),
+    ('Const_Prof_WindowCaption', 'Segurança'),
+    ('Const_Prof_LabelDescricao', 'Perfil de Usuários'),
+    ('Const_Prof_ColunaNome', 'Perfil'),
+    ('Const_Prof_BtAdicionar', '&Adicionar'),
+    ('Const_Prof_BtAlterar', 'A&lterar'), ('Const_Prof_BtExcluir', '&Excluir'),
     ('Const_Prof_BtPermissoes', 'A&cessos'), ('Const_Prof_BtSenha', '&Senha'),
     ('Const_Prof_BtFechar', '&Fechar'), ('Const_Prof_ConfirmaExcluir',
     'Existem usuários com o perfil "%s". Confirma excluir?'),
@@ -235,21 +245,35 @@ Const
     ('Const_TableRights_FieldModule', 'UCModule'),
     ('Const_TableRights_FieldComponentName', 'UCCompName'),
     ('Const_TableRights_FieldFormName', 'UCFormName'),
-    ('Const_TableRights_FieldKey', 'UCKey'), ('Const_TableRights_TableName',
-    'UCTabRights'), ('Const_TableUsersLogged_FieldLogonID', 'UCIdLogon'),
+    ('Const_TableRights_FieldKey', 'UCKey'), ('Const_TableRights_TableName', 'UCTabRights'),
+    ('Const_TableUsersLogged_FieldLogonID', 'UCIdLogon'),
     ('Const_TableUsersLogged_FieldUserID', 'UCIdUser'),
     ('Const_TableUsersLogged_FieldApplicationID', 'UCApplicationId'),
     ('Const_TableUsersLogged_FieldMachineName', 'UCMachineName'),
     ('Const_TableUsersLogged_FieldData', 'UCData'),
     ('Const_TableUsersLogged_TableName', 'UCTabUsersLogged'),
-    ('Const_Evento_Insert', 'Inserido'), ('Const_Evento_Delete', 'Apagado'),
-    ('Const_Evento_Edit', 'Editado'), ('Const_Evento_NewRecord',
-    'Novo registro'), ('Const_Hist_All', 'Todos'), ('Const_Msg_LimpHistorico',
-    'Excluir todo o conteúdo do histórico ?'), ('Const_Msg_MensConfirma',
-    'Confirmação'), ('Const_Msg_LogEmptyHistory',
-    'Usuário %s apagou todo o histórico as %s'), ('Const_LabelDescricao',
-    'Histórico de tabelas'), ('Const_LabelUser', 'Usuário'),
-    ('Const_LabelForm', 'Formulário'), ('Const_LabelEvento', 'Evento'),
+    ('Const_TableUser_FieldUserDepartment','UCUserDepartment'),  // Lotacao - Mauri
+    ('Const_TableUser_FieldUserEmpresa','UCUserEmpresa'),  // Empresa - Mauri 26/01/2017
+    ('Const_TableUser_FieldUserType','UCUserType'),  // Tipo Usuario  - Mauri
+    ('Const_TableDepartment_TableName','UCDepartment'),  // Lotacao Mauri
+    ('Const_TableDepartment_FieldIDDepartment','UcIDepartment'),  // Lotacao Mauri
+    ('Const_TableDepartment_FieldNameDepartment','UcNameDepartment'),  // Lotacao Mauri
+    ('Const_TableDepartment_FieldStatusDepartment','UcStatusDepartment'),  // Lotacao Mauri
+    ('Const_TableEmpresa_TableName','UCEmpresa'),  // Empresa Mauri 26/01/2017
+    ('Const_TableEmpresa_FieldIDEmpresa','UcIDEmpresa'),  // Empresa Mauri 26/01/2017
+    ('Const_TableEmpresa_FieldNameEmpresa','UcNameEmpresa'),  // Empresa Mauri 26/01/2017
+    ('Const_Evento_Insert', 'Inserido'),
+    ('Const_Evento_Delete', 'Apagado'),
+    ('Const_Evento_Edit', 'Editado'),
+    ('Const_Evento_NewRecord', 'Novo registro'),
+    ('Const_Hist_All', 'Todos'),
+    ('Const_Msg_LimpHistorico', 'Excluir todo o conteúdo do histórico ?'),
+    ('Const_Msg_MensConfirma', 'Confirmação'),
+    ('Const_Msg_LogEmptyHistory','Usuário %s apagou todo o histórico as %s'),
+    ('Const_LabelDescricao', 'Histórico de tabelas'),
+    ('Const_LabelUser', 'Usuário'),
+    ('Const_LabelForm', 'Formulário'),
+    ('Const_LabelEvento', 'Evento'),
     ('Const_LabelTabela', 'Tabela'), ('Const_LabelDataEvento', 'Data'),
     ('Const_LabelHoraEvento', 'Hora'), ('Const_Msg_NewRecord',
     '%s inseriu um novo registro'), ('Const_Hist_TableName', 'UCTABHistory'),
@@ -272,7 +296,8 @@ Const
     ('Const_UserLogged_MsgSystem', 'Mensagem do sistema'),
     ('Const_Men_LoginInativo', 'Atenção, seu login esta inativo'),
     ('Const_Inc_LabelStatus', 'Status'), ('Const_Inc_StatusActive', 'Ativo'),
-    ('Const_Inc_StatusDisabled', 'Inativo'));
+    ('Const_Inc_StatusDisabled', 'Inativo')
+    );
 
   { ------------------------------------------------------------------------------ }
 
@@ -434,6 +459,16 @@ Const
     ('Const_TableUsersLogged_FieldMachineName', 'UCMachineName'),
     ('Const_TableUsersLogged_FieldData', 'UCData'),
     ('Const_TableUsersLogged_TableName', 'UCTabUsersLogged'),
+    ('Const_TableUser_FieldUserDepartment','UCUserDepartment'),  // Lotacao - Mauri
+    ('Const_TableUser_FieldUserEmpresa','UCUserEmpresa'),  // Empresa - Mauri 26/01/2017
+    ('Const_TableUser_FieldUserType','UCUserType'),  // Tipo Usuario  - Mauri
+    ('Const_TableDepartment_TableName','UCDepartment'),  // Lotacao Mauri
+    ('Const_TableDepartment_FieldIDDepartment','UcIDepartment'),  // Lotacao Mauri
+    ('Const_TableDepartment_FieldNameDepartment','UcNameDepartment'),  // Lotacao Mauri
+    ('Const_TableDepartment_FieldStatusDepartment','UcStatusDepartment'),  // Lotacao Mauri
+    ('Const_TableEmpresa_TableName','UCEmpresa'),  // Empresa Mauri 26/01/2017
+    ('Const_TableEmpresa_FieldIDEmpresa','UcIDEmpresa'),  // Empresa Mauri 26/01/2017
+    ('Const_TableEmpresa_FieldNameEmpresa','UcNameEmpresa'),  // Empresa Mauri 26/01/2017
     ('Const_Evento_Insert', 'Insert'), ('Const_Evento_Delete', 'Delete'),
     ('Const_Evento_Edit', 'Edit'), ('Const_Evento_NewRecord', 'New record'),
     ('Const_Hist_All', 'All'), ('Const_Msg_LimpHistorico',
@@ -623,6 +658,18 @@ Const
     ('Const_TableUser_FieldUserExpired', 'UCUserExpired'),
     ('Const_TableUser_FieldUserDaysSun', 'UCUserDaysSun'),
     ('Const_TableUser_FieldUserInative', 'UCInative'),
+    ('Const_TableUser_FieldUserDepartment','UCUserDepartment'),  // Lotacao - Mauri
+    ('Const_TableUser_FieldUserEmpresa','UCUserEmpresa'),  // Empresa - Mauri 26/01/2017
+
+    ('Const_TableUser_FieldUserType','UCUserType'),  // Tipo Usuario - Mauri
+    ('Const_TableDepartment_TableName','UCDepartment'),  // Lotacao Mauri
+    ('Const_TableDepartment_FieldIDDepartment','UcIDepartment'),  // Lotacao Mauri
+    ('Const_TableDepartment_FieldNameDepartment','UcNameDepartment'),  // Lotacao Mauri
+    ('Const_TableDepartment_FieldStatusDepartment','UcStatusDepartment'),  // Lotacao Mauri
+    ('Const_TableEmpresa_TableName','UCEmpresa'),  //  Empresa Mauri 26/01/2017
+    ('Const_TableEmpresa_FieldIDEmpresa','UcIDEmpresa'),  // Empresa Mauri 26/01/2017
+    ('Const_TableEmpresa_FieldNameEmpresa','UcNameEmpresa'),  // Empresa Mauri 26/01/2017
+
     ('Const_TableRights_FieldUserID', 'UCIdUser'),
     ('Const_TableRights_FieldModule', 'UCModule'),
     ('Const_TableRights_FieldComponentName', 'UCCompName'),
@@ -843,6 +890,17 @@ Const
     ('Const_TableUsersLogged_FieldMachineName', 'UCMachineName'),
     ('Const_TableUsersLogged_FieldData', 'UCData'),
     ('Const_TableUsersLogged_TableName', 'UCTabUsersLogged'),
+    ('Const_TableUser_FieldUserType','UCUserType'),  // Tipo Usuario - Mauri
+    ('Const_TableUser_FieldUserDepartment','UCTabUserDepartment'),  // Lotacao - Mauri
+    ('Const_TableUser_FieldUserEmpresa','UCTabUserEmpresa'),  // Empresa Mauri 26/01/2017
+    ('Const_TableDepartment_TableName','UCDepartment'),  // Lotacao Mauri
+    ('Const_TableDepartment_FieldIDDepartment','UcIDepartment'),  // Lotacao Mauri
+    ('Const_TableDepartment_FieldNameDepartment','UcNameDepartment'),  // Lotacao Mauri
+    ('Const_TableDepartment_FieldStatusDepartment','UcStatusDepartment'),  // Lotacao Mauri
+    ('Const_TableEmpresa_TableName','UCEmpresa'),  // Empresa Mauri 26/01/2017
+    ('Const_TableEmpresa_FieldIDEmpresa','UcIDEmpresa'),  // Empresa Mauri 26/01/2017
+    ('Const_TableEmpresa_FieldNameEmpresa','UcNameDepartment'),  // Empresa Mauri 26/01/2017
+
     ('Const_Evento_Insert', 'Insertion'), ('Const_Evento_Delete', 'Effacer'),
     ('Const_Evento_Edit', 'Réviser'), ('Const_Evento_NewRecord',
     'Nouveau record '), ('Const_Hist_All', 'Tous'), ('Const_Msg_LimpHistorico',
