@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus, UCBase, UCDataConnector, UCIBXConn, UCFireDACConn;
+  Dialogs, Menus, UCBase, UCDataConnector, UCFireDACConn;
 
 type
   TFrmPrincipal = class(TForm)
