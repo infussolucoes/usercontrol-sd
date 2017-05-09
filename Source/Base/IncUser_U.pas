@@ -120,6 +120,14 @@ type
     LabelDias: TLabel;
     ComboStatus: TComboBox;
     Label1: TLabel;
+    LabelLotacao: TLabel;
+    ComboLotacao: TDBLookupComboBox;
+    btLimpaLotacao: TSpeedButton;
+    cbTipoUsuario: TComboBox;
+    Label2: TLabel;
+    Label3: TLabel;
+    ComboEmpresa: TDBLookupComboBox;
+    btLimpaEmpresa: TSpeedButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btCancelaClick(Sender: TObject);
     procedure btGravarClick(Sender: TObject);
@@ -128,6 +136,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ckUserExpiredClick(Sender: TObject);
+    procedure btLimpaLotacaoClick(Sender: TObject);
+    procedure btLimpaEmpresaClick(Sender: TObject);
   private
     FormSenha: TCustomForm;
     { Private declarations }
@@ -173,7 +183,11 @@ var
   vUserExpired: Integer;
   vPerfil: Integer;
   vPrivilegiado: Boolean;
-begin
+  vDepartment:   String;   //    Mauri 03/07/2008
+  vUserType  :   Integer;   // Mauri
+  vUserEmpresa : Integer;   // Mauri 26/01/2017
+
+  begin
   if ComboPerfil.KeyValue = NULL then
   begin
     ShowMessage('Falta Informar o Perfil');
@@ -211,16 +225,27 @@ begin
       vEmail := EditEmail.Text;
       FreeAndNil(FormSenha);
 
-      if ComboPerfil.KeyValue = NULL then
-        vPerfil := 0
+          //   Lotacao   -  Mauri
+      if ComboLotacao.KeyValue = null then
+         vDepartment :=''
       else
-        vPerfil := ComboPerfil.KeyValue;
+        vDepartment:= ComboLotacao.KeyValue;
+
+          //   Empresa    -  Mauri 26/01/2017
+      if ComboEmpresa.KeyValue = null then
+         vUserEmpresa :=0
+      else
+        vUserEmpresa := ComboEmpresa.KeyValue;
+
+
 
       vPrivilegiado := ckPrivilegiado.Checked;
       vUserExpired := StrToInt(BoolToStr(ckUserExpired.Checked));
 
-      AddUser(vLogin, vNovaSenha, vNome, vEmail, vPerfil, vUserExpired,
-        SpinExpira.Value, vPrivilegiado);
+//      AddUser(vLogin, vNovaSenha, vNome, vEmail, vPerfil, vUserExpired, SpinExpira.Value, vPrivilegiado);
+//      AddUser(vLogin, vNovaSenha, vNome, vEmail, vPerfil, vUserExpired, SpinExpira.Value, vPrivilegiado, vDepartment, vUserType);
+        AddUser(vLogin, vNovaSenha, vNome, vEmail, vPerfil, vUserExpired, SpinExpira.Value, vPrivilegiado, vDepartment, vUserType, vUserEmpresa);
+                                                                                                       // MAuri
 
       if (Assigned(FUserControl.MailUserControl)) and
         (FUserControl.MailUserControl.AdicionaUsuario.Ativo) then
@@ -245,11 +270,19 @@ begin
       else
         vPerfil := ComboPerfil.KeyValue;
 
+      if ComboLotacao.KeyValue = null then  //   Mauri 03/07/2008
+        vDepartment :=''
+      else
+        vDepartment:= ComboLotacao.KeyValue;
+
       vUserExpired := StrToInt(BoolToStr(ckUserExpired.Checked));
       // Added by Petrus van Breda 28/04/2007
       vPrivilegiado := ckPrivilegiado.Checked;
+//      ChangeUser(vNovoIDUsuario, vLogin, vNome, vEmail, vPerfil, vUserExpired,
+//        SpinExpira.Value, ComboStatus.ItemIndex, vPrivilegiado);
+
       ChangeUser(vNovoIDUsuario, vLogin, vNome, vEmail, vPerfil, vUserExpired,
-        SpinExpira.Value, ComboStatus.ItemIndex, vPrivilegiado);
+          SpinExpira.Value, ComboStatus.ItemIndex, vPrivilegiado, vDepartment, vUserType, vUserEmpresa);
 
       if (Assigned(FUserControl.MailUserControl)) and
         (FUserControl.MailUserControl.AlteraUsuario.Ativo) then
@@ -298,6 +331,16 @@ begin
   ComboPerfil.KeyValue := NULL;
 end;
 
+procedure TfrmIncluirUsuario.btLimpaEmpresaClick(Sender: TObject);
+begin
+  ComboLotacao.KeyValue := NULL;
+end;
+
+procedure TfrmIncluirUsuario.btLimpaLotacaoClick(Sender: TObject);
+begin
+  ComboLotacao.KeyValue := NULL;
+end;
+
 procedure TfrmIncluirUsuario.FormShow(Sender: TObject);
 begin
   if not FUserControl.UserProfile.Active then
@@ -310,6 +353,15 @@ begin
   begin
     ComboPerfil.ListSource.DataSet.Close;
     ComboPerfil.ListSource.DataSet.Open;
+    ComboLotacao.ListSource.DataSet.Close;   // Mauri Lotacao
+    ComboLotacao.ListSource.DataSet.Open;    // Mauri Lotacao
+    ComboEmpresa.ListSource.DataSet.Close;   //  Mauri Empresa
+    ComboEmpresa.ListSource.DataSet.Open;   //  Mauri Empresa
+
+    if FUserControl.CurrentUser.UserType = 0 then
+       cbTipoUsuario.Enabled := False
+    else
+      cbTipoUsuario.Enabled := True;
   end;
 
   // Opção de senha so deve aparecer qdo setada como true no componente By Vicente Barros Leonel

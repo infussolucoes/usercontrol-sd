@@ -89,6 +89,10 @@ type
     fUserExpired: String;
     fFieldUserDaysSun: String;
     fFieldUserInative: String;
+    fUserDepartment: String;   //  Lotacao Mauri 03/07/2008
+    fUserEmpresa   :String;    //  Empresa Mauri 26/01/2017
+    fUserType :   string;     //  Tipo de Usuario   para controlar se pode replicar direitos 23/06/2012
+
   protected
   public
     constructor Create(AOwner: TComponent);
@@ -113,6 +117,9 @@ type
     property FieldUserInative: String read fFieldUserInative
       write fFieldUserInative; { By vicente barros leonel }
     property TableName: String read FTable write FTable;
+    property FieldUserDepartment: String read fUserDepartment write fUserDepartment; { By Mauri Lima }
+    property FieldUserEmpresa  : string read fUserEmpresa write fUserEmpresa; // Empresa Mauri 26/01/2017
+    property FieldUserType : string read fUserType write fUserType;  { Mauri 23/06/2012 }
   end;
 
   TUCTableRights = class(TPersistent)
@@ -197,6 +204,46 @@ type
     // grava o nome da tabela monitorada
   end;
 
+  // Table   Lotacao - Mauri - 03/07/2008
+//
+  TUCTableUserDepartment = class(TPersistent)
+  private
+    FIdDepartment    : String;
+    FNameDepartment  : String;
+    FStatusDepartment: string;
+    FTable           : String;
+  protected
+  public
+    constructor Create(AOwner: TComponent);
+    destructor Destroy; override;
+    procedure Assign(Source: TPersistent); override;
+  published
+    property FieldIDDepartment: String read FIdDepartment write FIdDepartment;
+    property FieldNameDepartment: String read FNameDepartment write FNameDepartment;
+    property FieldStatusDepartment: string read FStatusDepartment write FStatusDepartment;
+    property TableName: String read FTable write FTable;
+  end;
+
+//
+  // Table   Empresa - Mauri - 01/01/2017
+//
+  TUCTableUserEmpresa = class(TPersistent)
+  private
+    FIDEmpresa  : String;
+    FNameEmpresa: String;
+    FTable         : String;
+  protected
+  public
+    constructor Create(AOwner: TComponent);
+    destructor Destroy; override;
+    procedure Assign(Source: TPersistent); override;
+  published
+    property FieldIDEmpresa  : String read FIDEmpresa write FIDEmpresa;
+    property FieldNameEmpresa: String read FNameEmpresa write FNameEmpresa;
+    property TableName: String read FTable write FTable;
+  end;
+
+
 implementation
 
 { TUCTableRights }
@@ -249,6 +296,11 @@ begin
     Self.FieldUserInative := TUCTableUsers(Source).FieldUserInative;
     { By vicente barros leonel }
     Self.TableName := TUCTableUsers(Source).TableName;
+    Self.FieldUserDepartment := TUCTableUsers(Source).FieldUserDepartment;  { By Mauri Lima }
+    Self.FieldUserType       := TUCTableUsers(Source).FieldUserType ;  { Mauri 23/06/2012 }
+    Self.FieldUserEmpresa    := TUCTableUsers(Source).FieldUserEmpresa ; { Empresa Mauri 26/01/2017 }
+    Self.TableName           := TUCTableUsers(Source).TableName;
+
   end
   else
     inherited;
@@ -263,6 +315,33 @@ destructor TUCTableUsers.Destroy;
 begin
   inherited;
 end;
+{ TUCTableUserDepartment }
+//
+//   Mauri 03/07/2008
+//
+procedure TUCTableUserDepartment.Assign(Source: TPersistent);
+begin
+  if Source is TUCTableUserDepartment then
+  begin
+    Self.FieldIDDepartment        := TUCTableUserDepartment(Source).FieldIDDepartment;
+    Self.FieldNameDepartment      := TUCTableUserDepartment(Source).FieldNameDepartment;
+    Self.FieldStatusDepartment    := TUCTableUserDepartment(Source).FieldStatusDepartment;
+    Self.TableName:= TUCTableUserDepartment(Source).TableName;
+  end
+  else
+  inherited;
+end;
+constructor TUCTableUserDepartment.Create(AOwner: TComponent);
+begin
+  inherited Create;
+end;
+
+destructor TUCTableUserDepartment.Destroy;
+begin
+  inherited;
+end;
+
+
 
 { TUCTableUsersLogged }
 
@@ -318,6 +397,29 @@ begin
 end;
 
 destructor TUCTableHistorico.Destroy;
+begin
+  inherited;
+end;
+{ TUCTableUserEmpresa }
+
+procedure TUCTableUserEmpresa.Assign(Source: TPersistent);
+begin
+  if Source is TUCTableUserEmpresa then
+  begin
+    Self.FieldIDEmpresa   := TUCTableUserEmpresa(Source).FieldIDEmpresa;
+    Self.FieldNameEmpresa := TUCTableUserEmpresa(Source).FieldNameEmpresa;
+    Self.TableName        := TUCTableUserEmpresa(Source).TableName;
+  end
+  else
+  inherited;
+end;
+
+constructor TUCTableUserEmpresa.Create(AOwner: TComponent);
+begin
+  inherited Create;
+end;
+
+destructor TUCTableUserEmpresa.Destroy;
 begin
   inherited;
 end;

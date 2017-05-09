@@ -104,10 +104,10 @@ uses
 
   // Delphi XE 8 ou superior
   {$IFDEF DELPHI22_UP}
-      System.ImageList,
+//      System.ImageList,
   {$ENDIF}
 
-  Menus;
+  Menus, System.ImageList;
 
 type
   PTreeMenu = ^TTreeMenu;
@@ -388,7 +388,9 @@ begin
           StringReplace(FMenu.Items[Contador].Caption, '&', '', [rfReplaceAll]),
           FTempMPointer);
       end;
-    TreeAction.FullCollapse;
+//    TreeAction.FullCollapse;
+    TreeAction.FullExpand;  // Mauri
+
     TreeMenu.Perform(WM_VSCROLL, SB_TOP, 0);
   end;
 
@@ -435,7 +437,9 @@ begin
             ].Action.Name, '&', '', [rfReplaceAll]), FTempMPointer);
         end;
       end;
-      TreeAction.FullCollapse;
+//      TreeAction.FullCollapse;
+    TreeAction.FullExpand;  // Mauri
+
       TreeMenu.Perform(WM_VSCROLL, SB_TOP, 0);
     end;
   end;
@@ -494,7 +498,9 @@ begin
       TreeAction.Items.AddChildObject(TempNode, StringReplace(Temp2, '&', '',
         [rfReplaceAll]), FTempAPointer);
     end;
-    TreeAction.FullCollapse;
+//    TreeAction.FullCollapse;
+    TreeAction.FullExpand;  // Mauri
+
     TreeAction.Perform(WM_VSCROLL, SB_TOP, 0);
   end;
 
@@ -852,7 +858,8 @@ begin
   TreeAction.Repaint;
   TreeMenu.Repaint;
   FChangingTree := False;
-  PC.ActivePageIndex := 1;
+  PC.ActivePageIndex := 0;
+//  PC.ActivePageIndex := 1;
   PageAction.Caption := 'Menu Controle de Usuarios';
   PageMenu.Caption := 'Menu Controle de Usuarios';
 end;
