@@ -8,12 +8,19 @@ Delphi 10.2 Tokyo.
   
 
 Adicionado PRIMARY KEY as Seguintes Tabelas:
+
    1 - UCTABUSERS
+   
    2 - UCTABMESSAGES
    
+   
 Adicionado Novas Tabelas:
+
    1 - UCDEPARTMENT     Lotação do Usuário.
+   
    2 - UCEMPRESA        Empresa     
+   
+   
    3 - UCUSERTYPE       Futuro definir se e administardor ou outros para da acesso ao cadstro de usuario e
 						liberar apenas direitos que ele possua para ususrio que cadastra.
 						
@@ -21,8 +28,12 @@ Adicionado Novas Tabelas:
 Adicionado Opções na Tela de Manutenção de Usuario:
 
 Pesquisa por Nome ou Login.
- obs. Quando se tem poucos usaurios fica facil manter e navegar pelas teclas de navegação, mas quando se tem mais de 1000
-      usuarios fica muito dificil navegar ate encontar o usuario para edição.
+ obs. Quando se tem poucos usaurios fica facil manter e navegar pelas teclas de navegação, mas quando se tem mais de 1000 usuários,  como eu tenho, fica muito dificil navegar ate encontar o usuario para edição.
+ ![alt text](https://github.com/maurilima/usercontrol-sd/blob/master/TelaCadastro.PNG)
+ 
+ 
+ No resto o componente permanece igual!!...
+ 
  
 Testado e Intsalado No Delphi Tokyo Manual.
 
