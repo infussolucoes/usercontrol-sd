@@ -36,12 +36,16 @@ uses
 {$R *.dfm}
 
 procedure TdmUC.DataModuleCreate(Sender: TObject);
+var
+path:string;
 begin
-//  FDConnection1.Close;
-//  FDConnection1.Params.Database :=
-//  gsAppPath + '..\DBase\APLICATIVO_UC.FDB';
-//  FDConnection1.Open;
-//gsAppPath
+  path := Copy(gsAppPath, 1, LastDelimiter('\',gsAppPath)-1);
+  path := Copy(Path, 1, LastDelimiter('\',Path));
+//  path := gsAppPath +'..';
+  path := path+ 'DBase\APLICATIVO_UC.FDB';
+  FDConnection1.Close;
+  FDConnection1.Params.Values['Database'] := path;
+  FDConnection1.Open;
 end;
 
 end.

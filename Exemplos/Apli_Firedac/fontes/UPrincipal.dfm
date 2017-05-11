@@ -2,7 +2,7 @@ object FrmPrincipal: TFrmPrincipal
   Left = 408
   Top = 246
   Caption = 'Tutorial UserControl - www.showdelphi.com.br'
-  ClientHeight = 246
+  ClientHeight = 226
   ClientWidth = 619
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -13,6 +13,7 @@ object FrmPrincipal: TFrmPrincipal
   Menu = MainMenu1
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object MainMenu1: TMainMenu

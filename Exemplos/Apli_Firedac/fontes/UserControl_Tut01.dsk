@@ -1,72 +1,52 @@
 ﻿[Closed Files]
-File_0=TSourceModule,'D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCIBXConn\UCIBXConn.pas',0,1,66,12,83,0,0,,
-File_1=TSourceModule,'D:\Usr\Comp XE10\UserControlXE10_mauri\Source\UcConsts_Language.pas',0,1,176,1,200,0,0,,
-File_2=TSourceModule,'D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\source\Base\UcConsts_Language.pas',0,1,239,1,265,0,0,,{1
-File_3=TSourceModule,'D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\ShowComponents\UPrincipal.pas',0,1,1,1,1,0,0,,
-File_4=TSourceModule,'D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Aplicat_UserControl\fontes\UPrincipal.pas',0,1,1,1,1,0,0,,
-File_5=TSourceModule,'D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Aplicat_UserControl\fontes\UDmUC.pas',0,1,1,1,1,0,0,,
-File_6=TSourceModule,'D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Exe_Delphi7_Firebird\fontes\UPrincipal.pas',0,1,1,1,1,0,0,,
-File_7=TSourceModule,'D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Exe_Delphi7_Firebird\fontes\UDmUC.pas',0,1,1,1,1,0,0,,
+File_0=TSourceModule,'D:\Usr\Comp Tokyo\UserControl Tokyo\Exemplos\Apli_Firedac\fontes\UPrincipal.pas',0,1,81,1,101,0,0,,
+File_1=TSourceModule,'D:\Usr\Comp Tokyo\UserControl Tokyo\Source\Base\UCBase.pas',0,1,3819,3,3976,0,0,{{3243,0}
+File_2=TSourceModule,'D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UBanco.pas',0,1,1,1,1,0,0,,
+File_3=TSourceModule,'D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UCliente.pas',0,1,1,1,1,0,0,,
+File_4=TSourceModule,'D:\Usr\Comp Tokyo\UserControl Tokyo\Source\Base\SenhaForm_U.pas',0,1,119,1,126,0,0,,
+File_5=TSourceModule,'D:\Usr\Comp Tokyo\UserControl Tokyo\Source\Base\IncUser_U.pas',0,1,205,1,218,0,0,,
+File_6=TSourceModule,'D:\Usr\Comp XE10\UserControlXE10_mauri\Source\UCBase.pas',0,1,1493,1,1512,0,0,{{2925,0}
+File_7=TSourceModule,'D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UserPermis_U.pas',0,1,209,24,209,0,0,,
+File_8=TSourceModule,'D:\Usr\Comp XE10\UserControlXE10_mauri\Source\pUCFrame_User.pas',0,1,241,38,250,0,0,,
+File_9=TSourceModule,'D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCFireDacCon\UCFireDACConn.pas',0,1,154,3,171,0,0,,
+File_10=TSourceModule,'D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCDataConnector.pas',0,1,69,15,86,0,0,,
+File_11=TSourceModule,'D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\IncUser_U.pas',0,1,176,13,69,0,0,,
 
 [Modules]
-Module0=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas
-Module1=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UserControl_Tut01.dproj
-Module2=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCFireDacCon\UCFireDACConn.pas
-Module3=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCDataConnector.pas
-Module4=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UDmUC.pas
-Module5=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UBanco.pas
-Module6=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UPrincipal.pas
-Module7=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\pUCFrame_User.pas
-Module8=default.htm
-Module9=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\IncUser_U.pas
-Module10=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UserPermis_U.pas
-Module11=D:\Usr\Comp XE10\UserControlXE10_mauri\Source\pUCFrame_User.pas
-Module12=D:\Usr\Comp XE10\UserControlXE10_mauri\Source\UCBase.pas
-Count=13
+Module0=default.htm
+Module1=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\pUCFrame_User.pas
+Module2=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UDmUC.pas
+Module3=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCIBXConn\UCIBXConn.pas
+Module4=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCDataSnapConn\UCDataSnapConn.pas
+Module5=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCADOConn\UCADOConn.pas
+Module6=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas
+Count=7
 EditWindowCount=1
 
-[D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas]
-ModuleType=TSourceModule
+[default.htm]
+ModuleType=TURLModule
 
-[D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UserControl_Tut01.dproj]
-ModuleType=TBaseProject
-
-[D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCFireDacCon\UCFireDACConn.pas]
-ModuleType=TSourceModule
-
-[D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCDataConnector.pas]
+[D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\pUCFrame_User.pas]
 ModuleType=TSourceModule
 
 [D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UDmUC.pas]
 ModuleType=TSourceModule
 
-[D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UBanco.pas]
+[D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCIBXConn\UCIBXConn.pas]
 ModuleType=TSourceModule
 
-[D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UPrincipal.pas]
+[D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCDataSnapConn\UCDataSnapConn.pas]
 ModuleType=TSourceModule
 
-[D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\pUCFrame_User.pas]
+[D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCADOConn\UCADOConn.pas]
 ModuleType=TSourceModule
 
-[default.htm]
-ModuleType=TURLModule
-
-[D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\IncUser_U.pas]
-ModuleType=TSourceModule
-
-[D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UserPermis_U.pas]
-ModuleType=TSourceModule
-
-[D:\Usr\Comp XE10\UserControlXE10_mauri\Source\pUCFrame_User.pas]
-ModuleType=TSourceModule
-
-[D:\Usr\Comp XE10\UserControlXE10_mauri\Source\UCBase.pas]
+[D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas]
 ModuleType=TSourceModule
 
 [EditWindow0]
-ViewCount=13
-CurrentEditView=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas
+ViewCount=7
+CurrentView=0
 View0=0
 View1=1
 View2=2
@@ -74,25 +54,19 @@ View3=3
 View4=4
 View5=5
 View6=6
-View7=7
-View8=8
-View9=9
-View10=10
-View11=11
-View12=12
 PercentageSizes=1
 Create=1
 Visible=1
 Docked=0
 State=0
-Left=1688
-Top=1352
-Width=6568
-Height=8648
+Left=1781
+Top=1390
+Width=6521
+Height=8610
 MaxLeft=-5
 MaxTop=-10
-ClientWidth=6484
-ClientHeight=8276
+ClientWidth=6458
+ClientHeight=8248
 DockedToMainForm=0
 BorlandEditorCodeExplorer=BorlandEditorCodeExplorer@EditWindow0
 TopPanelSize=0
@@ -103,7 +77,7 @@ RightPanelSize=0
 BottomPanelSize=0
 BottomMiddlePanelSize=1361
 BottomMiddlePanelClients=DockSite0,ToDo List,MessageView
-BottomMiddelPanelData=0000080001020200000009000000446F636B53697465300E000000546F446F4C69737457696E646F77082D0000000000000251050000000000000100000000082D00000F0000004D65737361676556696577466F726DFFFFFFFF
+BottomMiddelPanelData=0000080001020200000009000000446F636B53697465300E000000546F446F4C69737457696E646F77D92C0000000000000251050000000000000100000000D92C00000F0000004D65737361676556696577466F726DFFFFFFFF
 
 [View0]
 CustomEditViewType=TWelcomePageView
@@ -111,135 +85,69 @@ WelcomePageURL=bds:/default.htm
 
 [View1]
 CustomEditViewType=TEditView
-Module=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UPrincipal.pas
-CursorX=1
-CursorY=92
-TopLine=17
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UPrincipal.pas
-
-[View2]
-CustomEditViewType=TEditView
 Module=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UDmUC.pas
-CursorX=20
-CursorY=45
-TopLine=20
+CursorX=34
+CursorY=6
+TopLine=1
 LeftCol=1
 Elisions=
 Bookmarks=
 EditViewName=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UDmUC.pas
 
-[View3]
-CustomEditViewType=TEditView
-Module=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\IncUser_U.pas
-CursorX=13
-CursorY=69
-TopLine=176
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\IncUser_U.pas
-
-[View4]
+[View2]
 CustomEditViewType=TEditView
 Module=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas
 CursorX=1
-CursorY=2830
-TopLine=2812
+CursorY=3991
+TopLine=3508
 LeftCol=1
-Elisions={{3242,0},{3378,31},{'Criptografia'}}{{3379,0},{3406,31},{'TUCAutoLogin'}}{{3407,0},{3434,31},{'TNaoPermitidos'}}{{3435,0},{3460,31},{'TLogControl'}}{{3461,0},{3507,31},{'TCadastroUsuarios'}}{{3508,0},{3539,31},{'TLogin'}}{{3540,0},{3562,31},{'TPerfilUsuarios'}}{{3563,0},{3610,31},{'TTrocarSenha'}}{{3611,0},{3643,31},{'TInitialLogin'}}{{3898,0},{3914,31},{'TVerifThread'}}{{3915,0},{3949,31},{'TUCCollectionItem'}}{{3950,0},{3979,31},{'TUCCollection'}}{{3999,0},{4201,31},{'TUControls'}}{{4202,0},{4248,31},{'TUCGUID'}}{{4249,0},{4364,31},{'TUSERLOGGED'}}{{4365,0},{4409,31},{'TUCUserLogoff'}}{{4410,0},{4427,31},{'TUCCurrentUser'}}
-Bookmarks={1,616,1}{2,376,1}{3,2830,28}{4,2680,34}{5,4437,1}
+Elisions={{777,0},{3241,31},{'TUSerControl'}}{{3242,0},{3378,31},{'Criptografia'}}{{3379,0},{3406,31},{'TUCAutoLogin'}}{{3407,0},{3434,31},{'TNaoPermitidos'}}{{3435,0},{3460,31},{'TLogControl'}}{{3461,0},{3507,31},{'TCadastroUsuarios'}}{{3508,0},{3539,31},{'TLogin'}}{{3540,0},{3562,31},{'TPerfilUsuarios'}}{{3563,0},{3610,31},{'TTrocarSenha'}}{{3611,0},{3643,31},{'TInitialLogin'}}{{3644,0},{3698,31},{'TUCControlRight'}}{{3699,0},{3897,31},{'TUCAppMessage'}}{{3898,0},{3914,31},{'TVerifThread'}}{{3915,0},{3949,31},{'TUCCollectionItem'}}{{3950,0},{3979,31},{'TUCCollection'}}{{3999,0},{4201,31},{'TUControls'}}{{4202,0},{4248,31},{'TUCGUID'}}{{4249,0},{4364,31},{'TUSERLOGGED'}}{{4365,0},{4409,31},{'TUCUserLogoff'}}{{4410,0},{4427,31},{'TUCCurrentUser'}}{{4428,0},{4458,31},{'TDepartment'}}{{4460,0},{4492,31},{'TEmpresa'}}
+Bookmarks={1,616,1}{2,376,1}{3,2830,1}{4,2680,1}{5,4437,1}
 EditViewName=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas
+
+[View3]
+CustomEditViewType=TEditView
+Module=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\pUCFrame_User.pas
+CursorX=39
+CursorY=315
+TopLine=288
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\pUCFrame_User.pas
+
+[View4]
+CustomEditViewType=TEditView
+Module=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCDataSnapConn\UCDataSnapConn.pas
+CursorX=5
+CursorY=239
+TopLine=230
+LeftCol=1
+Elisions=
+Bookmarks=
+EditViewName=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCDataSnapConn\UCDataSnapConn.pas
 
 [View5]
 CustomEditViewType=TEditView
-Module=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UserControl_Tut01.dpr
+Module=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCIBXConn\UCIBXConn.pas
 CursorX=1
-CursorY=16
-TopLine=1
+CursorY=218
+TopLine=181
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UserControl_Tut01.dpr
+EditViewName=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCIBXConn\UCIBXConn.pas
 
 [View6]
 CustomEditViewType=TEditView
-Module=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCDataConnector.pas
-CursorX=15
-CursorY=86
-TopLine=69
+Module=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCADOConn\UCADOConn.pas
+CursorX=18
+CursorY=173
+TopLine=161
 LeftCol=1
 Elisions=
 Bookmarks=
-EditViewName=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCDataConnector.pas
-
-[View7]
-CustomEditViewType=TEditView
-Module=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCFireDacCon\UCFireDACConn.pas
-CursorX=3
-CursorY=171
-TopLine=154
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCFireDacCon\UCFireDACConn.pas
-
-[View8]
-CustomEditViewType=TEditView
-Module=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\pUCFrame_User.pas
-CursorX=1
-CursorY=321
-TopLine=309
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=Borland.FormDesignerView
-
-[View9]
-CustomEditViewType=TEditView
-Module=D:\Usr\Comp XE10\UserControlXE10_mauri\Source\pUCFrame_User.pas
-CursorX=38
-CursorY=250
-TopLine=241
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\Usr\Comp XE10\UserControlXE10_mauri\Source\pUCFrame_User.pas
-
-[View10]
-CustomEditViewType=TEditView
-Module=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UserPermis_U.pas
-CursorX=24
-CursorY=209
-TopLine=209
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UserPermis_U.pas
-
-[View11]
-CustomEditViewType=TEditView
-Module=D:\Usr\Comp XE10\UserControlXE10_mauri\Source\UCBase.pas
-CursorX=1
-CursorY=1512
-TopLine=1493
-LeftCol=1
-Elisions={{2925,0},{3062,31},{'Criptografia'}}{{3064,0},{3092,31},{'TUCAutoLogin'}}{{3094,0},{3121,31},{'TNaoPermitidos'}}{{3123,0},{3149,31},{'TLogControl'}}{{3151,0},{3198,31},{'TCadastroUsuarios'}}{{3200,0},{3232,31},{'TLogin'}}{{3234,0},{3258,31},{'TPerfilUsuarios'}}{{3260,0},{3308,31},{'TTrocarSenha'}}{{3310,0},{3343,31},{'TInitialLogin'}}{{3345,0},{3400,31},{'TUCControlRight'}}{{3402,0},{3586,31},{'TUCAppMessage'}}{{3588,0},{3604,31},{'TVerifThread'}}{{3606,0},{3641,31},{'TUCCollectionItem'}}{{3643,0},{3673,31},{'TUCCollection'}}{{3675,0},{3694,31},{'TUCRun'}}{{3696,0},{3905,31},{'TUControls'}}{{3907,0},{3954,31},{'TUCGUID'}}{{3956,0},{4082,31},{'TUSERLOGGED'}}{{4084,0},{4129,31},{'TUCUserLogoff'}}{{4131,0},{4148,31},{'TUCCurrentUser'}}
-Bookmarks=
-EditViewName=D:\Usr\Comp XE10\UserControlXE10_mauri\Source\UCBase.pas
-
-[View12]
-CustomEditViewType=TEditView
-Module=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UBanco.pas
-CursorX=1
-CursorY=1
-TopLine=1
-LeftCol=1
-Elisions=
-Bookmarks=
-EditViewName=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Firedac\fontes\UBanco.pas
+EditViewName=D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Connectors\UCADOConn\UCADOConn.pas
 
 [UndockedDesigner]
 Count=0
@@ -269,11 +177,14 @@ Dockable=1
 StayOnTop=0
 
 [Breakpoints]
-Count=4
-Breakpoint0='D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas',1908,'',0,1,'',1,0,0,'',1,'','','',0,''
-Breakpoint1='D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas',2685,'',0,1,'',1,0,0,'',1,'','','',0,''
-Breakpoint2='D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas',4437,'',0,1,'',1,0,0,'',1,'','','',0,''
-Breakpoint3='D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas',4470,'',0,1,'',1,0,0,'',1,'','','',0,''
+Count=7
+Breakpoint0='D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas',1908,'',0,0,'',1,0,0,'',1,'','','',0,''
+Breakpoint1='D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas',2685,'',0,0,'',1,0,0,'',1,'','','',0,''
+Breakpoint2='D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas',4437,'',0,0,'',1,0,0,'',1,'','','',0,''
+Breakpoint3='D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas',4470,'',0,0,'',1,0,0,'',1,'','','',0,''
+Breakpoint4='D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\UCBase.pas',3984,'',0,1,'',1,0,0,'',1,'','','',0,''
+Breakpoint5='D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\pUCFrame_User.pas',296,'',0,1,'',1,0,0,'',1,'','','',0,''
+Breakpoint6='D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Source\Base\pUCFrame_User.pas',329,'',0,1,'',1,0,0,'',1,'','','',0,''
 
 [EmbarcaderoWin32Debugger_AddressBreakpoints]
 Count=0
@@ -305,14 +216,14 @@ State=2
 Left=0
 Top=0
 Width=10000
-Height=943
-MaxLeft=-42
-MaxTop=-76
+Height=1438
+MaxLeft=-5
+MaxTop=-10
 MaxWidth=10000
-MaxHeight=943
-ClientWidth=10000
+MaxHeight=1438
+ClientWidth=10021
 ClientHeight=1076
-BottomPanelSize=8954
+BottomPanelSize=0
 
 [ProjectManager]
 PercentageSizes=1
@@ -322,12 +233,12 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=1703
-Height=7990
+Width=1667
+Height=8048
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1703
-ClientHeight=7990
+ClientWidth=1667
+ClientHeight=8048
 TBDockHeight=276
 LRDockWidth=3724
 Dockable=1
@@ -341,11 +252,11 @@ Docked=1
 State=0
 Left=0
 Top=18
-Width=6484
+Width=6458
 Height=1229
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=6484
+ClientWidth=6458
 ClientHeight=1229
 TBDockHeight=1229
 LRDockWidth=3521
@@ -416,23 +327,18 @@ Visible=1
 Docked=0
 State=0
 Left=-5
-Top=1381
-Width=1714
-Height=8686
+Top=1333
+Width=1828
+Height=8619
 MaxLeft=-5
 MaxTop=-10
-ClientWidth=1630
-ClientHeight=8314
+ClientWidth=1766
+ClientHeight=8257
 TBDockHeight=5810
 LRDockWidth=1552
 Dockable=1
 StayOnTop=0
-SplitPos=115
-
-[PropInspDesignerSelection]
-ArrangeBy=Name
-SelectedItem=Action,
-ExpandedItems=Anchors=0,BorderIcons=0,Constraints=0,Font=0,GlassFrame=0,HorzScrollBar=0
+SplitPos=155
 
 [ClassBrowserTool]
 PercentageSizes=1
@@ -459,8 +365,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-332
-Top=-1042
+Left=-348
+Top=-897
 Width=3562
 Height=4838
 MaxLeft=-1
@@ -478,8 +384,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=-332
-Top=-1042
+Left=-348
+Top=-897
 Width=3562
 Height=4838
 MaxLeft=-1
@@ -499,12 +405,12 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=1703
-Height=7990
+Width=1667
+Height=8048
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1703
-ClientHeight=7990
+ClientWidth=1667
+ClientHeight=8048
 TBDockHeight=5962
 LRDockWidth=2510
 Dockable=1
@@ -694,8 +600,8 @@ Create=1
 Visible=0
 Docked=1
 State=0
-Left=332
-Top=895
+Left=0
+Top=0
 Width=3672
 Height=1000
 MaxLeft=-1
@@ -723,12 +629,12 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=1703
-Height=7990
+Width=1667
+Height=8048
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1703
-ClientHeight=7990
+ClientWidth=1667
+ClientHeight=8048
 TBDockHeight=4886
 LRDockWidth=7151
 Dockable=1
@@ -787,12 +693,12 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=1703
-Height=7990
+Width=1667
+Height=8048
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1703
-ClientHeight=7990
+ClientWidth=1667
+ClientHeight=8048
 TBDockHeight=3467
 LRDockWidth=1672
 Dockable=1
@@ -806,12 +712,12 @@ Docked=1
 State=0
 Left=0
 Top=0
-Width=1703
-Height=7990
+Width=1667
+Height=8048
 MaxLeft=-1
 MaxTop=-1
-ClientWidth=1703
-ClientHeight=7990
+ClientWidth=1667
+ClientHeight=8048
 TBDockHeight=4886
 LRDockWidth=5302
 Dockable=1
@@ -861,7 +767,7 @@ Dockable=1
 StayOnTop=0
 TabPosition=1
 ActiveTabID=RefactoringForm
-TabDockClients=RefactoringForm,PatchForm,FindReferencsForm,MetricsView,QAView
+TabDockClients=RefactoringForm,PatchForm,FindReferencsForm,QAView,MetricsView
 
 [DockSite1]
 DockSiteType=1
@@ -870,14 +776,14 @@ Create=1
 Visible=1
 Docked=0
 State=0
-Left=8240
-Top=1343
-Width=1786
-Height=8600
+Left=8260
+Top=1324
+Width=1729
+Height=8648
 MaxLeft=-5
 MaxTop=-10
-ClientWidth=1703
-ClientHeight=8229
+ClientWidth=1667
+ClientHeight=8286
 TBDockHeight=3181
 LRDockWidth=1448
 Dockable=1
