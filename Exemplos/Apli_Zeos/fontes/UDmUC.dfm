@@ -1,20 +1,21 @@
 object dmUC: TdmUC
   OldCreateOrder = False
   OnCreate = DataModuleCreate
+  Left = 391
+  Top = 251
   Height = 296
   Width = 447
   object con1: TZConnection
-    ControlsCodePage = cCP_UTF16
-    Catalog = ''
-    Connected = True
+    ControlsCodePage = cCP_UTF8
+    AutoEncodeStrings = False
+    Properties.Strings = (
+      'controls_cp=CP_UTF8')
     HostName = 'localhost'
     Port = 0
-    Database = 
-      'D:\Usr\Comp Tokyo\UserControl\usercontrol-sd\Exemplos\Apli_Zeos\' +
-      'DBase\APLICATIVO_UC_FB.FDB'
     User = 'SYSDBA'
     Password = 'masterkey'
-    Protocol = 'firebirdd-3.0'
+    Protocol = 'firebird-2.5'
+    LibraryLocation = 'C:\Program Files\Firebird\Firebird_2_5\bin\fbclient.dll'
     Left = 88
     Top = 136
   end

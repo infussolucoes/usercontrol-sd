@@ -1,9 +1,9 @@
 object FrmPrincipal: TFrmPrincipal
-  Left = 408
-  Top = 246
+  Left = 315
+  Top = 252
+  Width = 635
+  Height = 399
   Caption = 'Tutorial UserControl - www.showdelphi.com.br'
-  ClientHeight = 166
-  ClientWidth = 619
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,6 +15,30 @@ object FrmPrincipal: TFrmPrincipal
   Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
+  object Memo1: TMemo
+    Left = 72
+    Top = 74
+    Width = 457
+    Height = 175
+    Ctl3D = False
+    Lines.Strings = (
+      
+        '** -------------------------------------------------------------' +
+        '--------------------**'
+      ''
+      'Obs.'
+      'Antes de Executar voce deve:'
+      
+        'Configurar o LibraryLocation do Componente  ZCONECTION1  na unit' +
+        ' UDMC'
+      ''
+      'Testado no Delphi 7 com Firebird 2.5'
+      ''
+      ''
+      'Testado em 11/05/2017.')
+    ParentCtl3D = False
+    TabOrder = 0
+  end
   object MainMenu1: TMainMenu
     Left = 128
     Top = 136
@@ -145,20 +169,20 @@ object FrmPrincipal: TFrmPrincipal
     TableUserEmpresa.TableName = 'UCEmpresa'
     UserType = 0
     DataConnector = UCZEOSConn1
-    Left = 160
-    Top = 16
+    Left = 312
+    Top = 40
   end
   object UCApplicationMessage1: TUCApplicationMessage
     Active = True
     Interval = 60000
     TableMessages = 'UCTABMESSAGES'
     UserControl = ucMyControl
-    Left = 376
-    Top = 128
+    Left = 384
+    Top = 64
   end
   object UCZEOSConn1: TUCZEOSConn
     Connection = dmUC.con1
-    Left = 248
-    Top = 64
+    Left = 256
+    Top = 72
   end
 end

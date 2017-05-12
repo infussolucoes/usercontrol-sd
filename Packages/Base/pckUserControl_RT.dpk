@@ -1,7 +1,6 @@
 package pckUserControl_RT;
 
 {$R *.res}
-{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
@@ -23,10 +22,9 @@ package pckUserControl_RT;
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
-{$DEFINE DEBUG}
-{$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'SWDelphi - User Control RT'}
 {$IMPLICITBUILD OFF}
+{$DEFINE DEBUG}
 
 requires
   pckMD5,
@@ -35,10 +33,19 @@ requires
   vclactnband,
   vcldb,
   VclSmp,
+{$IFDEF DELPHI22_UP}
   FireDAC,
   FireDACCommonDriver,
   FireDACCommon,
-  dsnap;
+{$ENDIF}  
+  dsnap,
+  adortl,
+  ibxpress,
+  ZComponent,
+  ZParseSql,
+  ZCore,
+  ZDbc,
+  ZPlain;
 
 contains
   TrocaSenha_U in '..\..\source\Base\TrocaSenha_U.pas',
