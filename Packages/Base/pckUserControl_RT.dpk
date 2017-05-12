@@ -1,6 +1,5 @@
 package pckUserControl_RT;
 
-{$I UserControl.inc}
 {$R *.res}
 {$ALIGN 8}
 {$ASSERTIONS ON}
@@ -23,10 +22,9 @@ package pckUserControl_RT;
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
-{$DEFINE DEBUG}
 {$DESCRIPTION 'SWDelphi - User Control RT'}
 {$IMPLICITBUILD OFF}
-
+{$DEFINE DEBUG}
 
 requires
   pckMD5,
@@ -34,8 +32,20 @@ requires
   inet,
   vclactnband,
   vcldb,
-  VclSmp;
-//,dbexpress;
+  VclSmp,
+{$IFDEF DELPHI22_UP}
+  FireDAC,
+  FireDACCommonDriver,
+  FireDACCommon,
+{$ENDIF}  
+  dsnap,
+  adortl,
+  ibxpress,
+  ZComponent,
+  ZParseSql,
+  ZCore,
+  ZDbc,
+  ZPlain;
 
 contains
   TrocaSenha_U in '..\..\source\Base\TrocaSenha_U.pas',

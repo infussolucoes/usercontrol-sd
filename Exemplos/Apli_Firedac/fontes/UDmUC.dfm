@@ -5,18 +5,10 @@ object dmUC: TdmUC
   Width = 447
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'Database=D:\APLICATIVO_UC.FDB'
-      'CharacterSet=iSO8859_1'
-      'Port=3050'
-      'User_Name=sysdba'
-      'Password=masterkey'
-      'DriverID=FB')
+      'ConnectionDef=Teste')
+    LoginPrompt = False
     Left = 88
     Top = 136
-  end
-  object FDStanStorageJSONLink1: TFDStanStorageJSONLink
-    Left = 88
-    Top = 32
   end
   object FDPhysFBDriverLink1: TFDPhysFBDriverLink
     Left = 232
@@ -29,5 +21,10 @@ object dmUC: TdmUC
       'select * from bancos')
     Left = 232
     Top = 128
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 304
+    Top = 176
   end
 end

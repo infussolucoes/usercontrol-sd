@@ -2,7 +2,7 @@ object FrmPrincipal: TFrmPrincipal
   Left = 408
   Top = 246
   Caption = 'Tutorial UserControl - www.showdelphi.com.br'
-  ClientHeight = 306
+  ClientHeight = 226
   ClientWidth = 619
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -13,11 +13,12 @@ object FrmPrincipal: TFrmPrincipal
   Menu = MainMenu1
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object MainMenu1: TMainMenu
-    Left = 40
-    Top = 56
+    Left = 128
+    Top = 136
     object Cadastro1: TMenuItem
       Caption = 'Cadastro'
       object Bancos1: TMenuItem
@@ -121,6 +122,9 @@ object FrmPrincipal: TFrmPrincipal
     TableUsers.FieldUserDaysSun = 'UCUserDaysSun'
     TableUsers.FieldUserInative = 'UCInative'
     TableUsers.TableName = 'UCTabUsers'
+    TableUsers.FieldUserDepartment = 'UCDepartment'
+    TableUsers.FieldUserEmpresa = 'UCUserEmpresa'
+    TableUsers.FieldUserType = 'UCUserType'
     TableRights.FieldUserID = 'UCIdUser'
     TableRights.FieldModule = 'UCModule'
     TableRights.FieldComponentName = 'UCCompName'
@@ -133,21 +137,29 @@ object FrmPrincipal: TFrmPrincipal
     TableUsersLogged.FieldMachineName = 'UCMachineName'
     TableUsersLogged.FieldData = 'UCData'
     TableUsersLogged.TableName = 'UCTabUsersLogged'
+    TableUserDepartment.FieldIDDepartment = 'UcIDepartment'
+    TableUserDepartment.FieldNameDepartment = 'UcNameDepartment'
+    TableUserDepartment.FieldStatusDepartment = 'UcStatusDepartment'
+    TableUserDepartment.TableName = 'UCDepartment'
+    TableUserEmpresa.FieldIDEmpresa = 'UcIDEmpresa'
+    TableUserEmpresa.FieldNameEmpresa = 'UcNameEmpresa'
+    TableUserEmpresa.TableName = 'UCEmpresa'
+    UserType = 0
     DataConnector = UCFireDACConn1
-    Left = 200
-    Top = 48
+    Left = 160
+    Top = 16
   end
   object UCApplicationMessage1: TUCApplicationMessage
     Active = True
     Interval = 60000
     TableMessages = 'UCTABMESSAGES'
     UserControl = ucMyControl
-    Left = 344
-    Top = 168
+    Left = 376
+    Top = 128
   end
   object UCFireDACConn1: TUCFireDACConn
     Connection = dmUC.FDConnection1
-    Left = 144
-    Top = 176
+    Left = 272
+    Top = 40
   end
 end

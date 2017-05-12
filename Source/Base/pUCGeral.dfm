@@ -1,6 +1,6 @@
 object FormUserPerf: TFormUserPerf
-  Left = 355
-  Top = 126
+  Left = 254
+  Top = 146
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsSingle
   Caption = 'Controle de Usu'#225'rios'

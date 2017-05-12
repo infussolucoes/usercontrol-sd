@@ -90,15 +90,21 @@ uses
   Windows,
   DBGrids,
   Grids,
-
+  DBClient,
+  ADODB,
 
   {$IF CompilerVersion >= 23}
-  System.UITypes,
-  {$IFEND}
-
+    System.UITypes,
+    IBX.IBQuery,
+{$ELSE}
+    IBQuery,
+{$IFEND}
   IncUser_U,
   SenhaForm_U,
   UcBase,
+{$IF CompilerVersion >= 23}
+  FireDAC.Comp.Client,
+{$IFEND}
   UserPermis_U;
 
 type
@@ -112,11 +118,19 @@ type
     DbGridUser: TDBGrid;
     DataUser: TDataSource;
     DataPerfil: TDataSource;
+    rgPesUser: TRadioGroup;
+    EdPesUser: TEdit;
+    Label1: TLabel;
+    DataEmpresa: TDataSource;
+    DataLotacao: TDataSource;
     procedure btAdicClick(Sender: TObject);
     procedure BtAltClick(Sender: TObject);
     procedure BtAcessClick(Sender: TObject);
     procedure BtPassClick(Sender: TObject);
     procedure BtExcluiClick(Sender: TObject);
+    procedure EdPesUserEnter(Sender: TObject);
+    procedure EdPesUserKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   protected
     FormSenha: TCustomForm;
     FfrmIncluirUsuario: TfrmIncluirUsuario;
@@ -137,7 +151,12 @@ type
 implementation
 
 uses
-  UCMessages;
+  UCMessages,
+{$IFDEF DELPHI17_UP}
+  Data.Win.ADODB,
+{$ENDIF}
+  
+  ZDataset;
 
 {$R *.dfm}
 
@@ -166,16 +185,27 @@ begin
     EditNome.Text := FDataSetCadastroUsuario.FieldByName('Nome').AsString;
     EditLogin.Text := FDataSetCadastroUsuario.FieldByName('Login').AsString;
     EditEmail.Text := FDataSetCadastroUsuario.FieldByName('Email').AsString;
-    ComboPerfil.KeyValue := FDataSetCadastroUsuario.FieldByName('Perfil')
-      .AsInteger;
-    ckPrivilegiado.Checked :=
-      StrToBool(FDataSetCadastroUsuario.FieldByName('Privilegiado').AsString);
-    ckUserExpired.Checked :=
-      StrToBool(FDataSetCadastroUsuario.FieldByName('UserNaoExpira').AsString);
-    SpinExpira.Value := FDataSetCadastroUsuario.FieldByName('DaysOfExpire')
-      .AsInteger;
-    ComboStatus.ItemIndex := FDataSetCadastroUsuario.FieldByName('UserInative')
-      .AsInteger;
+    ComboPerfil.KeyValue := FDataSetCadastroUsuario.FieldByName('Perfil').AsInteger;
+    ckPrivilegiado.Checked := StrToBool(FDataSetCadastroUsuario.FieldByName('Privilegiado').AsString);
+    ckUserExpired.Checked :=  StrToBool(FDataSetCadastroUsuario.FieldByName('UserNaoExpira').AsString);
+    SpinExpira.Value := FDataSetCadastroUsuario.FieldByName('DaysOfExpire').AsInteger;
+    ComboStatus.ItemIndex := FDataSetCadastroUsuario.FieldByName('UserInative').AsInteger;
+//   Lotacao  -  Mauri
+    ComboLotacao.KeyValue   := FDataSetCadastroUsuario.FieldByName('Lotacao').AsString;
+    if FDataSetCadastroUsuario.FieldByName('UserType').AsInteger >= 0 then
+    begin
+        cbTipoUsuario.ItemIndex := FDataSetCadastroUsuario.FieldByName('UserType').AsInteger
+
+    end
+    else
+      begin
+         cbTipoUsuario.ItemIndex :=0;
+      end;
+
+//   Empresa  -  Mauri 26/01/2017
+    ComboEmpresa.KeyValue   := FDataSetCadastroUsuario.FieldByName('Empresa').AsInteger;
+
+
     if FfrmIncluirUsuario.ComboStatus.Enabled then
       FfrmIncluirUsuario.ComboStatus.Enabled :=
         not((FUsercontrol.User.ProtectAdministrator) and
@@ -261,6 +291,31 @@ begin
   // nada a destruir
   // não destruir o FDataSetCadastroUsuario o USERCONTROL toma conta dele
   inherited;
+end;
+
+procedure TUCFrame_User.EdPesUserEnter(Sender: TObject);
+var
+   indice : string;
+begin
+
+  //  Mauri 28/01/2016
+  //  Ordenar Em Memoria
+  // Veirifca se DBExpres ou Firedac
+  // ClientDataSet nao Funciona com FDQuery para Index e outras Propriedades
+  if rgPesUser.ItemIndex = 1 then
+     indice :=  'Nome'
+  else
+     indice :=  'Login';
+  if DataUser.DataSet is TClientDataSet then
+     TClientDataSet( DataUser.DataSet).IndexFieldNames:= indice;
+  if DataUser.DataSet is TZQuery then
+     TZQuery( DataUser.DataSet).IndexFieldNames:= indice;
+{$IFDEF DELPHI17_UP}   // Firedac disponviel a partir da versao XE3
+  if DataUser.DataSet is TFDQuery then
+     TFDQuery( DataUser.DataSet).IndexFieldNames:= indice;
+{$ENDIF}
+  if DataUser.DataSet is TZQuery then
+     TZQuery( DataUser.DataSet).IndexFieldNames:= indice;
 end;
 
 procedure TUCFrame_User.BtAcessClick(Sender: TObject);
@@ -427,6 +482,8 @@ begin
     FfrmIncluirUsuario.LabelDias.Caption := Day;
     FfrmIncluirUsuario.ckUserExpired.Caption := CheckExpira;
     FfrmIncluirUsuario.ComboPerfil.ListSource := DataPerfil;
+    FfrmIncluirUsuario.ComboLotacao.ListSource  := DataLotacao;  // By Mauri 03/07/2008
+    FfrmIncluirUsuario.ComboEmpresa.ListSource  := DataEmpresa;  // By Mauri 03/07/2008
     FfrmIncluirUsuario.ComboStatus.Enabled := not Adicionar;
     with FfrmIncluirUsuario.ComboStatus.Items do
     begin
@@ -436,6 +493,21 @@ begin
     end;
     FfrmIncluirUsuario.ComboStatus.ItemIndex := 0;
   end;
+end;
+
+procedure TUCFrame_User.EdPesUserKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+Var
+   indice : string;
+begin
+ //  Mauri 28/01/2016
+ //  Busca No Data Set em Memoria
+ // Evita nova consulta no banco ja que o select anterior trouxe todos os tegistros
+  if rgPesUser.ItemIndex = 1 then
+     indice :=  'Nome'
+  else
+     indice :=  'Login';
+  DataUser.DataSet.Locate(indice,Trim(EdPesUser.Text),[loPartialKey]);
 end;
 
 end.

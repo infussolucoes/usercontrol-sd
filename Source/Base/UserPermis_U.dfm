@@ -1,8 +1,8 @@
 object UserPermis: TUserPermis
-  Left = 255
-  Top = 154
+  Left = 549
+  Top = 323
   Width = 600
-  Height = 565
+  Height = 564
   Caption = 'Seguran'#231'a'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,7 +21,7 @@ object UserPermis: TUserPermis
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 592
+    Width = 584
     Height = 35
     Align = alTop
     BevelOuter = bvNone
@@ -164,10 +164,10 @@ object UserPermis: TUserPermis
     end
   end
   object Panel3: TPanel
-    Left = 495
+    Left = 487
     Top = 35
     Width = 97
-    Height = 496
+    Height = 491
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 1
@@ -423,8 +423,8 @@ object UserPermis: TUserPermis
   object PC: TPageControl
     Left = 0
     Top = 35
-    Width = 495
-    Height = 496
+    Width = 487
+    Height = 491
     ActivePage = PageMenu
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
@@ -441,8 +441,8 @@ object UserPermis: TUserPermis
       object TreeMenu: TTreeView
         Left = 0
         Top = 0
-        Width = 487
-        Height = 468
+        Width = 479
+        Height = 463
         Align = alClient
         Ctl3D = True
         Images = ImageList1
@@ -462,8 +462,8 @@ object UserPermis: TUserPermis
       object TreeAction: TTreeView
         Left = 0
         Top = 0
-        Width = 487
-        Height = 468
+        Width = 479
+        Height = 463
         Align = alClient
         Ctl3D = True
         Images = ImageList1
@@ -482,8 +482,8 @@ object UserPermis: TUserPermis
       object TreeControls: TTreeView
         Left = 0
         Top = 0
-        Width = 487
-        Height = 468
+        Width = 479
+        Height = 463
         Align = alClient
         Ctl3D = True
         Images = ImageList1
@@ -501,7 +501,7 @@ object UserPermis: TUserPermis
     Left = 336
     Top = 144
     Bitmap = {
-      494C010103000500700010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103000500780010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

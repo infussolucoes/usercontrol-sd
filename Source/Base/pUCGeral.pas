@@ -141,16 +141,14 @@ begin
   with FUsercontrol do
   begin
     FUsercontrol.CurrentUser.PerfilUsuario := Nil;
-    FUsercontrol.CurrentUser.PerfilUsuario := DataConnector.UCGetSQLDataset
-      (Format('Select %s as IdUser, %s as Login, %s as Nome, %s as Email, %s as Perfil, %s as Privilegiado, '
-      + '%s as Tipo, %s as Senha, %s as UserNaoExpira, %s as DaysOfExpire , %s as UserInative from %s Where '
-      + '%s  = %s ORDER BY %s', [TableUsers.FieldUserID, TableUsers.FieldLogin,
-      TableUsers.FieldUserName, TableUsers.FieldEmail, TableUsers.FieldProfile,
-      TableUsers.FieldPrivileged, TableUsers.FieldTypeRec,
-      TableUsers.FieldPassword, TableUsers.FieldUserExpired,
-      TableUsers.FieldUserDaysSun, TableUsers.FieldUserInative,
-      TableUsers.TableName, TableUsers.FieldTypeRec, QuotedStr('U'),
-      TableUsers.FieldLogin]));
+    FUsercontrol.CurrentUser.PerfilUsuario := DataConnector.UCGetSQLDataset(
+      Format('Select %s as IdUser, %s as Login, %s as Nome, %s as Email, %s as Perfil, %s as Privilegiado, '+
+      '%s as Tipo, %s as Senha, %s as UserNaoExpira, %s as DaysOfExpire , %s as UserInative,  %s as Lotacao, %s as UserType, %s as Empresa from %s Where '+
+      '%s  = %s ORDER BY %s', [TableUsers.FieldUserID, TableUsers.FieldLogin, TableUsers.FieldUserName,
+      TableUsers.FieldEmail, TableUsers.FieldProfile, TableUsers.FieldPrivileged, TableUsers.FieldTypeRec,
+      TableUsers.FieldPassword, TableUsers.FieldUserExpired, TableUsers.FieldUserDaysSun,
+      TableUsers.FieldUserInative,TableUsers.FieldUserDepartment, TableUsers.FieldUserType, TableUsers.FieldUserEmpresa, TableUsers.TableName, TableUsers.FieldTypeRec,
+      QuotedStr('U'), TableUsers.FieldLogin]));
 
     FUsercontrol.CurrentUser.PerfilGrupo := Nil;
     FUsercontrol.CurrentUser.PerfilGrupo := DataConnector.UCGetSQLDataset
@@ -158,6 +156,28 @@ begin
       [TableUsers.FieldUserID, TableUsers.FieldLogin, TableUsers.FieldUserName,
       TableUsers.FieldTypeRec, TableUsers.TableName, TableUsers.FieldTypeRec,
       QuotedStr('P'), TableUsers.FieldUserName]));
+    //   Lotacao -   Mauri
+    FUsercontrol.CurrentUser.Lotacao:= DataConnector.UCGetSQLDataset(
+           Format('Select %s as OrgaoDescricao, %s as OrgaoCodigo from %s where %s = '+QuotedStr('A')+' or %s is null  ORDER BY %s',
+                [TableUserDepartment.FieldNameDepartment,
+                TableUserDepartment.FieldIDDepartment,
+                TableUserDepartment.TableName,
+                TableUserDepartment.FieldStatusDepartment,
+                TableUserDepartment.FieldStatusDepartment,
+                TableUserDepartment.FieldNameDepartment
+                ]
+                ));
+
+    //  Empresa Mauri 26/01/2017
+    FUsercontrol.CurrentUser.Empresa:= DataConnector.UCGetSQLDataset( Format('Select %s as Empresa, %s as IdEmp from %s ORDER BY %s',
+                [TableUserEmpresa.FieldNameEmpresa,
+                TableUserEmpresa.FieldIDEmpresa,
+                TableUserEmpresa.TableName,
+                TableUserEmpresa.FieldNameEmpresa
+                ]
+                ));
+
+
   end;
 
   SpeedPerfil.Visible := FUsercontrol.UserProfile.Active;
@@ -212,13 +232,15 @@ begin
     FreeAndNil(FrmFrame);
 
   FrmFrame := TUCFrame_User.Create(Self);
-  TUCFrame_User(FrmFrame).FDataSetCadastroUsuario :=
-    FUsercontrol.CurrentUser.PerfilUsuario;
-  TUCFrame_User(FrmFrame).DataUser.DataSet := TUCFrame_User(FrmFrame)
-    .FDataSetCadastroUsuario;
-  TUCFrame_User(FrmFrame).DataPerfil.DataSet :=
-    FUsercontrol.CurrentUser.PerfilGrupo;
+  TUCFrame_User(FrmFrame).FDataSetCadastroUsuario := FUsercontrol.CurrentUser.PerfilUsuario;
+  TUCFrame_User(FrmFrame).DataUser.DataSet        := TUCFrame_User(FrmFrame).FDataSetCadastroUsuario;
+  TUCFrame_User(FrmFrame).DataPerfil.DataSet      := FUsercontrol.CurrentUser.PerfilGrupo;
   TUCFrame_User(FrmFrame).FUsercontrol := FUsercontrol;
+//  Lotacao   -   Mauri
+  TUCFrame_User(FrmFrame).DataLotacao.DataSet     := FUsercontrol.CurrentUser.Lotacao; // mauri
+//  Empresa Mauri 26/01/2017
+  TUCFrame_User(FrmFrame).DataEmpresa.DataSet     := FUsercontrol.CurrentUser.Empresa; // mauri
+
   TUCFrame_User(FrmFrame).Height := Panel3.Height;
   TUCFrame_User(FrmFrame).Width := Panel3.Width;
   TUCFrame_User(FrmFrame).SetWindow;

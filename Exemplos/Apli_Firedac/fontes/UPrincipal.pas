@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus, UCBase, UCDataConnector, UCFireDACConn;
+  Dialogs, Menus, UCBase, UCDataConnector,  UCFireDACConn;
 
 type
   TFrmPrincipal = class(TForm)
@@ -35,6 +35,7 @@ type
     procedure Clientes1Click(Sender: TObject);
     procedure Cidades1Click(Sender: TObject);
     procedure Produtos1Click(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -68,6 +69,11 @@ begin
   FrmCliente.ShowModal;
 end;
 
+procedure TFrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  ucMyControl.Destroy;
+end;
+
 procedure TFrmPrincipal.GerarLog1Click(Sender: TObject);
 begin
   ucMyControl.Log('Teste de log', 1);
@@ -89,4 +95,7 @@ begin
   Close;
 end;
 
+//initialization
+//  ReportMemoryLeaksOnShutdown := True;
+//  ReportMemoryLeaksOnShutdown := DebugHook <> 0;
 end.
