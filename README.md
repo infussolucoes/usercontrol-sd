@@ -27,6 +27,8 @@ Delphi 10 Seattle
 
 Delphi 10.1 Berlin
 
+Delphi 10.2 Tokyo
+
 Obs: Quem estiver utilizando a versão Starter do Berlin, precisa realizar a instalação manualmente,
 pois o delphi não gera as bpls se você utilizar o instalador.
 Lembramos também que o Berlin Starter, por padrão, não tem componentes de conexão instalados, logo
