@@ -90,19 +90,22 @@ uses
   Windows,
   DBGrids,
   Grids,
-  IBX.IBQuery,
-
-
+  DBClient,
+  ADODB,
 
   {$IF CompilerVersion >= 23}
-  System.UITypes,
-  {$IFEND}
-
+    System.UITypes,
+    IBX.IBQuery,
+{$ELSE}
+    IBQuery,
+{$IFEND}
   IncUser_U,
   SenhaForm_U,
   UcBase,
-  UserPermis_U, Datasnap.DBClient,
-  FireDAC.Comp.Client;
+{$IF CompilerVersion >= 23}
+  FireDAC.Comp.Client,
+{$IFEND}
+  UserPermis_U;
 
 type
   TUCFrame_User = class(TFrame)
@@ -126,7 +129,8 @@ type
     procedure BtPassClick(Sender: TObject);
     procedure BtExcluiClick(Sender: TObject);
     procedure EdPesUserEnter(Sender: TObject);
-    procedure EdPesUserKeyPress(Sender: TObject; var Key: Char);
+    procedure EdPesUserKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   protected
     FormSenha: TCustomForm;
     FfrmIncluirUsuario: TfrmIncluirUsuario;
@@ -147,7 +151,12 @@ type
 implementation
 
 uses
-  UCMessages, ZDataset, Data.Win.ADODB;
+  UCMessages,
+{$IFDEF DELPHI17_UP}
+  Data.Win.ADODB,
+{$ENDIF}
+  
+  ZDataset;
 
 {$R *.dfm}
 
@@ -301,44 +310,12 @@ begin
      TClientDataSet( DataUser.DataSet).IndexFieldNames:= indice;
   if DataUser.DataSet is TZQuery then
      TZQuery( DataUser.DataSet).IndexFieldNames:= indice;
+{$IFDEF DELPHI17_UP}   // Firedac disponviel a partir da versao XE3
   if DataUser.DataSet is TFDQuery then
      TFDQuery( DataUser.DataSet).IndexFieldNames:= indice;
-
-  if DataUser.DataSet is TADOQuery then
-     TADOQuery( DataUser.DataSet).IndexName:= indice;
-
-//    DataUser.DataSet.
-////     ( DataUser.DataSet).IndexFieldNames:= indice;
-//
-
-//        TFDQuery( DataUser.DataSet).IndexFieldNames:= indice;
-{$IFDEF DELPHI17_UP}   // Firedac disponviel a partir da versao XE3
+{$ENDIF}
   if DataUser.DataSet is TZQuery then
      TZQuery( DataUser.DataSet).IndexFieldNames:= indice;
-{$ENDIF}
-end;
-
-procedure TUCFrame_User.EdPesUserKeyPress(Sender: TObject; var Key: Char);
-Var
-   indice : string;
-begin
-  //  Mauri 28/01/2016
-  //  Ordenar Em Memoria
-  // Veirifca se DBExpres ou Firedac
-  // ClientDataSet nao Funciona com FDQuery para Index e outras Propriedades
-  if rgPesUser.ItemIndex = 1 then
-     indice :=  'Nome'
-  else
-     indice :=  'Login';
-//
-//  if DataUser.DataSet is TFDQuery then
-//     TFDQuery( DataUser.DataSet).FindNearest( [ EdPesUser.Text]);
-//  if DataUser.DataSet is TClientDataSet then
-//     TClientDataSet( DataUser.DataSet).FindNearest( [ EdPesUser.Text]);
-//  if DataUser.DataSet is TZQuery then
-    DataUser.DataSet.Locate(indice,Trim(EdPesUser.Text),[loPartialKey]);
-
-
 end;
 
 procedure TUCFrame_User.BtAcessClick(Sender: TObject);
@@ -516,6 +493,21 @@ begin
     end;
     FfrmIncluirUsuario.ComboStatus.ItemIndex := 0;
   end;
+end;
+
+procedure TUCFrame_User.EdPesUserKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+Var
+   indice : string;
+begin
+ //  Mauri 28/01/2016
+ //  Busca No Data Set em Memoria
+ // Evita nova consulta no banco ja que o select anterior trouxe todos os tegistros
+  if rgPesUser.ItemIndex = 1 then
+     indice :=  'Nome'
+  else
+     indice :=  'Login';
+  DataUser.DataSet.Locate(indice,Trim(EdPesUser.Text),[loPartialKey]);
 end;
 
 end.

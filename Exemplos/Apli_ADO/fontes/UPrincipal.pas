@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, Menus, UCBase, UCDataConnector, UCZEOSConn;
+  Dialogs, Menus, UCBase, UCDataConnector, UCZEOSConn, UCADOConn, StdCtrls;
 
 type
   TFrmPrincipal = class(TForm)
@@ -27,6 +27,8 @@ type
     estes1: TMenuItem;
     GerarLog1: TMenuItem;
     UCApplicationMessage1: TUCApplicationMessage;
+    UCADOConn1: TUCADOConn;
+    Memo1: TMemo;
     procedure Sair1Click(Sender: TObject);
     procedure GerarLog1Click(Sender: TObject);
     procedure Mensagens1Click(Sender: TObject);

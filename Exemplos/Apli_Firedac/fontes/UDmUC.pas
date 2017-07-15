@@ -39,8 +39,12 @@ procedure TdmUC.DataModuleCreate(Sender: TObject);
 var
 path:string;
 begin
+  // Mauri 11/05/2017
+  // Usando ".." o FDConection Nao entedeu muito o que ele siginifica no meio do path
+  // Por iso fiz essa "GAMBIARA" aqui->>
   path := Copy(gsAppPath, 1, LastDelimiter('\',gsAppPath)-1);
   path := Copy(Path, 1, LastDelimiter('\',Path));
+  
 //  path := gsAppPath +'..';
   path := path+ 'DBase\APLICATIVO_UC.FDB';
   FDConnection1.Close;

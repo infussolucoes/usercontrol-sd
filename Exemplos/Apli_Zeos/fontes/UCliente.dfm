@@ -1,9 +1,9 @@
 object FrmCliente: TFrmCliente
   Left = 0
   Top = 0
+  Width = 651
+  Height = 337
   Caption = 'Clientes'
-  ClientHeight = 299
-  ClientWidth = 635
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -41,7 +41,6 @@ object FrmCliente: TFrmCliente
   object UCControls1: TUCControls
     GroupName = 'Tela de Clientes'
     UserControl = FrmPrincipal.ucMyControl
-    Components = ''
     NotAllowed = naDisabled
     Left = 384
     Top = 144

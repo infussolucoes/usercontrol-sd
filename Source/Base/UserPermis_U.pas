@@ -99,15 +99,13 @@ uses
 
 
   ComCtrls,
-
   ImgList,
-
   // Delphi XE 8 ou superior
   {$IFDEF DELPHI22_UP}
-//      System.ImageList,
+      System.ImageList,
   {$ENDIF}
+  Menus  ;
 
-  Menus, System.ImageList;
 
 type
   PTreeMenu = ^TTreeMenu;

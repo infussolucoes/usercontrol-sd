@@ -3,14 +3,26 @@ unit UDmUC;
 interface
 
 uses
-  SysUtils, Classes, DB, UCBase,
+  SysUtils,
+  Forms,
+  Classes,
+  DB,
+  UCBase,
   UCDataConnector,
-  ZAbstractConnection, ZConnection,
-  ZAbstractRODataset, ZAbstractDataset, ZDataset, Data.Win.ADODB;
+  ZAbstractConnection,
+  ZConnection,
+  ZAbstractRODataset,
+  ZAbstractDataset, ZDataset,
+  {$IFDEF DELPHI22_UP}
+  Data.Win.ADODB,
+  {$ENDIF}
+   ADODB;
 
 type
   TdmUC = class(TDataModule)
     ADOConnection1: TADOConnection;
+    ADOQuery1: TADOQuery;
+    ADOTable1: TADOTable;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -18,23 +30,23 @@ type
     { Public declarations }
   end;
 
-var
+  var
   dmUC: TdmUC;
 
 implementation
 
-uses
-  IWSystem;
+{$IFDEF DELPHI22_UP}
+  uses
+    IWSystem;
+{$ENDIF}
+
+
 
 {$R *.dfm}
 
 procedure TdmUC.DataModuleCreate(Sender: TObject);
 begin
-//  FDConnection1.Close;
-//  FDConnection1.Params.Database :=
-//  gsAppPath + '..\DBase\APLICATIVO_UC.FDB';
-//  FDConnection1.Open;
-//gsAppPath
+   ADOConnection1.Open;
 end;
 
 end.

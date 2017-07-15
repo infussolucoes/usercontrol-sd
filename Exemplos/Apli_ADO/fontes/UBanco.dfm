@@ -1,9 +1,9 @@
 object FrmBanco: TFrmBanco
-  Left = 0
-  Top = 0
+  Left = 673
+  Top = 138
+  Width = 671
+  Height = 403
   Caption = 'Bancos'
-  ClientHeight = 365
-  ClientWidth = 655
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -39,7 +39,6 @@ object FrmBanco: TFrmBanco
     TabOrder = 1
   end
   object DSBanco: TDataSource
-    DataSet = dmUC.QryBanco
     Left = 184
     Top = 104
   end

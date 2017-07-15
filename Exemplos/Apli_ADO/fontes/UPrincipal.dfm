@@ -1,9 +1,9 @@
 object FrmPrincipal: TFrmPrincipal
-  Left = 408
-  Top = 246
+  Left = 457
+  Top = 217
+  Width = 635
+  Height = 343
   Caption = 'Tutorial UserControl - www.showdelphi.com.br'
-  ClientHeight = 285
-  ClientWidth = 619
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,9 +15,37 @@ object FrmPrincipal: TFrmPrincipal
   Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
+  object Memo1: TMemo
+    Left = 64
+    Top = 8
+    Width = 497
+    Height = 249
+    Ctl3D = False
+    Lines.Strings = (
+      
+        '** -------------------------------------------------------------' +
+        '--------------------**'
+      ''
+      'Obs.'
+      'Antes de Executar voce deve:'
+      'Instalar ODBC'
+      'Criar a string de Conec'#231#227'o ADO.'
+      ''
+      ''
+      'Testado no Delphi 7 com Firebird 2.5'
+      ''
+      
+        'A ODBC do Firebird Disponivel no SourceForge Ultima Versao 2.0.4' +
+        '.155 Parece n'#227'o funcionar com '
+      'Firebird 3.02'
+      ''
+      'Testado em 11/05/2017.')
+    ParentCtl3D = False
+    TabOrder = 0
+  end
   object MainMenu1: TMainMenu
-    Left = 104
-    Top = 112
+    Left = 40
+    Top = 40
     object Cadastro1: TMenuItem
       Caption = 'Cadastro'
       object Bancos1: TMenuItem
@@ -144,15 +172,21 @@ object FrmPrincipal: TFrmPrincipal
     TableUserEmpresa.FieldNameEmpresa = 'UcNameEmpresa'
     TableUserEmpresa.TableName = 'UCEmpresa'
     UserType = 0
-    Left = 160
-    Top = 16
+    DataConnector = UCADOConn1
+    Left = 200
+    Top = 24
   end
   object UCApplicationMessage1: TUCApplicationMessage
     Active = True
     Interval = 60000
     TableMessages = 'UCTABMESSAGES'
     UserControl = ucMyControl
-    Left = 320
-    Top = 120
+    Left = 288
+    Top = 24
+  end
+  object UCADOConn1: TUCADOConn
+    Connection = dmUC.ADOConnection1
+    Left = 136
+    Top = 40
   end
 end

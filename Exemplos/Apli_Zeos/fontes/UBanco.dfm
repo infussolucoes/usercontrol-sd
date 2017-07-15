@@ -1,9 +1,9 @@
 object FrmBanco: TFrmBanco
   Left = 0
   Top = 0
+  Width = 671
+  Height = 403
   Caption = 'Bancos'
-  ClientHeight = 365
-  ClientWidth = 655
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
