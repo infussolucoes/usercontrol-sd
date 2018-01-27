@@ -215,33 +215,42 @@ procedure TUserPermis.BtGravaClick(Sender: TObject);
 var
   Contador: Integer;
 begin
+  TBitBtn(Sender).Enabled := False;
+  Self.Caption := 'Waiting...';
+  Self.Enabled := False;
 
-  with FUserControl.TableRights do
-  begin
-    FUserControl.DataConnector.UCExecSQL('Delete from ' + TableName + ' Where '
-      + FieldUserID + ' = ' + IntToStr(FTempIdUser) + ' and ' + FieldModule +
-      ' = ' + QuotedStr(FUserControl.ApplicationID));
-    FUserControl.DataConnector.UCExecSQL('Delete from ' + TableName +
-      'EX Where ' + FieldUserID + ' = ' + IntToStr(FTempIdUser) + ' and ' +
-      FieldModule + ' = ' + QuotedStr(FUserControl.ApplicationID));
+  try
+    with FUserControl.TableRights do
+    begin
+      FUserControl.DataConnector.UCExecSQL('Delete from ' + TableName + ' Where '
+        + FieldUserID + ' = ' + IntToStr(FTempIdUser) + ' and ' + FieldModule +
+        ' = ' + QuotedStr(FUserControl.ApplicationID));
+      FUserControl.DataConnector.UCExecSQL('Delete from ' + TableName +
+        'EX Where ' + FieldUserID + ' = ' + IntToStr(FTempIdUser) + ' and ' +
+        FieldModule + ' = ' + QuotedStr(FUserControl.ApplicationID));
+    end;
+
+    for Contador := 0 to TreeMenu.Items.Count - 1 do
+      if PTreeMenu(TreeMenu.Items[Contador].Data).Selecionado = 1 then
+        FUserControl.AddRight(FTempIdUser,
+          PTreeMenu(TreeMenu.Items[Contador].Data).MenuName);
+
+    for Contador := 0 to TreeAction.Items.Count - 1 do
+      if PTreeAction(TreeAction.Items[Contador].Data).Selecionado = 1 then
+        FUserControl.AddRight(FTempIdUser,
+          PTreeAction(TreeAction.Items[Contador].Data).MenuName);
+
+    // Extra Rights
+    for Contador := 0 to Pred(TreeControls.Items.Count) do
+      if PTreeControl(TreeControls.Items[Contador].Data).Selecionado = 1 then
+        FUserControl.AddRightEX(FTempIdUser, FUserControl.ApplicationID,
+          PTreeControl(TreeControls.Items[Contador].Data).FormName,
+          PTreeControl(TreeControls.Items[Contador].Data).CompName);
+
+  finally
+    Self.Enabled := True;
+    TBitBtn(Sender).Enabled := True;
   end;
-
-  for Contador := 0 to TreeMenu.Items.Count - 1 do
-    if PTreeMenu(TreeMenu.Items[Contador].Data).Selecionado = 1 then
-      FUserControl.AddRight(FTempIdUser,
-        PTreeMenu(TreeMenu.Items[Contador].Data).MenuName);
-
-  for Contador := 0 to TreeAction.Items.Count - 1 do
-    if PTreeAction(TreeAction.Items[Contador].Data).Selecionado = 1 then
-      FUserControl.AddRight(FTempIdUser,
-        PTreeAction(TreeAction.Items[Contador].Data).MenuName);
-
-  // Extra Rights
-  for Contador := 0 to Pred(TreeControls.Items.Count) do
-    if PTreeControl(TreeControls.Items[Contador].Data).Selecionado = 1 then
-      FUserControl.AddRightEX(FTempIdUser, FUserControl.ApplicationID,
-        PTreeControl(TreeControls.Items[Contador].Data).FormName,
-        PTreeControl(TreeControls.Items[Contador].Data).CompName);
 
   Close;
 end;
