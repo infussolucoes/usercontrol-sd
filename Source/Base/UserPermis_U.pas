@@ -134,6 +134,8 @@ type
     FormName: String;
   end;
 
+  TTreeViewEvent = procedure(Marca: Boolean) of object;
+
   TUserPermis = class(TForm)
     Panel1: TPanel;
     LbDescricao: TLabel;
@@ -191,6 +193,8 @@ type
     procedure UnCheckChild(node: TTreeNode);
     procedure TreeControlItem(marca: Boolean);
     procedure CarregaTreeviews;
+    function GetNode(TreeView: TTreeView): TTreeNode;
+    procedure ClickTreeView(Sender: TObject; Event: TTreeViewEvent);
   public
     FTempIdUser: Integer;
     FUserControl: TUserControl;
@@ -573,6 +577,18 @@ begin
     (FExtraRights.Count > 0));
 end;
 
+procedure TUserPermis.ClickTreeView(Sender: TObject; Event: TTreeViewEvent);
+var
+  Node: TTreeNode;
+begin
+  if not FChangingTree then
+  begin
+    Node := GetNode(TTreeView(Sender));
+    if ((Node <> nil) and (Node = TTreeView(Sender).Selected)) then
+      Event(True);
+  end;
+end;
+
 procedure TUserPermis.UnCheckChild(node: TTreeNode);
 var
   child: TTreeNode;
@@ -675,8 +691,7 @@ end;
 
 procedure TUserPermis.TreeMenuClick(Sender: TObject);
 begin
-  if not FChangingTree then
-    TreeMenuItem(True);
+  ClickTreeView(Sender, TreeMenuItem);
 end;
 
 procedure TUserPermis.BtCancelClick(Sender: TObject);
@@ -866,16 +881,22 @@ begin
   PageMenu.Caption := 'Menu Controle de Usuarios';
 end;
 
+function TUserPermis.GetNode(TreeView: TTreeView): TTreeNode;
+var
+  Point: TPoint;
+begin
+  Point := TreeView.ScreenToClient(Mouse.CursorPos);
+  Result := TreeView.GetNodeAt(Point.X, Point.Y);
+end;
+
 procedure TUserPermis.TreeActionClick(Sender: TObject);
 begin
-  if not FChangingTree then
-    TreeActionItem(True);
+  ClickTreeView(Sender, TreeActionItem);
 end;
 
 procedure TUserPermis.TreeControlsClick(Sender: TObject);
 begin
-  if not FChangingTree then
-    TreeControlItem(True);
+  ClickTreeView(Sender, TreeControlItem);
 end;
 
 procedure TUserPermis.TreeMenuKeyPress(Sender: TObject; var Key: char);
