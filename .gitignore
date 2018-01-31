@@ -4,3 +4,4 @@ __recovery
 *.cfg
 *.dof
 *.local
+/Lib/Delphi

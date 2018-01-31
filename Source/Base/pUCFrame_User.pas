@@ -137,7 +137,7 @@ type
 implementation
 
 uses
-  UCMessages;
+  UCMessages, UCDataInfo;
 
 {$R *.dfm}
 
@@ -191,13 +191,14 @@ var
   TempID: Integer;
   CanDelete: Boolean;
   ErrorMsg: String;
+  DataSetTemp: TDataSet;
 begin
   if FDataSetCadastroUsuario.IsEmpty then
     Exit;
   TempID := FDataSetCadastroUsuario.FieldByName('IDUser').AsInteger;
   if MessageBox(Handle,
     PChar(Format(FUsercontrol.UserSettings.UsersForm.PromptDelete,
-    [FDataSetCadastroUsuario.FieldByName('Login').AsString])),
+      [FDataSetCadastroUsuario.FieldByName('Login').AsString])),
     PChar(FUsercontrol.UserSettings.UsersForm.PromptDelete_WindowCaption),
     MB_ICONQUESTION or MB_YESNO or MB_DEFBUTTON2) = idYes then
   begin
@@ -207,6 +208,21 @@ begin
     if not CanDelete then
     begin
       MessageDlg(ErrorMsg, mtWarning, [mbOK], 0);
+      Exit;
+    end;
+
+    //Cassiano 31/01/2018
+    DataSetTemp := FUsercontrol.DataConnector.UCGetSQLDataset(Format(
+      'select * from %s where %s = %s',
+      [
+        FUsercontrol.TableUsersLogged.TableName,
+        FUsercontrol.TableUsersLogged.FieldUserID,
+        IntToStr(FUsercontrol.CurrentUser.UserID)
+      ]
+    ));
+    if not DataSetTemp.IsEmpty then
+    begin
+      MessageDlg('Impossível excluir usuários logados!', mtWarning, [mbOK], 0);
       Exit;
     end;
 

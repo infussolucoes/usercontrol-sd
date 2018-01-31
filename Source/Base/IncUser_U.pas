@@ -174,7 +174,7 @@ var
   vPerfil: Integer;
   vPrivilegiado: Boolean;
 begin
-  if ComboPerfil.KeyValue = NULL then
+  if ComboPerfil.ListSource.DataSet.RecordCount > 0 and ComboPerfil.KeyValue = NULL then
   begin
     ShowMessage('Falta Informar o Perfil');
     Exit; // Cleilson Sousa
