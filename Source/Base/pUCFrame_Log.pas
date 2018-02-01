@@ -124,6 +124,7 @@ type
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure btexcluiClick(Sender: TObject);
     procedure btfiltroClick(Sender: TObject);
+    procedure DBGrid1TitleClick(Column: TColumn);
   private
     procedure AplicaFiltro;
   public
@@ -205,6 +206,11 @@ begin
   end;
 end;
 
+procedure TUCFrame_Log.DBGrid1TitleClick(Column: TColumn);
+begin
+  FUsercontrol.DataConnector.OrderBy(Column.Field.DataSet, Column.FieldName);
+end;
+
 procedure TUCFrame_Log.btexcluiClick(Sender: TObject);
 var
   FTabLog, Temp: String;
@@ -271,7 +277,7 @@ begin
 
   if Length(Trim(Mensagem.Text)) > 0 then
     Temp := Temp + ' and ' + FTabLog + '.MSG like ' + QuotedStr('%' + Mensagem.Text + '%');
-  
+
   Temp := Temp + ' order by data desc';
 
   FreeAndnil(DSLog);

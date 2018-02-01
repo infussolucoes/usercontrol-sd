@@ -89,8 +89,16 @@ type
     function UCFindDataConnection: Boolean; virtual; abstract;
     function GetDBObjectName: String; virtual; abstract;
     function GetTransObjectName: String; virtual; abstract;
+    procedure OrderBy(const DataSet: TDataSet; const FieldName: string); virtual;
   end;
 
 implementation
+
+{ TUCDataConnector }
+
+procedure TUCDataConnector.OrderBy(const DataSet: TDataSet; const FieldName: string);
+begin
+
+end;
 
 end.

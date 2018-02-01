@@ -101,6 +101,7 @@ type
     function UCFindTable(const Tablename: String): Boolean; override;
     function UCGetSQLDataset(FSQL: String): TDataset; override;
     procedure UCExecSQL(FSQL: String); override;
+    procedure OrderBy(const DataSet: TDataSet; const FieldName: string); override;
   published
     property Connection: TFDConnection read FConnection write SetFConnection;
   end;
@@ -125,6 +126,15 @@ begin
     FConnection := nil;
   end;
   inherited Notification(AComponent, Operation);
+end;
+
+procedure TUCFireDACConn.OrderBy(const DataSet: TDataSet; const FieldName: string);
+begin
+  inherited;
+  if TFDQuery(DataSet).IndexFieldNames = FieldName then
+    TFDQuery(DataSet).IndexFieldNames := FieldName + ':D'
+  else
+    TFDQuery(DataSet).IndexFieldNames := FieldName;
 end;
 
 function TUCFireDACConn.UCFindTable(const Tablename: String): Boolean;

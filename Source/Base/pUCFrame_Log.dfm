@@ -20,7 +20,7 @@ object UCFrame_Log: TUCFrame_Log
     Ctl3D = True
     DataSource = DataSource1
     DefaultDrawing = False
-    Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit]
+    Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick]
     ParentCtl3D = False
     ReadOnly = True
     TabOrder = 0
@@ -30,6 +30,7 @@ object UCFrame_Log: TUCFrame_Log
     TitleFont.Name = 'MS Sans Serif'
     TitleFont.Style = []
     OnDrawColumnCell = DBGrid1DrawColumnCell
+    OnTitleClick = DBGrid1TitleClick
     Columns = <
       item
         Expanded = False
