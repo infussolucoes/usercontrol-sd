@@ -281,8 +281,8 @@ begin
       [ComboUsuario.ItemIndex];
 
   if Length(Trim(Mensagem.Text)) > 0 then
-    Temp := Temp + ' and ' + FTabLog + '.MSG like ''%' + Mensagem.Text + '%'';' +
-                                                                         '
+    Temp := Temp + ' and ' + FTabLog + '.MSG like ' + QuotedStr('%' + Mensagem.Text + '%');
+  
   Temp := Temp + ' order by data desc';
 
   FreeAndnil(DSLog);
