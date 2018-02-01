@@ -15,7 +15,7 @@ object UCFrame_Log: TUCFrame_Log
     Left = 0
     Top = 0
     Width = 563
-    Height = 394
+    Height = 362
     Align = alClient
     Ctl3D = True
     DataSource = DataSource1
@@ -50,50 +50,55 @@ object UCFrame_Log: TUCFrame_Log
   end
   object Panel1: TPanel
     Left = 0
-    Top = 394
+    Top = 362
     Width = 563
-    Height = 104
+    Height = 136
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 1
     object lbUsuario: TLabel
       Left = 16
-      Top = 8
+      Top = 6
       Width = 42
       Height = 13
       Caption = 'Usu'#225'rio :'
     end
     object lbData: TLabel
       Left = 176
-      Top = 8
+      Top = 6
       Width = 29
       Height = 13
       Caption = 'Data :'
     end
     object lbNivel: TLabel
       Left = 376
-      Top = 8
+      Top = 6
       Width = 69
       Height = 13
       Caption = 'N'#237'vel m'#237'nimo :'
     end
     object Bevel3: TBevel
-      Left = 16
-      Top = 63
+      Left = 0
+      Top = 98
       Width = 529
-      Height = 2
+      Height = 1
       Style = bsRaised
+    end
+    object Label1: TLabel
+      Left = 16
+      Top = 52
+      Width = 58
+      Height = 13
+      Caption = 'Mensagem :'
     end
     object btfiltro: TBitBtn
       Left = 145
-      Top = 71
+      Top = 105
       Width = 130
       Height = 25
       Cursor = crHandPoint
       Caption = 'Aplicar filtro'
       Enabled = False
-      TabOrder = 4
-      OnClick = btfiltroClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -146,16 +151,16 @@ object UCFrame_Log: TUCFrame_Log
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
+      TabOrder = 5
+      OnClick = btfiltroClick
     end
     object btexclui: TBitBtn
       Left = 288
-      Top = 71
+      Top = 105
       Width = 130
       Height = 25
       Cursor = crHandPoint
       Caption = 'Excluir Log'
-      TabOrder = 5
-      OnClick = btexcluiClick
       Glyph.Data = {
         36050000424D3605000000000000360400002800000010000000100000000100
         08000000000000010000220B0000220B000000010000000100000031DE000031
@@ -199,14 +204,15 @@ object UCFrame_Log: TUCFrame_Log
         0404040405030404040404040303050404040404040303040404040303030404
         0404040404040403040403030304040404040404040404040404030304040404
         0404040404040404040404040404040404040404040404040404}
+      TabOrder = 6
+      OnClick = btexcluiClick
     end
     object ComboUsuario: TComboBox
       Left = 16
-      Top = 24
+      Top = 25
       Width = 145
       Height = 21
       Style = csDropDownList
-      ItemHeight = 13
       TabOrder = 0
       OnChange = ComboUsuarioChange
     end
@@ -222,7 +228,7 @@ object UCFrame_Log: TUCFrame_Log
     end
     object Data2: TDateTimePicker
       Left = 271
-      Top = 24
+      Top = 25
       Width = 89
       Height = 21
       Date = 37615.000000000000000000
@@ -232,7 +238,7 @@ object UCFrame_Log: TUCFrame_Log
     end
     object ComboNivel: TComboBox
       Left = 376
-      Top = 24
+      Top = 25
       Width = 145
       Height = 24
       Style = csOwnerDrawFixed
@@ -245,6 +251,13 @@ object UCFrame_Log: TUCFrame_Log
         'Moyen'
         'Haut'
         'Critique')
+    end
+    object Mensagem: TEdit
+      Left = 16
+      Top = 71
+      Width = 505
+      Height = 21
+      TabOrder = 4
     end
   end
   object DataSource1: TDataSource

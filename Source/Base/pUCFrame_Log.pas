@@ -116,6 +116,8 @@ type
     Data1: TDateTimePicker;
     Data2: TDateTimePicker;
     ComboNivel: TComboBox;
+    Label1: TLabel;
+    Mensagem: TEdit;
     procedure ComboNivelDrawItem(Control: TWinControl; Index: Integer;
       Rect: TRect; State: TOwnerDrawState);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
@@ -278,6 +280,9 @@ begin
     Temp := Temp + ' and ' + FTabLog + '.idUser = ' + ListIdUser
       [ComboUsuario.ItemIndex];
 
+  if Length(Trim(Mensagem.Text)) > 0 then
+    Temp := Temp + ' and ' + FTabLog + '.MSG like ''%' + Mensagem.Text + '%'';' +
+                                                                         '
   Temp := Temp + ' order by data desc';
 
   FreeAndnil(DSLog);
