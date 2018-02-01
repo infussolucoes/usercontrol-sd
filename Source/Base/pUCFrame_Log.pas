@@ -122,9 +122,7 @@ type
       Rect: TRect; State: TOwnerDrawState);
     procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
-    procedure ComboUsuarioChange(Sender: TObject);
     procedure btexcluiClick(Sender: TObject);
-    procedure Data1Change(Sender: TObject);
     procedure btfiltroClick(Sender: TObject);
   private
     procedure AplicaFiltro;
@@ -168,45 +166,43 @@ end;
 procedure TUCFrame_Log.DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
   DataCol: Integer; Column: TColumn; State: TGridDrawState);
 var
-  TempImg: Graphics.TBitmap;
   FData: System.TDateTime;
   TempData: String;
+  img: TImage;
 begin
-  if DSLog.IsEmpty then
-    Exit;
-
-  if UpperCase(Column.FieldName) = 'NIVEL' then
+  if not DSLog.IsEmpty then
   begin
-    if Column.Field.AsInteger >= 0 then
+    if UpperCase(Column.FieldName) = 'NIVEL' then
     begin
-      TempImg := Graphics.TBitmap.Create;
-      ImageList1.GetBitmap(Column.Field.AsInteger, TempImg);
-      DBGrid1.Canvas.Draw((((Rect.Left + Rect.Right) - TempImg.Width) div 2),
-        Rect.Top, TempImg);
-      FreeAndnil(TempImg);
+      if Column.Field.AsInteger >= 0 then
+      begin
+        img := TImage.Create(nil);
+        try
+          ImageList1.GetBitmap(Column.Field.AsInteger, img.Picture.Bitmap);
+          DBGrid1.Canvas.FillRect(Rect);
+          DBGrid1.Canvas.Draw((((Rect.Left + Rect.Right) - img.Picture.Bitmap.Width) div 2), Rect.Top, img.Picture.Bitmap);
+        finally
+          img.Free;
+        end;
+      end
+      else
+        DBGrid1.Canvas.TextRect(Rect, Rect.Left + 2, Rect.Top + 2,
+          Column.Field.AsString);
+    end
+    else if UpperCase(Column.FieldName) = 'DATA' then
+    begin
+      TempData := Column.Field.AsString;
+      FData := EncodeDate(StrToInt(Copy(TempData, 1, 4)),
+        StrToInt(Copy(TempData, 5, 2)), StrToInt(Copy(TempData, 7, 2))) +
+        EncodeTime(StrToInt(Copy(TempData, 9, 2)), StrToInt(Copy(TempData, 11, 2)
+        ), StrToInt(Copy(TempData, 13, 2)), 0);
+      DBGrid1.Canvas.TextRect(Rect, Rect.Left + 2, Rect.Top + 2,
+        DateTimeToStr(FData));
     end
     else
       DBGrid1.Canvas.TextRect(Rect, Rect.Left + 2, Rect.Top + 2,
         Column.Field.AsString);
-  end
-  else if UpperCase(Column.FieldName) = 'DATA' then
-  begin
-    TempData := Column.Field.AsString;
-    FData := EncodeDate(StrToInt(Copy(TempData, 1, 4)),
-      StrToInt(Copy(TempData, 5, 2)), StrToInt(Copy(TempData, 7, 2))) +
-      EncodeTime(StrToInt(Copy(TempData, 9, 2)), StrToInt(Copy(TempData, 11, 2)
-      ), StrToInt(Copy(TempData, 13, 2)), 0);
-    DBGrid1.Canvas.TextRect(Rect, Rect.Left + 2, Rect.Top + 2,
-      DateTimeToStr(FData));
-  end
-  else
-    DBGrid1.Canvas.TextRect(Rect, Rect.Left + 2, Rect.Top + 2,
-      Column.Field.AsString);
-end;
-
-procedure TUCFrame_Log.ComboUsuarioChange(Sender: TObject);
-begin
-  btfiltro.Enabled := True;
+  end;
 end;
 
 procedure TUCFrame_Log.btexcluiClick(Sender: TObject);
@@ -219,7 +215,6 @@ begin
     <> mrYes then
     Exit;
 
-  btfiltro.Enabled := False;
   FTabLog := FUsercontrol.LogControl.TableLog;
   Temp := 'Delete from ' + FTabLog + ' Where (Data >=' +
     QuotedStr(FormatDateTime('yyyyMMddhhmmss', Data1.DateTime)) + ') ' +
@@ -247,11 +242,6 @@ begin
 
 end;
 
-procedure TUCFrame_Log.Data1Change(Sender: TObject);
-begin
-  btfiltro.Enabled := True;
-end;
-
 procedure TUCFrame_Log.btfiltroClick(Sender: TObject);
 begin
   AplicaFiltro;
@@ -262,7 +252,6 @@ var
   FTabUser, FTabLog: String;
   Temp: String;
 begin
-  btfiltro.Enabled := False;
   DSLog.Close;
   FTabLog := FUsercontrol.LogControl.TableLog;
   FTabUser := FUsercontrol.TableUsers.TableName;

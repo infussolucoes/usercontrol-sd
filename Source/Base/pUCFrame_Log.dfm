@@ -98,7 +98,6 @@ object UCFrame_Log: TUCFrame_Log
       Height = 25
       Cursor = crHandPoint
       Caption = 'Aplicar filtro'
-      Enabled = False
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -214,7 +213,6 @@ object UCFrame_Log: TUCFrame_Log
       Height = 21
       Style = csDropDownList
       TabOrder = 0
-      OnChange = ComboUsuarioChange
     end
     object Data1: TDateTimePicker
       Left = 176
@@ -224,7 +222,6 @@ object UCFrame_Log: TUCFrame_Log
       Date = 37615.000000000000000000
       Time = 37615.000000000000000000
       TabOrder = 1
-      OnChange = Data1Change
     end
     object Data2: TDateTimePicker
       Left = 271
@@ -234,7 +231,6 @@ object UCFrame_Log: TUCFrame_Log
       Date = 37615.000000000000000000
       Time = 37615.000000000000000000
       TabOrder = 2
-      OnChange = ComboUsuarioChange
     end
     object ComboNivel: TComboBox
       Left = 376
@@ -244,7 +240,6 @@ object UCFrame_Log: TUCFrame_Log
       Style = csOwnerDrawFixed
       ItemHeight = 18
       TabOrder = 3
-      OnChange = ComboUsuarioChange
       OnDrawItem = ComboNivelDrawItem
       Items.Strings = (
         'Faible'
