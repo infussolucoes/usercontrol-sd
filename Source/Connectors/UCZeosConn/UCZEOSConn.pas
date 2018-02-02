@@ -99,6 +99,7 @@ type
     function UCFindTable(const Tablename: String): Boolean; override;
     function UCGetSQLDataset(FSQL: String): TDataset; override;
     procedure UCExecSQL(FSQL: String); override;
+    procedure OrderBy(const DataSet: TDataSet; const FieldName: string); override;
   published
     property Connection: TZConnection read FConnection write SetFConnection;
   end;
@@ -106,7 +107,7 @@ type
 implementation
 
 uses
-  ZDataset, Dialogs;
+  ZDataset, Dialogs, ZAbstractRODataset;
 
 { TUCZEOSConn }
 
@@ -123,6 +124,14 @@ begin
   if (Operation = opRemove) and (AComponent = FConnection) then
     FConnection := nil;
   inherited Notification(AComponent, Operation);
+end;
+
+procedure TUCZEOSConn.OrderBy(const DataSet: TDataSet; const FieldName: string);
+begin
+  if TZQuery(DataSet).IndexFieldNames = FieldName + ' Asc' then
+    TZQuery(DataSet).IndexFieldNames := FieldName + ' Desc'
+  else
+    TZQuery(DataSet).IndexFieldNames := FieldName;
 end;
 
 function TUCZEOSConn.UCFindTable(const TableName: String): Boolean;
@@ -185,6 +194,7 @@ begin
   begin
     Connection := FConnection;
     SQL.Text   := FSQL;
+    SortType := stIgnored;
     Open;
   end;
 end;
