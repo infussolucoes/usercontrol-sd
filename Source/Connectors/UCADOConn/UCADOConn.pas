@@ -100,6 +100,7 @@ type
     function UCFindTable(const Tablename: String): Boolean; override;
     function UCGetSQLDataset(FSQL: String): TDataset; override;
     procedure UCExecSQL(FSQL: String); override;
+    procedure OrderBy(const DataSet: TDataSet; const FieldName: string); override;
   published
     property Connection: TADOConnection read FConnection write SetADOConnection;
   end;
@@ -121,6 +122,15 @@ begin
   if (Operation = opRemove) and (AComponent = FConnection) then
     FConnection := nil;
   inherited Notification(AComponent, Operation);
+end;
+
+procedure TUCADOConn.OrderBy(const DataSet: TDataSet; const FieldName: string);
+begin
+  inherited;
+  if TADOQuery(DataSet).Sort = FieldName + ' ASC' then
+    TADOQuery(DataSet).Sort := FieldName + ' DESC'
+  else
+    TADOQuery(DataSet).Sort := FieldName;
 end;
 
 function TUCADOConn.UCFindTable(const TableName: String): Boolean;

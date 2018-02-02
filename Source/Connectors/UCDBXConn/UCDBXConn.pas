@@ -104,6 +104,7 @@ type
     function UCFindTable(const Tablename: String): Boolean; override;
     function UCGetSQLDataset(FSQL: String): TDataset; override;
     procedure UCExecSQL(FSQL: String); override;
+    procedure OrderBy(const DataSet: TDataSet; const FieldName: string); override;
   published
     property Connection: TSQLConnection read FConnection write SetSQLConnection;
     property SchemaName: String read FSchema write FSchema;
@@ -126,6 +127,37 @@ begin
   if (Operation = opRemove) and (AComponent = FConnection) then
     FConnection := nil;
   inherited Notification(AComponent, Operation);
+end;
+
+procedure TUCDBXConn.OrderBy(const DataSet: TDataSet; const FieldName: string);
+var
+  IndexName: string;
+  Index: TIndexDef;
+  Found: Boolean;
+begin
+  inherited;
+  if TSimpleDataSet(DataSet).IndexFieldNames = FieldName then
+  begin
+    IndexName := FieldName + ' Desc';
+
+    try
+      TSimpleDataSet(DataSet).IndexDefs.Find(IndexName);
+      Found := True;
+    except
+      Found := False;
+    end;
+
+    if not Found then
+    begin
+      Index := TSimpleDataSet(DataSet).IndexDefs.AddIndexDef;
+      Index.Name := IndexName;
+      Index.Fields := FieldName;
+      Index.Options := [ixDescending];
+    end;
+    TSimpleDataSet(DataSet).IndexName := IndexName;
+  end
+  else
+    TSimpleDataSet(DataSet).IndexFieldNames := FieldName;
 end;
 
 function TUCDBXConn.UCFindTable(const TableName: String): Boolean;

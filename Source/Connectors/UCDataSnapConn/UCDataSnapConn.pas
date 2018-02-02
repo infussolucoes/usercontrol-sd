@@ -188,6 +188,7 @@ var
   Index: TIndexDef;
   Found: Boolean;
 begin
+  inherited;
   if TClientDataSet(DataSet).IndexFieldNames = FieldName then
   begin
     IndexName := FieldName + ' Desc';

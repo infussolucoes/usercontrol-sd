@@ -97,8 +97,7 @@ type
     FConnection: TDSRestConnection;
     procedure SetConnection(const Value: TDSRestConnection);
   protected
-    procedure Notification(AComponent: TComponent;
-      Operation: TOperation); override;
+    procedure Notification(AComponent: TComponent; Operation: TOperation); override;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -108,6 +107,7 @@ type
     function UCFindTable(const Tablename: String): Boolean; override;
     function UCGetSQLDataset(FSQL: String): TDataset; override;
     procedure UCExecSQL(FSQL: String); override;
+    procedure OrderBy(const DataSet: TDataSet; const FieldName: string); override;
   published
     property Connection: TDSRestConnection read FConnection write SetConnection;
     property DSClient: TDSUserRemote read FDSClient write FDSClient;
@@ -156,6 +156,15 @@ begin
   if (Operation = opRemove) and (AComponent = FConnection) then
     FConnection := nil;
   inherited Notification(AComponent, Operation);
+end;
+
+procedure TUCRestConn.OrderBy(const DataSet: TDataSet; const FieldName: string);
+begin
+  inherited;
+  if TFDMemTable(DataSet).IndexFieldNames = FieldName then
+    TFDMemTable(DataSet).IndexFieldNames := FieldName + ':D'
+  else
+    TFDMemTable(DataSet).IndexFieldNames := FieldName;
 end;
 
 procedure TUCRestConn.SetConnection(const Value: TDSRestConnection);

@@ -116,6 +116,7 @@ type
     function UCFindTable(const Tablename: String): Boolean; override;
     function UCGetSQLDataset(FSQL: String): TDataset; override;
     procedure UCExecSQL(FSQL: String); override;
+    procedure OrderBy(const DataSet: TDataSet; const FieldName: string); override;
   published
     property Connection: TCustomRemoteServer Read FConnection
       Write SetConnection;
@@ -180,6 +181,37 @@ begin
   if (Operation = opRemove) and (AComponent = FConnection) then
     FConnection := nil;
   inherited Notification(AComponent, Operation);
+end;
+
+procedure TUCMidasConn.OrderBy(const DataSet: TDataSet; const FieldName: string);
+var
+  IndexName: string;
+  Index: TIndexDef;
+  Found: Boolean;
+begin
+  inherited;
+  if TClientDataSet(DataSet).IndexFieldNames = FieldName then
+  begin
+    IndexName := FieldName + ' Desc';
+
+    try
+      TClientDataSet(DataSet).IndexDefs.Find(IndexName);
+      Found := True;
+    except
+      Found := False;
+    end;
+
+    if not Found then
+    begin
+      Index := TClientDataSet(DataSet).IndexDefs.AddIndexDef;
+      Index.Name := IndexName;
+      Index.Fields := FieldName;
+      Index.Options := [ixDescending];
+    end;
+    TClientDataSet(DataSet).IndexName := IndexName;
+  end
+  else
+    TClientDataSet(DataSet).IndexFieldNames := FieldName;
 end;
 
 procedure TUCMidasConn.SetConnection(const Value: TCustomRemoteServer);
