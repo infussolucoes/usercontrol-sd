@@ -90,6 +90,8 @@ uses
   Windows,
   DBGrids,
   Grids,
+  ImgList,
+  ImageList,
 
 
   {$IF CompilerVersion >= 23}
@@ -112,11 +114,26 @@ type
     DbGridUser: TDBGrid;
     DataUser: TDataSource;
     DataPerfil: TDataSource;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Nome: TEdit;
+    Login: TEdit;
+    Email: TEdit;
+    btApplyFilter: TBitBtn;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    ImageList1: TImageList;
+    Shape1: TShape;
     procedure btAdicClick(Sender: TObject);
     procedure BtAltClick(Sender: TObject);
     procedure BtAcessClick(Sender: TObject);
     procedure BtPassClick(Sender: TObject);
     procedure BtExcluiClick(Sender: TObject);
+    procedure DbGridUserTitleClick(Column: TColumn);
+    procedure btApplyFilterClick(Sender: TObject);
+  private
+    procedure ChangeButtonFilter;
   protected
     FormSenha: TCustomForm;
     FfrmIncluirUsuario: TfrmIncluirUsuario;
@@ -124,8 +141,6 @@ type
     procedure SetWindowUser(Adicionar: Boolean);
     procedure ActionBtPermissUserDefault;
     procedure FDataSetCadastroUsuarioAfterScroll(DataSet: TDataSet);
-  private
-    { Private declarations }
   public
     FUsercontrol: TUserControl;
     FDataSetCadastroUsuario: TDataSet;
@@ -184,6 +199,11 @@ begin
     ShowModal;
   end;
   FreeAndNil(FfrmIncluirUsuario);
+end;
+
+procedure TUCFrame_User.btApplyFilterClick(Sender: TObject);
+begin
+  ChangeButtonFilter;
 end;
 
 procedure TUCFrame_User.BtExcluiClick(Sender: TObject);
@@ -270,6 +290,63 @@ begin
       .AsInteger, TSenhaForm(FormSenha).edtSenha.Text);
   End;
   FreeAndNil(FormSenha);
+end;
+
+procedure TUCFrame_User.ChangeButtonFilter;
+var
+  Filter, btCaption: string;
+  Filtered: Boolean;
+  IndexImage: Integer;
+
+  procedure SetFilter(AFilter: string);
+  var
+    Separetor: string;
+  begin
+    Separetor := '';
+    if Length(Trim(Filter)) > 0 then
+      Separetor := ' and ';
+
+    Filter := Filter + Separetor + AFilter;
+  end;
+begin
+  Filter := '';
+  Filtered := DataUser.DataSet.Filtered;
+  DataUser.DataSet.Filtered := False;
+  DataUser.DataSet.Filter := Filter;
+  Nome.Enabled := Filtered;
+  Login.Enabled := Filtered;
+  Email.Enabled := Filtered;
+
+  if Filtered then
+  begin
+    IndexImage := 0;
+    btCaption := 'Aplicar Filtro';
+  end
+  else
+  begin
+    if Length(Trim(Nome.Text)) > 0 then
+      SetFilter('Nome like ' + QuotedStr('%' + Nome.Text + '%'));
+
+    if Length(Trim(Login.Text)) > 0 then
+      SetFilter('Login like ' + QuotedStr('%' + Login.Text + '%'));
+
+    if Length(Trim(Email.Text)) > 0 then
+      SetFilter('Email like ' + QuotedStr('%' + Email.Text + '%'));
+
+    DataUser.DataSet.Filter := Filter;
+    DataUser.DataSet.Filtered := True;
+    IndexImage := 1;
+    btCaption := 'Remover Filtro';
+  end;
+
+  btApplyFilter.Glyph := nil;
+  ImageList1.GetBitmap(IndexImage, btApplyFilter.Glyph);
+  btApplyFilter.Caption := btCaption;
+end;
+
+procedure TUCFrame_User.DbGridUserTitleClick(Column: TColumn);
+begin
+  FUsercontrol.DataConnector.OrderBy(Column.Field.DataSet, Column.FieldName);
 end;
 
 destructor TUCFrame_User.Destroy;
