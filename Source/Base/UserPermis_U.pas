@@ -157,6 +157,9 @@ type
     GroupBox1: TGroupBox;
     CBBloqueado: TCheckBox;
     CBLiberado: TCheckBox;
+    pmTree: TPopupMenu;
+    miExpandAll: TMenuItem;
+    miCollapseAll: TMenuItem;
     procedure BtGravaClick(Sender: TObject);
     procedure TreeMenuClick(Sender: TObject);
     procedure BtCancelClick(Sender: TObject);
@@ -170,6 +173,8 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure FormDestroy(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure miCollapseAllClick(Sender: TObject);
+    procedure miExpandAllClick(Sender: TObject);
   private
     FMenu: TMenu;
     FActions: TObject;
@@ -195,6 +200,7 @@ type
     procedure CarregaTreeviews;
     function GetNode(TreeView: TTreeView): TTreeNode;
     procedure ClickTreeView(Sender: TObject; Event: TTreeViewEvent);
+    function GetTreeViewActive: TTreeView;
   public
     FTempIdUser: Integer;
     FUserControl: TUserControl;
@@ -887,6 +893,27 @@ var
 begin
   Point := TreeView.ScreenToClient(Mouse.CursorPos);
   Result := TreeView.GetNodeAt(Point.X, Point.Y);
+end;
+
+function TUserPermis.GetTreeViewActive: TTreeView;
+begin
+  if PC.ActivePage = PageMenu then
+    Result := TreeMenu
+  else if PC.ActivePage = PageAction then
+    Result := TreeAction
+  else if PC.ActivePage = PageControls then
+    Result := TreeMenu;
+end;
+
+procedure TUserPermis.miCollapseAllClick(Sender: TObject);
+begin
+  GetTreeViewActive.FullCollapse;
+end;
+
+procedure TUserPermis.miExpandAllClick(Sender: TObject);
+begin
+  GetTreeViewActive.FullExpand
+  ;
 end;
 
 procedure TUserPermis.TreeActionClick(Sender: TObject);

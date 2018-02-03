@@ -159,9 +159,12 @@ begin
     end;
   end;
 
-  FDataSetPerfilUsuario.Close;
-  FDataSetPerfilUsuario.Open;
-  FDataSetPerfilUsuario.Locate('IDUser', FNewIdUser, []);
+  if FDataSetPerfilUsuario <> nil then
+  begin
+    FDataSetPerfilUsuario.Close;
+    FDataSetPerfilUsuario.Open;
+    FDataSetPerfilUsuario.Locate('IDUser', FNewIdUser, []);
+  end;
   Close;
 end;
 

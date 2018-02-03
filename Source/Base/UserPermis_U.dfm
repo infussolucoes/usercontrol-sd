@@ -448,6 +448,7 @@ object UserPermis: TUserPermis
         Images = ImageList1
         Indent = 19
         ParentCtl3D = False
+        PopupMenu = pmTree
         ReadOnly = True
         RightClickSelect = True
         TabOrder = 0
@@ -469,6 +470,7 @@ object UserPermis: TUserPermis
         Images = ImageList1
         Indent = 19
         ParentCtl3D = False
+        PopupMenu = pmTree
         ReadOnly = True
         RightClickSelect = True
         TabOrder = 0
@@ -489,6 +491,7 @@ object UserPermis: TUserPermis
         Images = ImageList1
         Indent = 19
         ParentCtl3D = False
+        PopupMenu = pmTree
         ReadOnly = True
         RightClickSelect = True
         TabOrder = 0
@@ -639,5 +642,17 @@ object UserPermis: TUserPermis
       9FF79F97800700009FF79FD7800700009FF79FF7800700008007800780070000
       8007800780070000FFFFFFFFFFFF000000000000000000000000000000000000
       000000000000}
+  end
+  object pmTree: TPopupMenu
+    Left = 204
+    Top = 107
+    object miExpandAll: TMenuItem
+      Caption = 'Expandir todos'
+      OnClick = miExpandAllClick
+    end
+    object miCollapseAll: TMenuItem
+      Caption = 'Recolher todos'
+      OnClick = miCollapseAllClick
+    end
   end
 end
