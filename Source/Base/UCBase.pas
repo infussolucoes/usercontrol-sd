@@ -92,7 +92,7 @@ const
 
   // Version
 const
-  UCVersion = '2.31 RC4';
+  UCVersion = '2.4';
 {$WARNINGS OFF}
 
 type
