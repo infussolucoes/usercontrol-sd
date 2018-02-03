@@ -902,7 +902,7 @@ begin
   else if PC.ActivePage = PageAction then
     Result := TreeAction
   else if PC.ActivePage = PageControls then
-    Result := TreeMenu;
+    Result := TreeControls;
 end;
 
 procedure TUserPermis.miCollapseAllClick(Sender: TObject);
@@ -912,8 +912,7 @@ end;
 
 procedure TUserPermis.miExpandAllClick(Sender: TObject);
 begin
-  GetTreeViewActive.FullExpand
-  ;
+  GetTreeViewActive.FullExpand;
 end;
 
 procedure TUserPermis.TreeActionClick(Sender: TObject);
