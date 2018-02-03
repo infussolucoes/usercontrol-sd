@@ -72,27 +72,11 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  Variants,
-  Buttons,
-  Classes,
-  Controls,
-  DB,
-  DBCtrls,
-  Dialogs,
-  ExtCtrls,
-  Forms,
-  Graphics,
-  Messages,
-  Spin,
-  StdCtrls,
-  SysUtils,
-  Windows,
-  DBGrids,
-  Grids,
+  Variants, Buttons, Classes, Controls, DB, DBCtrls, Dialogs, ExtCtrls, Forms, Graphics, Messages, Spin, StdCtrls,
+  SysUtils, Windows, DBGrids, Grids, Vcl.Menus,
 
 
-  IncUser_U,
-  UCBase;
+  IncUser_U, UCBase;
 
 type
   TUCFrame_UsersLogged = class(TFrame)
@@ -101,8 +85,13 @@ type
     Panel3: TPanel;
     BitMsg: TBitBtn;
     BitRefresh: TBitBtn;
+    PopupMenu1: TPopupMenu;
+    miDeleteSelected: TMenuItem;
+    miDeleteAll: TMenuItem;
     procedure BitRefreshClick(Sender: TObject);
     procedure BitMsgClick(Sender: TObject);
+    procedure miDeleteSelectedClick(Sender: TObject);
+    procedure miDeleteAllClick(Sender: TObject);
   private
     DSUserLogados: TDataset;
     UCMes: TUCApplicationMessage;
@@ -120,6 +109,21 @@ uses
 {$R *.dfm}
 
 procedure TUCFrame_UsersLogged.SetWindow;
+const
+  PreSQLStmt =
+    'select ' +
+    '  L.%s as LogonID, ' +
+    '  U.%s as UserName, ' +
+    '  U.%s as id, ' +
+    '  U.%s as Login, ' +
+    '  L.%s as MachineName, ' +
+    '  L.%s as DATA ' +
+    'from ' +
+    '  %s L inner join ' +
+    '  %s U on U.%s = L.%s left join ' +
+    '  %s P on P.%s = U.%s ' +
+    'where ' +
+    '  L.%s = %s ';
 var
   SQLStmt: String;
   I: Integer;
@@ -134,17 +138,12 @@ begin
 
   with FUserControl do
   begin
-    SQLStmt := 'SELECT U.' + TableUsers.FieldUserName + ' AS UserName,' +
-      '       U.' + TableUsers.FieldUserId + ' AS id, ' + '       U.' +
-      TableUsers.FieldLogin + ' AS Login,' + '       L.' +
-      TableUsersLogged.FieldMachineName + ' AS MachineName,' + '       L.' +
-      TableUsersLogged.FieldData + ' AS DATA ' + 'FROM ' +
-      TableUsersLogged.TableName + ' L ' + '    INNER JOIN ' +
-      TableUsers.TableName + ' U ON U.' + TableUsers.FieldUserId + ' = L.' +
-      TableUsersLogged.FieldUserId + '    LEFT  JOIN ' + TableUsers.TableName +
-      ' P ON P.' + TableUsers.FieldUserId + ' = U.' + TableUsers.FieldProfile +
-      ' ' + 'WHERE L.' + TableUsersLogged.FieldApplicationID + ' = ' +
-      QuotedStr(ApplicationID);
+    SQLStmt := Format(PreSQLStmt, [
+      TableUsersLogged.FieldLogonID, TableUsers.FieldUserName, TableUsers.FieldUserId, TableUsers.FieldLogin,
+      TableUsersLogged.FieldMachineName, TableUsersLogged.FieldData, TableUsersLogged.TableName, TableUsers.TableName,
+      TableUsers.FieldUserId, TableUsersLogged.FieldUserId, TableUsers.TableName, TableUsers.FieldUserId,
+      TableUsers.FieldProfile, TableUsersLogged.FieldApplicationID, QuotedStr(ApplicationID)
+    ]);
 
     DSUserLogados := DataConnector.UCGetSQLDataset(SQLStmt);
 
@@ -180,6 +179,32 @@ begin
   FreeAndNil(DSUserLogados);
   FreeAndNil(UCMes);
   inherited;
+end;
+
+procedure TUCFrame_UsersLogged.miDeleteAllClick(Sender: TObject);
+const
+  sql = 'delete from %s L where L.%s = %s';
+begin
+  FUserControl.DataConnector.UCExecSQL(Format(sql, [
+    FUserControl.TableUsersLogged.TableName,
+    FUserControl.TableUsersLogged.FieldApplicationID,
+    QuotedStr(FUserControl.ApplicationID)
+  ]));
+  BitRefresh.Click;
+end;
+
+procedure TUCFrame_UsersLogged.miDeleteSelectedClick(Sender: TObject);
+const
+  sql = 'delete from %s L where L.%s = %s and L.%s = %s';
+begin
+  FUserControl.DataConnector.UCExecSQL(Format(sql, [
+    FUserControl.TableUsersLogged.TableName,
+    FUserControl.TableUsersLogged.FieldApplicationID,
+    QuotedStr(FUserControl.ApplicationID),
+    FUserControl.TableUsersLogged.FieldLogonID,
+    QuotedStr(dsDados.DataSet.FieldByName('LogonID').AsString)
+  ]));
+  BitRefresh.Click;
 end;
 
 procedure TUCFrame_UsersLogged.BitMsgClick(Sender: TObject);

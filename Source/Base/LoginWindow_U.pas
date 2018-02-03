@@ -205,7 +205,10 @@ begin
   if Key = #13 then
   Begin
     Key := #0;
-    Perform(WM_NEXTDLGCTL, 0, 0);
+    if TfrmLoginWindow(Sender).ActiveControl = EditSenha then
+      btOK.Click
+    else
+      Perform(WM_NEXTDLGCTL, 0, 0);
   End;
 end;
 

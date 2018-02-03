@@ -19,6 +19,7 @@ object UCFrame_UsersLogged: TUCFrame_UsersLogged
     Align = alClient
     DataSource = dsDados
     Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    PopupMenu = PopupMenu1
     ReadOnly = True
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
@@ -77,8 +78,6 @@ object UCFrame_UsersLogged: TUCFrame_UsersLogged
       Height = 25
       Anchors = [akTop, akRight]
       Caption = '&Mensagem'
-      TabOrder = 0
-      OnClick = BitMsgClick
       Glyph.Data = {
         42020000424D4202000000000000420000002800000010000000100000000100
         1000030000000002000000000000000000000000000000000000007C0000E003
@@ -99,6 +98,8 @@ object UCFrame_UsersLogged: TUCFrame_UsersLogged
         1F7C1F7C1F7C1F7C1F7C1F7CD852DB7FDB7FDB7FDB7FB97F977F0D191F7C1F7C
         1F7C1F7C1F7C1F7C1F7C1F7C1F7CD852D852D852D852D852D8521F7C1F7C1F7C
         1F7C1F7C1F7C}
+      TabOrder = 0
+      OnClick = BitMsgClick
     end
     object BitRefresh: TBitBtn
       Left = 417
@@ -107,8 +108,6 @@ object UCFrame_UsersLogged: TUCFrame_UsersLogged
       Height = 25
       Anchors = [akTop, akRight]
       Caption = '&Atualizar'
-      TabOrder = 1
-      OnClick = BitRefreshClick
       Glyph.Data = {
         36050000424D3605000000000000360400002800000010000000100000000100
         0800000000000001000000000000000000000001000000010000FF00FF000029
@@ -152,10 +151,24 @@ object UCFrame_UsersLogged: TUCFrame_UsersLogged
         4E52524B2A1F1F1B0A00001C48392F2E465235271F21211B0B00001C49463F3C
         37312E2A2721271F0C00001C3F494948443C312C2727212110000000242B2B2B
         2A271F1F1F1C1C15000000000000000000000000000000000000}
+      TabOrder = 1
+      OnClick = BitRefreshClick
     end
   end
   object dsDados: TDataSource
     Left = 132
     Top = 144
+  end
+  object PopupMenu1: TPopupMenu
+    Left = 320
+    Top = 88
+    object miDeleteSelected: TMenuItem
+      Caption = 'Excluir selecionado'
+      OnClick = miDeleteSelectedClick
+    end
+    object miDeleteAll: TMenuItem
+      Caption = 'Excluir todos'
+      OnClick = miDeleteAllClick
+    end
   end
 end
