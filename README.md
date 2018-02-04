@@ -7,7 +7,7 @@ que possível.
 
 Fórum oficial: http://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
 
-O componente tem suporte do Delphi 7 até o Delphi 10.1 Berlin.
+O componente tem suporte do Delphi 7 até o Delphi 10.2 Tokyo.
 
 Versões testadas até o momento:
 
