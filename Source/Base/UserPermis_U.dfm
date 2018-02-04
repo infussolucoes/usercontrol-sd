@@ -1,9 +1,9 @@
 object UserPermis: TUserPermis
   Left = 255
   Top = 154
-  Width = 600
-  Height = 565
   Caption = 'Seguran'#231'a'
+  ClientHeight = 526
+  ClientWidth = 584
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,7 +21,7 @@ object UserPermis: TUserPermis
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 592
+    Width = 584
     Height = 35
     Align = alTop
     BevelOuter = bvNone
@@ -164,10 +164,10 @@ object UserPermis: TUserPermis
     end
   end
   object Panel3: TPanel
-    Left = 495
+    Left = 487
     Top = 35
     Width = 97
-    Height = 496
+    Height = 491
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 1
@@ -177,8 +177,6 @@ object UserPermis: TUserPermis
       Width = 81
       Height = 25
       Caption = '&Liberar'
-      TabOrder = 0
-      OnClick = BtLiberaClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000C8D0D4C8D0D4
@@ -231,6 +229,8 @@ object UserPermis: TUserPermis
         D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C2C8CBBDC2C4B5B5B5B5
         B5B5B5B5B5BDC2C4C2C8CBC8D0D4C8D0D4C8D0D4C8D0D4C8D0D4}
       NumGlyphs = 2
+      TabOrder = 0
+      OnClick = BtLiberaClick
     end
     object BtBloqueia: TBitBtn
       Left = 8
@@ -238,8 +238,6 @@ object UserPermis: TUserPermis
       Width = 81
       Height = 25
       Caption = '&Bloquear'
-      TabOrder = 1
-      OnClick = BtBloqueiaClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000C8D0D4C8D0D4
@@ -292,6 +290,8 @@ object UserPermis: TUserPermis
         D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8
         D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4}
       NumGlyphs = 2
+      TabOrder = 1
+      OnClick = BtBloqueiaClick
     end
     object BtGrava: TBitBtn
       Left = 8
@@ -299,8 +299,6 @@ object UserPermis: TUserPermis
       Width = 81
       Height = 25
       Caption = '&Gravar'
-      TabOrder = 2
-      OnClick = BtGravaClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -353,6 +351,8 @@ object UserPermis: TUserPermis
         6FCE726FCE726FCE726FFF00FF9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A
         9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A}
       NumGlyphs = 2
+      TabOrder = 2
+      OnClick = BtGravaClick
     end
     object BtCancel: TBitBtn
       Left = 8
@@ -360,8 +360,6 @@ object UserPermis: TUserPermis
       Width = 81
       Height = 25
       Caption = '&Cancelar'
-      TabOrder = 3
-      OnClick = BtCancelClick
       Glyph.Data = {
         66030000424D6603000000000000660200002800000010000000100000000100
         08000000000000010000120B0000120B00008C0000008C00000000000000FFFF
@@ -391,6 +389,8 @@ object UserPermis: TUserPermis
         14212E44757D69577902024D0D08011218241F3253016140790202024D0A0C01
         0E1C2A390156787902020202024D4D1A1B2735334C797902020202020202024D
         4D4D4D4D4D0202020202}
+      TabOrder = 3
+      OnClick = BtCancelClick
     end
     object GroupBox1: TGroupBox
       Left = 8
@@ -423,8 +423,8 @@ object UserPermis: TUserPermis
   object PC: TPageControl
     Left = 0
     Top = 35
-    Width = 495
-    Height = 496
+    Width = 487
+    Height = 491
     ActivePage = PageMenu
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
@@ -441,8 +441,8 @@ object UserPermis: TUserPermis
       object TreeMenu: TTreeView
         Left = 0
         Top = 0
-        Width = 487
-        Height = 468
+        Width = 479
+        Height = 463
         Align = alClient
         Ctl3D = True
         Images = ImageList1
@@ -460,11 +460,15 @@ object UserPermis: TUserPermis
     object PageAction: TTabSheet
       Caption = 'Menu Controle de Usuarios'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object TreeAction: TTreeView
         Left = 0
         Top = 0
-        Width = 487
-        Height = 468
+        Width = 479
+        Height = 463
         Align = alClient
         Ctl3D = True
         Images = ImageList1
@@ -481,11 +485,15 @@ object UserPermis: TUserPermis
     object PageControls: TTabSheet
       Caption = 'Controles'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object TreeControls: TTreeView
         Left = 0
         Top = 0
-        Width = 487
-        Height = 468
+        Width = 479
+        Height = 463
         Align = alClient
         Ctl3D = True
         Images = ImageList1
@@ -504,7 +512,7 @@ object UserPermis: TUserPermis
     Left = 336
     Top = 144
     Bitmap = {
-      494C010103000500700010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010103000500740010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

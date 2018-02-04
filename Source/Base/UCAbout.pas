@@ -107,6 +107,7 @@ type
     Memo1: TMemo;
     Label5: TLabel;
     Label11: TLabel;
+    Label14: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Label4Click(Sender: TObject);
     procedure Label6Click(Sender: TObject);

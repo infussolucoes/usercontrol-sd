@@ -141,7 +141,9 @@ type
     fAuthType: TAlSmtpClientAuthType;
     function ParseMailMSG(Nome, Login, Senha, Email, Perfil,
       txt: String): String;
+    {$IF CompilerVersion < 23}
     procedure onStatus(Status: String);
+    {$IFEND}
     function TrataSenha(Senha: String; Key: Word; GerarNova: Boolean;
       IDUser: Integer): String;
   protected
@@ -430,6 +432,7 @@ begin
   Result := txt;
 end;
 
+{$IF CompilerVersion < 23}
 procedure TMailUserControl.onStatus(Status: String);
 begin
   if not Assigned(UCEMailForm) then
@@ -437,6 +440,7 @@ begin
   UCEMailForm.lbStatus.Caption := Status;
   UCEMailForm.Update;
 end;
+{$IFEND}
 
 Function TMailUserControl.EnviaEmailTp(Nome, Login, USenha, Email,
   Perfil: String; UCMSG: TUCMailMessage): Boolean;

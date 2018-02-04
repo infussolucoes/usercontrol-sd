@@ -54,9 +54,9 @@ object AboutForm: TAboutForm
           474
           104)
         object lblVersao: TLabel
-          Left = 395
+          Left = 396
           Top = 81
-          Width = 72
+          Width = 71
           Height = 23
           Alignment = taRightJustify
           Anchors = [akTop, akRight]
@@ -214,6 +214,15 @@ object AboutForm: TAboutForm
             'de ShowDelphi. Visite www.showdelphi.com.br'
           WordWrap = True
         end
+        object Label14: TLabel
+          Left = 17
+          Top = 63
+          Width = 360
+          Height = 39
+          AutoSize = False
+          Caption = 'Patroc'#237'nio Master: Infus Solu'#231#245'es em Tecnologia'
+          WordWrap = True
+        end
       end
       object Panel3: TPanel
         Left = 0
@@ -265,7 +274,7 @@ object AboutForm: TAboutForm
         end
         object Label5: TLabel
           Left = 16
-          Top = 269
+          Top = 240
           Width = 333
           Height = 13
           Caption = 'Cr'#233'ditos e agradecimentos da vers'#227'o ShowDelphi Edition:'
@@ -280,7 +289,7 @@ object AboutForm: TAboutForm
           Left = 16
           Top = 24
           Width = 457
-          Height = 228
+          Height = 201
           Ctl3D = False
           Font.Charset = ANSI_CHARSET
           Font.Color = clBlack
@@ -308,6 +317,7 @@ object AboutForm: TAboutForm
           ParentCtl3D = False
           ParentFont = False
           ReadOnly = True
+          ScrollBars = ssVertical
           TabOrder = 1
         end
         object BitBtn1: TBitBtn
@@ -315,14 +325,15 @@ object AboutForm: TAboutForm
           Top = 360
           Width = 75
           Height = 25
-          TabOrder = 0
           Kind = bkOK
+          NumGlyphs = 2
+          TabOrder = 0
         end
         object Memo1: TMemo
           Left = 17
-          Top = 285
+          Top = 256
           Width = 457
-          Height = 36
+          Height = 65
           Ctl3D = False
           Font.Charset = ANSI_CHARSET
           Font.Color = clBlack
@@ -330,10 +341,13 @@ object AboutForm: TAboutForm
           Font.Name = 'Verdana'
           Font.Style = []
           Lines.Strings = (
-            'Giovani Da Cruz - giovani@infus.inf.br')
+            'Giovani Da Cruz - giovani@infus.inf.br'
+            'Infus Solu'#231#245'es em Tecnologia - www.infus.inf.br'
+            'Cassiano Baltazar - cassianobs7@gmail.com')
           ParentCtl3D = False
           ParentFont = False
           ReadOnly = True
+          ScrollBars = ssVertical
           TabOrder = 2
         end
       end

@@ -897,6 +897,7 @@ end;
 
 function TUserPermis.GetTreeViewActive: TTreeView;
 begin
+  Result := nil;
   if PC.ActivePage = PageMenu then
     Result := TreeMenu
   else if PC.ActivePage = PageAction then
