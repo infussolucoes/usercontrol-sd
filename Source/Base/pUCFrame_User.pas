@@ -342,6 +342,7 @@ begin
   btApplyFilter.Glyph := nil;
   ImageList1.GetBitmap(IndexImage, btApplyFilter.Glyph);
   btApplyFilter.Caption := btCaption;
+  FDataSetCadastroUsuarioAfterScroll(DataUser.DataSet);
 end;
 
 procedure TUCFrame_User.DbGridUserTitleClick(Column: TColumn);
