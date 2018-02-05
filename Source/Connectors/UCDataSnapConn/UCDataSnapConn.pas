@@ -92,6 +92,15 @@ const
   CONNECTION_ERROR = 'UC: Operação não realizada por falta de conexão!';
 
 type
+  TClientDataSet = class(DBClient.TClientDataSet)
+  private
+    FSQL: TStrings;  public
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+    property SQL : TStrings read FSQL write FSQL;
+  end;
+
   TUCDataSnapConn = class(TUCDataConnector)
   private
     FConnection: TSQLConnection;
@@ -142,7 +151,7 @@ begin
   if not (Connection.Connected) then
     Connection.Open;
 
-  DSClient.GetDataSet(DataSet.Filter);
+  DSClient.GetDataSet((DataSet as TClientDataSet).SQL.Text);
 end;
 
 destructor TUCDataSnapConn.Destroy;
@@ -270,7 +279,7 @@ begin
   if (Connection.Connected) then
   begin
     Result := TClientDataSet.Create(Self);
-    Result.Filter := FSQL;
+    (Result as TClientDataSet).SQL.Text := FSQL;
 
     TClientDataSet(Result).RemoteServer := Self.RemoteServer;
     TClientDataSet(Result).ProviderName := Self.ProviderName;
@@ -282,6 +291,20 @@ begin
   begin
     raise Exception.Create(CONNECTION_ERROR);
   end;
+end;
+
+{ TClientDataSet }
+
+constructor TClientDataSet.Create(AOwner: TComponent);
+begin
+  inherited;
+  FSQL := TStringList.Create;
+end;
+
+destructor TClientDataSet.Destroy;
+begin
+  FSQL.Destroy;
+  inherited;
 end;
 
 end.
