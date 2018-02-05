@@ -177,7 +177,7 @@ end;
 destructor TUCFrame_UsersLogged.Destroy;
 begin
   FreeAndNil(DSUserLogados);
-  FreeAndNil(UCMes);
+//  FreeAndNil(UCMes); Comentado propositalmente, pois este componente pertence ao form principal e não desta tela, então não deve se dar free;
   inherited;
 end;
 
