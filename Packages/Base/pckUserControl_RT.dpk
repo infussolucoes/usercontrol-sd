@@ -27,15 +27,14 @@ package pckUserControl_RT;
 {$DESCRIPTION 'SWDelphi - User Control RT'}
 {$IMPLICITBUILD OFF}
 
-
 requires
   pckMD5,
   pckUCDataConnector,
   inet,
   vclactnband,
   vcldb,
-  VclSmp;
-//,dbexpress;
+  VclSmp,
+  IndyProtocols;
 
 contains
   TrocaSenha_U in '..\..\source\Base\TrocaSenha_U.pas',

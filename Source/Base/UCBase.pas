@@ -759,6 +759,12 @@ uses
 { TUserControl }
 
 constructor TUserControl.Create(AOwner: TComponent);
+  function GetFieldName(FieldValue: string; const Prop: string): string;
+  begin
+    Result := FieldValue;
+    if FieldValue = '' then
+      Result := RetornaLingua(fLanguage, Prop);
+  end;
 begin
   inherited;
   FCurrentUser := TUCCurrentUser.Create(Self);
@@ -779,96 +785,35 @@ begin
 
   if csDesigning in ComponentState then
   begin
-    with TableUsers do
-    begin
-      if TableName = '' then
-        TableName := RetornaLingua(fLanguage, 'Const_TableUsers_TableName');
-      if FieldUserID = '' then
-        FieldUserID := RetornaLingua(fLanguage, 'Const_TableUsers_FieldUserID');
-      if FieldUserName = '' then
-        FieldUserName := RetornaLingua(fLanguage,
-          'Const_TableUsers_FieldUserName');
-      if FieldLogin = '' then
-        FieldLogin := RetornaLingua(fLanguage, 'Const_TableUsers_FieldLogin');
-      if FieldPassword = '' then
-        FieldPassword := RetornaLingua(fLanguage,
-          'Const_TableUsers_FieldPassword');
-      if FieldEmail = '' then
-        FieldEmail := RetornaLingua(fLanguage, 'Const_TableUsers_FieldEmail');
-      if FieldPrivileged = '' then
-        FieldPrivileged := RetornaLingua(fLanguage,
-          'Const_TableUsers_FieldPrivileged');
-      if FieldTypeRec = '' then
-        FieldTypeRec := RetornaLingua(fLanguage,
-          'Const_TableUsers_FieldTypeRec');
-      if FieldProfile = '' then
-        FieldProfile := RetornaLingua(fLanguage,
-          'Const_TableUsers_FieldProfile');
-      if FieldKey = '' then
-        FieldKey := RetornaLingua(fLanguage, 'Const_TableUsers_FieldKey');
+    TableUsers.TableName := GetFieldName(TableUsers.TableName, 'Const_TableUsers_TableName');
+    TableUsers.FieldUserID := GetFieldName(TableUsers.FieldUserID, 'Const_TableUsers_FieldUserID');
+    TableUsers.FieldUserName := GetFieldName(TableUsers.FieldUserName, 'Const_TableUsers_FieldUserName');
+    TableUsers.FieldLogin := GetFieldName(TableUsers.FieldLogin, 'Const_TableUsers_FieldLogin');
+    TableUsers.FieldPassword := GetFieldName(TableUsers.FieldPassword, 'Const_TableUsers_FieldPassword');
+    TableUsers.FieldEmail := GetFieldName(TableUsers.FieldEmail, 'Const_TableUsers_FieldEmail');
+    TableUsers.FieldPrivileged := GetFieldName(TableUsers.FieldPrivileged, 'Const_TableUsers_FieldPrivileged');
+    TableUsers.FieldTypeRec := GetFieldName(TableUsers.FieldTypeRec, 'Const_TableUsers_FieldTypeRec');
+    TableUsers.FieldProfile := GetFieldName(TableUsers.FieldProfile, 'Const_TableUsers_FieldProfile');
+    TableUsers.FieldKey := GetFieldName(TableUsers.FieldKey, 'Const_TableUsers_FieldKey');
+    TableUsers.FieldDateExpired := GetFieldName(TableUsers.FieldDateExpired, 'Const_TableUsers_FieldDateExpired');
+    TableUsers.FieldUserExpired := GetFieldName(TableUsers.FieldUserExpired, 'Const_TableUser_FieldUserExpired');
+    TableUsers.FieldUserDaysSun := GetFieldName(TableUsers.FieldUserDaysSun, 'Const_TableUser_FieldUserDaysSun');
+    TableUsers.FieldUserInative := GetFieldName(TableUsers.FieldUserInative, 'Const_TableUser_FieldUserInative');
+    TableUsers.FieldImage := GetFieldName(TableUsers.FieldImage, 'Const_TableUsers_FieldImage');
 
-      if FieldDateExpired = '' then
-        FieldDateExpired := RetornaLingua(fLanguage,
-          'Const_TableUsers_FieldDateExpired');
+    TableRights.TableName := GetFieldName(TableRights.TableName, 'Const_TableRights_TableName');
+    TableRights.FieldUserID := GetFieldName(TableRights.FieldUserID, 'Const_TableRights_FieldUserID');
+    TableRights.FieldModule := GetFieldName(TableRights.FieldModule, 'Const_TableRights_FieldModule');
+    TableRights.FieldComponentName := GetFieldName(TableRights.FieldComponentName, 'Const_TableRights_FieldComponentName');
+    TableRights.FieldFormName := GetFieldName(TableRights.FieldFormName, 'Const_TableRights_FieldFormName');
+    TableRights.FieldKey := GetFieldName(TableRights.FieldKey, 'Const_TableRights_FieldKey');
 
-      if FieldUserExpired = '' then
-        FieldUserExpired := RetornaLingua(fLanguage,
-          'Const_TableUser_FieldUserExpired');
-
-      if FieldUserDaysSun = '' then
-        FieldUserDaysSun := RetornaLingua(fLanguage,
-          'Const_TableUser_FieldUserDaysSun');
-
-      if FieldUserInative = '' then
-        FieldUserInative := RetornaLingua(fLanguage,
-          'Const_TableUser_FieldUserInative');
-
-      if FieldDateExpired = '' then
-        FieldDateExpired := RetornaLingua(fLanguage,
-          'Const_TableUsers_FieldImage');
-    end;
-
-    with TableRights do
-    begin
-      if TableName = '' then
-        TableName := RetornaLingua(fLanguage, 'Const_TableRights_TableName');
-      if FieldUserID = '' then
-        FieldUserID := RetornaLingua(fLanguage,
-          'Const_TableRights_FieldUserID');
-      if FieldModule = '' then
-        FieldModule := RetornaLingua(fLanguage,
-          'Const_TableRights_FieldModule');
-      if FieldComponentName = '' then
-        FieldComponentName := RetornaLingua(fLanguage,
-          'Const_TableRights_FieldComponentName');
-      if FieldFormName = '' then
-        FieldFormName := RetornaLingua(fLanguage,
-          'Const_TableRights_FieldFormName');
-      if FieldKey = '' then
-        FieldKey := RetornaLingua(fLanguage, 'Const_TableRights_FieldKey');
-    end;
-
-    with TableUsersLogged do
-    begin
-      if TableName = '' then
-        TableName := RetornaLingua(fLanguage,
-          'Const_TableUsersLogged_TableName');
-      if FieldLogonID = '' then
-        FieldLogonID := RetornaLingua(fLanguage,
-          'Const_TableUsersLogged_FieldLogonID');
-      if FieldUserID = '' then
-        FieldUserID := RetornaLingua(fLanguage,
-          'Const_TableUsersLogged_FieldUserID');
-      if FieldApplicationID = '' then
-        FieldApplicationID := RetornaLingua(fLanguage,
-          'Const_TableUsersLogged_FieldApplicationID');
-      if FieldMachineName = '' then
-        FieldMachineName := RetornaLingua(fLanguage,
-          'Const_TableUsersLogged_FieldMachineName');
-      if FieldData = '' then
-        FieldData := RetornaLingua(fLanguage,
-          'Const_TableUsersLogged_FieldData');
-    end;
+    TableUsersLogged.TableName := GetFieldName(TableUsersLogged.TableName, 'Const_TableUsersLogged_TableName');
+    TableUsersLogged.FieldLogonID := GetFieldName(TableUsersLogged.FieldLogonID, 'Const_TableUsersLogged_FieldLogonID');
+    TableUsersLogged.FieldUserID := GetFieldName(TableUsersLogged.FieldUserID, 'Const_TableUsersLogged_FieldUserID');
+    TableUsersLogged.FieldApplicationID := GetFieldName(TableUsersLogged.FieldApplicationID, 'Const_TableUsersLogged_FieldApplicationID');
+    TableUsersLogged.FieldMachineName := GetFieldName(TableUsersLogged.FieldMachineName, 'Const_TableUsersLogged_FieldMachineName');
+    TableUsersLogged.FieldData := GetFieldName(TableUsersLogged.FieldData, 'Const_TableUsersLogged_FieldData');
 
     if LogControl.TableLog = '' then
       LogControl.TableLog := 'UCLog';
