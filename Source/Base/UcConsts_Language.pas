@@ -85,7 +85,7 @@ ResourceString
 	RsENoSplashServices = 'Unable to get Borland Splash Services';
 
 Const
-  MaxArray = 227;
+  MaxArray = 228;
 
   UC_PTBR: Array [0 .. MaxArray, 0 .. 1] of string = (('Const_Contr_TitleLabel',
     'Seleção de Componentes do Form. :'), ('Const_Contr_GroupLabel', 'Grupo :'),
@@ -226,8 +226,9 @@ Const
     ('Const_TableUsers_FieldPrivileged', 'UCPrivileged'),
     ('Const_TableUsers_FieldTypeRec', 'UCTypeRec'),
     ('Const_TableUsers_FieldProfile', 'UCProfile'),
-    ('Const_TableUsers_FieldKey', 'UCKey'), ('Const_TableUsers_TableName',
-    'UCTabUsers'), ('Const_TableUsers_FieldDateExpired', 'UCPASSEXPIRED'),
+    ('Const_TableUsers_FieldKey', 'UCKey'), ('Const_TableUsers_TableName', 'UCTabUsers'),
+    ('Const_TableUsers_FieldDateExpired', 'UCPASSEXPIRED'),
+    ('Const_TableUsers_FieldImage', 'UCImage'),
     ('Const_TableUser_FieldUserExpired', 'UCUserExpired'),
     ('Const_TableUser_FieldUserDaysSun', 'UCUserDaysSun'),
     ('Const_TableUser_FieldUserInative', 'UCInative'),
@@ -418,8 +419,9 @@ Const
     ('Const_TableUsers_FieldPrivileged', 'UCPrivileged'),
     ('Const_TableUsers_FieldTypeRec', 'UCTypeRec'),
     ('Const_TableUsers_FieldProfile', 'UCProfile'),
-    ('Const_TableUsers_FieldKey', 'UCKey'), ('Const_TableUsers_TableName',
-    'UCTabUsers'), ('Const_TableUsers_FieldDateExpired', 'UCPassExpired'),
+    ('Const_TableUsers_FieldKey', 'UCKey'), ('Const_TableUsers_TableName', 'UCTabUsers'),
+    ('Const_TableUsers_FieldDateExpired', 'UCPassExpired'),
+    ('Const_TableUsers_FieldImage', 'UCImage'),
     ('Const_TableUser_FieldUserExpired', 'UCUserExpired'),
     ('Const_TableUser_FieldUserDaysSun', 'UCUserDaysSun'),
     ('Const_TableUser_FieldUserInative', 'UCInative'),
@@ -618,8 +620,9 @@ Const
     ('Const_TableUsers_FieldPrivileged', 'UCPrivileged'),
     ('Const_TableUsers_FieldTypeRec', 'UCTypeRec'),
     ('Const_TableUsers_FieldProfile', 'UCProfile'),
-    ('Const_TableUsers_FieldKey', 'UCKey'), ('Const_TableUsers_TableName',
-    'UCTabUsers'), ('Const_TableUsers_FieldDateExpired', 'UCPASSEXPIRED'),
+    ('Const_TableUsers_FieldKey', 'UCKey'), ('Const_TableUsers_TableName', 'UCTabUsers'),
+    ('Const_TableUsers_FieldDateExpired', 'UCPASSEXPIRED'),
+    ('Const_TableUsers_FieldImage', 'UCImage'),
     ('Const_TableUser_FieldUserExpired', 'UCUserExpired'),
     ('Const_TableUser_FieldUserDaysSun', 'UCUserDaysSun'),
     ('Const_TableUser_FieldUserInative', 'UCInative'),
@@ -827,8 +830,9 @@ Const
     ('Const_TableUsers_FieldPrivileged', 'UCPrivileged'),
     ('Const_TableUsers_FieldTypeRec', 'UCTypeRec'),
     ('Const_TableUsers_FieldProfile', 'UCProfile'),
-    ('Const_TableUsers_FieldKey', 'UCKey'), ('Const_TableUsers_TableName',
-    'UCTabUsers'), ('Const_TableUsers_FieldDateExpired', 'UCPassExpired'),
+    ('Const_TableUsers_FieldKey', 'UCKey'), ('Const_TableUsers_TableName', 'UCTabUsers'),
+    ('Const_TableUsers_FieldDateExpired', 'UCPassExpired'),
+    ('Const_TableUsers_FieldImage', 'UCImage'),
     ('Const_TableUser_FieldUserExpired', 'UCUserExpired'),
     ('Const_TableUser_FieldUserDaysSun', 'UCUserDaysSun'),
     ('Const_TableUser_FieldUserInative', 'UCInative'),

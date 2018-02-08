@@ -89,6 +89,7 @@ type
     fUserExpired: String;
     fFieldUserDaysSun: String;
     fFieldUserInative: String;
+    FFieldImage: string;
   protected
   public
     constructor Create(AOwner: TComponent);
@@ -108,11 +109,12 @@ type
     { By Vicente Barros Leonel }
     property FieldUserExpired: String read fUserExpired write fUserExpired;
     { By vicente barros leonel }
-    property FieldUserDaysSun: String read fFieldUserDaysSun
-      write fFieldUserDaysSun; { By vicente barros leonel }
-    property FieldUserInative: String read fFieldUserInative
-      write fFieldUserInative; { By vicente barros leonel }
+    property FieldUserDaysSun: String read fFieldUserDaysSun write fFieldUserDaysSun;
+    { By vicente barros leonel }
+    property FieldUserInative: String read fFieldUserInative write fFieldUserInative;
+    { By vicente barros leonel }
     property TableName: String read FTable write FTable;
+    property FieldImage: string read FFieldImage write FFieldimage;
   end;
 
   TUCTableRights = class(TPersistent)
@@ -249,6 +251,7 @@ begin
     Self.FieldUserInative := TUCTableUsers(Source).FieldUserInative;
     { By vicente barros leonel }
     Self.TableName := TUCTableUsers(Source).TableName;
+    Self.FieldImage := TUCTableUsers(Source).FieldImage;
   end
   else
     inherited;

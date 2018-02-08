@@ -506,7 +506,7 @@ type
     procedure StartLogin;
     procedure ShowChangePassword;
     procedure ChangeUser(IdUser: Integer; Login, Name, Mail: String;
-      Profile, UserExpired, UserDaysSun, Status: Integer; Privuser: Boolean);
+      Profile, UserExpired, UserDaysSun, Status: Integer; Privuser: Boolean; const Image: string);
     procedure ChangePassword(IdUser: Integer; NewPassword: String);
     procedure AddRight(IdUser: Integer; ItemRight: TObject;
       FullPath: Boolean = True); overload;
@@ -518,8 +518,8 @@ type
       SoVerificarUsuarioAdmin: Boolean = False): Integer; // Boolean;
     function GetLocalUserName: String;
     function GetLocalComputerName: String;
-    function AddUser(Login, Password, Name, Mail: String;
-      Profile, UserExpired, DaysExpired: Integer; Privuser: Boolean): Integer;
+    function AddUser(Login, Password, Name, Mail: String; Profile, UserExpired, DaysExpired: Integer;
+      Privuser: Boolean; const Image: string): Integer;
     function ExisteUsuario(Login: String): Boolean;
     property CurrentUser: TUCCurrentUser read FCurrentUser write FCurrentUser;
     property UserSettings: TUCUserSettings read FUserSettings
@@ -752,7 +752,8 @@ uses
   MsgsForm_U,
   pUCGeral,
   TrocaSenha_U,
-  UserPermis_U;
+  UserPermis_U,
+  StrUtils;
 
 {$IFDEF DELPHI9_UP} {$REGION 'TUSerControl'} {$ENDIF}
 { TUserControl }
@@ -821,6 +822,10 @@ begin
       if FieldUserInative = '' then
         FieldUserInative := RetornaLingua(fLanguage,
           'Const_TableUser_FieldUserInative');
+
+      if FieldDateExpired = '' then
+        FieldDateExpired := RetornaLingua(fLanguage,
+          'Const_TableUsers_FieldImage');
     end;
 
     with TableRights do
@@ -1587,12 +1592,13 @@ begin
   ApplyRights;
 end;
 
-function TUserControl.AddUser(Login, Password, Name, Mail: String;
-  Profile, UserExpired, DaysExpired: Integer; Privuser: Boolean): Integer;
+function TUserControl.AddUser(Login, Password, Name, Mail: String; Profile, UserExpired, DaysExpired: Integer;
+  Privuser: Boolean; const Image: string): Integer;
 var
   Key: String;
   SQLstmt: String;
   Senha: String;
+  DataSet: TDataSet;
 begin
   case Self.Login.CharCasePass of
     ecNormal:
@@ -1612,12 +1618,14 @@ begin
       Login := LowerCase(Login);
   end;
 
-  with DataConnector.UCGetSQLDataset('Select Max(' + TableUsers.FieldUserID +
-    ') as IdUser from ' + TableUsers.TableName) do
-  begin
-    Result := StrToIntDef(FieldByName('idUser').AsString, 0) + 1;
-    Close;
-    Free;
+  DataSet := DataConnector.UCGetSQLDataset(
+    'Select Max(' + TableUsers.FieldUserID + ') as IdUser from ' + TableUsers.TableName
+  );
+  try
+    Result := StrToIntDef(DataSet.FieldByName('idUser').AsString, 0) + 1;
+    DataSet.Close;
+  finally
+    DataSet.Free;
   end;
 
   case Self.Criptografia of
@@ -1633,20 +1641,30 @@ begin
       end;
   end;
 
-  with TableUsers do
-  begin
-    SQLstmt :=
-      Format('INSERT INTO %s( %s, %s, %s, %s, %s, %s, %s, %s, %s , %s , %s , %s , %s ) VALUES(%d, %s, %s, %s, %s, %s, %d, %s, %s , %s , %d , %d , %s )',
-      [TableName, FieldUserID, FieldUserName, FieldLogin, FieldPassword,
-      FieldEmail, FieldPrivileged, FieldProfile, FieldTypeRec, FieldKey,
-      FieldDateExpired, FieldUserExpired, FieldUserDaysSun, FieldUserInative,
-      Result, QuotedStr(Name), QuotedStr(Login), QuotedStr(Senha),
-      QuotedStr(Mail), BoolToStr(Privuser), Profile, QuotedStr('U'),
-      QuotedStr(Key), QuotedStr(FormatDateTime('dd/mm/yyyy',
-      Date + FLogin.fDaysOfSunExpired)), UserExpired, DaysExpired, '0']);
-    if Assigned(DataConnector) then
-      DataConnector.UCExecSQL(SQLstmt);
-  end;
+  SQLstmt := Format(
+    'insert into %s (' +
+    '  %s, %s, %s, %s, ' +
+    '  %s, %s, %s, %s, ' +
+    '  %s, %s, %s, %s, ' +
+    '  %s, %s ' +
+    ') values (' +
+    '  %d, %s, %s, %s, %s, %s, %d, ' +
+    '  %s, %s, %s, ' +
+    '  %d, %d, %s, %s' +
+    ');',
+    [
+      TableUsers.TableName,
+      TableUsers.FieldUserID, TableUsers.FieldUserName, TableUsers.FieldLogin, TableUsers.FieldPassword,
+      TableUsers.FieldEmail, TableUsers.FieldPrivileged, TableUsers.FieldProfile, TableUsers.FieldTypeRec,
+      TableUsers.FieldKey, TableUsers.FieldDateExpired, TableUsers.FieldUserExpired, TableUsers.FieldUserDaysSun,
+      TableUsers.FieldUserInative, TableUsers.FieldImage,
+      Result, QuotedStr(Name), QuotedStr(Login), QuotedStr(Senha), QuotedStr(Mail), BoolToStr(Privuser), Profile,
+      QuotedStr('U'), QuotedStr(Key), QuotedStr(FormatDateTime('dd/mm/yyyy', Date + FLogin.fDaysOfSunExpired)),
+      UserExpired, DaysExpired, '0', QuotedStr(ReplaceStr(Image, '''', ''''''''))
+    ]
+  );
+  if Assigned(DataConnector) then
+    DataConnector.UCExecSQL(SQLstmt);
 
   if Assigned(OnAddUser) then
     OnAddUser(Self, Login, Password, Name, Mail, Profile, Privuser);
@@ -1722,7 +1740,7 @@ begin
 end;
 
 procedure TUserControl.ChangeUser(IdUser: Integer; Login, Name, Mail: String;
-  Profile, UserExpired, UserDaysSun, Status: Integer; Privuser: Boolean);
+  Profile, UserExpired, UserDaysSun, Status: Integer; Privuser: Boolean; const Image: string);
 var
   Key: String;
   Password: String;
@@ -1750,17 +1768,37 @@ begin
     Free;
   end;
 
-  with TableUsers do
-    if Assigned(DataConnector) then
-      DataConnector.UCExecSQL('Update ' + TableName + ' Set ' + FieldUserName +
-        ' = ' + QuotedStr(Name) + ', ' + FieldLogin + ' = ' + QuotedStr(Login) +
-        ', ' + FieldEmail + ' = ' + QuotedStr(Mail) + ', ' + FieldPrivileged +
-        ' = ' + BoolToStr(Privuser) + ', ' + FieldProfile + ' = ' +
-        IntToStr(Profile) + ', ' + FieldKey + ' = ' + QuotedStr(Key) + ', ' +
-        FieldUserExpired + ' = ' + IntToStr(UserExpired) + ' , ' +
-        FieldUserDaysSun + ' = ' + IntToStr(UserDaysSun) + ' , ' +
-        FieldUserInative + ' = ' + IntToStr(Status) + ' where ' + FieldUserID +
-        ' = ' + IntToStr(IdUser));
+  SQLstmt :=
+    ' update %s set ' +
+    '   %s = %s, ' +
+    '   %s = %s, ' +
+    '   %s = %s, ' +
+    '   %s = %s, ' +
+    '   %s = %s, ' +
+    '   %s = %s, ' +
+    '   %s = %s, ' +
+    '   %s = %s, ' +
+    '   %s = %s, ' +
+    '   %s = %s ' +
+    ' where ' +
+    '   %s = %s ';
+
+  if Assigned(DataConnector) then
+    DataConnector.UCExecSQL(Format(SQLstmt, [
+      TableUsers.TableName,
+      TableUsers.FieldUserName, QuotedStr(Name),
+      TableUsers.FieldLogin, QuotedStr(Login),
+      TableUsers.FieldEmail, QuotedStr(Mail),
+      TableUsers.FieldPrivileged, BoolToStr(Privuser),
+      TableUsers.FieldProfile, IntToStr(Profile),
+      TableUsers.FieldKey, QuotedStr(Key),
+      TableUsers.FieldUserExpired, IntToStr(UserExpired),
+      TableUsers.FieldUserDaysSun, IntToStr(UserDaysSun),
+      TableUsers.FieldUserInative, IntToStr(Status),
+      TableUsers.FieldImage, QuotedStr(ReplaceStr(Image, '''', '''''''')),
+      TableUsers.FieldUserID, IntToStr(IdUser)
+    ]));
+
   if Assigned(OnChangeUser) then
     OnChangeUser(Self, IdUser, Login, Name, Mail, Profile, Privuser);
 end;
@@ -2679,47 +2717,47 @@ begin
   end;
 
   if not TableExists then
-    with TableUsers do
+  begin
+    if Assigned(DataConnector) then
     begin
-      SQLstmt := Format('Create Table %s ' + // TableName
-        '( ' + '%s %s, ' + // FieldUserID
-        '%s %s(30), ' + // FieldUserName
-        '%s %s(30), ' + // FieldLogin
-        '%s %s, ' + // FieldPassword
-        '%s %s(10), ' + // FieldDateExpired
-        '%s %s , ' + // FieldUserExpired
-        '%s %s , ' + // FieldUserDaysSun
-        '%s %s(150), ' + '%s %s, ' + '%s %s(1), ' + '%s %s, ' + '%s %s,' +
-        // FieldKey
-        '%s %s )', [TableName, FieldUserID, UserSettings.Type_Int,
+      SQLstmt := Format(
+        'Create Table %s (' + // TableName
+        '  %s %s, ' + // FieldUserID
+        '  %s %s(30), ' + // FieldUserName
+        '  %s %s(30), ' + // FieldLogin
+        '  %s %s, ' + // FieldPassword
+        '  %s %s(10), ' + // FieldDateExpired
+        '  %s %s , ' + // FieldUserExpired
+        '  %s %s , ' + // FieldUserDaysSun
+        '  %s %s(150), ' + // FieldEmail
+        '  %s %s, ' + // FieldPrivileged
+        '  %s %s(1), ' + // FieldTypeRec
+        '  %s %s, ' + // FieldProfile
+        '  %s %s,' +  // FieldKey
+        '  %s %s, ' + // FieldUserInative
+        '  %s %s)', // FieldImage
+        [
+          TableUsers.TableName,
+          TableUsers.FieldUserID, UserSettings.Type_Int,
+          TableUsers.FieldUserName, UserSettings.Type_VarChar,
+          TableUsers.FieldLogin, UserSettings.Type_VarChar,
+          TableUsers.FieldPassword, TipoCampo,
+          TableUsers.FieldDateExpired, UserSettings.Type_Char,
+          TableUsers.FieldUserExpired, UserSettings.Type_Int,
+          TableUsers.FieldUserDaysSun, UserSettings.Type_Int,
+          TableUsers.FieldEmail, UserSettings.Type_VarChar,
+          TableUsers.FieldPrivileged, UserSettings.Type_Int,
+          TableUsers.FieldTypeRec, UserSettings.Type_Char,
+          TableUsers.FieldProfile, UserSettings.Type_Int,
+          TableUsers.FieldKey, TipoCampo,
+          TableUsers.FieldUserInative, UserSettings.Type_Int,
+          TableUsers.FieldImage, UserSettings.Type_Memo
+        ]
+      );
 
-        FieldUserName, UserSettings.Type_VarChar,
-
-        FieldLogin, UserSettings.Type_VarChar,
-
-        FieldPassword, TipoCampo,
-
-        FieldDateExpired, UserSettings.Type_Char,
-
-        FieldUserExpired, UserSettings.Type_Int,
-
-        FieldUserDaysSun, UserSettings.Type_Int,
-
-        FieldEmail, UserSettings.Type_VarChar,
-
-        FieldPrivileged, UserSettings.Type_Int,
-
-        FieldTypeRec, UserSettings.Type_Char,
-
-        FieldProfile, UserSettings.Type_Int,
-
-        FieldKey, TipoCampo,
-
-        FieldUserInative, UserSettings.Type_Int]);
-
-      if Assigned(DataConnector) then
-        DataConnector.UCExecSQL(SQLstmt);
+      DataConnector.UCExecSQL(SQLstmt);
     end;
+  end;
 
   case Self.Login.CharCaseUser of
     ecNormal:
@@ -2750,7 +2788,7 @@ begin
     if DataSetUsuario.IsEmpty then
       IDUsuario := AddUser(UsuarioInicial, PasswordInicial,
         Login.InitialLogin.User, Login.InitialLogin.Email, 0, 0,
-        Login.DaysOfSunExpired, True)
+        Login.DaysOfSunExpired, True, '')
     else
       IDUsuario := DataSetUsuario.FieldByName('idUser').AsInteger;
 
@@ -2793,22 +2831,19 @@ begin
   { .$ENDIF }
 
   for Contador := 0 to Pred(Login.InitialLogin.InitialRights.Count) do
-    if Owner.FindComponent(Login.InitialLogin.InitialRights[Contador]) <> nil
-    then
+  begin
+    if Owner.FindComponent(Login.InitialLogin.InitialRights[Contador]) <> nil then
     begin
-      AddRight(IDUsuario, Owner.FindComponent(Login.InitialLogin.InitialRights
-        [Contador]));
-      AddRightEX(IDUsuario, ApplicationID, TCustomForm(Owner).Name,
-        Login.InitialLogin.InitialRights[Contador]);
+      AddRight(IDUsuario, Owner.FindComponent(Login.InitialLogin.InitialRights [Contador]));
+      AddRightEX(IDUsuario, ApplicationID, TCustomForm(Owner).Name, Login.InitialLogin.InitialRights[Contador]);
     end;
+  end;
 
   try
     Mensagens := TStringList.Create;
     Mensagens.Assign(UserSettings.CommonMessages.InitialMessage);
-    Mensagens.Text := StringReplace(Mensagens.Text, ':user', UsuarioInicial,
-      [rfReplaceAll]);
-    Mensagens.Text := StringReplace(Mensagens.Text, ':password',
-      PasswordInicial, [rfReplaceAll]);
+    Mensagens.Text := StringReplace(Mensagens.Text, ':user', UsuarioInicial, [rfReplaceAll]);
+    Mensagens.Text := StringReplace(Mensagens.Text, ':password', PasswordInicial, [rfReplaceAll]);
 
     if Assigned(OnCustomInitialMsg) then
       OnCustomInitialMsg(Self, CustomForm, Mensagens);

@@ -88,11 +88,13 @@ uses
   StdCtrls,
   SysUtils,
   Windows,
+  AxCtrls,
+  Menus,
 
   {$IF CompilerVersion >= 23}
   System.UITypes,
   {$IFEND}
-  
+
   UCBase;
 
 type
@@ -117,9 +119,15 @@ type
     ckUserExpired: TCheckBox;
     LabelExpira: TLabel;
     SpinExpira: TSpinEdit;
-    LabelDias: TLabel;
     ComboStatus: TComboBox;
     Label1: TLabel;
+    iUserImage: TImage;
+    lImagem: TLabel;
+    pImage: TPanel;
+    pmImage: TPopupMenu;
+    miLoad: TMenuItem;
+    miClear: TMenuItem;
+    odImage: TOpenDialog;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btCancelaClick(Sender: TObject);
     procedure btGravarClick(Sender: TObject);
@@ -128,26 +136,29 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ckUserExpiredClick(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure miLoadClick(Sender: TObject);
+    procedure miClearClick(Sender: TObject);
   private
     FormSenha: TCustomForm;
-    { Private declarations }
+    function ImageToBase64(Graphic: TGraphic): string;
+    function Base64ToImage(Base64: string): TOleGraphic;
   public
-    { Public declarations }
     FAltera: Boolean;
     FUserControl: TUserControl;
     FDataSetCadastroUsuario: TDataSet;
     vNovoIDUsuario: Integer;
+    procedure SetImage(Image: string);
   end;
 
 implementation
 
 uses
-  SenhaForm_U;
+  SenhaForm_U, IdCoderMIME;
 
 {$R *.dfm}
 
-procedure TfrmIncluirUsuario.FormClose(Sender: TObject;
-  var Action: TCloseAction);
+procedure TfrmIncluirUsuario.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
 end;
@@ -156,6 +167,34 @@ procedure TfrmIncluirUsuario.FormCreate(Sender: TObject);
 begin
   Self.BorderIcons := [];
   Self.BorderStyle := bsDialog;
+end;
+
+function TfrmIncluirUsuario.Base64ToImage(Base64: string): TOleGraphic;
+var
+  bs: TBytesStream;
+  dm: TIdDecoderMIME;
+begin
+  if Base64 = '' then
+    Result := nil
+  else
+  begin
+    Result := TOleGraphic.Create;
+    bs := TBytesStream.Create;
+    try
+      dm := TIdDecoderMIME.Create(nil);
+      try
+        dm.DecodeBegin(bs);
+        dm.Decode(Base64);
+        dm.DecodeEnd;
+        bs.Position := 0;
+        Result.LoadFromStream(bs);
+      finally
+        dm.Free;
+      end;
+    finally
+      bs.Free;
+    end;
+  end;
 end;
 
 procedure TfrmIncluirUsuario.btCancelaClick(Sender: TObject);
@@ -174,73 +213,69 @@ var
   vPerfil: Integer;
   vPrivilegiado: Boolean;
 begin
-  if ComboPerfil.ListSource.DataSet.RecordCount > 0 and ComboPerfil.KeyValue = NULL then
+  if ((ComboPerfil.ListSource.DataSet.RecordCount > 0) and VarIsNull(ComboPerfil.KeyValue)) then
+    ShowMessage('Falta Informar o Perfil')
+  else
   begin
-    ShowMessage('Falta Informar o Perfil');
-    Exit; // Cleilson Sousa
-  end;
+    btGravar.Enabled := False;
 
-  btGravar.Enabled := False;
-
-  with FUserControl do
     if not FAltera then
     begin // inclui user
-      if Self.FUserControl.ExisteUsuario(EditLogin.Text) then
-      begin
-        MessageDlg
-          (Format(FUserControl.UserSettings.CommonMessages.UsuarioExiste,
-          [EditLogin.Text]), mtWarning, [mbOK], 0);
-        Exit;
-      end;
-
-      FormSenha := TSenhaForm.Create(Self);
-      TSenhaForm(FormSenha).Position := UserSettings.WindowsPosition;
-      TSenhaForm(FormSenha).FUserControl := FUserControl;
-      TSenhaForm(FormSenha).Caption :=
-        Format(FUserControl.UserSettings.ResetPassword.WindowCaption,
-        [EditLogin.Text]);
-      if TSenhaForm(FormSenha).ShowModal <> mrOk then
-      begin
-        btGravar.Enabled := True;
-        Exit;
-      end;
-      vNovaSenha := TSenhaForm(FormSenha).edtSenha.Text;
-      vNovoIDUsuario := GetNewIdUser;
-      vNome := EditNome.Text;
-      vLogin := EditLogin.Text;
-      vEmail := EditEmail.Text;
-      FreeAndNil(FormSenha);
-
-      if ComboPerfil.KeyValue = NULL then
-        vPerfil := 0
+      if FUserControl.ExisteUsuario(EditLogin.Text) then
+        MessageDlg(Format(FUserControl.UserSettings.CommonMessages.UsuarioExiste, [EditLogin.Text]), mtWarning, [mbOK], 0)
       else
-        vPerfil := ComboPerfil.KeyValue;
+      begin
+        FormSenha := TSenhaForm.Create(Self);
+        TSenhaForm(FormSenha).Position := FUserControl.UserSettings.WindowsPosition;
+        TSenhaForm(FormSenha).FUserControl := FUserControl;
+        TSenhaForm(FormSenha).Caption := Format(FUserControl.UserSettings.ResetPassword.WindowCaption, [EditLogin.Text]);
+        if TSenhaForm(FormSenha).ShowModal <> mrOk then
+          btGravar.Enabled := True
+        else
+        begin
+          vNovaSenha := TSenhaForm(FormSenha).edtSenha.Text;
+          vNovoIDUsuario := GetNewIdUser;
+          vNome := EditNome.Text;
+          vLogin := EditLogin.Text;
+          vEmail := EditEmail.Text;
+          FreeAndNil(FormSenha);
 
-      vPrivilegiado := ckPrivilegiado.Checked;
-      vUserExpired := StrToInt(BoolToStr(ckUserExpired.Checked));
+          if VarIsNull(ComboPerfil.KeyValue) then
+            vPerfil := 0
+          else
+            vPerfil := ComboPerfil.KeyValue;
 
-      AddUser(vLogin, vNovaSenha, vNome, vEmail, vPerfil, vUserExpired,
-        SpinExpira.Value, vPrivilegiado);
+          vPrivilegiado := ckPrivilegiado.Checked;
+          vUserExpired := StrToInt(BoolToStr(ckUserExpired.Checked));
 
-      if (Assigned(FUserControl.MailUserControl)) and
-        (FUserControl.MailUserControl.AdicionaUsuario.Ativo) then
-        try
-          FUserControl.MailUserControl.EnviaEmailAdicionaUsuario(vNome, vLogin,
-            Encrypt(vNovaSenha, EncryptKey), vEmail, IntToStr(vPerfil),
-            EncryptKey);
-        except
-          on E: Exception do
-            Log(E.Message, 0);
+          FUserControl.AddUser(vLogin, vNovaSenha, vNome, vEmail, vPerfil, vUserExpired, SpinExpira.Value, 
+            vPrivilegiado, ImageToBase64(iUserImage.Picture.Graphic));
+
+          if (Assigned(FUserControl.MailUserControl)) and (FUserControl.MailUserControl.AdicionaUsuario.Ativo) then
+          begin
+            try
+              FUserControl.MailUserControl.EnviaEmailAdicionaUsuario(
+                vNome,
+                vLogin,
+                Encrypt(vNovaSenha, FUserControl.EncryptKey),
+                vEmail,
+                IntToStr(vPerfil),
+                FUserControl.EncryptKey
+              );
+            except
+              on E: Exception do
+                FUserControl.Log(E.Message, 0);
+            end;
+          end;
         end;
-
+      end;
     end
     else
     begin // alterar user
-      // vNovoIDUsuario := TfrmCadastrarUsuario(Self.Owner).FDataSetCadastroUsuario.FieldByName('IdUser').AsInteger;
       vNome := EditNome.Text;
       vLogin := EditLogin.Text;
       vEmail := EditEmail.Text;
-      if ComboPerfil.KeyValue = NULL then
+      if VarIsNull(ComboPerfil.KeyValue) then
         vPerfil := 0
       else
         vPerfil := ComboPerfil.KeyValue;
@@ -248,28 +283,43 @@ begin
       vUserExpired := StrToInt(BoolToStr(ckUserExpired.Checked));
       // Added by Petrus van Breda 28/04/2007
       vPrivilegiado := ckPrivilegiado.Checked;
-      ChangeUser(vNovoIDUsuario, vLogin, vNome, vEmail, vPerfil, vUserExpired,
-        SpinExpira.Value, ComboStatus.ItemIndex, vPrivilegiado);
+      FUserControl.ChangeUser(
+        vNovoIDUsuario,
+        vLogin,
+        vNome,
+        vEmail,
+        vPerfil,
+        vUserExpired,
+        SpinExpira.
+        Value,
+        ComboStatus.ItemIndex,
+        vPrivilegiado,
+        ImageToBase64(iUserImage.Picture.Graphic)
+      );
 
-      if (Assigned(FUserControl.MailUserControl)) and
-        (FUserControl.MailUserControl.AlteraUsuario.Ativo) then
+      if (Assigned(FUserControl.MailUserControl)) and (FUserControl.MailUserControl.AlteraUsuario.Ativo) then
+      begin
         try
-          FUserControl.MailUserControl.EnviaEmailAlteraUsuario(vNome, vLogin,
-            'Não Alterada', vEmail, IntToStr(vPerfil), EncryptKey);
+          FUserControl.MailUserControl.EnviaEmailAlteraUsuario(
+            vNome,
+            vLogin,
+            'Não Alterada',
+            vEmail,
+            IntToStr(vPerfil),
+            FUserControl.EncryptKey
+          );
         except
           on E: Exception do
-            Log(E.Message, 2);
+            FUserControl.Log(E.Message, 2);
         end;
-
+      end;
     end;
 
-  { With TfrmCadastrarUsuario(Owner) do
-    Begin }
-  FDataSetCadastroUsuario.Close;
-  FDataSetCadastroUsuario.Open;
-  FDataSetCadastroUsuario.Locate('idUser', vNovoIDUsuario, []);
-  // End;
-  Close;
+    FDataSetCadastroUsuario.Close;
+    FDataSetCadastroUsuario.Open;
+    FDataSetCadastroUsuario.Locate('idUser', vNovoIDUsuario, []);
+    Close;
+  end;
 end;
 {$WARNINGS ON}
 
@@ -291,6 +341,73 @@ begin
       SysUtils.FreeAndNil(DataSet);
     end;
   end;
+end;
+
+function TfrmIncluirUsuario.ImageToBase64(Graphic: TGraphic): string;
+var
+  ms: TMemoryStream;
+begin
+  Result := '';
+  if Graphic <> nil then
+  begin
+    ms := TMemoryStream.Create;
+    try
+      Graphic.SaveToStream(ms);
+      if ms.Size >= 50000 then
+        raise Exception.Create('Imagem muito grande, favor selecionar uma menor!');
+        
+      ms.Position := 0;
+      Result := TIdEncoderMIME.EncodeStream(ms, ms.Size);
+    finally
+      ms.Free;
+    end;
+  end;
+end;
+
+procedure TfrmIncluirUsuario.miClearClick(Sender: TObject);
+begin
+  iUserImage.Picture := nil;
+end;
+
+procedure TfrmIncluirUsuario.miLoadClick(Sender: TObject);
+var
+  ms: TMemoryStream;
+  og: TOleGraphic;
+begin
+  if odImage.Execute then
+  begin
+    ms := TMemoryStream.Create;
+    try
+      og := TOleGraphic.Create;
+      try
+        ms.LoadFromFile(odImage.FileName);
+        ms.Position := 0;
+        og.LoadFromStream(ms);
+        iUserImage.Picture.Assign(og);
+      finally
+        og.Free;
+      end;
+    finally
+      ms.Free;
+    end;
+  end;
+end;
+
+procedure TfrmIncluirUsuario.SetImage(Image: string);
+var
+  og: TOleGraphic;
+begin
+  og := Base64ToImage(Image);
+  try
+    iUserImage.Picture.Assign(og);  
+  finally
+    og.Free;
+  end;
+end;
+
+procedure TfrmIncluirUsuario.SpeedButton1Click(Sender: TObject);
+begin
+  //
 end;
 
 procedure TfrmIncluirUsuario.btlimpaClick(Sender: TObject);
@@ -320,7 +437,6 @@ begin
 
   SpinExpira.Visible := ckUserExpired.Visible;
   LabelExpira.Visible := ckUserExpired.Visible;
-  LabelDias.Visible := ckUserExpired.Visible;
 
   if (FUserControl.User.ProtectAdministrator) and
     (EditLogin.Text = FUserControl.Login.InitialLogin.User) then

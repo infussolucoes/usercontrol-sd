@@ -181,21 +181,18 @@ begin
     EditNome.Text := FDataSetCadastroUsuario.FieldByName('Nome').AsString;
     EditLogin.Text := FDataSetCadastroUsuario.FieldByName('Login').AsString;
     EditEmail.Text := FDataSetCadastroUsuario.FieldByName('Email').AsString;
-    ComboPerfil.KeyValue := FDataSetCadastroUsuario.FieldByName('Perfil')
-      .AsInteger;
-    ckPrivilegiado.Checked :=
-      StrToBool(FDataSetCadastroUsuario.FieldByName('Privilegiado').AsString);
-    ckUserExpired.Checked :=
-      StrToBool(FDataSetCadastroUsuario.FieldByName('UserNaoExpira').AsString);
-    SpinExpira.Value := FDataSetCadastroUsuario.FieldByName('DaysOfExpire')
-      .AsInteger;
-    ComboStatus.ItemIndex := FDataSetCadastroUsuario.FieldByName('UserInative')
-      .AsInteger;
-    if FfrmIncluirUsuario.ComboStatus.Enabled then
-      FfrmIncluirUsuario.ComboStatus.Enabled :=
-        not((FUsercontrol.User.ProtectAdministrator) and
-        (FDataSetCadastroUsuario.FieldByName('Login')
-        .AsString = FUsercontrol.Login.InitialLogin.User));
+    ComboPerfil.KeyValue := FDataSetCadastroUsuario.FieldByName('Perfil').AsInteger;
+    ckPrivilegiado.Checked := StrToBool(FDataSetCadastroUsuario.FieldByName('Privilegiado').AsString);
+    ckUserExpired.Checked := StrToBool(FDataSetCadastroUsuario.FieldByName('UserNaoExpira').AsString);
+    SpinExpira.Value := FDataSetCadastroUsuario.FieldByName('DaysOfExpire').AsInteger;
+    SetImage(FDataSetCadastroUsuario.FieldByName('Image').AsString);
+    ComboStatus.ItemIndex := FDataSetCadastroUsuario.FieldByName('UserInative').AsInteger;
+    FfrmIncluirUsuario.ComboStatus.Enabled :=
+      FfrmIncluirUsuario.ComboStatus.Enabled and
+      not (
+        (FUsercontrol.User.ProtectAdministrator) and
+        (FDataSetCadastroUsuario.FieldByName('Login').AsString = FUsercontrol.Login.InitialLogin.User)
+      );
     ShowModal;
   end;
   FreeAndNil(FfrmIncluirUsuario);
@@ -369,8 +366,7 @@ begin
     UserPermis := TUserPermis.Create(Self);
     UserPermis.FUsercontrol := FUsercontrol;
     SetWindowUserProfile;
-    UserPermis.lbUser.Caption := FDataSetCadastroUsuario.FieldByName
-      ('Login').AsString;
+    UserPermis.lbUser.Caption := FDataSetCadastroUsuario.FieldByName('Login').AsString;
     ActionBtPermissUserDefault;
   end
   else
@@ -404,8 +400,7 @@ procedure TUCFrame_User.ActionBtPermissUserDefault;
 var
   TempCampos, TempCamposEX: String;
 begin
-  UserPermis.FTempIdUser := FDataSetCadastroUsuario.FieldByName('IdUser')
-    .AsInteger;
+  UserPermis.FTempIdUser := FDataSetCadastroUsuario.FieldByName('IdUser').AsInteger;
   with FUsercontrol do
   begin
     TempCampos :=
@@ -502,8 +497,7 @@ begin
     else
     begin
       FfrmIncluirUsuario.LbDescricao.Caption := LabelChange;
-      FfrmIncluirUsuario.LbDescricao.Tag := FDataSetCadastroUsuario.FieldByName
-        ('IdUser').AsInteger;
+      FfrmIncluirUsuario.LbDescricao.Tag := FDataSetCadastroUsuario.FieldByName('IdUser').AsInteger;
     end;
 
     FfrmIncluirUsuario.FDataSetCadastroUsuario := DataUser.DataSet;
@@ -518,7 +512,6 @@ begin
     FfrmIncluirUsuario.Position :=
       Self.FUsercontrol.UserSettings.WindowsPosition;
     FfrmIncluirUsuario.LabelExpira.Caption := ExpiredIn;
-    FfrmIncluirUsuario.LabelDias.Caption := Day;
     FfrmIncluirUsuario.ckUserExpired.Caption := CheckExpira;
     FfrmIncluirUsuario.ComboPerfil.ListSource := DataPerfil;
     FfrmIncluirUsuario.ComboStatus.Enabled := not Adicionar;

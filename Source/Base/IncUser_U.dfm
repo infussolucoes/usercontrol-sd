@@ -3,7 +3,7 @@ object frmIncluirUsuario: TfrmIncluirUsuario
   Top = 236
   BorderStyle = bsDialog
   Caption = 'Cadastro de Usu'#225'rios'
-  ClientHeight = 281
+  ClientHeight = 324
   ClientWidth = 472
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -153,18 +153,16 @@ object frmIncluirUsuario: TfrmIncluirUsuario
     Left = 375
     Top = 35
     Width = 97
-    Height = 246
+    Height = 289
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 1
     object btGravar: TBitBtn
-      Left = 8
-      Top = 16
+      Left = 6
+      Top = 6
       Width = 81
       Height = 25
       Caption = '&Gravar'
-      TabOrder = 0
-      OnClick = btGravarClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -217,15 +215,15 @@ object frmIncluirUsuario: TfrmIncluirUsuario
         6FCE726FCE726FCE726FFF00FF9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A
         9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A}
       NumGlyphs = 2
+      TabOrder = 0
+      OnClick = btGravarClick
     end
     object btCancela: TBitBtn
-      Left = 8
-      Top = 56
+      Left = 6
+      Top = 37
       Width = 81
       Height = 25
       Caption = '&Cancelar'
-      TabOrder = 1
-      OnClick = btCancelaClick
       Glyph.Data = {
         66030000424D6603000000000000660200002800000010000000100000000100
         08000000000000010000120B0000120B00008C0000008C00000000000000FFFF
@@ -255,20 +253,22 @@ object frmIncluirUsuario: TfrmIncluirUsuario
         14212E44757D69577902024D0D08011218241F3253016140790202024D0A0C01
         0E1C2A390156787902020202024D4D1A1B2735334C797902020202020202024D
         4D4D4D4D4D0202020202}
+      TabOrder = 1
+      OnClick = btCancelaClick
     end
   end
   object Panel2: TPanel
     Left = 0
     Top = 35
     Width = 375
-    Height = 246
+    Height = 289
     Align = alClient
     BevelInner = bvRaised
     BevelOuter = bvLowered
     TabOrder = 0
     object lbNome: TLabel
-      Left = 48
-      Top = 15
+      Left = 8
+      Top = 6
       Width = 34
       Height = 13
       Alignment = taRightJustify
@@ -276,8 +276,8 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       Layout = tlCenter
     end
     object lbLogin: TLabel
-      Left = 50
-      Top = 45
+      Left = 269
+      Top = 6
       Width = 32
       Height = 13
       Alignment = taRightJustify
@@ -285,8 +285,8 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       Layout = tlCenter
     end
     object lbEmail: TLabel
-      Left = 50
-      Top = 75
+      Left = 8
+      Top = 49
       Width = 32
       Height = 13
       Alignment = taRightJustify
@@ -294,8 +294,8 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       Layout = tlCenter
     end
     object lbPerfil: TLabel
-      Left = 53
-      Top = 136
+      Left = 8
+      Top = 92
       Width = 29
       Height = 13
       Alignment = taRightJustify
@@ -303,8 +303,8 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       Layout = tlCenter
     end
     object btlimpa: TSpeedButton
-      Left = 331
-      Top = 136
+      Left = 262
+      Top = 108
       Width = 22
       Height = 21
       Glyph.Data = {
@@ -353,35 +353,34 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       OnClick = btlimpaClick
     end
     object LabelExpira: TLabel
-      Left = 30
-      Top = 167
-      Width = 52
+      Left = 290
+      Top = 92
+      Width = 79
       Height = 13
       Alignment = taRightJustify
-      Caption = 'Expira em :'
-      Layout = tlCenter
-    end
-    object LabelDias: TLabel
-      Left = 331
-      Top = 167
-      Width = 19
-      Height = 13
-      Caption = 'dias'
+      Caption = 'Expira em (Dias):'
       Layout = tlCenter
     end
     object Label1: TLabel
-      Left = 46
-      Top = 106
+      Left = 269
+      Top = 49
       Width = 36
       Height = 13
       Alignment = taRightJustify
       Caption = 'Status :'
       Layout = tlCenter
     end
+    object lImagem: TLabel
+      Left = 290
+      Top = 138
+      Width = 43
+      Height = 13
+      Caption = 'Imagem :'
+    end
     object EditNome: TEdit
-      Left = 88
-      Top = 15
-      Width = 265
+      Left = 8
+      Top = 22
+      Width = 255
       Height = 21
       Ctl3D = True
       MaxLength = 30
@@ -389,9 +388,9 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       TabOrder = 0
     end
     object EditLogin: TEdit
-      Left = 88
-      Top = 45
-      Width = 265
+      Left = 269
+      Top = 22
+      Width = 100
       Height = 21
       Ctl3D = True
       MaxLength = 30
@@ -399,9 +398,9 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       TabOrder = 1
     end
     object EditEmail: TEdit
-      Left = 88
-      Top = 75
-      Width = 265
+      Left = 8
+      Top = 65
+      Width = 255
       Height = 21
       Ctl3D = True
       MaxLength = 150
@@ -409,17 +408,17 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       TabOrder = 2
     end
     object ckPrivilegiado: TCheckBox
-      Left = 89
-      Top = 220
+      Left = 8
+      Top = 135
       Width = 120
       Height = 17
       Caption = 'Usu'#225'rio privilegiado'
       TabOrder = 7
     end
     object ComboPerfil: TDBLookupComboBox
-      Left = 88
-      Top = 136
-      Width = 241
+      Left = 8
+      Top = 108
+      Width = 248
       Height = 21
       Ctl3D = True
       KeyField = 'IDUser'
@@ -428,8 +427,8 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       TabOrder = 4
     end
     object ckUserExpired: TCheckBox
-      Left = 89
-      Top = 196
+      Left = 8
+      Top = 158
       Width = 160
       Height = 17
       Caption = 'Senha do usu'#225'rio n'#227'o expira'
@@ -437,9 +436,9 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       OnClick = ckUserExpiredClick
     end
     object SpinExpira: TSpinEdit
-      Left = 88
-      Top = 167
-      Width = 241
+      Left = 290
+      Top = 108
+      Width = 79
       Height = 22
       MaxValue = 100
       MinValue = 10
@@ -447,16 +446,53 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       Value = 10
     end
     object ComboStatus: TComboBox
-      Left = 88
-      Top = 106
-      Width = 265
+      Left = 269
+      Top = 65
+      Width = 100
       Height = 21
       Style = csDropDownList
-      ItemHeight = 13
       TabOrder = 3
       Items.Strings = (
         'Ativo'
         'Inativo')
     end
+    object pImage: TPanel
+      Left = 262
+      Top = 162
+      Width = 107
+      Height = 117
+      BevelInner = bvSpace
+      BevelKind = bkSoft
+      BevelOuter = bvLowered
+      TabOrder = 8
+      object iUserImage: TImage
+        Left = 0
+        Top = 0
+        Width = 100
+        Height = 110
+        PopupMenu = pmImage
+        Transparent = True
+      end
+    end
+  end
+  object pmImage: TPopupMenu
+    Left = 302
+    Top = 249
+    object miLoad: TMenuItem
+      Caption = 'Carregar imagem'
+      OnClick = miLoadClick
+    end
+    object miClear: TMenuItem
+      Caption = 'Limpar Imagem'
+      OnClick = miClearClick
+    end
+  end
+  object odImage: TOpenDialog
+    Filter = 
+      'All|*.jpg; *.jpeg; *.gif; *.png|JPG|*.jpg; *.jpeg|GIF|*.gif|PNG|' +
+      '*.png'
+    Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofEnableSizing]
+    Left = 314
+    Top = 201
   end
 end

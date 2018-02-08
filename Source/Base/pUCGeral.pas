@@ -141,16 +141,26 @@ begin
   with FUsercontrol do
   begin
     FUsercontrol.CurrentUser.PerfilUsuario := Nil;
-    FUsercontrol.CurrentUser.PerfilUsuario := DataConnector.UCGetSQLDataset
-      (Format('Select %s as IdUser, %s as Login, %s as Nome, %s as Email, %s as Perfil, %s as Privilegiado, '
-      + '%s as Tipo, %s as Senha, %s as UserNaoExpira, %s as DaysOfExpire , %s as UserInative from %s Where '
-      + '%s  = %s ORDER BY %s', [TableUsers.FieldUserID, TableUsers.FieldLogin,
-      TableUsers.FieldUserName, TableUsers.FieldEmail, TableUsers.FieldProfile,
-      TableUsers.FieldPrivileged, TableUsers.FieldTypeRec,
-      TableUsers.FieldPassword, TableUsers.FieldUserExpired,
-      TableUsers.FieldUserDaysSun, TableUsers.FieldUserInative,
-      TableUsers.TableName, TableUsers.FieldTypeRec, QuotedStr('U'),
-      TableUsers.FieldLogin]));
+    FUsercontrol.CurrentUser.PerfilUsuario := DataConnector.UCGetSQLDataset(Format(
+      ' select ' +
+      '   %s as IdUser, %s as Login, %s as Nome, %s as Email, ' +
+      '   %s as Perfil, %s as Privilegiado, %s as Tipo, %s as Senha, ' +
+      '   %s as UserNaoExpira, %s as DaysOfExpire , %s as UserInative, %s as Image ' +
+      ' from ' +
+      '   %s ' +
+      ' where ' +
+      '   %s  = %s ' +
+      ' order by ' +
+      '   %s',
+      [
+        TableUsers.FieldUserID, TableUsers.FieldLogin, TableUsers.FieldUserName, TableUsers.FieldEmail,
+        TableUsers.FieldProfile, TableUsers.FieldPrivileged, TableUsers.FieldTypeRec, TableUsers.FieldPassword,
+        TableUsers.FieldUserExpired, TableUsers.FieldUserDaysSun, TableUsers.FieldUserInative, TableUsers.FieldImage,
+        TableUsers.TableName,
+        TableUsers.FieldTypeRec, QuotedStr('U'),
+        TableUsers.FieldLogin
+      ]
+    ));
 
     FUsercontrol.CurrentUser.PerfilGrupo := Nil;
     FUsercontrol.CurrentUser.PerfilGrupo := DataConnector.UCGetSQLDataset
@@ -212,12 +222,9 @@ begin
     FreeAndNil(FrmFrame);
 
   FrmFrame := TUCFrame_User.Create(Self);
-  TUCFrame_User(FrmFrame).FDataSetCadastroUsuario :=
-    FUsercontrol.CurrentUser.PerfilUsuario;
-  TUCFrame_User(FrmFrame).DataUser.DataSet := TUCFrame_User(FrmFrame)
-    .FDataSetCadastroUsuario;
-  TUCFrame_User(FrmFrame).DataPerfil.DataSet :=
-    FUsercontrol.CurrentUser.PerfilGrupo;
+  TUCFrame_User(FrmFrame).FDataSetCadastroUsuario := FUsercontrol.CurrentUser.PerfilUsuario;
+  TUCFrame_User(FrmFrame).DataUser.DataSet := TUCFrame_User(FrmFrame).FDataSetCadastroUsuario;
+  TUCFrame_User(FrmFrame).DataPerfil.DataSet := FUsercontrol.CurrentUser.PerfilGrupo;
   TUCFrame_User(FrmFrame).FUsercontrol := FUsercontrol;
   TUCFrame_User(FrmFrame).Height := Panel3.Height;
   TUCFrame_User(FrmFrame).Width := Panel3.Width;
