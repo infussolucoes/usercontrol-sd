@@ -114,6 +114,7 @@ type
     function GetTransObjectName: String; override;
     function UCFindDataConnection: Boolean; override;
     function UCFindTable(const Tablename: String): Boolean; override;
+    function UCFindFieldTable(const Tablename: string; const FieldName: string): Boolean; override;
     function UCGetSQLDataset(FSQL: String): TDataset; override;
     procedure UCExecSQL(FSQL: String); override;
     procedure OrderBy(const DataSet: TDataSet; const FieldName: string); override;
@@ -131,23 +132,41 @@ const
   // Não esquecer de colocar em TBancoDados, o tipo de banco !!!!!!
   // Não esquecer de colocar no 'case' de UCFindTable
 
-  SQL_Firebird = 'SELECT ' +
-    '  UPPER(RDB$RELATIONS.RDB$RELATION_NAME) RDB$RELATION_NAME ' + 'FROM ' +
-    '  RDB$RELATIONS ' + 'WHERE ' +
-    '  RDB$RELATIONS.RDB$FLAGS = 1 AND UPPER(RDB$RELATIONS.RDB$RELATION_NAME) = '
-    + '  UPPER(''%s'')';
+  SQL_Firebird_Table =
+    ' select ' +
+    '   upper(RDB$RELATIONS.RDB$RELATION_NAME) RDB$RELATION_NAME ' +
+    ' from ' +
+    '   RDB$RELATIONS ' +
+    ' where ' +
+    '   RDB$RELATIONS.RDB$FLAGS = 1 and ' +
+    '   upper(RDB$RELATIONS.RDB$RELATION_NAME) = upper(%s)';
 
-  SQL_MSSQL = '';
+  SQL_Firebird_Field =
+    ' select ' +
+    '   upper(RF.RDB$FIELD_NAME) RDB$FIELD_NAME ' +
+    ' from ' +
+    '   RDB$RELATION_FIELDS RF ' +
+    ' where ' +
+    '   upper(RF.RDB$RELATION_NAME) = upper(%s) and ' +
+    '   upper(RF.RDB$FIELD_NAME) = upper(%s) ';
 
-  SQL_Oracle = '';
+  SQL_MSSQL_Table = '';
+  SQL_MSSQL_Field = '';
 
-  SQL_PostgreSQL = 'SELECT ' + '  UPPER(PG_CLASS.RELNAME) ' + 'FROM ' +
+  SQL_Oracle_Table = '';
+  SQL_Oracle_Field = '';
+
+  SQL_PostgreSQL_Table = 'SELECT ' + '  UPPER(PG_CLASS.RELNAME) ' + 'FROM ' +
     '  PG_CLASS ' + 'WHERE ' + '  PG_CLASS.RELKIND = ''r'' AND ' +
     '  UPPER(PG_CLASS.RELNAME) LIKE UPPER(''%s'')';
 
-  SQL_MySQL = '';
+  SQL_PostgreSQL_Field = '';
 
-  SQL_Paradox = '';
+  SQL_MySQL_Table = '';
+  SQL_MySQL_Field = '';
+
+  SQL_Paradox_Table = '';
+  SQL_Paradox_Field = '';
 
 implementation
 
@@ -238,24 +257,49 @@ begin
   Result := Assigned(FConnection) and (FConnection.Connected);
 end;
 
+function TUCMidasConn.UCFindFieldTable(const Tablename, FieldName: string): Boolean;
+begin
+  case FBancoDados of
+    bdFirebird:
+      FSQLStmt := SQL_Firebird_Field;
+    bdMSSQL:
+      FSQLStmt := SQL_MSSQL_Field;
+    bdOracle:
+      FSQLStmt := SQL_Oracle_Field;
+    bdPostgreSQL:
+      FSQLStmt := SQL_PostgreSQL_Field;
+    bdMySQL:
+      FSQLStmt := SQL_MySQL_Field;
+    bdParadox:
+      FSQLStmt := SQL_Paradox_Field;
+  end;
+
+  FSQLStmt := Format(FSQLStmt, [QuotedStr(Tablename), QuotedStr(FieldName)]);
+
+  FResultado := IAppServer(FConnection.GetServer).AS_GetRecords(FProviderName,
+    -1, FRecsOut, 0, FSQLStmt, FParams, FOwnerData);
+
+  Result := FRecsOut > 0;
+end;
+
 function TUCMidasConn.UCFindTable(const Tablename: String): Boolean;
 begin
   case FBancoDados of
     bdFirebird:
-      FSQLStmt := SQL_Firebird;
+      FSQLStmt := SQL_Firebird_Table;
     bdMSSQL:
-      FSQLStmt := SQL_MSSQL;
+      FSQLStmt := SQL_MSSQL_Table;
     bdOracle:
-      FSQLStmt := SQL_Oracle;
+      FSQLStmt := SQL_Oracle_Table;
     bdPostgreSQL:
-      FSQLStmt := SQL_PostgreSQL;
+      FSQLStmt := SQL_PostgreSQL_Table;
     bdMySQL:
-      FSQLStmt := SQL_MySQL;
+      FSQLStmt := SQL_MySQL_Table;
     bdParadox:
-      FSQLStmt := SQL_Paradox;
+      FSQLStmt := SQL_Paradox_Table;
   end;
 
-  FSQLStmt := Format(FSQLStmt, [Tablename]);
+  FSQLStmt := Format(FSQLStmt, [QuotedStr(Tablename)]);
 
   FResultado := IAppServer(FConnection.GetServer).AS_GetRecords(FProviderName,
     -1, FRecsOut, 0, FSQLStmt, FParams, FOwnerData);

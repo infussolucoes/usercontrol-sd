@@ -70,9 +70,11 @@ unit UCDataInfo;
 interface
 
 uses
-  Classes;
+  Classes, UCMessages;
 
 type
+  TUCCriptografia = (cPadrao, cMD5);
+
   TUCTableUsers = class(TPersistent)
   private
     FEmail: String;
@@ -90,11 +92,15 @@ type
     fFieldUserDaysSun: String;
     fFieldUserInative: String;
     FFieldImage: string;
+    FUserSettings: TUCUserSettings;
   protected
   public
     constructor Create(AOwner: TComponent);
     destructor Destroy; override;
     procedure Assign(Source: TPersistent); override;
+    function GetFieldList: TStringList;
+    function GetFieldType(const FieldName: string; const Criptografia: TUCCriptografia): string;
+    property UserSettings: TUCUserSettings read FUserSettings write FUserSettings;
   published
     property FieldUserID: String read FUserID write FUserID;
     property FieldUserName: String read FUserName write FUserName;
@@ -265,6 +271,66 @@ end;
 destructor TUCTableUsers.Destroy;
 begin
   inherited;
+end;
+
+function TUCTableUsers.GetFieldList: TStringList;
+begin
+  Result := TStringList.Create;
+  Result.Add(FieldUserID);
+  Result.Add(FieldUserName);
+  Result.Add(FieldLogin);
+  Result.Add(FieldPassword);
+  Result.Add(FieldEmail);
+  Result.Add(FieldPrivileged);
+  Result.Add(FieldTypeRec);
+  Result.Add(FieldProfile);
+  Result.Add(FieldKey);
+  Result.Add(FieldDateExpired);
+  Result.Add(FieldUserExpired);
+  Result.Add(FieldUserDaysSun);
+  Result.Add(FieldUserInative);
+  Result.Add(FieldImage);
+end;
+
+function TUCTableUsers.GetFieldType(const FieldName: string; const Criptografia: TUCCriptografia): string;
+var
+  TipoCampo: string;
+begin
+  case Criptografia of
+    cPadrao:
+      TipoCampo := UserSettings.Type_VarChar + '(250)';
+    cMD5:
+      TipoCampo := UserSettings.Type_VarChar + '(32)';
+  end;
+
+  if FieldName = FieldUserID then
+    Result := UserSettings.Type_Int;
+  if FieldName = FieldUserName then
+    Result := UserSettings.Type_VarChar;
+  if FieldName = FieldLogin then
+    Result := UserSettings.Type_VarChar;
+  if FieldName = FieldPassword then
+    Result := TipoCampo;
+  if FieldName = FieldDateExpired then
+    Result := UserSettings.Type_Char;
+  if FieldName = FieldUserExpired then
+    Result := UserSettings.Type_Int;
+  if FieldName = FieldUserDaysSun then
+    Result := UserSettings.Type_Int;
+  if FieldName = FieldEmail then
+    Result := UserSettings.Type_VarChar;
+  if FieldName = FieldPrivileged then
+    Result := UserSettings.Type_Int;
+  if FieldName = FieldTypeRec then
+    Result := UserSettings.Type_Char;
+  if FieldName = FieldProfile then
+    Result := UserSettings.Type_Int;
+  if FieldName = FieldKey then
+    Result := TipoCampo;
+  if FieldName = FieldUserInative then
+    Result := UserSettings.Type_Int;
+  if FieldName = FieldImage then
+    Result := UserSettings.Type_Memo;
 end;
 
 { TUCTableUsersLogged }

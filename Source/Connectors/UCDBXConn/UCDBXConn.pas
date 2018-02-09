@@ -102,6 +102,7 @@ type
     function GetTransObjectName: String; override;
     function UCFindDataConnection: Boolean; override;
     function UCFindTable(const Tablename: String): Boolean; override;
+    function UCFindFieldTable(const Tablename: string; const FieldName: string): Boolean; override;
     function UCGetSQLDataset(FSQL: String): TDataset; override;
     procedure UCExecSQL(FSQL: String); override;
     procedure OrderBy(const DataSet: TDataSet; const FieldName: string); override;
@@ -180,6 +181,23 @@ end;
 function TUCDBXConn.UCFindDataConnection: Boolean;
 begin
   Result := Assigned(FConnection) and (FConnection.Connected);
+end;
+
+function TUCDBXConn.UCFindFieldTable(const Tablename, FieldName: string): Boolean;
+var
+  TempList: TStringList;
+begin
+  TempList := TStringList.Create;
+  try
+    if SchemaName <> '' then
+      FConnection.GetFieldNames(Tablename, SchemaName, TempList)
+    else
+      FConnection.GetFieldNames(Tablename, TempList);
+    TempList.Text := UpperCase(TempList.Text);
+    Result := TempList.IndexOf(UpperCase(FieldName)) > -1;
+  finally
+    FreeAndNil(TempList);
+  end;
 end;
 
 function TUCDBXConn.GetDBObjectName: String;

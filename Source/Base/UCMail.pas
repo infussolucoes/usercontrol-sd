@@ -186,7 +186,7 @@ implementation
 
 uses
   ucBase,
-  UCEMailForm_U;
+  UCEMailForm_U, UCDataInfo;
 
 function GeraSenha(Digitos: Integer; Min: Boolean; Mai: Boolean;
   Num: Boolean): string;

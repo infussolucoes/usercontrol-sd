@@ -386,7 +386,6 @@ type
   TUCUsersLogged = class; // Cesar: 12/07/2005
 
   TUCLoginMode = (lmActive, lmPassive);
-  TUCCriptografia = (cPadrao, cMD5);
 
   TUserControl = class(TComponent) // Classe principal
   private
@@ -483,7 +482,7 @@ type
     // Criar Tabelas
     procedure CriaTabelaLog;
     procedure CriaTabelaRights(ExtraRights: Boolean = False);
-    procedure CriaTabelaUsuarios(TableExists: Boolean);
+    procedure CriaTabelaUsuarios;
     procedure CriaTabelaMsgs(const TableName: String);
     // -----
 
@@ -505,28 +504,24 @@ type
     procedure Execute;
     procedure StartLogin;
     procedure ShowChangePassword;
-    procedure ChangeUser(IdUser: Integer; Login, Name, Mail: String;
-      Profile, UserExpired, UserDaysSun, Status: Integer; Privuser: Boolean; const Image: string);
+    procedure ChangeUser(IdUser: Integer; Login, Name, Mail: String; Profile, UserExpired, UserDaysSun, Status: Integer; Privuser: Boolean; const Image: string);
     procedure ChangePassword(IdUser: Integer; NewPassword: String);
-    procedure AddRight(IdUser: Integer; ItemRight: TObject;
-      FullPath: Boolean = True); overload;
+    procedure AddRight(IdUser: Integer; ItemRight: TObject; FullPath: Boolean = True); overload;
     procedure AddRight(IdUser: Integer; ItemRight: String); overload;
     procedure AddRightEX(IdUser: Integer; Module, FormName, ObjName: String);
     procedure HideField(Sender: TField; var Text: String; DisplayText: Boolean);
     procedure Log(Msg: String; Level: Integer = llNormal);
-    function VerificaLogin(User, Password: String;
-      SoVerificarUsuarioAdmin: Boolean = False): Integer; // Boolean;
+    function VerificaLogin(User, Password: String; SoVerificarUsuarioAdmin: Boolean = False): Integer; // Boolean;
     function GetLocalUserName: String;
     function GetLocalComputerName: String;
-    function AddUser(Login, Password, Name, Mail: String; Profile, UserExpired, DaysExpired: Integer;
-      Privuser: Boolean; const Image: string): Integer;
+    function AddUser(Login, Password, Name, Mail: String; Profile, UserExpired, DaysExpired: Integer; Privuser: Boolean; const Image: string): Integer;
     function ExisteUsuario(Login: String): Boolean;
     property CurrentUser: TUCCurrentUser read FCurrentUser write FCurrentUser;
-    property UserSettings: TUCUserSettings read FUserSettings
-      write SetUserSettings;
+    property UserSettings: TUCUserSettings read FUserSettings write SetUserSettings;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     function GetAllUsers(Names: Boolean): TStringList;
+    procedure CheckBD;
   published
     property About: TUCAboutVar read FAbout write FAbout;
     property Criptografia: TUCCriptografia read FCriptografia
@@ -780,6 +775,7 @@ begin
   FNotAllowedItems := TUCNotAllowedItems.Create(Self);
   FExtraRights := TUCExtraRights.Create(Self);
   FTableUsers := TUCTableUsers.Create(Self);
+  FTableUsers.UserSettings := FUserSettings;
   FTableRights := TUCTableRights.Create(Self);
   FTableUsersLogged := TUCTableUsersLogged.Create(Self);
 
@@ -1684,8 +1680,7 @@ begin
     OnChangePassword(Self, IdUser, Login, Senha, NewPassword);
 end;
 
-procedure TUserControl.ChangeUser(IdUser: Integer; Login, Name, Mail: String;
-  Profile, UserExpired, UserDaysSun, Status: Integer; Privuser: Boolean; const Image: string);
+procedure TUserControl.ChangeUser(IdUser: Integer; Login, Name, Mail: String; Profile, UserExpired, UserDaysSun, Status: Integer; Privuser: Boolean; const Image: string);
 var
   Key: String;
   Password: String;
@@ -1746,6 +1741,26 @@ begin
 
   if Assigned(OnChangeUser) then
     OnChangeUser(Self, IdUser, Login, Name, Mail, Profile, Privuser);
+end;
+
+procedure TUserControl.CheckBD;
+begin
+  if Assigned(DataConnector) then
+  begin
+    if not DataConnector.UCFindTable(FTableRights.TableName) then
+      CriaTabelaRights;
+
+    if not DataConnector.UCFindTable(FTableRights.TableName + 'EX') then
+      CriaTabelaRights(True); // extra rights table
+
+    if not DataConnector.UCFindTable(TableUsersLogged.TableName) then
+      UsersLogged.CriaTableUserLogado;
+
+    if ((LogControl.Active) and (not DataConnector.UCFindTable(LogControl.TableLog))) then
+      CriaTabelaLog;
+
+    CriaTabelaUsuarios;
+  end;
 end;
 
 procedure TUserControl.CriaTabelaMsgs(const TableName: String);
@@ -1816,24 +1831,7 @@ begin
     Exit;
 
   try
-
-    if not DataConnector.UCFindTable(FTableRights.TableName) then
-      CriaTabelaRights;
-
-    if not DataConnector.UCFindTable(FTableRights.TableName + 'EX') then
-      CriaTabelaRights(True); // extra rights table
-
-    if not DataConnector.UCFindTable(TableUsersLogged.TableName) then
-      UsersLogged.CriaTableUserLogado;
-
-    if LogControl.Active then
-    Begin
-      if not DataConnector.UCFindTable(LogControl.TableLog) then
-        CriaTabelaLog;
-    End;
-
-    CriaTabelaUsuarios(DataConnector.UCFindTable(FTableUsers.TableName));
-
+    CheckBD;
     // Atualizador de Versoes
     AtualizarVersao;
 
@@ -2641,29 +2639,17 @@ end;
 
 { .$ENDIF }
 
-procedure TUserControl.CriaTabelaUsuarios(TableExists: Boolean);
+procedure TUserControl.CriaTabelaUsuarios;
 var
-  Contador: Integer;
-  IDUsuario: Integer;
+  Contador, IDUsuario: Integer;
   CustomForm: TCustomForm;
   Mensagens: TStrings;
-  DataSetUsuario: TDataSet;
-  DataSetPermissao: TDataSet;
-  SQLstmt: String;
-  TipoCampo: String;
-  UsuarioInicial: String;
-  PasswordInicial: String;
+  DataSetUsuario, DataSetPermissao: TDataSet;
+  SQLstmt, UsuarioInicial, PasswordInicial, sFieldName: String;
 begin
-  case Self.Criptografia of
-    cPadrao:
-      TipoCampo := UserSettings.Type_VarChar + '(250)';
-    cMD5:
-      TipoCampo := UserSettings.Type_VarChar + '(32)';
-  end;
-
-  if not TableExists then
+  if Assigned(DataConnector) then
   begin
-    if Assigned(DataConnector) then
+    if not DataConnector.UCFindTable(FTableUsers.TableName) then
     begin
       SQLstmt := Format(
         'Create Table %s (' + // TableName
@@ -2683,24 +2669,35 @@ begin
         '  %s %s)', // FieldImage
         [
           TableUsers.TableName,
-          TableUsers.FieldUserID, UserSettings.Type_Int,
-          TableUsers.FieldUserName, UserSettings.Type_VarChar,
-          TableUsers.FieldLogin, UserSettings.Type_VarChar,
-          TableUsers.FieldPassword, TipoCampo,
-          TableUsers.FieldDateExpired, UserSettings.Type_Char,
-          TableUsers.FieldUserExpired, UserSettings.Type_Int,
-          TableUsers.FieldUserDaysSun, UserSettings.Type_Int,
-          TableUsers.FieldEmail, UserSettings.Type_VarChar,
-          TableUsers.FieldPrivileged, UserSettings.Type_Int,
-          TableUsers.FieldTypeRec, UserSettings.Type_Char,
-          TableUsers.FieldProfile, UserSettings.Type_Int,
-          TableUsers.FieldKey, TipoCampo,
-          TableUsers.FieldUserInative, UserSettings.Type_Int,
-          TableUsers.FieldImage, UserSettings.Type_Memo
+          TableUsers.FieldUserID, TableUsers.GetFieldType(TableUsers.FieldUserID, Self.Criptografia),
+          TableUsers.FieldUserName, TableUsers.GetFieldType(TableUsers.FieldUserName, Self.Criptografia),
+          TableUsers.FieldLogin, TableUsers.GetFieldType(TableUsers.FieldLogin, Self.Criptografia),
+          TableUsers.FieldPassword, TableUsers.GetFieldType(TableUsers.FieldPassword, Self.Criptografia),
+          TableUsers.FieldDateExpired, TableUsers.GetFieldType(TableUsers.FieldDateExpired, Self.Criptografia),
+          TableUsers.FieldUserExpired, TableUsers.GetFieldType(TableUsers.FieldUserExpired, Self.Criptografia),
+          TableUsers.FieldUserDaysSun, TableUsers.GetFieldType(TableUsers.FieldUserDaysSun, Self.Criptografia),
+          TableUsers.FieldEmail, TableUsers.GetFieldType(TableUsers.FieldEmail, Self.Criptografia),
+          TableUsers.FieldPrivileged, TableUsers.GetFieldType(TableUsers.FieldPrivileged, Self.Criptografia),
+          TableUsers.FieldTypeRec, TableUsers.GetFieldType(TableUsers.FieldTypeRec, Self.Criptografia),
+          TableUsers.FieldProfile, TableUsers.GetFieldType(TableUsers.FieldProfile, Self.Criptografia),
+          TableUsers.FieldKey, TableUsers.GetFieldType(TableUsers.FieldKey, Self.Criptografia),
+          TableUsers.FieldUserInative, TableUsers.GetFieldType(TableUsers.FieldUserInative, Self.Criptografia),
+          TableUsers.FieldImage, TableUsers.GetFieldType(TableUsers.FieldImage, Self.Criptografia)
         ]
       );
 
       DataConnector.UCExecSQL(SQLstmt);
+    end
+    else
+    begin
+      for sFieldName in TableUsers.GetFieldList do
+      begin
+        if not DataConnector.UCFindFieldTable(TableUsers.TableName, sFieldName) then
+        begin
+          SQLstmt := Format('alter table %s add %s %s;', [TableUsers.TableName, sFieldName, TableUsers.GetFieldType(sFieldName, Self.Criptografia)]);
+          DataConnector.UCExecSQL(SQLstmt);
+        end;
+      end;
     end;
   end;
 

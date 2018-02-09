@@ -488,9 +488,7 @@ object frmIncluirUsuario: TfrmIncluirUsuario
     end
   end
   object odImage: TOpenDialog
-    Filter = 
-      'All|*.jpg; *.jpeg; *.gif; *.png|JPG|*.jpg; *.jpeg|GIF|*.gif|PNG|' +
-      '*.png'
+    Filter = 'All|*.jpg; *.jpeg; *.gif; *.png|JPG|*.jpg; *.jpeg|GIF|*.gif'
     Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofEnableSizing]
     Left = 314
     Top = 201

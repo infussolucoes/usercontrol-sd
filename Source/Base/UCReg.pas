@@ -113,7 +113,7 @@ implementation
 
 uses
   Dialogs, Forms, SysUtils, UCAbout, UCIdle, UCObjSel_U, UCEditorForm_U, ActnList,
-  ActnMan, ActnMenus, Menus, StdCtrls, UCSettings, Variants, UcMail, UcConsts_Language;
+  ActnMan, ActnMenus, Menus, StdCtrls, UCSettings, Variants, UcMail, UcConsts_Language, UCDataInfo;
 
 {$IFDEF  RTL170_UP}
 var

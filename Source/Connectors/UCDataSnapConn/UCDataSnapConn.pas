@@ -124,6 +124,7 @@ type
     function GetTransObjectName: String; override;
     function UCFindDataConnection: Boolean; override;
     function UCFindTable(const Tablename: String): Boolean; override;
+    function UCFindFieldTable(const Tablename: string; const FieldName: string): Boolean; override;
     function UCGetSQLDataset(FSQL: String): TDataset; override;
     procedure UCExecSQL(FSQL: String); override;
     procedure OrderBy(const DataSet: TDataSet; const FieldName: string); override;
@@ -264,6 +265,11 @@ end;
 function TUCDataSnapConn.UCFindDataConnection: Boolean;
 begin
   Result := Assigned(FConnection) and (FConnection.Connected);
+end;
+
+function TUCDataSnapConn.UCFindFieldTable(const Tablename, FieldName: string): Boolean;
+begin
+  Result := True;//DSClient.FindFieldTable(Tablename, FieldName);
 end;
 
 function TUCDataSnapConn.UCFindTable(const Tablename: String): Boolean;

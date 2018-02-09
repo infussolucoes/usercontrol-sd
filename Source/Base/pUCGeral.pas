@@ -111,7 +111,8 @@ type
   protected
     FrmFrame: TCustomFrame;
   private
-    { Private declarations }
+    procedure GetUser;
+    procedure GetGroup;
   public
     FUsercontrol: TUserControl;
     { Public declarations }
@@ -138,10 +139,38 @@ end;
 
 procedure TFormUserPerf.FormShow(Sender: TObject);
 begin
-  with FUsercontrol do
+  GetUser;
+  GetGroup;
+  if FUsercontrol.CurrentUser.PerfilUsuario <> nil then
   begin
-    FUsercontrol.CurrentUser.PerfilUsuario := Nil;
-    FUsercontrol.CurrentUser.PerfilUsuario := DataConnector.UCGetSQLDataset(Format(
+    SpeedPerfil.Visible := FUsercontrol.UserProfile.Active;
+    SpeedLog.Visible := FUsercontrol.LogControl.Active;
+    SpeedUserLog.Visible := FUsercontrol.UsersLogged.Active;
+
+    SpeedUserClick(Sender);
+    Caption := FUsercontrol.UserSettings.UsersForm.WindowCaption;
+
+    SpeedUser.Caption := FUsercontrol.UserSettings.Log.ColUser;
+    SpeedPerfil.Caption := FUsercontrol.UserSettings.UsersProfile.ColProfile;
+    SpeedUserLog.Caption := FUsercontrol.UserSettings.UsersLogged.LabelDescricao;
+  end;
+end;
+
+procedure TFormUserPerf.GetGroup;
+begin
+  FUsercontrol.CurrentUser.PerfilGrupo := nil;
+  FUsercontrol.CurrentUser.PerfilGrupo := FUsercontrol.DataConnector.UCGetSQLDataset
+    (Format('Select %s as IdUser, %s as Login, %s as Nome, %s as Tipo from %s Where %s  = %s ORDER BY %s',
+    [FUsercontrol.TableUsers.FieldUserID, FUsercontrol.TableUsers.FieldLogin, FUsercontrol.TableUsers.FieldUserName,
+    FUsercontrol.TableUsers.FieldTypeRec, FUsercontrol.TableUsers.TableName, FUsercontrol.TableUsers.FieldTypeRec,
+    QuotedStr('P'), FUsercontrol.TableUsers.FieldUserName]));
+end;
+
+procedure TFormUserPerf.GetUser;
+begin
+  FUsercontrol.CurrentUser.PerfilUsuario := nil;
+  try
+    FUsercontrol.CurrentUser.PerfilUsuario := FUsercontrol.DataConnector.UCGetSQLDataset(Format(
       ' select ' +
       '   %s as IdUser, %s as Login, %s as Nome, %s as Email, ' +
       '   %s as Perfil, %s as Privilegiado, %s as Tipo, %s as Senha, ' +
@@ -153,34 +182,21 @@ begin
       ' order by ' +
       '   %s',
       [
-        TableUsers.FieldUserID, TableUsers.FieldLogin, TableUsers.FieldUserName, TableUsers.FieldEmail,
-        TableUsers.FieldProfile, TableUsers.FieldPrivileged, TableUsers.FieldTypeRec, TableUsers.FieldPassword,
-        TableUsers.FieldUserExpired, TableUsers.FieldUserDaysSun, TableUsers.FieldUserInative, TableUsers.FieldImage,
-        TableUsers.TableName,
-        TableUsers.FieldTypeRec, QuotedStr('U'),
-        TableUsers.FieldLogin
+        FUsercontrol.TableUsers.FieldUserID, FUsercontrol.TableUsers.FieldLogin, FUsercontrol.TableUsers.FieldUserName, FUsercontrol.TableUsers.FieldEmail,
+        FUsercontrol.TableUsers.FieldProfile, FUsercontrol.TableUsers.FieldPrivileged, FUsercontrol.TableUsers.FieldTypeRec, FUsercontrol.TableUsers.FieldPassword,
+        FUsercontrol.TableUsers.FieldUserExpired, FUsercontrol.TableUsers.FieldUserDaysSun, FUsercontrol.TableUsers.FieldUserInative, FUsercontrol.TableUsers.FieldImage,
+        FUsercontrol.TableUsers.TableName,
+        FUsercontrol.TableUsers.FieldTypeRec, QuotedStr('U'),
+        FUsercontrol.TableUsers.FieldLogin
       ]
     ));
-
-    FUsercontrol.CurrentUser.PerfilGrupo := Nil;
-    FUsercontrol.CurrentUser.PerfilGrupo := DataConnector.UCGetSQLDataset
-      (Format('Select %s as IdUser, %s as Login, %s as Nome, %s as Tipo from %s Where %s  = %s ORDER BY %s',
-      [TableUsers.FieldUserID, TableUsers.FieldLogin, TableUsers.FieldUserName,
-      TableUsers.FieldTypeRec, TableUsers.TableName, TableUsers.FieldTypeRec,
-      QuotedStr('P'), TableUsers.FieldUserName]));
+  except
+    on E: Exception do
+    begin
+      if not ((Pos(E.Message, 'Table unknown') = 0) or (Pos(E.Message, 'Column unknown') = 0)) then
+        raise;
+    end;
   end;
-
-  SpeedPerfil.Visible := FUsercontrol.UserProfile.Active;
-  SpeedLog.Visible := FUsercontrol.LogControl.Active;
-  SpeedUserLog.Visible := FUsercontrol.UsersLogged.Active;
-
-  SpeedUserClick(Sender);
-  Caption := FUsercontrol.UserSettings.UsersForm.WindowCaption;
-
-  SpeedUser.Caption := FUsercontrol.UserSettings.Log.ColUser;
-  SpeedPerfil.Caption := FUsercontrol.UserSettings.UsersProfile.ColProfile;
-  SpeedUserLog.Caption := FUsercontrol.UserSettings.UsersLogged.LabelDescricao;
-
 end;
 
 procedure TFormUserPerf.SpeedPerfilClick(Sender: TObject);
@@ -190,16 +206,15 @@ begin
   if Assigned(FrmFrame) then
     FreeAndNil(FrmFrame);
 
+  GetGroup;
+
   FrmFrame := TFrame_Profile.Create(Self);
-  TFrame_Profile(FrmFrame).DataPerfil.DataSet :=
-    FUsercontrol.CurrentUser.PerfilGrupo;
+  TFrame_Profile(FrmFrame).DataPerfil.DataSet := FUsercontrol.CurrentUser.PerfilGrupo;
   TFrame_Profile(FrmFrame).Height := Panel3.Height;
   TFrame_Profile(FrmFrame).Width := Panel3.Width;
-  TFrame_Profile(FrmFrame).FDataSetPerfilUsuario :=
-    FUsercontrol.CurrentUser.PerfilGrupo;
+  TFrame_Profile(FrmFrame).FDataSetPerfilUsuario := FUsercontrol.CurrentUser.PerfilGrupo;
   TFrame_Profile(FrmFrame).FUsercontrol := FUsercontrol;
-  TFrame_Profile(FrmFrame).DbGridPerf.Columns[0].Title.Caption :=
-    FUsercontrol.UserSettings.UsersProfile.ColProfile;
+  TFrame_Profile(FrmFrame).DbGridPerf.Columns[0].Title.Caption := FUsercontrol.UserSettings.UsersProfile.ColProfile;
 
   with FUsercontrol.UserSettings.UsersProfile, TFrame_Profile(FrmFrame) do
   begin
@@ -220,6 +235,9 @@ begin
 
   if Assigned(FrmFrame) then
     FreeAndNil(FrmFrame);
+
+  GetUser;
+  GetGroup;
 
   FrmFrame := TUCFrame_User.Create(Self);
   TUCFrame_User(FrmFrame).FDataSetCadastroUsuario := FUsercontrol.CurrentUser.PerfilUsuario;
