@@ -127,7 +127,6 @@ type
     pmImage: TPopupMenu;
     miLoad: TMenuItem;
     miClear: TMenuItem;
-    odImage: TOpenDialog;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btCancelaClick(Sender: TObject);
     procedure btGravarClick(Sender: TObject);
@@ -143,6 +142,7 @@ type
     FormSenha: TCustomForm;
     function ImageToBase64(Graphic: TGraphic): string;
     function Base64ToImage(Base64: string): TOleGraphic;
+    function GetImagePath: string;
   public
     FAltera: Boolean;
     FUserControl: TUserControl;
@@ -212,66 +212,40 @@ var
   vUserExpired: Integer;
   vPerfil: Integer;
   vPrivilegiado: Boolean;
-begin
-  if ((ComboPerfil.ListSource.DataSet.RecordCount > 0) and VarIsNull(ComboPerfil.KeyValue)) then
-    ShowMessage('Falta Informar o Perfil')
-  else
+
+  procedure SendEmail;
+  var
+    ErrorLevel: Integer;
   begin
-    btGravar.Enabled := False;
-
-    if not FAltera then
-    begin // inclui user
-      if FUserControl.ExisteUsuario(EditLogin.Text) then
-        MessageDlg(Format(FUserControl.UserSettings.CommonMessages.UsuarioExiste, [EditLogin.Text]), mtWarning, [mbOK], 0)
-      else
-      begin
-        FormSenha := TSenhaForm.Create(Self);
-        TSenhaForm(FormSenha).Position := FUserControl.UserSettings.WindowsPosition;
-        TSenhaForm(FormSenha).FUserControl := FUserControl;
-        TSenhaForm(FormSenha).Caption := Format(FUserControl.UserSettings.ResetPassword.WindowCaption, [EditLogin.Text]);
-        if TSenhaForm(FormSenha).ShowModal <> mrOk then
-          btGravar.Enabled := True
-        else
+    ErrorLevel := 1;
+    if (Assigned(FUserControl.MailUserControl)) then
+    begin
+      try
+        if (FUserControl.MailUserControl.AdicionaUsuario.Ativo) then
         begin
-          vNovaSenha := TSenhaForm(FormSenha).edtSenha.Text;
-          vNovoIDUsuario := GetNewIdUser;
-          vNome := EditNome.Text;
-          vLogin := EditLogin.Text;
-          vEmail := EditEmail.Text;
-          FreeAndNil(FormSenha);
-
-          if VarIsNull(ComboPerfil.KeyValue) then
-            vPerfil := 0
-          else
-            vPerfil := ComboPerfil.KeyValue;
-
-          vPrivilegiado := ckPrivilegiado.Checked;
-          vUserExpired := StrToInt(BoolToStr(ckUserExpired.Checked));
-
-          FUserControl.AddUser(vLogin, vNovaSenha, vNome, vEmail, vPerfil, vUserExpired, SpinExpira.Value, 
-            vPrivilegiado, ImageToBase64(iUserImage.Picture.Graphic));
-
-          if (Assigned(FUserControl.MailUserControl)) and (FUserControl.MailUserControl.AdicionaUsuario.Ativo) then
-          begin
-            try
-              FUserControl.MailUserControl.EnviaEmailAdicionaUsuario(
-                vNome,
-                vLogin,
-                Encrypt(vNovaSenha, FUserControl.EncryptKey),
-                vEmail,
-                IntToStr(vPerfil),
-                FUserControl.EncryptKey
-              );
-            except
-              on E: Exception do
-                FUserControl.Log(E.Message, 0);
-            end;
-          end;
+          ErrorLevel := 0;
+          FUserControl.MailUserControl.EnviaEmailAdicionaUsuario(vNome, vLogin,
+            Encrypt(vNovaSenha, FUserControl.EncryptKey), vEmail, IntToStr(vPerfil), FUserControl.EncryptKey);
+        end
+        else if (FUserControl.MailUserControl.AlteraUsuario.Ativo) then
+        begin
+          ErrorLevel := 2;
+          FUserControl.MailUserControl.EnviaEmailAdicionaUsuario(vNome, vLogin,
+            Encrypt(vNovaSenha, FUserControl.EncryptKey), vEmail, IntToStr(vPerfil), FUserControl.EncryptKey);
         end;
+      except
+        on E: Exception do
+          FUserControl.Log(E.Message, ErrorLevel);
       end;
-    end
+    end;
+  end;
+begin
+  btGravar.Enabled := False;
+  try
+    if ((ComboPerfil.ListSource.DataSet.RecordCount > 0) and VarIsNull(ComboPerfil.KeyValue)) then
+      ShowMessage('Falta Informar o Perfil')
     else
-    begin // alterar user
+    begin
       vNome := EditNome.Text;
       vLogin := EditLogin.Text;
       vEmail := EditEmail.Text;
@@ -281,47 +255,66 @@ begin
         vPerfil := ComboPerfil.KeyValue;
 
       vUserExpired := StrToInt(BoolToStr(ckUserExpired.Checked));
-      // Added by Petrus van Breda 28/04/2007
       vPrivilegiado := ckPrivilegiado.Checked;
-      FUserControl.ChangeUser(
-        vNovoIDUsuario,
-        vLogin,
-        vNome,
-        vEmail,
-        vPerfil,
-        vUserExpired,
-        SpinExpira.
-        Value,
-        ComboStatus.ItemIndex,
-        vPrivilegiado,
-        ImageToBase64(iUserImage.Picture.Graphic)
-      );
 
-      if (Assigned(FUserControl.MailUserControl)) and (FUserControl.MailUserControl.AlteraUsuario.Ativo) then
-      begin
-        try
-          FUserControl.MailUserControl.EnviaEmailAlteraUsuario(
-            vNome,
-            vLogin,
-            'Não Alterada',
-            vEmail,
-            IntToStr(vPerfil),
-            FUserControl.EncryptKey
-          );
-        except
-          on E: Exception do
-            FUserControl.Log(E.Message, 2);
+      if FAltera then
+      begin // alterar user
+        FUserControl.ChangeUser(vNovoIDUsuario, vLogin, vNome, vEmail, vPerfil, vUserExpired, SpinExpira.Value,
+          ComboStatus.ItemIndex, vPrivilegiado, ImageToBase64(iUserImage.Picture.Graphic));
+
+        SendEmail;
+      end
+      else
+      begin // inclui user
+        if FUserControl.ExisteUsuario(EditLogin.Text) then
+          MessageDlg(Format(FUserControl.UserSettings.CommonMessages.UsuarioExiste, [EditLogin.Text]), mtWarning, [mbOK], 0)
+        else
+        begin
+          FormSenha := TSenhaForm.Create(Self);
+          TSenhaForm(FormSenha).Position := FUserControl.UserSettings.WindowsPosition;
+          TSenhaForm(FormSenha).FUserControl := FUserControl;
+          TSenhaForm(FormSenha).Caption := Format(FUserControl.UserSettings.ResetPassword.WindowCaption, [EditLogin.Text]);
+
+          if TSenhaForm(FormSenha).ShowModal = mrOk then
+          begin
+            vNovaSenha := TSenhaForm(FormSenha).edtSenha.Text;
+            vNovoIDUsuario := GetNewIdUser;
+            FreeAndNil(FormSenha);
+
+            FUserControl.AddUser(vLogin, vNovaSenha, vNome, vEmail, vPerfil, vUserExpired, SpinExpira.Value,
+              vPrivilegiado, ImageToBase64(iUserImage.Picture.Graphic));
+
+            SendEmail;
+          end;
         end;
       end;
-    end;
 
-    FDataSetCadastroUsuario.Close;
-    FDataSetCadastroUsuario.Open;
-    FDataSetCadastroUsuario.Locate('idUser', vNovoIDUsuario, []);
-    Close;
+      FDataSetCadastroUsuario.Close;
+      FDataSetCadastroUsuario.Open;
+      FDataSetCadastroUsuario.Locate('idUser', vNovoIDUsuario, []);
+      Close;
+    end;
+  finally
+    btGravar.Enabled := True;
   end;
 end;
 {$WARNINGS ON}
+
+function TfrmIncluirUsuario.GetImagePath: string;
+var
+  FOpenDialog: TOpenDialog;
+begin
+  Result := '';
+  FOpenDialog := TOpenDialog.Create(nil);
+  try
+    FOpenDialog.Filter := 'All|*.jpg; *.jpeg; *.gif; *.png|JPG|*.jpg; *.jpeg|GIF|*.gif';
+    FOpenDialog.Options := [ofHideReadOnly,ofPathMustExist,ofFileMustExist,ofEnableSizing];
+    if FOpenDialog.Execute then
+      Result := FOpenDialog.FileName;
+  finally
+    FOpenDialog.Free;
+  end;
+end;
 
 function TfrmIncluirUsuario.GetNewIdUser: Integer;
 var
@@ -353,9 +346,6 @@ begin
     ms := TMemoryStream.Create;
     try
       Graphic.SaveToStream(ms);
-      if ms.Size >= 50000 then
-        raise Exception.Create('Imagem muito grande, favor selecionar uma menor!');
-        
       ms.Position := 0;
       Result := TIdEncoderMIME.EncodeStream(ms, ms.Size);
     finally
@@ -373,14 +363,32 @@ procedure TfrmIncluirUsuario.miLoadClick(Sender: TObject);
 var
   ms: TMemoryStream;
   og: TOleGraphic;
-begin
-  if odImage.Execute then
+  FilePath: string;
+
+  function GetSize: Real;
+  var
+    SearchRec: TSearchRec;
   begin
+    Result := 0;
+    try
+      if FindFirst(ExpandFileName(FilePath), faAnyFile, SearchRec) = 0 then
+        Result := SearchRec.Size;
+    finally
+      SysUtils.FindClose(SearchRec);
+    end;
+  end;
+begin
+  FilePath := GetImagePath;
+  if Length(Trim(FilePath)) > 0 then
+  begin
+    if GetSize < 4900 then
+      raise Exception.Create('Imagem deve ser menor que 4.901 bytes');
+
     ms := TMemoryStream.Create;
     try
       og := TOleGraphic.Create;
       try
-        ms.LoadFromFile(odImage.FileName);
+        ms.LoadFromFile(FilePath);
         ms.Position := 0;
         og.LoadFromStream(ms);
         iUserImage.Picture.Assign(og);
@@ -399,7 +407,7 @@ var
 begin
   og := Base64ToImage(Image);
   try
-    iUserImage.Picture.Assign(og);  
+    iUserImage.Picture.Assign(og);
   finally
     og.Free;
   end;

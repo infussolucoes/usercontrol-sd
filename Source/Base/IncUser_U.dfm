@@ -3,7 +3,7 @@ object frmIncluirUsuario: TfrmIncluirUsuario
   Top = 236
   BorderStyle = bsDialog
   Caption = 'Cadastro de Usu'#225'rios'
-  ClientHeight = 324
+  ClientHeight = 333
   ClientWidth = 472
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -153,7 +153,7 @@ object frmIncluirUsuario: TfrmIncluirUsuario
     Left = 375
     Top = 35
     Width = 97
-    Height = 289
+    Height = 298
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 1
@@ -261,7 +261,7 @@ object frmIncluirUsuario: TfrmIncluirUsuario
     Left = 0
     Top = 35
     Width = 375
-    Height = 289
+    Height = 298
     Align = alClient
     BevelInner = bvRaised
     BevelOuter = bvLowered
@@ -371,8 +371,8 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       Layout = tlCenter
     end
     object lImagem: TLabel
-      Left = 290
-      Top = 138
+      Left = 40
+      Top = 135
       Width = 43
       Height = 13
       Caption = 'Imagem :'
@@ -408,7 +408,7 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       TabOrder = 2
     end
     object ckPrivilegiado: TCheckBox
-      Left = 8
+      Left = 121
       Top = 135
       Width = 120
       Height = 17
@@ -427,7 +427,7 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       TabOrder = 4
     end
     object ckUserExpired: TCheckBox
-      Left = 8
+      Left = 121
       Top = 158
       Width = 160
       Height = 17
@@ -457,8 +457,8 @@ object frmIncluirUsuario: TfrmIncluirUsuario
         'Inativo')
     end
     object pImage: TPanel
-      Left = 262
-      Top = 162
+      Left = 8
+      Top = 151
       Width = 107
       Height = 117
       BevelInner = bvSpace
@@ -470,14 +470,16 @@ object frmIncluirUsuario: TfrmIncluirUsuario
         Top = 0
         Width = 100
         Height = 110
+        Center = True
         PopupMenu = pmImage
+        Stretch = True
         Transparent = True
       end
     end
   end
   object pmImage: TPopupMenu
-    Left = 302
-    Top = 249
+    Left = 22
+    Top = 197
     object miLoad: TMenuItem
       Caption = 'Carregar imagem'
       OnClick = miLoadClick
@@ -486,11 +488,5 @@ object frmIncluirUsuario: TfrmIncluirUsuario
       Caption = 'Limpar Imagem'
       OnClick = miClearClick
     end
-  end
-  object odImage: TOpenDialog
-    Filter = 'All|*.jpg; *.jpeg; *.gif; *.png|JPG|*.jpg; *.jpeg|GIF|*.gif'
-    Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofEnableSizing]
-    Left = 314
-    Top = 201
   end
 end
