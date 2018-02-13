@@ -381,7 +381,7 @@ begin
   FilePath := GetImagePath;
   if Length(Trim(FilePath)) > 0 then
   begin
-    if GetSize < 4900 then
+    if GetSize > 4900 then
       raise Exception.Create('Imagem deve ser menor que 4.901 bytes');
 
     ms := TMemoryStream.Create;
