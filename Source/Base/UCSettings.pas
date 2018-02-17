@@ -79,80 +79,69 @@ uses
 type
   TUCSettings = class(TComponent)
   private
-    FAddProfileFormMSG: TUCAddProfileFormMSG;
-    FAddUserFormMSG: TUCAddUserFormMSG;
-    FCadUserFormMSG: TUCCadUserFormMSG;
-    FLogControlFormMSG: TUCLogControlFormMSG;
-    FLoginFormMSG: TUCLoginFormMSG;
-    FPermissFormMSG: TUCPermissFormMSG;
-    FProfileUserFormMSG: TUCProfileUserFormMSG;
-    FResetPassword: TUCResetPassword;
-    FTrocaSenhaFormMSG: TUCTrocaSenhaFormMSG;
     FUserCommomMSG: TUCUserCommonMSG;
+    FLoginFormMSG: TUCLoginFormMSG;
+    FCadUserFormMSG: TUCCadUserFormMSG;
+    FAddUserFormMSG: TUCAddUserFormMSG;
+    FPermissFormMSG: TUCPermissFormMSG;
+    FTrocaSenhaFormMSG: TUCTrocaSenhaFormMSG;
+    FResetPassword: TUCResetPassword;
+    FProfileUserFormMSG: TUCProfileUserFormMSG;
+    FAddProfileFormMSG: TUCAddProfileFormMSG;
+    FLogControlFormMSG: TUCLogControlFormMSG;
     FAppMessagesMSG: TUCAppMessagesMSG;
     FPosition: TPosition;
     fLanguage: TUCLanguage;
     fUsersLogged: TUCCadUserLoggedMSG;
     fBancoDados: TUCTypeBancoDados;
-    procedure SetFAddProfileFormMSG(const Value: TUCAddProfileFormMSG);
-    procedure SetFAddUserFormMSG(const Value: TUCAddUserFormMSG);
-    procedure SetFCadUserFormMSG(const Value: TUCCadUserFormMSG);
-    procedure SetFFormLoginMsg(const Value: TUCLoginFormMSG);
-    procedure SetFLogControlFormMSG(const Value: TUCLogControlFormMSG);
-    procedure SetFPermissFormMSG(const Value: TUCPermissFormMSG);
-    procedure SetFProfileUserFormMSG(const Value: TUCProfileUserFormMSG);
     procedure SetFResetPassword(const Value: TUCResetPassword);
-    procedure SetFTrocaSenhaFormMSG(const Value: TUCTrocaSenhaFormMSG);
-    procedure SetFUserCommonMSg(const Value: TUCUserCommonMSG);
+    procedure SetFProfileUserFormMSG(const Value: TUCProfileUserFormMSG);
+    procedure SetFAddProfileFormMSG(const Value: TUCAddProfileFormMSG);
+    procedure SetFLogControlFormMSG(const Value: TUCLogControlFormMSG);
     procedure SetAppMessagesMSG(const Value: TUCAppMessagesMSG);
     procedure SetfLanguage(const Value: TUCLanguage);
     procedure SetfUsersLogged(const Value: TUCCadUserLoggedMSG);
     procedure SetfBancoDados(const Value: TUCTypeBancoDados);
   protected
+    procedure SetFUserCommonMSG(const Value: TUCUserCommonMSG);
+    procedure SetFFormLoginMSG(const Value: TUCLoginFormMSG);
+    procedure SetFCadUserFormMSG(const Value: TUCCadUserFormMSG);
+    procedure SetFAddUserFormMSG(const Value: TUCAddUserFormMSG);
+    procedure SetFPermissFormMSG(const Value: TUCPermissFormMSG);
+    procedure SetFTrocaSenhaFormMSG(const Value: TUCTrocaSenhaFormMSG);
   public
     Type_Int, Type_Char, Type_VarChar, Type_Memo: String;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure Assign(Source: TPersistent); override;
   published
-    property AppMessages: TUCAppMessagesMSG read FAppMessagesMSG
-      write SetAppMessagesMSG;
-    property CommonMessages: TUCUserCommonMSG read FUserCommomMSG
-      write SetFUserCommonMSg;
-    property Login: TUCLoginFormMSG read FLoginFormMSG write SetFFormLoginMsg;
-    property Log: TUCLogControlFormMSG read FLogControlFormMSG
-      write SetFLogControlFormMSG;
-    property UsersForm: TUCCadUserFormMSG read FCadUserFormMSG
-      write SetFCadUserFormMSG;
-    property AddChangeUser: TUCAddUserFormMSG read FAddUserFormMSG
-      write SetFAddUserFormMSG;
-    property AddChangeProfile: TUCAddProfileFormMSG read FAddProfileFormMSG
-      write SetFAddProfileFormMSG;
-    property UsersProfile: TUCProfileUserFormMSG read FProfileUserFormMSG
-      write SetFProfileUserFormMSG;
-    property Rights: TUCPermissFormMSG read FPermissFormMSG
-      write SetFPermissFormMSG;
-    property ChangePassword: TUCTrocaSenhaFormMSG read FTrocaSenhaFormMSG
-      write SetFTrocaSenhaFormMSG;
-    property ResetPassword: TUCResetPassword read FResetPassword
-      write SetFResetPassword;
-    Property BancoDados: TUCTypeBancoDados read fBancoDados
-      write SetfBancoDados;
-    property WindowsPosition: TPosition read FPosition write FPosition
-      default poMainFormCenter;
-    Property Language: TUCLanguage read fLanguage write SetfLanguage;
-    property UsersLogged: TUCCadUserLoggedMSG read fUsersLogged
-      write SetfUsersLogged;
+    property AppMessages: TUCAppMessagesMSG read FAppMessagesMSG write SetAppMessagesMSG;
+    property CommonMessages: TUCUserCommonMSG read FUserCommomMSG write SetFUserCommonMSG;
+    property Login: TUCLoginFormMSG read FLoginFormMSG write SetFFormLoginMSG;
+    property Log: TUCLogControlFormMSG read FLogControlFormMSG write SetFLogControlFormMSG;
+    property UsersForm: TUCCadUserFormMSG read FCadUserFormMSG write SetFCadUserFormMSG;
+    property AddChangeUser: TUCAddUserFormMSG read FAddUserFormMSG write SetFAddUserFormMSG;
+    property AddChangeProfile: TUCAddProfileFormMSG read FAddProfileFormMSG write SetFAddProfileFormMSG;
+    property UsersProfile: TUCProfileUserFormMSG read FProfileUserFormMSG write SetFProfileUserFormMSG;
+    property Rights: TUCPermissFormMSG read FPermissFormMSG write SetFPermissFormMSG;
+    property ChangePassword: TUCTrocaSenhaFormMSG read FTrocaSenhaFormMSG write SetFTrocaSenhaFormMSG;
+    property ResetPassword: TUCResetPassword read FResetPassword write SetFResetPassword;
+    property WindowsPosition: TPosition read FPosition write FPosition default poMainFormCenter;
+    property BancoDados: TUCTypeBancoDados read fBancoDados write SetfBancoDados;
+    property Language: TUCLanguage read fLanguage write SetfLanguage;
+    property UsersLogged: TUCCadUserLoggedMSG read fUsersLogged write SetfUsersLogged;
   end;
 
-procedure IniSettings(DestSettings: TUCUserSettings);
-procedure IniSettings2(DestSettings: TUCSettings);
+  TUCUserSettings = class(TUCSettings)
+  public
+    procedure Assign(Source: TPersistent); override;
+  end;
+
+procedure IniSettings(DestSettings: TUCSettings);
 
 procedure AlterLanguage(DestSettings: TUCUserSettings);
-procedure AlterLanguage2(DestSettings: TUCSettings);
 
-procedure RetornaSqlBancoDados(fBanco: TUCTypeBancoDados;
-  var Int, Char, VarChar, Memo: String);
+procedure RetornaSqlBancoDados(fBanco: TUCTypeBancoDados; var Int, Char, VarChar, Memo: String);
 
 implementation
 
@@ -165,14 +154,13 @@ uses
 
 {$IFDEF DELPHI9_UP} {$REGION 'Inicializacao'} {$ENDIF}
 
-procedure RetornaSqlBancoDados(fBanco: TUCTypeBancoDados;
-  var Int, Char, VarChar, Memo: String);
+procedure RetornaSqlBancoDados(fBanco: TUCTypeBancoDados; var Int, Char, VarChar, Memo: String);
 begin
   Int := 'INT';
   Char := 'CHAR';
   VarChar := 'VARCHAR';
 
-  Case fBanco of
+  case fBanco of
     Firebird:
       Memo := 'BLOB SUB_TYPE 1 SEGMENT SIZE 1024';
     Interbase:
@@ -187,64 +175,39 @@ begin
       Memo := 'NTEXT';
     PostgreSQL:
       Memo := 'TEXT';
-  End;
+  end;
 end;
 
-procedure IniSettings(DestSettings: TUCUserSettings);
+procedure IniSettings(DestSettings: TUCSettings);
 var
   tmp: TBitmap;
 begin
   with DestSettings.CommonMessages do
   begin
-    if BlankPassword = '' then
-      BlankPassword := RetornaLingua(ucPortuguesBr,
-        'Const_Men_SenhaDesabitada');
-    if PasswordChanged = '' then
-      PasswordChanged := RetornaLingua(ucPortuguesBr,
-        'Const_Men_SenhaAlterada');
-    if InitialMessage.Text = '' then
-      InitialMessage.Text := RetornaLingua(ucPortuguesBr,
-        'Const_Men_MsgInicial');
-    if MaxLoginAttemptsError = '' then
-      MaxLoginAttemptsError := RetornaLingua(ucPortuguesBr,
-        'Const_Men_MaxTentativas');
-    if InvalidLogin = '' then
-      InvalidLogin := RetornaLingua(ucPortuguesBr, 'Const_Men_LoginInvalido');
-    if InactiveLogin = '' then
-      InactiveLogin := RetornaLingua(ucPortuguesBr, 'Const_Men_LoginInativo');
-
-    if AutoLogonError = '' then
-      AutoLogonError := RetornaLingua(ucPortuguesBr,
-        'Const_Men_AutoLogonError');
-    if UsuarioExiste = '' then
-      UsuarioExiste := RetornaLingua(ucPortuguesBr, 'Const_Men_UsuarioExiste');
-    if PasswordExpired = '' then
-      PasswordExpired := RetornaLingua(ucPortuguesBr,
-        'Const_Men_PasswordExpired');
-    If ForcaTrocaSenha = '' then
-      ForcaTrocaSenha := RetornaLingua(ucPortuguesBr,
-        'Const_ErrPass_ForcaTrocaSenha');
+    BlankPassword := GetTranslate(DestSettings.Language, BlankPassword, 'Const_Men_SenhaDesabitada');
+    PasswordChanged := GetTranslate(DestSettings.Language, PasswordChanged, 'Const_Men_SenhaAlterada');
+    InitialMessage.Text := GetTranslate(DestSettings.Language, InitialMessage.Text, 'Const_Men_MsgInicial');
+    MaxLoginAttemptsError := GetTranslate(DestSettings.Language, MaxLoginAttemptsError, 'Const_Men_MaxTentativas');
+    InvalidLogin := GetTranslate(DestSettings.Language, InvalidLogin, 'Const_Men_LoginInvalido');
+    InactiveLogin := GetTranslate(DestSettings.Language, InactiveLogin, 'Const_Men_LoginInativo');
+    AutoLogonError := GetTranslate(DestSettings.Language, AutoLogonError, 'Const_Men_AutoLogonError');
+    UsuarioExiste := GetTranslate(DestSettings.Language, UsuarioExiste, 'Const_Men_UsuarioExiste');
+    PasswordExpired := GetTranslate(DestSettings.Language, PasswordExpired, 'Const_Men_PasswordExpired');
+    ForcaTrocaSenha := GetTranslate(DestSettings.Language, ForcaTrocaSenha, 'Const_ErrPass_ForcaTrocaSenha');
+    InvalidLogin := GetTranslate(DestSettings.Language, InvalidLogin, 'Const_Men_Select_Profile');
+    CanNotDeleteUserLogon := GetTranslate(DestSettings.Language, CanNotDeleteUserLogon, 'Const_Men_Cannot_Del_User_Logon');
+    ImageTooLarge := GetTranslate(DestSettings.Language, ImageTooLarge, 'Const_Err_Image_Too_Large');
   end;
 
   with DestSettings.Login do
   begin
-    if BtCancel = '' then
-      BtCancel := RetornaLingua(ucPortuguesBr, 'Const_Log_BtCancelar');
-    if BtOK = '' then
-      BtOK := RetornaLingua(ucPortuguesBr, 'Const_Log_BtOK');
-    if LabelPassword = '' then
-      LabelPassword := RetornaLingua(ucPortuguesBr, 'Const_Log_LabelSenha');
-    if LabelUser = '' then
-      LabelUser := RetornaLingua(ucPortuguesBr, 'Const_Log_LabelUsuario');
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(ucPortuguesBr, 'Const_Log_WindowCaption');
-
-    if LabelTentativa = '' then
-      LabelTentativa := RetornaLingua(ucPortuguesBr,
-        'Const_Log_LabelTentativa');
-    if LabelTentativas = '' then
-      LabelTentativas := RetornaLingua(ucPortuguesBr,
-        'Const_Log_LabelTentativas');
+    BtCancel := GetTranslate(DestSettings.Language, BtCancel, 'Const_Log_BtCancelar');
+    BtOK := GetTranslate(DestSettings.Language, BtOK, 'Const_Log_BtOK');
+    LabelPassword := GetTranslate(DestSettings.Language, LabelPassword, 'Const_Log_LabelSenha');
+    LabelUser := GetTranslate(DestSettings.Language, LabelUser, 'Const_Log_LabelUsuario');
+    WindowCaption := GetTranslate(DestSettings.Language, WindowCaption, 'Const_Log_WindowCaption');
+    LabelTentativa := GetTranslate(DestSettings.Language, LabelTentativa, 'Const_Log_LabelTentativa');
+    LabelTentativas := GetTranslate(DestSettings.Language, LabelTentativas, 'Const_Log_LabelTentativas');
 
     try
       tmp := TBitmap.Create;
@@ -257,707 +220,136 @@ begin
 
   with DestSettings.UsersForm do
   begin
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(ucPortuguesBr, 'Const_Cad_WindowCaption');
-    if LabelDescription = '' then
-      LabelDescription := RetornaLingua(ucPortuguesBr,
-        'Const_Cad_LabelDescricao');
-    if ColName = '' then
-      ColName := RetornaLingua(ucPortuguesBr, 'Const_Cad_ColunaNome');
-    if ColLogin = '' then
-      ColLogin := RetornaLingua(ucPortuguesBr, 'Const_Cad_ColunaLogin');
-    if ColEmail = '' then
-      ColEmail := RetornaLingua(ucPortuguesBr, 'Const_Cad_ColunaEmail');
-    if BtAdd = '' then
-      BtAdd := RetornaLingua(ucPortuguesBr, 'Const_Cad_BtAdicionar');
-    if BtChange = '' then
-      BtChange := RetornaLingua(ucPortuguesBr, 'Const_Cad_BtAlterar');
-    if BtDelete = '' then
-      BtDelete := RetornaLingua(ucPortuguesBr, 'Const_Cad_BtExcluir');
-    if BtRights = '' then
-      BtRights := RetornaLingua(ucPortuguesBr, 'Const_Cad_BtPermissoes');
-    if BtPassword = '' then
-      BtPassword := RetornaLingua(ucPortuguesBr, 'Const_Cad_BtSenha');
-    if BtClose = '' then
-      BtClose := RetornaLingua(ucPortuguesBr, 'Const_Cad_BtFechar');
-    if PromptDelete = '' then
-      PromptDelete := RetornaLingua(ucPortuguesBr, 'Const_Cad_ConfirmaExcluir');
-    if PromptDelete_WindowCaption = '' then
-      PromptDelete_WindowCaption := RetornaLingua(ucPortuguesBr,
-        'Const_Cad_ConfirmaDelete_WindowCaption'); // added by fduenas
+    WindowCaption := GetTranslate(DestSettings.Language, WindowCaption, 'Const_Cad_WindowCaption');
+    LabelDescription := GetTranslate(DestSettings.Language, LabelDescription, 'Const_Cad_LabelDescricao');
+    ColName := GetTranslate(DestSettings.Language, ColName, 'Const_Cad_ColunaNome');
+    ColLogin := GetTranslate(DestSettings.Language, ColLogin, 'Const_Cad_ColunaLogin');
+    ColEmail := GetTranslate(DestSettings.Language, ColEmail, 'Const_Cad_ColunaEmail');
+    BtAdd := GetTranslate(DestSettings.Language, BtAdd, 'Const_Cad_BtAdicionar');
+    BtChange := GetTranslate(DestSettings.Language, BtChange, 'Const_Cad_BtAlterar');
+    BtDelete := GetTranslate(DestSettings.Language, BtDelete, 'Const_Cad_BtExcluir');
+    BtRights := GetTranslate(DestSettings.Language, BtRights, 'Const_Cad_BtPermissoes');
+    BtPassword := GetTranslate(DestSettings.Language, BtPassword, 'Const_Cad_BtSenha');
+    BtClose := GetTranslate(DestSettings.Language, BtClose, 'Const_Cad_BtFechar');
+    PromptDelete := GetTranslate(DestSettings.Language, PromptDelete, 'Const_Cad_ConfirmaExcluir');
+    PromptDelete_WindowCaption := GetTranslate(DestSettings.Language, PromptDelete_WindowCaption, 'Const_Cad_ConfirmaDelete_WindowCaption');
+    BtApplyFilter := GetTranslate(DestSettings.Language, BtApplyFilter, 'Const_Cad_BtApplyFilter');
   end;
 
   with DestSettings.UsersProfile do
   begin
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(ucPortuguesBr, 'Const_Prof_WindowCaption');
-    if LabelDescription = '' then
-      LabelDescription := RetornaLingua(ucPortuguesBr,
-        'Const_Prof_LabelDescricao');
-    if ColProfile = '' then
-      ColProfile := RetornaLingua(ucPortuguesBr, 'Const_Prof_ColunaNome');
-    if BtAdd = '' then
-      BtAdd := RetornaLingua(ucPortuguesBr, ' Const_Prof_BtAdicionar');
-    if BtChange = '' then
-      BtChange := RetornaLingua(ucPortuguesBr, 'Const_Prof_BtAlterar');
-    if BtDelete = '' then
-      BtDelete := RetornaLingua(ucPortuguesBr, 'Const_Prof_BtExcluir');
-    if BtRights = '' then
-      BtRights := RetornaLingua(ucPortuguesBr, 'Const_Prof_BtPermissoes');
-    if BtClose = '' then
-      BtClose := RetornaLingua(ucPortuguesBr, 'Const_Prof_BtFechar');
-    if PromptDelete = '' then
-      PromptDelete := RetornaLingua(ucPortuguesBr,
-        'Const_Prof_ConfirmaExcluir');
-    if PromptDelete_WindowCaption = '' then
-      PromptDelete_WindowCaption := RetornaLingua(ucPortuguesBr,
-        'Const_Prof_ConfirmaDelete_WindowCaption'); // added by fduenas
+    WindowCaption := GetTranslate(DestSettings.Language, WindowCaption, 'Const_Prof_WindowCaption');
+    LabelDescription := GetTranslate(DestSettings.Language, LabelDescription, 'Const_Prof_LabelDescricao');
+    ColProfile := GetTranslate(DestSettings.Language, ColProfile, 'Const_Prof_ColunaNome');
+    BtAdd := GetTranslate(DestSettings.Language, BtAdd, 'Const_Prof_BtAdicionar');
+    BtChange := GetTranslate(DestSettings.Language, BtChange, 'Const_Prof_BtAlterar');
+    BtDelete := GetTranslate(DestSettings.Language, BtDelete, 'Const_Prof_BtExcluir');
+    BtRights := GetTranslate(DestSettings.Language, BtRights, 'Const_Prof_BtPermissoes');
+    BtClose := GetTranslate(DestSettings.Language, BtClose, 'Const_Prof_BtFechar');
+    PromptDelete := GetTranslate(DestSettings.Language, PromptDelete, 'Const_Prof_ConfirmaExcluir');
+    PromptDelete_WindowCaption := GetTranslate(DestSettings.Language, PromptDelete_WindowCaption, 'Const_Prof_ConfirmaDelete_WindowCaption');
   end;
 
   with DestSettings.AddChangeUser do
   begin
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(ucPortuguesBr, 'Const_Inc_WindowCaption');
-    if LabelAdd = '' then
-      LabelAdd := RetornaLingua(ucPortuguesBr, 'Const_Inc_LabelAdicionar');
-    if LabelChange = '' then
-      LabelChange := RetornaLingua(ucPortuguesBr, 'Const_Inc_LabelAlterar');
-    if LabelName = '' then
-      LabelName := RetornaLingua(ucPortuguesBr, 'Const_Inc_LabelNome');
-    if LabelLogin = '' then
-      LabelLogin := RetornaLingua(ucPortuguesBr, 'Const_Inc_LabelLogin');
-    if LabelEmail = '' then
-      LabelEmail := RetornaLingua(ucPortuguesBr, 'Const_Inc_LabelEmail');
-    if LabelPerfil = '' then
-      LabelPerfil := RetornaLingua(ucPortuguesBr, 'Const_Inc_LabelPerfil');
-    if CheckPrivileged = '' then
-      CheckPrivileged := RetornaLingua(ucPortuguesBr,
-        'Const_Inc_CheckPrivilegiado');
-
-    if BtSave = '' then
-      BtSave := RetornaLingua(ucPortuguesBr, 'Const_Inc_BtGravar');
-    if BtCancel = '' then
-      BtCancel := RetornaLingua(ucPortuguesBr, 'Const_Inc_BtCancelar');
-
-    if CheckExpira = '' then
-      CheckExpira := RetornaLingua(ucPortuguesBr, 'Const_Inc_CheckEspira');
-    If Day = '' then
-      Day := RetornaLingua(ucPortuguesBr, 'Const_Inc_Dia');
-    If ExpiredIn = '' then
-      ExpiredIn := RetornaLingua(ucPortuguesBr, 'Const_Inc_ExpiraEm');
-
-    If LabelStatus = '' then
-      LabelStatus := RetornaLingua(ucPortuguesBr, 'Const_Inc_LabelStatus');
-
-    If StatusActive = '' then
-      StatusActive := RetornaLingua(ucPortuguesBr, 'Const_Inc_StatusActive');
-
-    If StatusDisabled = '' then
-      StatusDisabled := RetornaLingua(ucPortuguesBr,
-        'Const_Inc_StatusDisabled');
+    WindowCaption := GetTranslate(DestSettings.Language, WindowCaption, 'Const_Inc_WindowCaption');
+    LabelAdd := GetTranslate(DestSettings.Language, LabelAdd, 'Const_Inc_LabelAdicionar');
+    LabelChange := GetTranslate(DestSettings.Language, LabelChange, 'Const_Inc_LabelAlterar');
+    LabelName := GetTranslate(DestSettings.Language, LabelName, 'Const_Inc_LabelNome');
+    LabelLogin := GetTranslate(DestSettings.Language, LabelLogin, 'Const_Inc_LabelLogin');
+    LabelEmail := GetTranslate(DestSettings.Language, LabelEmail, 'Const_Inc_LabelEmail');
+    LabelPerfil := GetTranslate(DestSettings.Language, LabelPerfil, 'Const_Inc_LabelPerfil');
+    CheckPrivileged := GetTranslate(DestSettings.Language, CheckPrivileged, 'Const_Inc_CheckPrivilegiado');
+    BtSave := GetTranslate(DestSettings.Language, BtSave, 'Const_Inc_BtGravar');
+    BtCancel := GetTranslate(DestSettings.Language, BtCancel, 'Const_Inc_BtCancelar');
+    CheckExpira := GetTranslate(DestSettings.Language, CheckExpira, 'Const_Inc_CheckEspira');
+    Day := GetTranslate(DestSettings.Language, Day, 'Const_Inc_Dia');
+    ExpiredIn := GetTranslate(DestSettings.Language, ExpiredIn, 'Const_Inc_ExpiraEm');
+    LabelStatus := GetTranslate(DestSettings.Language, LabelStatus, 'Const_Inc_LabelStatus');
+    StatusActive := GetTranslate(DestSettings.Language, StatusActive, 'Const_Inc_StatusActive');
+    StatusDisabled := GetTranslate(DestSettings.Language, StatusDisabled, 'Const_Inc_StatusDisabled');
+    LabelImage := GetTranslate(DestSettings.Language, LabelImage, 'Const_Inc_LabelImage');
   end;
 
   with DestSettings.AddChangeProfile do
   begin
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(ucPortuguesBr, 'Const_PInc_WindowCaption');
-    if LabelAdd = '' then
-      LabelAdd := RetornaLingua(ucPortuguesBr, 'Const_PInc_LabelAdicionar');
-    if LabelChange = '' then
-      LabelChange := RetornaLingua(ucPortuguesBr, 'Const_PInc_LabelAlterar');
-    if LabelName = '' then
-      LabelName := RetornaLingua(ucPortuguesBr, 'Const_PInc_LabelNome');
-    if BtSave = '' then
-      BtSave := RetornaLingua(ucPortuguesBr, 'Const_PInc_BtGravar');
-    if BtCancel = '' then
-      BtCancel := RetornaLingua(ucPortuguesBr, 'Const_PInc_BtCancelar');
+    WindowCaption := GetTranslate(DestSettings.Language, WindowCaption, 'Const_PInc_WindowCaption');
+    LabelAdd := GetTranslate(DestSettings.Language, LabelAdd, 'Const_PInc_LabelAdicionar');
+    LabelChange := GetTranslate(DestSettings.Language, LabelChange, 'Const_PInc_LabelAlterar');
+    LabelName := GetTranslate(DestSettings.Language, LabelName, 'Const_PInc_LabelNome');
+    BtSave := GetTranslate(DestSettings.Language, BtSave, 'Const_PInc_BtGravar');
+    BtCancel := GetTranslate(DestSettings.Language, BtCancel, 'Const_PInc_BtCancelar');
   end;
 
   with DestSettings.Rights do
   begin
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(ucPortuguesBr, 'Const_Perm_WindowCaption');
-    if LabelUser = '' then
-      LabelUser := RetornaLingua(ucPortuguesBr, 'Const_Perm_LabelUsuario');
-    if LabelProfile = '' then
-      LabelProfile := RetornaLingua(ucPortuguesBr, 'Const_Perm_LabelPerfil');
-    if PageMenu = '' then
-      PageMenu := RetornaLingua(ucPortuguesBr, 'Const_Perm_PageMenu');
-    if PageActions = '' then
-      PageActions := RetornaLingua(ucPortuguesBr, 'Const_Perm_PageActions');
-    If PageControls = '' then
-      PageControls := RetornaLingua(ucPortuguesBr, 'Const_Perm_PageControls');
-    // by vicente barros leonel
-    if BtUnlock = '' then
-      BtUnlock := RetornaLingua(ucPortuguesBr, 'Const_Perm_BtLibera');
-    if BtLock = '' then
-      BtLock := RetornaLingua(ucPortuguesBr, 'Const_Perm_BtBloqueia');
-    if BtSave = '' then
-      BtSave := RetornaLingua(ucPortuguesBr, 'Const_Perm_BtGravar');
-    if BtCancel = '' then
-      BtCancel := RetornaLingua(ucPortuguesBr, 'Const_Perm_BtCancelar');
+    WindowCaption := GetTranslate(DestSettings.Language, WindowCaption, 'Const_Perm_WindowCaption');
+    LabelUser := GetTranslate(DestSettings.Language, LabelUser, 'Const_Perm_LabelUsuario');
+    LabelProfile := GetTranslate(DestSettings.Language, LabelProfile, 'Const_Perm_LabelPerfil');
+    PageMenu := GetTranslate(DestSettings.Language, PageMenu, 'Const_Perm_PageMenu');
+    PageActions := GetTranslate(DestSettings.Language, PageActions, 'Const_Perm_PageActions');
+    PageControls := GetTranslate(DestSettings.Language, PageControls, 'Const_Perm_PageControls');
+    BtUnlock := GetTranslate(DestSettings.Language, BtUnlock, 'Const_Perm_BtLibera');
+    BtLock := GetTranslate(DestSettings.Language, BtLock, 'Const_Perm_BtBloqueia');
+    BtSave := GetTranslate(DestSettings.Language, BtSave, 'Const_Perm_BtGravar');
+    BtCancel := GetTranslate(DestSettings.Language, BtCancel, 'Const_Perm_BtCancelar');
   end;
 
   with DestSettings.ChangePassword do
   begin
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(ucPortuguesBr, 'Const_Troc_WindowCaption');
-    if LabelDescription = '' then
-      LabelDescription := RetornaLingua(ucPortuguesBr,
-        'Const_Troc_LabelDescricao');
-    if LabelCurrentPassword = '' then
-      LabelCurrentPassword := RetornaLingua(ucPortuguesBr,
-        'Const_Troc_LabelSenhaAtual');
-    if LabelNewPassword = '' then
-      LabelNewPassword := RetornaLingua(ucPortuguesBr,
-        'Const_Troc_LabelNovaSenha');
-    if LabelConfirm = '' then
-      LabelConfirm := RetornaLingua(ucPortuguesBr, 'Const_Troc_LabelConfirma');
-    if BtSave = '' then
-      BtSave := RetornaLingua(ucPortuguesBr, 'Const_Troc_BtGravar');
-    if BtCancel = '' then
-      BtCancel := RetornaLingua(ucPortuguesBr, 'Const_Troc_BtCancelar');
+    WindowCaption := GetTranslate(DestSettings.Language, WindowCaption, 'Const_Troc_WindowCaption');
+    LabelDescription := GetTranslate(DestSettings.Language, LabelDescription, 'Const_Troc_LabelDescricao');
+    LabelCurrentPassword := GetTranslate(DestSettings.Language, LabelCurrentPassword, 'Const_Troc_LabelSenhaAtual');
+    LabelNewPassword := GetTranslate(DestSettings.Language, LabelNewPassword, 'Const_Troc_LabelNovaSenha');
+    LabelConfirm := GetTranslate(DestSettings.Language, LabelConfirm, 'Const_Troc_LabelConfirma');
+    BtSave := GetTranslate(DestSettings.Language, BtSave, 'Const_Troc_BtGravar');
+    BtCancel := GetTranslate(DestSettings.Language, BtCancel, 'Const_Troc_BtCancelar');
   end;
 
   with DestSettings.CommonMessages.ChangePasswordError do
   begin
     if InvalidCurrentPassword = '' then
-      InvalidCurrentPassword := RetornaLingua(ucPortuguesBr,
-        'Const_ErrPass_SenhaAtualInvalida');
+      InvalidCurrentPassword := RetornaLingua(DestSettings.fLanguage, 'Const_ErrPass_SenhaAtualInvalida');
     if NewPasswordError = '' then
-      NewPasswordError := RetornaLingua(ucPortuguesBr,
-        'Const_ErrPass_ErroNovaSenha');
+      NewPasswordError := RetornaLingua(DestSettings.fLanguage, 'Const_ErrPass_ErroNovaSenha');
     if NewEqualCurrent = '' then
-      NewEqualCurrent := RetornaLingua(ucPortuguesBr,
-        'Const_ErrPass_NovaIgualAtual');
+      NewEqualCurrent := RetornaLingua(DestSettings.fLanguage, 'Const_ErrPass_NovaIgualAtual');
     if PasswordRequired = '' then
-      PasswordRequired := RetornaLingua(ucPortuguesBr,
-        'Const_ErrPass_SenhaObrigatoria');
+      PasswordRequired := RetornaLingua(DestSettings.fLanguage, 'Const_ErrPass_SenhaObrigatoria');
     if MinPasswordLength = '' then
-      MinPasswordLength := RetornaLingua(ucPortuguesBr,
-        'Const_ErrPass_SenhaMinima');
+      MinPasswordLength := RetornaLingua(DestSettings.fLanguage, 'Const_ErrPass_SenhaMinima');
     if InvalidNewPassword = '' then
-      InvalidNewPassword := RetornaLingua(ucPortuguesBr,
-        'Const_ErrPass_SenhaInvalida');
+      InvalidNewPassword := RetornaLingua(DestSettings.fLanguage, 'Const_ErrPass_SenhaInvalida');
   end;
 
   with DestSettings.ResetPassword do
   begin
     if WindowCaption = '' then
-      WindowCaption := RetornaLingua(ucPortuguesBr,
-        'Const_DefPass_WindowCaption');
+      WindowCaption := RetornaLingua(DestSettings.fLanguage, 'Const_DefPass_WindowCaption');
     if LabelPassword = '' then
-      LabelPassword := RetornaLingua(ucPortuguesBr, 'Const_DefPass_LabelSenha');
+      LabelPassword := RetornaLingua(DestSettings.fLanguage, 'Const_DefPass_LabelSenha');
   end;
 
   with DestSettings.Log do
   begin
     if WindowCaption = '' then
-      WindowCaption := RetornaLingua(ucPortuguesBr, 'Const_LogC_WindowCaption');
+      WindowCaption := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_WindowCaption');
     if LabelDescription = '' then
-      LabelDescription := RetornaLingua(ucPortuguesBr,
-        'Const_LogC_LabelDescricao');
+      LabelDescription := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_LabelDescricao');
     if LabelUser = '' then
-      LabelUser := RetornaLingua(ucPortuguesBr, 'Const_LogC_LabelUsuario');
+      LabelUser := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_LabelUsuario');
     if LabelDate = '' then
-      LabelDate := RetornaLingua(ucPortuguesBr, 'Const_LogC_LabelData');
+      LabelDate := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_LabelData');
     if LabelLevel = '' then
-      LabelLevel := RetornaLingua(ucPortuguesBr, 'Const_LogC_LabelNivel');
+      LabelLevel := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_LabelNivel');
     if ColLevel = '' then
-      ColLevel := RetornaLingua(ucPortuguesBr, 'Const_LogC_ColunaNivel');
+      ColLevel := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_ColunaNivel');
     if ColAppID = '' then
-      ColAppID := RetornaLingua(ucPortuguesBr, 'Const_LogC_ColunaAppID');
+      ColAppID := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_ColunaAppID');
     if ColMessage = '' then
-      ColMessage := RetornaLingua(ucPortuguesBr, 'Const_LogC_ColunaMensagem');
+      ColMessage := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_ColunaMensagem');
     if ColUser = '' then
-      ColUser := RetornaLingua(ucPortuguesBr, 'Const_LogC_ColunaUsuario');
-    if ColDate = '' then
-      ColDate := RetornaLingua(ucPortuguesBr, 'Const_LogC_ColunaData');
-    if BtFilter = '' then
-      BtFilter := RetornaLingua(ucPortuguesBr, 'Const_LogC_BtFiltro');
-    if BtDelete = '' then
-      BtDelete := RetornaLingua(ucPortuguesBr, 'Const_LogC_BtExcluir');
-    if BtClose = '' then
-      BtClose := RetornaLingua(ucPortuguesBr, 'Const_LogC_BtFechar');
-    if PromptDelete = '' then
-      PromptDelete := RetornaLingua(ucPortuguesBr,
-        'Const_LogC_ConfirmaExcluir');
-    if PromptDelete_WindowCaption = '' then
-      PromptDelete_WindowCaption := RetornaLingua(ucPortuguesBr,
-        'Const_LogC_ConfirmaDelete_WindowCaption'); // added by fduenas
-    if OptionUserAll = '' then
-      OptionUserAll := RetornaLingua(ucPortuguesBr, 'Const_LogC_Todos');
-    // added by fduenas
-    if OptionLevelLow = '' then
-      OptionLevelLow := RetornaLingua(ucPortuguesBr, 'Const_LogC_Low');
-    // added by fduenas
-    if OptionLevelNormal = '' then
-      OptionLevelNormal := RetornaLingua(ucPortuguesBr, 'Const_LogC_Normal');
-    // added by fduenas
-    if OptionLevelHigh = '' then
-      OptionLevelHigh := RetornaLingua(ucPortuguesBr, 'Const_LogC_High');
-    // added by fduenas
-    if OptionLevelCritic = '' then
-      OptionLevelCritic := RetornaLingua(ucPortuguesBr, 'Const_LogC_Critic');
-    // added by fduenas
-    if DeletePerformed = '' then
-      DeletePerformed := RetornaLingua(ucPortuguesBr,
-        'Const_LogC_ExcluirEfectuada'); // added by fduenas
-  end;
-
-  with DestSettings.AppMessages do
-  begin
-    if MsgsForm_BtNew = '' then
-      MsgsForm_BtNew := RetornaLingua(ucPortuguesBr, 'Const_Msgs_BtNew');
-    if MsgsForm_BtReplay = '' then
-      MsgsForm_BtReplay := RetornaLingua(ucPortuguesBr, 'Const_Msgs_BtReplay');
-    if MsgsForm_BtForward = '' then
-      MsgsForm_BtForward := RetornaLingua(ucPortuguesBr,
-        'Const_Msgs_BtForward');
-    if MsgsForm_BtDelete = '' then
-      MsgsForm_BtDelete := RetornaLingua(ucPortuguesBr, 'Const_Msgs_BtDelete');
-    if MsgsForm_BtClose = '' then
-      MsgsForm_BtDelete := RetornaLingua(ucPortuguesBr, 'Const_Msgs_BtClose');
-    // added by fduenas
-    if MsgsForm_WindowCaption = '' then
-      MsgsForm_WindowCaption := RetornaLingua(ucPortuguesBr,
-        'Const_Msgs_WindowCaption');
-    if MsgsForm_ColFrom = '' then
-      MsgsForm_ColFrom := RetornaLingua(ucPortuguesBr, 'Const_Msgs_ColFrom');
-    if MsgsForm_ColSubject = '' then
-      MsgsForm_ColSubject := RetornaLingua(ucPortuguesBr,
-        'Const_Msgs_ColSubject');
-    if MsgsForm_ColDate = '' then
-      MsgsForm_ColDate := RetornaLingua(ucPortuguesBr, 'Const_Msgs_ColDate');
-    if MsgsForm_PromptDelete = '' then
-      MsgsForm_PromptDelete := RetornaLingua(ucPortuguesBr,
-        'Const_Msgs_PromptDelete');
-    if MsgsForm_PromptDelete_WindowCaption = '' then
-      MsgsForm_PromptDelete_WindowCaption := RetornaLingua(ucPortuguesBr,
-        'Const_Msgs_PromptDelete_WindowCaption');
-    if MsgsForm_NoMessagesSelected = '' then
-      MsgsForm_NoMessagesSelected := RetornaLingua(ucPortuguesBr,
-        'Const_Msgs_NoMessagesSelected');
-    if MsgsForm_NoMessagesSelected_WindowCaption = '' then
-      MsgsForm_NoMessagesSelected_WindowCaption :=
-        RetornaLingua(ucPortuguesBr,
-        'Const_Msgs_NoMessagesSelected_WindowCaption');
-    if MsgRec_BtClose = '' then
-      MsgRec_BtClose := RetornaLingua(ucPortuguesBr, 'Const_MsgRec_BtClose');
-    if MsgRec_WindowCaption = '' then
-      MsgRec_WindowCaption := RetornaLingua(ucPortuguesBr,
-        'Const_MsgRec_WindowCaption');
-    if MsgRec_Title = '' then
-      MsgRec_Title := RetornaLingua(ucPortuguesBr, 'Const_MsgRec_Title');
-    if MsgRec_LabelFrom = '' then
-      MsgRec_LabelFrom := RetornaLingua(ucPortuguesBr,
-        'Const_MsgRec_LabelFrom');
-    if MsgRec_LabelDate = '' then
-      MsgRec_LabelDate := RetornaLingua(ucPortuguesBr,
-        'Const_MsgRec_LabelDate');
-    if MsgRec_LabelSubject = '' then
-      MsgRec_LabelSubject := RetornaLingua(ucPortuguesBr,
-        'Const_MsgRec_LabelSubject');
-    if MsgRec_LabelMessage = '' then
-      MsgRec_LabelMessage := RetornaLingua(ucPortuguesBr,
-        'Const_MsgRec_LabelMessage');
-    if MsgSend_BtSend = '' then
-      MsgSend_BtSend := RetornaLingua(ucPortuguesBr, 'Const_MsgSend_BtSend');
-    if MsgSend_BtCancel = '' then
-      MsgSend_BtCancel := RetornaLingua(ucPortuguesBr,
-        'Const_MsgSend_BtCancel');
-    if MsgSend_WindowCaption = '' then
-      MsgSend_WindowCaption := RetornaLingua(ucPortuguesBr,
-        'Const_MsgSend_WindowCaption');
-    if MsgSend_Title = '' then
-      MsgSend_Title := RetornaLingua(ucPortuguesBr, 'Const_MsgSend_Title');
-    if MsgSend_GroupTo = '' then
-      MsgSend_GroupTo := RetornaLingua(ucPortuguesBr, 'Const_MsgSend_GroupTo');
-    if MsgSend_RadioUser = '' then
-      MsgSend_RadioUser := RetornaLingua(ucPortuguesBr,
-        'Const_MsgSend_RadioUser');
-    if MsgSend_RadioAll = '' then
-      MsgSend_RadioAll := RetornaLingua(ucPortuguesBr,
-        'Const_MsgSend_RadioAll');
-    if MsgSend_GroupMessage = '' then
-      MsgSend_GroupMessage := RetornaLingua(ucPortuguesBr,
-        'Const_MsgSend_GroupMessage');
-    if MsgSend_LabelSubject = '' then
-      MsgSend_LabelSubject := RetornaLingua(ucPortuguesBr,
-        'Const_MsgSend_LabelSubject'); // added by fduenas
-    if MsgSend_LabelMessageText = '' then
-      MsgSend_LabelMessageText := RetornaLingua(ucPortuguesBr,
-        'Const_MsgSend_LabelMessageText'); // added by fduenas
-  end;
-
-  DestSettings.WindowsPosition := poMainFormCenter;
-  { mudar aqui
-    With DestSettings.TypeFieldsDB do
-    Begin
-    If Type_VarChar = '' then
-    Type_VarChar   := 'VarChar';
-    if Type_Char = '' then
-    Type_Char      := 'Char';
-    if Type_Int = '' then
-    Type_Int       := 'Int';
-    end; }
-
-  with DestSettings.UsersLogged do
-  Begin
-    If BtnMessage = '' then
-      BtnMessage := RetornaLingua(ucPortuguesBr, 'Const_UserLogged_BtnMsg');
-    if BtnRefresh = '' then
-      BtnRefresh := RetornaLingua(ucPortuguesBr, 'Const_UserLogged_Refresh');
-    if Btnclose = '' then
-      Btnclose := RetornaLingua(ucPortuguesBr, 'Const_Msgs_BtClose');
-    if LabelDescricao = '' then
-      LabelDescricao := RetornaLingua(ucPortuguesBr,
-        'Const_UserLogged_LabelDescricao');
-    if LabelCaption = '' then
-      LabelCaption := RetornaLingua(ucPortuguesBr,
-        'Const_UserLogged_LabelCaption');
-    if ColName = '' then
-      ColName := RetornaLingua(ucPortuguesBr, 'Const_Cad_ColunaNome');
-    if ColLogin = '' then
-      ColLogin := RetornaLingua(ucPortuguesBr, 'Const_Cad_ColunaLogin');
-    if ColComputer = '' then
-      ColComputer := RetornaLingua(ucPortuguesBr, 'Const_CadColuna_Computer');
-    if ColData = '' then
-      ColData := RetornaLingua(ucPortuguesBr, 'Const_CadColuna_Data');
-    if InputCaption = '' then
-      InputCaption := RetornaLingua(ucPortuguesBr,
-        'Const_UserLogged_InputCaption');
-    If InputText = '' then
-      InputText := RetornaLingua(ucPortuguesBr, 'Const_UserLogged_InputText');
-    If MsgSystem = '' then
-      MsgSystem := RetornaLingua(ucPortuguesBr, 'Const_UserLogged_MsgSystem');
-  End;
-
-end;
-
-procedure IniSettings2(DestSettings: TUCSettings);
-var
-  tmp: TBitmap;
-begin
-  with DestSettings.CommonMessages do
-  begin
-    if BlankPassword = '' then
-      BlankPassword := RetornaLingua(DestSettings.fLanguage,
-        'Const_Men_SenhaDesabitada');
-    if PasswordChanged = '' then
-      PasswordChanged := RetornaLingua(DestSettings.fLanguage,
-        'Const_Men_SenhaAlterada');
-    if InitialMessage.Text = '' then
-      InitialMessage.Text := RetornaLingua(DestSettings.fLanguage,
-        'Const_Men_MsgInicial');
-    if MaxLoginAttemptsError = '' then
-      MaxLoginAttemptsError := RetornaLingua(DestSettings.fLanguage,
-        'Const_Men_MaxTentativas');
-    if InvalidLogin = '' then
-      InvalidLogin := RetornaLingua(DestSettings.fLanguage,
-        'Const_Men_LoginInvalido');
-    if InactiveLogin = '' then
-      InactiveLogin := RetornaLingua(DestSettings.fLanguage,
-        'Const_Men_LoginInativo');
-    if AutoLogonError = '' then
-      AutoLogonError := RetornaLingua(DestSettings.fLanguage,
-        'Const_Men_AutoLogonError');
-    if UsuarioExiste = '' then
-      UsuarioExiste := RetornaLingua(DestSettings.fLanguage,
-        'Const_Men_UsuarioExiste');
-    if PasswordExpired = '' then
-      PasswordExpired := RetornaLingua(DestSettings.fLanguage,
-        'Const_Men_PasswordExpired');
-    If ForcaTrocaSenha = '' then
-      ForcaTrocaSenha := RetornaLingua(DestSettings.fLanguage,
-        'Const_ErrPass_ForcaTrocaSenha');
-  end;
-
-  with DestSettings.Login do
-  begin
-    if BtCancel = '' then
-      BtCancel := RetornaLingua(DestSettings.fLanguage, 'Const_Log_BtCancelar');
-    if BtOK = '' then
-      BtOK := RetornaLingua(DestSettings.fLanguage, 'Const_Log_BtOK');
-    if LabelPassword = '' then
-      LabelPassword := RetornaLingua(DestSettings.fLanguage,
-        'Const_Log_LabelSenha');
-    if LabelUser = '' then
-      LabelUser := RetornaLingua(DestSettings.fLanguage,
-        'Const_Log_LabelUsuario');
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_Log_WindowCaption');
-
-    if LabelTentativa = '' then
-      LabelTentativa := RetornaLingua(DestSettings.fLanguage,
-        'Const_Log_LabelTentativa');
-    if LabelTentativas = '' then
-      LabelTentativas := RetornaLingua(DestSettings.fLanguage,
-        'Const_Log_LabelTentativas');
-
-    try
-      tmp := TBitmap.Create;
-      tmp.LoadFromResourceName(HInstance, 'UCLOCKLOGIN');
-      LeftImage.Assign(tmp);
-    finally
-      FreeAndNil(tmp);
-    end;
-  end;
-
-  with DestSettings.UsersForm do
-  begin
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_Cad_WindowCaption');
-    if LabelDescription = '' then
-      LabelDescription := RetornaLingua(DestSettings.fLanguage,
-        'Const_Cad_LabelDescricao');
-    if ColName = '' then
-      ColName := RetornaLingua(DestSettings.fLanguage, 'Const_Cad_ColunaNome');
-    if ColLogin = '' then
-      ColLogin := RetornaLingua(DestSettings.fLanguage,
-        'Const_Cad_ColunaLogin');
-    if ColEmail = '' then
-      ColEmail := RetornaLingua(DestSettings.fLanguage,
-        'Const_Cad_ColunaEmail');
-    if BtAdd = '' then
-      BtAdd := RetornaLingua(DestSettings.fLanguage, 'Const_Cad_BtAdicionar');
-    if BtChange = '' then
-      BtChange := RetornaLingua(DestSettings.fLanguage, 'Const_Cad_BtAlterar');
-    if BtDelete = '' then
-      BtDelete := RetornaLingua(DestSettings.fLanguage, 'Const_Cad_BtExcluir');
-    if BtRights = '' then
-      BtRights := RetornaLingua(DestSettings.fLanguage,
-        'Const_Cad_BtPermissoes');
-    if BtPassword = '' then
-      BtPassword := RetornaLingua(DestSettings.fLanguage, 'Const_Cad_BtSenha');
-    if BtClose = '' then
-      BtClose := RetornaLingua(DestSettings.fLanguage, 'Const_Cad_BtFechar');
-    if PromptDelete = '' then
-      PromptDelete := RetornaLingua(DestSettings.fLanguage,
-        'Const_Cad_ConfirmaExcluir');
-    if PromptDelete_WindowCaption = '' then
-      PromptDelete_WindowCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_Cad_ConfirmaDelete_WindowCaption');
-  end;
-
-  with DestSettings.UsersProfile do
-  begin
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_Prof_WindowCaption');
-    if LabelDescription = '' then
-      LabelDescription := RetornaLingua(DestSettings.fLanguage,
-        'Const_Prof_LabelDescricao');
-    if ColProfile = '' then
-      ColProfile := RetornaLingua(DestSettings.fLanguage,
-        'Const_Prof_ColunaNome');
-    if BtAdd = '' then
-      BtAdd := RetornaLingua(DestSettings.Language, 'Const_Prof_BtAdicionar');
-    if BtChange = '' then
-      BtChange := RetornaLingua(DestSettings.fLanguage, 'Const_Prof_BtAlterar');
-    if BtDelete = '' then
-      BtDelete := RetornaLingua(DestSettings.fLanguage, 'Const_Prof_BtExcluir');
-    if BtRights = '' then
-      BtRights := RetornaLingua(DestSettings.fLanguage,
-        'Const_Prof_BtPermissoes');
-    if BtClose = '' then
-      BtClose := RetornaLingua(DestSettings.fLanguage, 'Const_Prof_BtFechar');
-    if PromptDelete = '' then
-      PromptDelete := RetornaLingua(DestSettings.fLanguage,
-        'Const_Prof_ConfirmaExcluir');
-    if PromptDelete_WindowCaption = '' then
-      PromptDelete_WindowCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_Prof_ConfirmaDelete_WindowCaption'); // added by fduenas
-  end;
-
-  with DestSettings.AddChangeUser do
-  begin
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_Inc_WindowCaption');
-    if LabelAdd = '' then
-      LabelAdd := RetornaLingua(DestSettings.fLanguage,
-        'Const_Inc_LabelAdicionar');
-    if LabelChange = '' then
-      LabelChange := RetornaLingua(DestSettings.fLanguage,
-        'Const_Inc_LabelAlterar');
-    if LabelName = '' then
-      LabelName := RetornaLingua(DestSettings.fLanguage, 'Const_Inc_LabelNome');
-    if LabelLogin = '' then
-      LabelLogin := RetornaLingua(DestSettings.fLanguage,
-        'Const_Inc_LabelLogin');
-    if LabelEmail = '' then
-      LabelEmail := RetornaLingua(DestSettings.fLanguage,
-        'Const_Inc_LabelEmail');
-    if CheckPrivileged = '' then
-      CheckPrivileged := RetornaLingua(DestSettings.fLanguage,
-        'Const_Inc_CheckPrivilegiado');
-    if BtSave = '' then
-      BtSave := RetornaLingua(DestSettings.fLanguage, 'Const_Inc_BtGravar');
-    if BtCancel = '' then
-      BtCancel := RetornaLingua(DestSettings.fLanguage, 'Const_Inc_BtCancelar');
-    if LabelPerfil = '' then
-      LabelPerfil := RetornaLingua(DestSettings.fLanguage,
-        'Const_Inc_LabelPerfil');
-
-    if CheckExpira = '' then
-      CheckExpira := RetornaLingua(DestSettings.fLanguage,
-        'Const_Inc_CheckEspira');
-    If Day = '' then
-      Day := RetornaLingua(DestSettings.fLanguage, 'Const_Inc_Dia');
-    If ExpiredIn = '' then
-      ExpiredIn := RetornaLingua(DestSettings.fLanguage, 'Const_Inc_ExpiraEm');
-    If LabelStatus = '' then
-      LabelStatus := RetornaLingua(DestSettings.fLanguage,
-        'Const_Inc_LabelStatus');
-    If StatusActive = '' then
-      StatusActive := RetornaLingua(DestSettings.fLanguage,
-        'Const_Inc_StatusActive');
-
-    If StatusDisabled = '' then
-      StatusDisabled := RetornaLingua(DestSettings.fLanguage,
-        'Const_Inc_StatusDisabled');
-
-  end;
-
-  with DestSettings.AddChangeProfile do
-  begin
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_PInc_WindowCaption');
-    if LabelAdd = '' then
-      LabelAdd := RetornaLingua(DestSettings.fLanguage,
-        'Const_PInc_LabelAdicionar');
-    if LabelChange = '' then
-      LabelChange := RetornaLingua(DestSettings.fLanguage,
-        'Const_PInc_LabelAlterar');
-    if LabelName = '' then
-      LabelName := RetornaLingua(DestSettings.fLanguage,
-        'Const_PInc_LabelNome');
-    if BtSave = '' then
-      BtSave := RetornaLingua(DestSettings.fLanguage, 'Const_PInc_BtGravar');
-    if BtCancel = '' then
-      BtCancel := RetornaLingua(DestSettings.fLanguage,
-        'Const_PInc_BtCancelar');
-  end;
-
-  with DestSettings.Rights do
-  begin
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_Perm_WindowCaption');
-    if LabelUser = '' then
-      LabelUser := RetornaLingua(DestSettings.fLanguage,
-        'Const_Perm_LabelUsuario');
-    if LabelProfile = '' then
-      LabelProfile := RetornaLingua(DestSettings.fLanguage,
-        'Const_Perm_LabelPerfil');
-    if PageMenu = '' then
-      PageMenu := RetornaLingua(DestSettings.fLanguage, 'Const_Perm_PageMenu');
-    if PageActions = '' then
-      PageActions := RetornaLingua(DestSettings.fLanguage,
-        'Const_Perm_PageActions');
-    If PageControls = '' then
-      PageControls := RetornaLingua(DestSettings.fLanguage,
-        'Const_Perm_PageControls'); // by vicente barros leonel
-    if BtUnlock = '' then
-      BtUnlock := RetornaLingua(DestSettings.fLanguage, 'Const_Perm_BtLibera');
-    if BtLock = '' then
-      BtLock := RetornaLingua(DestSettings.fLanguage, 'Const_Perm_BtBloqueia');
-    if BtSave = '' then
-      BtSave := RetornaLingua(DestSettings.fLanguage, 'Const_Perm_BtGravar');
-    if BtCancel = '' then
-      BtCancel := RetornaLingua(DestSettings.fLanguage,
-        'Const_Perm_BtCancelar');
-  end;
-
-  with DestSettings.ChangePassword do
-  begin
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_Troc_WindowCaption');
-    if LabelDescription = '' then
-      LabelDescription := RetornaLingua(DestSettings.fLanguage,
-        'Const_Troc_LabelDescricao');
-    if LabelCurrentPassword = '' then
-      LabelCurrentPassword := RetornaLingua(DestSettings.fLanguage,
-        'Const_Troc_LabelSenhaAtual');
-    if LabelNewPassword = '' then
-      LabelNewPassword := RetornaLingua(DestSettings.fLanguage,
-        'Const_Troc_LabelNovaSenha');
-    if LabelConfirm = '' then
-      LabelConfirm := RetornaLingua(DestSettings.fLanguage,
-        'Const_Troc_LabelConfirma');
-    if BtSave = '' then
-      BtSave := RetornaLingua(DestSettings.fLanguage, 'Const_Troc_BtGravar');
-    if BtCancel = '' then
-      BtCancel := RetornaLingua(DestSettings.fLanguage,
-        'Const_Troc_BtCancelar');
-  end;
-
-  with DestSettings.CommonMessages.ChangePasswordError do
-  begin
-    if InvalidCurrentPassword = '' then
-      InvalidCurrentPassword := RetornaLingua(DestSettings.fLanguage,
-        'Const_ErrPass_SenhaAtualInvalida');
-    if NewPasswordError = '' then
-      NewPasswordError := RetornaLingua(DestSettings.fLanguage,
-        'Const_ErrPass_ErroNovaSenha');
-    if NewEqualCurrent = '' then
-      NewEqualCurrent := RetornaLingua(DestSettings.fLanguage,
-        'Const_ErrPass_NovaIgualAtual');
-    if PasswordRequired = '' then
-      PasswordRequired := RetornaLingua(DestSettings.fLanguage,
-        'Const_ErrPass_SenhaObrigatoria');
-    if MinPasswordLength = '' then
-      MinPasswordLength := RetornaLingua(DestSettings.fLanguage,
-        'Const_ErrPass_SenhaMinima');
-    if InvalidNewPassword = '' then
-      InvalidNewPassword := RetornaLingua(DestSettings.fLanguage,
-        'Const_ErrPass_SenhaInvalida');
-  end;
-
-  with DestSettings.ResetPassword do
-  begin
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_DefPass_WindowCaption');
-    if LabelPassword = '' then
-      LabelPassword := RetornaLingua(DestSettings.fLanguage,
-        'Const_DefPass_LabelSenha');
-  end;
-
-  with DestSettings.Log do
-  begin
-    if WindowCaption = '' then
-      WindowCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_WindowCaption');
-    if LabelDescription = '' then
-      LabelDescription := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_LabelDescricao');
-    if LabelUser = '' then
-      LabelUser := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_LabelUsuario');
-    if LabelDate = '' then
-      LabelDate := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_LabelData');
-    if LabelLevel = '' then
-      LabelLevel := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_LabelNivel');
-    if ColLevel = '' then
-      ColLevel := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_ColunaNivel');
-    if ColAppID = '' then
-      ColAppID := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_ColunaAppID');
-    if ColMessage = '' then
-      ColMessage := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_ColunaMensagem');
-    if ColUser = '' then
-      ColUser := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_ColunaUsuario');
+      ColUser := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_ColunaUsuario');
     if ColDate = '' then
       ColDate := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_ColunaData');
     if BtFilter = '' then
@@ -967,175 +359,117 @@ begin
     if BtClose = '' then
       BtClose := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_BtFechar');
     if PromptDelete = '' then
-      PromptDelete := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_ConfirmaExcluir');
+      PromptDelete := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_ConfirmaExcluir');
     if PromptDelete_WindowCaption = '' then
-      PromptDelete_WindowCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_ConfirmaDelete_WindowCaption'); // added by fduenas
+      PromptDelete_WindowCaption := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_ConfirmaDelete_WindowCaption'); // added by fduenas
     if OptionUserAll = '' then
-      OptionUserAll := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_Todos'); // added by fduenas
+      OptionUserAll := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_Todos'); // added by fduenas
     if OptionLevelLow = '' then
       OptionLevelLow := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_Low');
     // added by fduenas
     if OptionLevelNormal = '' then
-      OptionLevelNormal := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_Normal'); // added by fduenas
+      OptionLevelNormal := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_Normal'); // added by fduenas
     if OptionLevelHigh = '' then
-      OptionLevelHigh := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_High'); // added by fduenas
+      OptionLevelHigh := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_High'); // added by fduenas
     if OptionLevelCritic = '' then
-      OptionLevelCritic := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_Critic'); // added by fduenas
+      OptionLevelCritic := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_Critic'); // added by fduenas
     if DeletePerformed = '' then
-      DeletePerformed := RetornaLingua(DestSettings.fLanguage,
-        'Const_LogC_ExcluirEfectuada'); // added by fduenas
+      DeletePerformed := RetornaLingua(DestSettings.fLanguage, 'Const_LogC_ExcluirEfectuada'); // added by fduenas
   end;
 
   with DestSettings.AppMessages do
   begin
     if MsgsForm_BtNew = '' then
-      MsgsForm_BtNew := RetornaLingua(DestSettings.fLanguage,
-        'Const_Msgs_BtNew');
+      MsgsForm_BtNew := RetornaLingua(DestSettings.fLanguage, 'Const_Msgs_BtNew');
     if MsgsForm_BtReplay = '' then
-      MsgsForm_BtReplay := RetornaLingua(DestSettings.fLanguage,
-        'Const_Msgs_BtReplay');
+      MsgsForm_BtReplay := RetornaLingua(DestSettings.fLanguage, 'Const_Msgs_BtReplay');
     if MsgsForm_BtForward = '' then
-      MsgsForm_BtForward := RetornaLingua(DestSettings.fLanguage,
-        'Const_Msgs_BtForward');
+      MsgsForm_BtForward := RetornaLingua(DestSettings.fLanguage, 'Const_Msgs_BtForward');
     if MsgsForm_BtDelete = '' then
-      MsgsForm_BtDelete := RetornaLingua(DestSettings.fLanguage,
-        'Const_Msgs_BtDelete');
+      MsgsForm_BtDelete := RetornaLingua(DestSettings.fLanguage, 'Const_Msgs_BtDelete');
     if MsgsForm_BtClose = '' then
-      MsgsForm_BtClose := RetornaLingua(DestSettings.fLanguage,
-        'Const_Msgs_BtClose'); // added by fduenas
+      MsgsForm_BtClose := RetornaLingua(DestSettings.fLanguage, 'Const_Msgs_BtClose'); // added by fduenas
     if MsgsForm_WindowCaption = '' then
-      MsgsForm_WindowCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_Msgs_WindowCaption');
+      MsgsForm_WindowCaption := RetornaLingua(DestSettings.fLanguage, 'Const_Msgs_WindowCaption');
     if MsgsForm_ColFrom = '' then
-      MsgsForm_ColFrom := RetornaLingua(DestSettings.fLanguage,
-        'Const_Msgs_ColFrom');
+      MsgsForm_ColFrom := RetornaLingua(DestSettings.fLanguage, 'Const_Msgs_ColFrom');
     if MsgsForm_ColSubject = '' then
-      MsgsForm_ColSubject := RetornaLingua(DestSettings.fLanguage,
-        'Const_Msgs_ColSubject');
+      MsgsForm_ColSubject := RetornaLingua(DestSettings.fLanguage, 'Const_Msgs_ColSubject');
     if MsgsForm_ColDate = '' then
-      MsgsForm_ColDate := RetornaLingua(DestSettings.fLanguage,
-        'Const_Msgs_ColDate');
+      MsgsForm_ColDate := RetornaLingua(DestSettings.fLanguage, 'Const_Msgs_ColDate');
     if MsgsForm_PromptDelete = '' then
-      MsgsForm_PromptDelete := RetornaLingua(DestSettings.fLanguage,
-        'Const_Msgs_PromptDelete');
+      MsgsForm_PromptDelete := RetornaLingua(DestSettings.fLanguage, 'Const_Msgs_PromptDelete');
     if MsgsForm_PromptDelete_WindowCaption = '' then
-      MsgsForm_PromptDelete_WindowCaption :=
-        RetornaLingua(DestSettings.fLanguage,
-        'Const_Msgs_PromptDelete_WindowCaption'); // added by fduenas
+      MsgsForm_PromptDelete_WindowCaption := RetornaLingua(DestSettings.fLanguage, 'Const_Msgs_PromptDelete_WindowCaption'); // added by fduenas
     if MsgsForm_NoMessagesSelected = '' then
-      MsgsForm_NoMessagesSelected := RetornaLingua(DestSettings.fLanguage,
-        'Const_Msgs_NoMessagesSelected'); // added by fduenas
+      MsgsForm_NoMessagesSelected := RetornaLingua(DestSettings.fLanguage, 'Const_Msgs_NoMessagesSelected'); // added by fduenas
     if MsgsForm_NoMessagesSelected_WindowCaption = '' then
-      MsgsForm_NoMessagesSelected_WindowCaption :=
-        RetornaLingua(DestSettings.fLanguage,
-        'Const_Msgs_NoMessagesSelected_WindowCaption'); // added by fduenas
+      MsgsForm_NoMessagesSelected_WindowCaption := RetornaLingua(DestSettings.fLanguage, 'Const_Msgs_NoMessagesSelected_WindowCaption'); // added by fduenas
     if MsgRec_BtClose = '' then
-      MsgRec_BtClose := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgRec_BtClose');
+      MsgRec_BtClose := RetornaLingua(DestSettings.fLanguage, 'Const_MsgRec_BtClose');
     if MsgRec_WindowCaption = '' then
-      MsgRec_WindowCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgRec_WindowCaption');
+      MsgRec_WindowCaption := RetornaLingua(DestSettings.fLanguage, 'Const_MsgRec_WindowCaption');
     if MsgRec_Title = '' then
-      MsgRec_Title := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgRec_Title');
+      MsgRec_Title := RetornaLingua(DestSettings.fLanguage, 'Const_MsgRec_Title');
     if MsgRec_LabelFrom = '' then
-      MsgRec_LabelFrom := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgRec_LabelFrom');
+      MsgRec_LabelFrom := RetornaLingua(DestSettings.fLanguage, 'Const_MsgRec_LabelFrom');
     if MsgRec_LabelDate = '' then
-      MsgRec_LabelDate := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgRec_LabelDate');
+      MsgRec_LabelDate := RetornaLingua(DestSettings.fLanguage, 'Const_MsgRec_LabelDate');
     if MsgRec_LabelSubject = '' then
-      MsgRec_LabelSubject := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgRec_LabelSubject');
+      MsgRec_LabelSubject := RetornaLingua(DestSettings.fLanguage, 'Const_MsgRec_LabelSubject');
     if MsgRec_LabelMessage = '' then
-      MsgRec_LabelMessage := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgRec_LabelMessage');
+      MsgRec_LabelMessage := RetornaLingua(DestSettings.fLanguage, 'Const_MsgRec_LabelMessage');
     if MsgSend_BtSend = '' then
-      MsgSend_BtSend := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgSend_BtSend');
+      MsgSend_BtSend := RetornaLingua(DestSettings.fLanguage, 'Const_MsgSend_BtSend');
     if MsgSend_BtCancel = '' then
-      MsgSend_BtCancel := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgSend_BtCancel');
+      MsgSend_BtCancel := RetornaLingua(DestSettings.fLanguage, 'Const_MsgSend_BtCancel');
     if MsgSend_WindowCaption = '' then
-      MsgSend_WindowCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgSend_WindowCaption');
+      MsgSend_WindowCaption := RetornaLingua(DestSettings.fLanguage, 'Const_MsgSend_WindowCaption');
     if MsgSend_Title = '' then
-      MsgSend_Title := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgSend_Title');
+      MsgSend_Title := RetornaLingua(DestSettings.fLanguage, 'Const_MsgSend_Title');
     if MsgSend_GroupTo = '' then
-      MsgSend_GroupTo := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgSend_GroupTo');
+      MsgSend_GroupTo := RetornaLingua(DestSettings.fLanguage, 'Const_MsgSend_GroupTo');
     if MsgSend_RadioUser = '' then
-      MsgSend_RadioUser := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgSend_RadioUser');
+      MsgSend_RadioUser := RetornaLingua(DestSettings.fLanguage, 'Const_MsgSend_RadioUser');
     if MsgSend_RadioAll = '' then
-      MsgSend_RadioAll := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgSend_RadioAll');
+      MsgSend_RadioAll := RetornaLingua(DestSettings.fLanguage, 'Const_MsgSend_RadioAll');
     if MsgSend_GroupMessage = '' then
-      MsgSend_GroupMessage := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgSend_GroupMessage');
+      MsgSend_GroupMessage := RetornaLingua(DestSettings.fLanguage, 'Const_MsgSend_GroupMessage');
     if MsgSend_LabelSubject = '' then
-      MsgSend_LabelSubject := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgSend_LabelSubject'); // added by fduenas
+      MsgSend_LabelSubject := RetornaLingua(DestSettings.fLanguage, 'Const_MsgSend_LabelSubject'); // added by fduenas
     if MsgSend_LabelMessageText = '' then
-      MsgSend_LabelMessageText := RetornaLingua(DestSettings.fLanguage,
-        'Const_MsgSend_LabelMessageText'); // added by fduenas
+      MsgSend_LabelMessageText := RetornaLingua(DestSettings.fLanguage, 'Const_MsgSend_LabelMessageText'); // added by fduenas
   end;
 
   DestSettings.WindowsPosition := poMainFormCenter;
 
-  { With DestSettings.TypeFieldsDB do
-    Begin
-    If Type_VarChar = '' then
-    Type_VarChar   := 'VarChar';
-    if Type_Char = '' then
-    Type_Char      := 'Char';
-    if Type_Int = '' then
-    Type_Int       := 'Int';
-    end;   mudar aqui }
-
   with DestSettings.UsersLogged do
   Begin
-    If BtnMessage = '' then
-      BtnMessage := RetornaLingua(DestSettings.fLanguage,
-        'Const_UserLogged_BtnMsg');
+    if BtnMessage = '' then
+      BtnMessage := RetornaLingua(DestSettings.fLanguage, 'Const_UserLogged_BtnMsg');
     if BtnRefresh = '' then
-      BtnRefresh := RetornaLingua(DestSettings.fLanguage,
-        'Const_UserLogged_Refresh');
+      BtnRefresh := RetornaLingua(DestSettings.fLanguage, 'Const_UserLogged_Refresh');
     if Btnclose = '' then
       Btnclose := RetornaLingua(DestSettings.fLanguage, 'Const_Msgs_BtClose');
     if LabelDescricao = '' then
-      LabelDescricao := RetornaLingua(DestSettings.fLanguage,
-        'Const_UserLogged_LabelDescricao');
+      LabelDescricao := RetornaLingua(DestSettings.fLanguage, 'Const_UserLogged_LabelDescricao');
     if LabelCaption = '' then
-      LabelCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_UserLogged_LabelCaption');
+      LabelCaption := RetornaLingua(DestSettings.fLanguage, 'Const_UserLogged_LabelCaption');
     if ColName = '' then
       ColName := RetornaLingua(DestSettings.fLanguage, 'Const_Cad_ColunaNome');
     if ColLogin = '' then
-      ColLogin := RetornaLingua(DestSettings.fLanguage,
-        'Const_Cad_ColunaLogin');
+      ColLogin := RetornaLingua(DestSettings.fLanguage, 'Const_Cad_ColunaLogin');
     if ColComputer = '' then
-      ColComputer := RetornaLingua(DestSettings.fLanguage,
-        'Const_CadColuna_Computer');
+      ColComputer := RetornaLingua(DestSettings.fLanguage, 'Const_CadColuna_Computer');
     if ColData = '' then
       ColData := RetornaLingua(DestSettings.fLanguage, 'Const_CadColuna_Data');
     if InputCaption = '' then
-      InputCaption := RetornaLingua(DestSettings.fLanguage,
-        'Const_UserLogged_InputCaption');
-    If InputText = '' then
-      InputText := RetornaLingua(DestSettings.fLanguage,
-        'Const_UserLogged_InputText');
-    If MsgSystem = '' then
-      MsgSystem := RetornaLingua(DestSettings.fLanguage,
-        'Const_UserLogged_MsgSystem');
-  End;
+      InputCaption := RetornaLingua(DestSettings.fLanguage, 'Const_UserLogged_InputCaption');
+    if InputText = '' then
+      InputText := RetornaLingua(DestSettings.fLanguage, 'Const_UserLogged_InputText');
+    if MsgSystem = '' then
+      MsgSystem := RetornaLingua(DestSettings.fLanguage, 'Const_UserLogged_MsgSystem');
+  end;
 end;
 
 { ------------------------------------------------------------------------------- }
@@ -1144,117 +478,90 @@ procedure AlterLanguage(DestSettings: TUCUserSettings);
 begin
   with DestSettings.CommonMessages do
   begin
-    BlankPassword := RetornaLingua(DestSettings.Language,
-      'Const_Men_SenhaDesabitada');
-    PasswordChanged := RetornaLingua(DestSettings.Language,
-      'Const_Men_SenhaAlterada');
-    InitialMessage.Text := RetornaLingua(DestSettings.Language,
-      'Const_Men_MsgInicial');
-    MaxLoginAttemptsError := RetornaLingua(DestSettings.Language,
-      'Const_Men_MaxTentativas');
-    InvalidLogin := RetornaLingua(DestSettings.Language,
-      'Const_Men_LoginInvalido');
-    InactiveLogin := RetornaLingua(DestSettings.Language,
-      'Const_Men_LoginInativo');
-    AutoLogonError := RetornaLingua(DestSettings.Language,
-      'Const_Men_AutoLogonError');
-    UsuarioExiste := RetornaLingua(DestSettings.Language,
-      'Const_Men_UsuarioExiste');
-    PasswordExpired := RetornaLingua(DestSettings.Language,
-      'Const_Men_PasswordExpired');
+    BlankPassword := GetTranslate(DestSettings.Language, '', 'Const_Men_SenhaDesabitada');
+    PasswordChanged := GetTranslate(DestSettings.Language, '', 'Const_Men_SenhaAlterada');
+    InitialMessage.Text := GetTranslate(DestSettings.Language, '', 'Const_Men_MsgInicial');
+    MaxLoginAttemptsError := GetTranslate(DestSettings.Language, '', 'Const_Men_MaxTentativas');
+    InvalidLogin := GetTranslate(DestSettings.Language, '', 'Const_Men_LoginInvalido');
+    InactiveLogin := GetTranslate(DestSettings.Language, '', 'Const_Men_LoginInativo');
+    AutoLogonError := GetTranslate(DestSettings.Language, '', 'Const_Men_AutoLogonError');
+    UsuarioExiste := GetTranslate(DestSettings.Language, '', 'Const_Men_UsuarioExiste');
+    PasswordExpired := GetTranslate(DestSettings.Language, '', 'Const_Men_PasswordExpired');
+    ForcaTrocaSenha := GetTranslate(DestSettings.Language, '', 'Const_ErrPass_ForcaTrocaSenha');
+    InvalidLogin := GetTranslate(DestSettings.Language, '', 'Const_Men_Select_Profile');
+    CanNotDeleteUserLogon := GetTranslate(DestSettings.Language, '', 'Const_Men_Cannot_Del_User_Logon');
+    ImageTooLarge := GetTranslate(DestSettings.Language, '', 'Const_Err_Image_Too_Large');
   end;
 
   with DestSettings.Login do
   begin
-    BtCancel := RetornaLingua(DestSettings.Language, 'Const_Log_BtCancelar');
-    BtOK := RetornaLingua(DestSettings.Language, 'Const_Log_BtOK');
-    LabelPassword := RetornaLingua(DestSettings.Language,
-      'Const_Log_LabelSenha');
-    LabelUser := RetornaLingua(DestSettings.Language, 'Const_Log_LabelUsuario');
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Log_WindowCaption');
-    LabelTentativa := RetornaLingua(DestSettings.Language,
-      'Const_Log_LabelTentativa');
-    LabelTentativas := RetornaLingua(DestSettings.Language,
-      'Const_Log_LabelTentativas');
+    BtCancel := GetTranslate(DestSettings.Language, '', 'Const_Log_BtCancelar');
+    BtOK := GetTranslate(DestSettings.Language, '', 'Const_Log_BtOK');
+    LabelPassword := GetTranslate(DestSettings.Language, '', 'Const_Log_LabelSenha');
+    LabelUser := GetTranslate(DestSettings.Language, '', 'Const_Log_LabelUsuario');
+    WindowCaption := GetTranslate(DestSettings.Language, '', 'Const_Log_WindowCaption');
+    LabelTentativa := GetTranslate(DestSettings.Language, '', 'Const_Log_LabelTentativa');
+    LabelTentativas := GetTranslate(DestSettings.Language, '', 'Const_Log_LabelTentativas');
   end;
 
   with DestSettings.UsersForm do
   begin
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Cad_WindowCaption');
-    LabelDescription := RetornaLingua(DestSettings.Language,
-      'Const_Cad_LabelDescricao');
-    ColName := RetornaLingua(DestSettings.Language, 'Const_Cad_ColunaNome');
-    ColLogin := RetornaLingua(DestSettings.Language, 'Const_Cad_ColunaLogin');
-    ColEmail := RetornaLingua(DestSettings.Language, 'Const_Cad_ColunaEmail');
-    BtAdd := RetornaLingua(DestSettings.Language, 'Const_Cad_BtAdicionar');
-    BtChange := RetornaLingua(DestSettings.Language, 'Const_Cad_BtAlterar');
-    BtDelete := RetornaLingua(DestSettings.Language, 'Const_Cad_BtExcluir');
-    BtRights := RetornaLingua(DestSettings.Language, 'Const_Cad_BtPermissoes');
-    BtPassword := RetornaLingua(DestSettings.Language, 'Const_Cad_BtSenha');
-    BtClose := RetornaLingua(DestSettings.Language, 'Const_Cad_BtFechar');
-    PromptDelete := RetornaLingua(DestSettings.Language,
-      'Const_Cad_ConfirmaExcluir');
-    PromptDelete_WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Cad_ConfirmaDelete_WindowCaption');
+    WindowCaption := GetTranslate(DestSettings.Language, '', 'Const_Cad_WindowCaption');
+    LabelDescription := GetTranslate(DestSettings.Language, '', 'Const_Cad_LabelDescricao');
+    ColName := GetTranslate(DestSettings.Language, '', 'Const_Cad_ColunaNome');
+    ColLogin := GetTranslate(DestSettings.Language, '', 'Const_Cad_ColunaLogin');
+    ColEmail := GetTranslate(DestSettings.Language, '', 'Const_Cad_ColunaEmail');
+    BtAdd := GetTranslate(DestSettings.Language, '', 'Const_Cad_BtAdicionar');
+    BtChange := GetTranslate(DestSettings.Language, '', 'Const_Cad_BtAlterar');
+    BtDelete := GetTranslate(DestSettings.Language, '', 'Const_Cad_BtExcluir');
+    BtRights := GetTranslate(DestSettings.Language, '', 'Const_Cad_BtPermissoes');
+    BtPassword := GetTranslate(DestSettings.Language, '', 'Const_Cad_BtSenha');
+    BtClose := GetTranslate(DestSettings.Language, '', 'Const_Cad_BtFechar');
+    PromptDelete := GetTranslate(DestSettings.Language, '', 'Const_Cad_ConfirmaExcluir');
+    PromptDelete_WindowCaption := GetTranslate(DestSettings.Language, '', 'Const_Cad_ConfirmaDelete_WindowCaption');
+    BtApplyFilter := GetTranslate(DestSettings.Language, '', 'Const_Cad_BtApplyFilter');
   end;
 
   with DestSettings.UsersProfile do
   begin
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Prof_WindowCaption');
-    LabelDescription := RetornaLingua(DestSettings.Language,
-      'Const_Prof_LabelDescricao');
-    ColProfile := RetornaLingua(DestSettings.Language, 'Const_Prof_ColunaNome');
-    BtAdd := RetornaLingua(DestSettings.Language, 'Const_Prof_BtAdicionar');
-    BtChange := RetornaLingua(DestSettings.Language, 'Const_Prof_BtAlterar');
-    BtDelete := RetornaLingua(DestSettings.Language, 'Const_Prof_BtExcluir');
-    BtRights := RetornaLingua(DestSettings.Language, 'Const_Prof_BtPermissoes');
-    BtClose := RetornaLingua(DestSettings.Language, 'Const_Prof_BtFechar');
-    PromptDelete := RetornaLingua(DestSettings.Language,
-      'Const_Prof_ConfirmaExcluir');
-    PromptDelete_WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Prof_ConfirmaDelete_WindowCaption');
+    WindowCaption := GetTranslate(DestSettings.Language, '', 'Const_Prof_WindowCaption');
+    LabelDescription := GetTranslate(DestSettings.Language, '', 'Const_Prof_LabelDescricao');
+    ColProfile := GetTranslate(DestSettings.Language, '', 'Const_Prof_ColunaNome');
+    BtAdd := GetTranslate(DestSettings.Language, '', 'Const_Prof_BtAdicionar');
+    BtChange := GetTranslate(DestSettings.Language, '', 'Const_Prof_BtAlterar');
+    BtDelete := GetTranslate(DestSettings.Language, '', 'Const_Prof_BtExcluir');
+    BtRights := GetTranslate(DestSettings.Language, '', 'Const_Prof_BtPermissoes');
+    BtClose := GetTranslate(DestSettings.Language, '', 'Const_Prof_BtFechar');
+    PromptDelete := GetTranslate(DestSettings.Language, '', 'Const_Prof_ConfirmaExcluir');
+    PromptDelete_WindowCaption := GetTranslate(DestSettings.Language, '', 'Const_Prof_ConfirmaDelete_WindowCaption');
   end;
 
   with DestSettings.AddChangeUser do
   begin
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Inc_WindowCaption');
-    LabelAdd := RetornaLingua(DestSettings.Language,
-      'Const_Inc_LabelAdicionar');
-    LabelChange := RetornaLingua(DestSettings.Language,
-      'Const_Inc_LabelAlterar');
-    LabelName := RetornaLingua(DestSettings.Language, 'Const_Inc_LabelNome');
-    LabelLogin := RetornaLingua(DestSettings.Language, 'Const_Inc_LabelLogin');
-    LabelEmail := RetornaLingua(DestSettings.Language, 'Const_Inc_LabelEmail');
-    CheckPrivileged := RetornaLingua(DestSettings.Language,
-      'Const_Inc_CheckPrivilegiado');
-    BtSave := RetornaLingua(DestSettings.Language, 'Const_Inc_BtGravar');
-    BtCancel := RetornaLingua(DestSettings.Language, 'Const_Inc_BtCancelar');
-    LabelPerfil := RetornaLingua(DestSettings.Language,
-      'Const_Inc_LabelPerfil');
-    CheckExpira := RetornaLingua(DestSettings.Language,
-      'Const_Inc_CheckEspira');
-    Day := RetornaLingua(DestSettings.Language, 'Const_Inc_Dia');
-    ExpiredIn := RetornaLingua(DestSettings.Language, 'Const_Inc_ExpiraEm');
-    LabelStatus := RetornaLingua(DestSettings.Language,
-      'Const_Inc_LabelStatus');
-    StatusActive := RetornaLingua(DestSettings.Language,
-      'Const_Inc_StatusActive');
-    StatusDisabled := RetornaLingua(DestSettings.Language,
-      'Const_Inc_StatusDisabled');
+    WindowCaption := GetTranslate(DestSettings.Language, '', 'Const_Inc_WindowCaption');
+    LabelAdd := GetTranslate(DestSettings.Language, '', 'Const_Inc_LabelAdicionar');
+    LabelChange := GetTranslate(DestSettings.Language, '', 'Const_Inc_LabelAlterar');
+    LabelName := GetTranslate(DestSettings.Language, '', 'Const_Inc_LabelNome');
+    LabelLogin := GetTranslate(DestSettings.Language, '', 'Const_Inc_LabelLogin');
+    LabelEmail := GetTranslate(DestSettings.Language, '', 'Const_Inc_LabelEmail');
+    LabelPerfil := GetTranslate(DestSettings.Language, '', 'Const_Inc_LabelPerfil');
+    CheckPrivileged := GetTranslate(DestSettings.Language, '', 'Const_Inc_CheckPrivilegiado');
+    BtSave := GetTranslate(DestSettings.Language, '', 'Const_Inc_BtGravar');
+    BtCancel := GetTranslate(DestSettings.Language, '', 'Const_Inc_BtCancelar');
+    CheckExpira := GetTranslate(DestSettings.Language, '', 'Const_Inc_CheckEspira');
+    Day := GetTranslate(DestSettings.Language, '', 'Const_Inc_Dia');
+    ExpiredIn := GetTranslate(DestSettings.Language, '', 'Const_Inc_ExpiraEm');
+    LabelStatus := GetTranslate(DestSettings.Language, '', 'Const_Inc_LabelStatus');
+    StatusActive := GetTranslate(DestSettings.Language, '', 'Const_Inc_StatusActive');
+    StatusDisabled := GetTranslate(DestSettings.Language, '', 'Const_Inc_StatusDisabled');
+    LabelImage := GetTranslate(DestSettings.Language, '', 'Const_Inc_LabelImage');
   end;
 
   with DestSettings.AddChangeProfile do
   begin
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_PInc_WindowCaption');
-    LabelAdd := RetornaLingua(DestSettings.Language,
-      'Const_PInc_LabelAdicionar');
-    LabelChange := RetornaLingua(DestSettings.Language,
-      'Const_PInc_LabelAlterar');
+    WindowCaption := RetornaLingua(DestSettings.Language, 'Const_PInc_WindowCaption');
+    LabelAdd := RetornaLingua(DestSettings.Language, 'Const_PInc_LabelAdicionar');
+    LabelChange := RetornaLingua(DestSettings.Language, 'Const_PInc_LabelAlterar');
     LabelName := RetornaLingua(DestSettings.Language, 'Const_PInc_LabelNome');
     BtSave := RetornaLingua(DestSettings.Language, 'Const_PInc_BtGravar');
     BtCancel := RetornaLingua(DestSettings.Language, 'Const_PInc_BtCancelar');
@@ -1262,17 +569,12 @@ begin
 
   with DestSettings.Rights do
   begin
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Perm_WindowCaption');
-    LabelUser := RetornaLingua(DestSettings.Language,
-      'Const_Perm_LabelUsuario');
-    LabelProfile := RetornaLingua(DestSettings.Language,
-      'Const_Perm_LabelPerfil');
+    WindowCaption := RetornaLingua(DestSettings.Language, 'Const_Perm_WindowCaption');
+    LabelUser := RetornaLingua(DestSettings.Language, 'Const_Perm_LabelUsuario');
+    LabelProfile := RetornaLingua(DestSettings.Language, 'Const_Perm_LabelPerfil');
     PageMenu := RetornaLingua(DestSettings.Language, 'Const_Perm_PageMenu');
-    PageActions := RetornaLingua(DestSettings.Language,
-      'Const_Perm_PageActions');
-    PageControls := RetornaLingua(DestSettings.Language,
-      'Const_Perm_PageControls');
+    PageActions := RetornaLingua(DestSettings.Language, 'Const_Perm_PageActions');
+    PageControls := RetornaLingua(DestSettings.Language, 'Const_Perm_PageControls');
     BtUnlock := RetornaLingua(DestSettings.Language, 'Const_Perm_BtLibera');
     BtLock := RetornaLingua(DestSettings.Language, 'Const_Perm_BtBloqueia');
     BtSave := RetornaLingua(DestSettings.Language, 'Const_Perm_BtGravar');
@@ -1281,16 +583,11 @@ begin
 
   with DestSettings.ChangePassword do
   begin
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Troc_WindowCaption');
-    LabelDescription := RetornaLingua(DestSettings.Language,
-      'Const_Troc_LabelDescricao');
-    LabelCurrentPassword := RetornaLingua(DestSettings.Language,
-      'Const_Troc_LabelSenhaAtual');
-    LabelNewPassword := RetornaLingua(DestSettings.Language,
-      'Const_Troc_LabelNovaSenha');
-    LabelConfirm := RetornaLingua(DestSettings.Language,
-      'Const_Troc_LabelConfirma');
+    WindowCaption := RetornaLingua(DestSettings.Language, 'Const_Troc_WindowCaption');
+    LabelDescription := RetornaLingua(DestSettings.Language, 'Const_Troc_LabelDescricao');
+    LabelCurrentPassword := RetornaLingua(DestSettings.Language, 'Const_Troc_LabelSenhaAtual');
+    LabelNewPassword := RetornaLingua(DestSettings.Language, 'Const_Troc_LabelNovaSenha');
+    LabelConfirm := RetornaLingua(DestSettings.Language, 'Const_Troc_LabelConfirma');
     BtSave := RetornaLingua(DestSettings.Language, 'Const_Troc_BtGravar');
     BtCancel := RetornaLingua(DestSettings.Language, 'Const_Troc_BtCancelar');
   end;
@@ -1315,24 +612,20 @@ begin
   begin
     WindowCaption := RetornaLingua(DestSettings.Language,
       'Const_DefPass_WindowCaption');
-    LabelPassword := RetornaLingua(DestSettings.Language,
-      'Const_DefPass_LabelSenha');
+    LabelPassword := RetornaLingua(DestSettings.Language, 'Const_DefPass_LabelSenha');
   end;
 
   with DestSettings.Log do
   begin
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_LogC_WindowCaption');
+    WindowCaption := RetornaLingua(DestSettings.Language, 'Const_LogC_WindowCaption');
     LabelDescription := RetornaLingua(DestSettings.Language,
       'Const_LogC_LabelDescricao');
-    LabelUser := RetornaLingua(DestSettings.Language,
-      'Const_LogC_LabelUsuario');
+    LabelUser := RetornaLingua(DestSettings.Language, 'Const_LogC_LabelUsuario');
     LabelDate := RetornaLingua(DestSettings.Language, 'Const_LogC_LabelData');
     LabelLevel := RetornaLingua(DestSettings.Language, 'Const_LogC_LabelNivel');
     ColLevel := RetornaLingua(DestSettings.Language, 'Const_LogC_ColunaNivel');
     ColAppID := RetornaLingua(DestSettings.Language, 'Const_LogC_ColunaAppID');
-    ColMessage := RetornaLingua(DestSettings.Language,
-      'Const_LogC_ColunaMensagem');
+    ColMessage := RetornaLingua(DestSettings.Language, 'Const_LogC_ColunaMensagem');
     ColUser := RetornaLingua(DestSettings.Language, 'Const_LogC_ColunaUsuario');
     ColDate := RetornaLingua(DestSettings.Language, 'Const_LogC_ColunaData');
     BtFilter := RetornaLingua(DestSettings.Language, 'Const_LogC_BtFiltro');
@@ -1344,11 +637,9 @@ begin
       'Const_LogC_ConfirmaDelete_WindowCaption');
     OptionUserAll := RetornaLingua(DestSettings.Language, 'Const_LogC_Todos');
     OptionLevelLow := RetornaLingua(DestSettings.Language, 'Const_LogC_Low');
-    OptionLevelNormal := RetornaLingua(DestSettings.Language,
-      'Const_LogC_Normal');
+    OptionLevelNormal := RetornaLingua(DestSettings.Language, 'Const_LogC_Normal');
     OptionLevelHigh := RetornaLingua(DestSettings.Language, 'Const_LogC_High');
-    OptionLevelCritic := RetornaLingua(DestSettings.Language,
-      'Const_LogC_Critic');
+    OptionLevelCritic := RetornaLingua(DestSettings.Language, 'Const_LogC_Critic');
     DeletePerformed := RetornaLingua(DestSettings.Language,
       'Const_LogC_ExcluirEfectuada');
   end;
@@ -1356,22 +647,17 @@ begin
   with DestSettings.AppMessages do
   begin
     MsgsForm_BtNew := RetornaLingua(DestSettings.Language, 'Const_Msgs_BtNew');
-    MsgsForm_BtReplay := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_BtReplay');
+    MsgsForm_BtReplay := RetornaLingua(DestSettings.Language, 'Const_Msgs_BtReplay');
     MsgsForm_BtForward := RetornaLingua(DestSettings.Language,
       'Const_Msgs_BtForward');
-    MsgsForm_BtDelete := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_BtDelete');
-    MsgsForm_BtClose := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_BtClose'); // added by fduenas
+    MsgsForm_BtDelete := RetornaLingua(DestSettings.Language, 'Const_Msgs_BtDelete');
+    MsgsForm_BtClose := RetornaLingua(DestSettings.Language, 'Const_Msgs_BtClose'); // added by fduenas
     MsgsForm_WindowCaption := RetornaLingua(DestSettings.Language,
       'Const_Msgs_WindowCaption');
-    MsgsForm_ColFrom := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_ColFrom');
+    MsgsForm_ColFrom := RetornaLingua(DestSettings.Language, 'Const_Msgs_ColFrom');
     MsgsForm_ColSubject := RetornaLingua(DestSettings.Language,
       'Const_Msgs_ColSubject');
-    MsgsForm_ColDate := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_ColDate');
+    MsgsForm_ColDate := RetornaLingua(DestSettings.Language, 'Const_Msgs_ColDate');
     MsgsForm_PromptDelete := RetornaLingua(DestSettings.Language,
       'Const_Msgs_PromptDelete');
     MsgsForm_PromptDelete_WindowCaption := RetornaLingua(DestSettings.Language,
@@ -1381,8 +667,7 @@ begin
     MsgsForm_NoMessagesSelected_WindowCaption :=
       RetornaLingua(DestSettings.Language,
       'Const_Msgs_NoMessagesSelected_WindowCaption'); // added by fduenas
-    MsgRec_BtClose := RetornaLingua(DestSettings.Language,
-      'Const_MsgRec_BtClose');
+    MsgRec_BtClose := RetornaLingua(DestSettings.Language, 'Const_MsgRec_BtClose');
     MsgRec_WindowCaption := RetornaLingua(DestSettings.Language,
       'Const_MsgRec_WindowCaption');
     MsgRec_Title := RetornaLingua(DestSettings.Language, 'Const_MsgRec_Title');
@@ -1394,16 +679,13 @@ begin
       'Const_MsgRec_LabelSubject');
     MsgRec_LabelMessage := RetornaLingua(DestSettings.Language,
       'Const_MsgRec_LabelMessage');
-    MsgSend_BtSend := RetornaLingua(DestSettings.Language,
-      'Const_MsgSend_BtSend');
+    MsgSend_BtSend := RetornaLingua(DestSettings.Language, 'Const_MsgSend_BtSend');
     MsgSend_BtCancel := RetornaLingua(DestSettings.Language,
       'Const_MsgSend_BtCancel');
     MsgSend_WindowCaption := RetornaLingua(DestSettings.Language,
       'Const_MsgSend_WindowCaption');
-    MsgSend_Title := RetornaLingua(DestSettings.Language,
-      'Const_MsgSend_Title');
-    MsgSend_GroupTo := RetornaLingua(DestSettings.Language,
-      'Const_MsgSend_GroupTo');
+    MsgSend_Title := RetornaLingua(DestSettings.Language, 'Const_MsgSend_Title');
+    MsgSend_GroupTo := RetornaLingua(DestSettings.Language, 'Const_MsgSend_GroupTo');
     MsgSend_RadioUser := RetornaLingua(DestSettings.Language,
       'Const_MsgSend_RadioUser');
     MsgSend_RadioAll := RetornaLingua(DestSettings.Language,
@@ -1420,10 +702,8 @@ begin
 
   with DestSettings.UsersLogged do
   Begin
-    BtnMessage := RetornaLingua(DestSettings.Language,
-      'Const_UserLogged_BtnMsg');
-    BtnRefresh := RetornaLingua(DestSettings.Language,
-      'Const_UserLogged_Refresh');
+    BtnMessage := RetornaLingua(DestSettings.Language, 'Const_UserLogged_BtnMsg');
+    BtnRefresh := RetornaLingua(DestSettings.Language, 'Const_UserLogged_Refresh');
     Btnclose := RetornaLingua(DestSettings.Language, 'Const_Msgs_BtClose');
     LabelDescricao := RetornaLingua(DestSettings.Language,
       'Const_UserLogged_LabelDescricao');
@@ -1431,320 +711,13 @@ begin
       'Const_UserLogged_LabelCaption');
     ColName := RetornaLingua(DestSettings.Language, 'Const_Cad_ColunaNome');
     ColLogin := RetornaLingua(DestSettings.Language, 'Const_Cad_ColunaLogin');
-    ColComputer := RetornaLingua(DestSettings.Language,
-      'Const_CadColuna_Computer');
+    ColComputer := RetornaLingua(DestSettings.Language, 'Const_CadColuna_Computer');
     ColData := RetornaLingua(DestSettings.Language, 'Const_CadColuna_Data');
     InputCaption := RetornaLingua(DestSettings.Language,
       'Const_UserLogged_InputCaption');
-    InputText := RetornaLingua(DestSettings.Language,
-      'Const_UserLogged_InputText');
-    MsgSystem := RetornaLingua(DestSettings.Language,
-      'Const_UserLogged_MsgSystem');
-  End;
-end;
-
-procedure AlterLanguage2(DestSettings: TUCSettings);
-begin
-  with DestSettings.CommonMessages do
-  begin
-    BlankPassword := RetornaLingua(DestSettings.Language,
-      'Const_Men_SenhaDesabitada');
-    PasswordChanged := RetornaLingua(DestSettings.Language,
-      'Const_Men_SenhaAlterada');
-    InitialMessage.Text := RetornaLingua(DestSettings.Language,
-      'Const_Men_MsgInicial');
-    MaxLoginAttemptsError := RetornaLingua(DestSettings.Language,
-      'Const_Men_MaxTentativas');
-    InvalidLogin := RetornaLingua(DestSettings.Language,
-      'Const_Men_LoginInvalido');
-    InactiveLogin := RetornaLingua(DestSettings.fLanguage,
-      'Const_Men_LoginInativo');
-    AutoLogonError := RetornaLingua(DestSettings.Language,
-      'Const_Men_AutoLogonError');
-    UsuarioExiste := RetornaLingua(DestSettings.Language,
-      'Const_Men_UsuarioExiste');
-    PasswordExpired := RetornaLingua(DestSettings.Language,
-      'Const_Men_PasswordExpired');
+    InputText := RetornaLingua(DestSettings.Language, 'Const_UserLogged_InputText');
+    MsgSystem := RetornaLingua(DestSettings.Language, 'Const_UserLogged_MsgSystem');
   end;
-
-  with DestSettings.Login do
-  begin
-    BtCancel := RetornaLingua(DestSettings.Language, 'Const_Log_BtCancelar');
-    BtOK := RetornaLingua(DestSettings.Language, 'Const_Log_BtOK');
-    LabelPassword := RetornaLingua(DestSettings.Language,
-      'Const_Log_LabelSenha');
-    LabelUser := RetornaLingua(DestSettings.Language, 'Const_Log_LabelUsuario');
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Log_WindowCaption');
-    LabelTentativa := RetornaLingua(DestSettings.Language,
-      'Const_Log_LabelTentativa');
-    LabelTentativas := RetornaLingua(DestSettings.Language,
-      'Const_Log_LabelTentativas');
-  end;
-
-  with DestSettings.UsersForm do
-  begin
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Cad_WindowCaption');
-    LabelDescription := RetornaLingua(DestSettings.Language,
-      'Const_Cad_LabelDescricao');
-    ColName := RetornaLingua(DestSettings.Language, 'Const_Cad_ColunaNome');
-    ColLogin := RetornaLingua(DestSettings.Language, 'Const_Cad_ColunaLogin');
-    ColEmail := RetornaLingua(DestSettings.Language, 'Const_Cad_ColunaEmail');
-    BtAdd := RetornaLingua(DestSettings.Language, 'Const_Cad_BtAdicionar');
-    BtChange := RetornaLingua(DestSettings.Language, 'Const_Cad_BtAlterar');
-    BtDelete := RetornaLingua(DestSettings.Language, 'Const_Cad_BtExcluir');
-    BtRights := RetornaLingua(DestSettings.Language, 'Const_Cad_BtPermissoes');
-    BtPassword := RetornaLingua(DestSettings.Language, 'Const_Cad_BtSenha');
-    BtClose := RetornaLingua(DestSettings.Language, 'Const_Cad_BtFechar');
-    PromptDelete := RetornaLingua(DestSettings.Language,
-      'Const_Cad_ConfirmaExcluir');
-    PromptDelete_WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Cad_ConfirmaDelete_WindowCaption');
-  end;
-
-  with DestSettings.UsersProfile do
-  begin
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Prof_WindowCaption');
-    LabelDescription := RetornaLingua(DestSettings.Language,
-      'Const_Prof_LabelDescricao');
-    ColProfile := RetornaLingua(DestSettings.Language, 'Const_Prof_ColunaNome');
-    BtAdd := RetornaLingua(DestSettings.Language, 'Const_Prof_BtAdicionar');
-    BtChange := RetornaLingua(DestSettings.Language, 'Const_Prof_BtAlterar');
-    BtDelete := RetornaLingua(DestSettings.Language, 'Const_Prof_BtExcluir');
-    BtRights := RetornaLingua(DestSettings.Language, 'Const_Prof_BtPermissoes');
-    BtClose := RetornaLingua(DestSettings.Language, 'Const_Prof_BtFechar');
-    PromptDelete := RetornaLingua(DestSettings.Language,
-      'Const_Prof_ConfirmaExcluir');
-    PromptDelete_WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Prof_ConfirmaDelete_WindowCaption');
-  end;
-
-  with DestSettings.AddChangeUser do
-  begin
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Inc_WindowCaption');
-    LabelAdd := RetornaLingua(DestSettings.Language,
-      'Const_Inc_LabelAdicionar');
-    LabelChange := RetornaLingua(DestSettings.Language,
-      'Const_Inc_LabelAlterar');
-    LabelName := RetornaLingua(DestSettings.Language, 'Const_Inc_LabelNome');
-    LabelLogin := RetornaLingua(DestSettings.Language, 'Const_Inc_LabelLogin');
-    LabelEmail := RetornaLingua(DestSettings.Language, 'Const_Inc_LabelEmail');
-    CheckPrivileged := RetornaLingua(DestSettings.Language,
-      'Const_Inc_CheckPrivilegiado');
-    BtSave := RetornaLingua(DestSettings.Language, 'Const_Inc_BtGravar');
-    BtCancel := RetornaLingua(DestSettings.Language, 'Const_Inc_BtCancelar');
-    LabelPerfil := RetornaLingua(DestSettings.Language,
-      'Const_Inc_LabelPerfil');
-    CheckExpira := RetornaLingua(DestSettings.Language,
-      'Const_Inc_CheckEspira');
-    Day := RetornaLingua(DestSettings.Language, 'Const_Inc_Dia');
-    ExpiredIn := RetornaLingua(DestSettings.Language, 'Const_Inc_ExpiraEm');
-    LabelStatus := RetornaLingua(DestSettings.Language,
-      'Const_Inc_LabelStatus');
-    StatusActive := RetornaLingua(DestSettings.Language,
-      'Const_Inc_StatusActive');
-    StatusDisabled := RetornaLingua(DestSettings.Language,
-      'Const_Inc_StatusDisabled');
-  end;
-
-  with DestSettings.AddChangeProfile do
-  begin
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_PInc_WindowCaption');
-    LabelAdd := RetornaLingua(DestSettings.Language,
-      'Const_PInc_LabelAdicionar');
-    LabelChange := RetornaLingua(DestSettings.Language,
-      'Const_PInc_LabelAlterar');
-    LabelName := RetornaLingua(DestSettings.Language, 'Const_PInc_LabelNome');
-    BtSave := RetornaLingua(DestSettings.Language, 'Const_PInc_BtGravar');
-    BtCancel := RetornaLingua(DestSettings.Language, 'Const_PInc_BtCancelar');
-  end;
-
-  with DestSettings.Rights do
-  begin
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Perm_WindowCaption');
-    LabelUser := RetornaLingua(DestSettings.Language,
-      'Const_Perm_LabelUsuario');
-    LabelProfile := RetornaLingua(DestSettings.Language,
-      'Const_Perm_LabelPerfil');
-    PageMenu := RetornaLingua(DestSettings.Language, 'Const_Perm_PageMenu');
-    PageActions := RetornaLingua(DestSettings.Language,
-      'Const_Perm_PageActions');
-    PageControls := RetornaLingua(DestSettings.Language,
-      'Const_Perm_PageControls');
-    BtUnlock := RetornaLingua(DestSettings.Language, 'Const_Perm_BtLibera');
-    BtLock := RetornaLingua(DestSettings.Language, 'Const_Perm_BtBloqueia');
-    BtSave := RetornaLingua(DestSettings.Language, 'Const_Perm_BtGravar');
-    BtCancel := RetornaLingua(DestSettings.Language, 'Const_Perm_BtCancelar');
-  end;
-
-  with DestSettings.ChangePassword do
-  begin
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Troc_WindowCaption');
-    LabelDescription := RetornaLingua(DestSettings.Language,
-      'Const_Troc_LabelDescricao');
-    LabelCurrentPassword := RetornaLingua(DestSettings.Language,
-      'Const_Troc_LabelSenhaAtual');
-    LabelNewPassword := RetornaLingua(DestSettings.Language,
-      'Const_Troc_LabelNovaSenha');
-    LabelConfirm := RetornaLingua(DestSettings.Language,
-      'Const_Troc_LabelConfirma');
-    BtSave := RetornaLingua(DestSettings.Language, 'Const_Troc_BtGravar');
-    BtCancel := RetornaLingua(DestSettings.Language, 'Const_Troc_BtCancelar');
-  end;
-
-  with DestSettings.CommonMessages.ChangePasswordError do
-  begin
-    InvalidCurrentPassword := RetornaLingua(DestSettings.Language,
-      'Const_ErrPass_SenhaAtualInvalida');
-    NewPasswordError := RetornaLingua(DestSettings.Language,
-      'Const_ErrPass_ErroNovaSenha');
-    NewEqualCurrent := RetornaLingua(DestSettings.Language,
-      'Const_ErrPass_NovaIgualAtual');
-    PasswordRequired := RetornaLingua(DestSettings.Language,
-      'Const_ErrPass_SenhaObrigatoria');
-    MinPasswordLength := RetornaLingua(DestSettings.Language,
-      'Const_ErrPass_SenhaMinima');
-    InvalidNewPassword := RetornaLingua(DestSettings.Language,
-      'Const_ErrPass_SenhaInvalida');
-  end;
-
-  with DestSettings.ResetPassword do
-  begin
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_DefPass_WindowCaption');
-    LabelPassword := RetornaLingua(DestSettings.Language,
-      'Const_DefPass_LabelSenha');
-  end;
-
-  with DestSettings.Log do
-  begin
-    WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_LogC_WindowCaption');
-    LabelDescription := RetornaLingua(DestSettings.Language,
-      'Const_LogC_LabelDescricao');
-    LabelUser := RetornaLingua(DestSettings.Language,
-      'Const_LogC_LabelUsuario');
-    LabelDate := RetornaLingua(DestSettings.Language, 'Const_LogC_LabelData');
-    LabelLevel := RetornaLingua(DestSettings.Language, 'Const_LogC_LabelNivel');
-    ColLevel := RetornaLingua(DestSettings.Language, 'Const_LogC_ColunaNivel');
-    ColAppID := RetornaLingua(DestSettings.Language, 'Const_LogC_ColunaAppID');
-    ColMessage := RetornaLingua(DestSettings.Language,
-      'Const_LogC_ColunaMensagem');
-    ColUser := RetornaLingua(DestSettings.Language, 'Const_LogC_ColunaUsuario');
-    ColDate := RetornaLingua(DestSettings.Language, 'Const_LogC_ColunaData');
-    BtFilter := RetornaLingua(DestSettings.Language, 'Const_LogC_BtFiltro');
-    BtDelete := RetornaLingua(DestSettings.Language, 'Const_LogC_BtExcluir');
-    BtClose := RetornaLingua(DestSettings.Language, 'Const_LogC_BtFechar');
-    PromptDelete := RetornaLingua(DestSettings.Language,
-      'Const_LogC_ConfirmaExcluir');
-    PromptDelete_WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_LogC_ConfirmaDelete_WindowCaption');
-    OptionUserAll := RetornaLingua(DestSettings.Language, 'Const_LogC_Todos');
-    OptionLevelLow := RetornaLingua(DestSettings.Language, 'Const_LogC_Low');
-    OptionLevelNormal := RetornaLingua(DestSettings.Language,
-      'Const_LogC_Normal');
-    OptionLevelHigh := RetornaLingua(DestSettings.Language, 'Const_LogC_High');
-    OptionLevelCritic := RetornaLingua(DestSettings.Language,
-      'Const_LogC_Critic');
-    DeletePerformed := RetornaLingua(DestSettings.Language,
-      'Const_LogC_ExcluirEfectuada');
-  end;
-
-  with DestSettings.AppMessages do
-  begin
-    MsgsForm_BtNew := RetornaLingua(DestSettings.Language, 'Const_Msgs_BtNew');
-    MsgsForm_BtReplay := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_BtReplay');
-    MsgsForm_BtForward := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_BtForward');
-    MsgsForm_BtDelete := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_BtDelete');
-    MsgsForm_BtClose := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_BtClose'); // added by fduenas
-    MsgsForm_WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_WindowCaption');
-    MsgsForm_ColFrom := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_ColFrom');
-    MsgsForm_ColSubject := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_ColSubject');
-    MsgsForm_ColDate := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_ColDate');
-    MsgsForm_PromptDelete := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_PromptDelete');
-    MsgsForm_PromptDelete_WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_PromptDelete_WindowCaption'); // added by fduenas
-    MsgsForm_NoMessagesSelected := RetornaLingua(DestSettings.Language,
-      'Const_Msgs_NoMessagesSelected'); // added by fduenas
-    MsgsForm_NoMessagesSelected_WindowCaption :=
-      RetornaLingua(DestSettings.Language,
-      'Const_Msgs_NoMessagesSelected_WindowCaption'); // added by fduenas
-    MsgRec_BtClose := RetornaLingua(DestSettings.Language,
-      'Const_MsgRec_BtClose');
-    MsgRec_WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_MsgRec_WindowCaption');
-    MsgRec_Title := RetornaLingua(DestSettings.Language, 'Const_MsgRec_Title');
-    MsgRec_LabelFrom := RetornaLingua(DestSettings.Language,
-      'Const_MsgRec_LabelFrom');
-    MsgRec_LabelDate := RetornaLingua(DestSettings.Language,
-      'Const_MsgRec_LabelDate');
-    MsgRec_LabelSubject := RetornaLingua(DestSettings.Language,
-      'Const_MsgRec_LabelSubject');
-    MsgRec_LabelMessage := RetornaLingua(DestSettings.Language,
-      'Const_MsgRec_LabelMessage');
-    MsgSend_BtSend := RetornaLingua(DestSettings.Language,
-      'Const_MsgSend_BtSend');
-    MsgSend_BtCancel := RetornaLingua(DestSettings.Language,
-      'Const_MsgSend_BtCancel');
-    MsgSend_WindowCaption := RetornaLingua(DestSettings.Language,
-      'Const_MsgSend_WindowCaption');
-    MsgSend_Title := RetornaLingua(DestSettings.Language,
-      'Const_MsgSend_Title');
-    MsgSend_GroupTo := RetornaLingua(DestSettings.Language,
-      'Const_MsgSend_GroupTo');
-    MsgSend_RadioUser := RetornaLingua(DestSettings.Language,
-      'Const_MsgSend_RadioUser');
-    MsgSend_RadioAll := RetornaLingua(DestSettings.Language,
-      'Const_MsgSend_RadioAll');
-    MsgSend_GroupMessage := RetornaLingua(DestSettings.Language,
-      'Const_MsgSend_GroupMessage');
-    MsgSend_LabelSubject := RetornaLingua(DestSettings.Language,
-      'Const_MsgSend_LabelSubject'); // added by fduenas
-    MsgSend_LabelMessageText := RetornaLingua(DestSettings.Language,
-      'Const_MsgSend_LabelMessageText'); // added by fduenas
-  end;
-
-  DestSettings.WindowsPosition := poMainFormCenter;
-
-  with DestSettings.UsersLogged do
-  Begin
-    BtnMessage := RetornaLingua(DestSettings.Language,
-      'Const_UserLogged_BtnMsg');
-    BtnRefresh := RetornaLingua(DestSettings.Language,
-      'Const_UserLogged_Refresh');
-    Btnclose := RetornaLingua(DestSettings.Language, 'Const_Msgs_BtClose');
-    LabelDescricao := RetornaLingua(DestSettings.Language,
-      'Const_UserLogged_LabelDescricao');
-    LabelCaption := RetornaLingua(DestSettings.Language,
-      'Const_UserLogged_LabelCaption');
-    ColName := RetornaLingua(DestSettings.Language, 'Const_Cad_ColunaNome');
-    ColLogin := RetornaLingua(DestSettings.Language, 'Const_Cad_ColunaLogin');
-    ColComputer := RetornaLingua(DestSettings.Language,
-      'Const_CadColuna_Computer');
-    ColData := RetornaLingua(DestSettings.Language, 'Const_CadColuna_Data');
-    InputCaption := RetornaLingua(DestSettings.Language,
-      'Const_UserLogged_InputCaption');
-    InputText := RetornaLingua(DestSettings.Language,
-      'Const_UserLogged_InputText');
-    MsgSystem := RetornaLingua(DestSettings.Language,
-      'Const_UserLogged_MsgSystem');
-  End;
-
 end;
 
 { ------------------------------------------------------------------------------- }
@@ -1783,28 +756,27 @@ begin
   FResetPassword := TUCResetPassword.Create(nil);
   FLogControlFormMSG := TUCLogControlFormMSG.Create(nil);
   fBancoDados := Firebird;
-  RetornaSqlBancoDados(fBancoDados, Type_Int, Type_Char, Type_VarChar,
-    Type_Memo);
-  fUsersLogged := TUCCadUserLoggedMSG.Create(Nil);
+  fUsersLogged := TUCCadUserLoggedMSG.Create(nil);
+  FPosition := poMainFormCenter;
+  RetornaSqlBancoDados(fBancoDados, Type_Int, Type_Char, Type_VarChar, Type_Memo);
   if csDesigning in ComponentState then
-    IniSettings2(Self);
+    IniSettings(Self);
 end;
 
 destructor TUCSettings.Destroy;
 begin
-  // added by fduenas
-  FAppMessagesMSG.Free;
-  FLoginFormMSG.Free;
-  FUserCommomMSG.Free;
-  FCadUserFormMSG.Free;
-  FAddUserFormMSG.Free;
-  FAddProfileFormMSG.Free;
-  FPermissFormMSG.Free;
-  FProfileUserFormMSG.Free;
-  FTrocaSenhaFormMSG.Free;
-  FResetPassword.Free;
-  FLogControlFormMSG.Free;
-  fUsersLogged.Free;
+  SysUtils.FreeAndNil(FAppMessagesMSG);
+  SysUtils.FreeAndNil(FLoginFormMSG);
+  SysUtils.FreeAndNil(FUserCommomMSG);
+  SysUtils.FreeAndNil(FCadUserFormMSG);
+  SysUtils.FreeAndNil(FAddUserFormMSG);
+  SysUtils.FreeAndNil(FAddProfileFormMSG);
+  SysUtils.FreeAndNil(FPermissFormMSG);
+  SysUtils.FreeAndNil(FProfileUserFormMSG);
+  SysUtils.FreeAndNil(FTrocaSenhaFormMSG);
+  SysUtils.FreeAndNil(FResetPassword);
+  SysUtils.FreeAndNil(FLogControlFormMSG);
+  SysUtils.FreeAndNil(fUsersLogged);
   inherited;
 end;
 
@@ -1843,7 +815,7 @@ end;
 procedure TUCSettings.SetfLanguage(const Value: TUCLanguage);
 begin
   fLanguage := Value;
-  AlterLanguage2(Self);
+
 end;
 
 procedure TUCSettings.SetFLogControlFormMSG(const Value: TUCLogControlFormMSG);
@@ -1856,8 +828,7 @@ begin
   FPermissFormMSG := Value;
 end;
 
-procedure TUCSettings.SetFProfileUserFormMSG(const Value
-  : TUCProfileUserFormMSG);
+procedure TUCSettings.SetFProfileUserFormMSG(const Value: TUCProfileUserFormMSG);
 begin
   FProfileUserFormMSG := Value;
 end;
@@ -1880,6 +851,18 @@ end;
 procedure TUCSettings.SetfUsersLogged(const Value: TUCCadUserLoggedMSG);
 begin
   fUsersLogged := Value;
+end;
+
+{$IFDEF DELPHI9_UP} {$ENDREGION} {$ENDIF}
+{$IFDEF DELPHI9_UP} {$REGION 'TUserSettings'} {$ENDIF}
+{ TUserSettings }
+
+procedure TUCUserSettings.Assign(Source: TPersistent);
+begin
+  if Source is TUCUserSettings then
+    Self.CommonMessages.Assign(TUCUserSettings(Source).CommonMessages)
+  else
+    inherited;
 end;
 
 {$IFDEF DELPHI9_UP} {$ENDREGION} {$ENDIF}

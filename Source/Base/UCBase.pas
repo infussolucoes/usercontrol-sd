@@ -754,12 +754,6 @@ uses
 { TUserControl }
 
 constructor TUserControl.Create(AOwner: TComponent);
-  function GetFieldName(FieldValue: string; const Prop: string): string;
-  begin
-    Result := FieldValue;
-    if FieldValue = '' then
-      Result := RetornaLingua(fLanguage, Prop);
-  end;
 begin
   inherited;
   FCurrentUser := TUCCurrentUser.Create(Self);
@@ -781,35 +775,35 @@ begin
 
   if csDesigning in ComponentState then
   begin
-    TableUsers.TableName := GetFieldName(TableUsers.TableName, 'Const_TableUsers_TableName');
-    TableUsers.FieldUserID := GetFieldName(TableUsers.FieldUserID, 'Const_TableUsers_FieldUserID');
-    TableUsers.FieldUserName := GetFieldName(TableUsers.FieldUserName, 'Const_TableUsers_FieldUserName');
-    TableUsers.FieldLogin := GetFieldName(TableUsers.FieldLogin, 'Const_TableUsers_FieldLogin');
-    TableUsers.FieldPassword := GetFieldName(TableUsers.FieldPassword, 'Const_TableUsers_FieldPassword');
-    TableUsers.FieldEmail := GetFieldName(TableUsers.FieldEmail, 'Const_TableUsers_FieldEmail');
-    TableUsers.FieldPrivileged := GetFieldName(TableUsers.FieldPrivileged, 'Const_TableUsers_FieldPrivileged');
-    TableUsers.FieldTypeRec := GetFieldName(TableUsers.FieldTypeRec, 'Const_TableUsers_FieldTypeRec');
-    TableUsers.FieldProfile := GetFieldName(TableUsers.FieldProfile, 'Const_TableUsers_FieldProfile');
-    TableUsers.FieldKey := GetFieldName(TableUsers.FieldKey, 'Const_TableUsers_FieldKey');
-    TableUsers.FieldDateExpired := GetFieldName(TableUsers.FieldDateExpired, 'Const_TableUsers_FieldDateExpired');
-    TableUsers.FieldUserExpired := GetFieldName(TableUsers.FieldUserExpired, 'Const_TableUser_FieldUserExpired');
-    TableUsers.FieldUserDaysSun := GetFieldName(TableUsers.FieldUserDaysSun, 'Const_TableUser_FieldUserDaysSun');
-    TableUsers.FieldUserInative := GetFieldName(TableUsers.FieldUserInative, 'Const_TableUser_FieldUserInative');
-    TableUsers.FieldImage := GetFieldName(TableUsers.FieldImage, 'Const_TableUsers_FieldImage');
+    TableUsers.TableName := GetTranslate(fLanguage, TableUsers.TableName, 'Const_TableUsers_TableName');
+    TableUsers.FieldUserID := GetTranslate(fLanguage, TableUsers.FieldUserID, 'Const_TableUsers_FieldUserID');
+    TableUsers.FieldUserName := GetTranslate(fLanguage, TableUsers.FieldUserName, 'Const_TableUsers_FieldUserName');
+    TableUsers.FieldLogin := GetTranslate(fLanguage, TableUsers.FieldLogin, 'Const_TableUsers_FieldLogin');
+    TableUsers.FieldPassword := GetTranslate(fLanguage, TableUsers.FieldPassword, 'Const_TableUsers_FieldPassword');
+    TableUsers.FieldEmail := GetTranslate(fLanguage, TableUsers.FieldEmail, 'Const_TableUsers_FieldEmail');
+    TableUsers.FieldPrivileged := GetTranslate(fLanguage, TableUsers.FieldPrivileged, 'Const_TableUsers_FieldPrivileged');
+    TableUsers.FieldTypeRec := GetTranslate(fLanguage, TableUsers.FieldTypeRec, 'Const_TableUsers_FieldTypeRec');
+    TableUsers.FieldProfile := GetTranslate(fLanguage, TableUsers.FieldProfile, 'Const_TableUsers_FieldProfile');
+    TableUsers.FieldKey := GetTranslate(fLanguage, TableUsers.FieldKey, 'Const_TableUsers_FieldKey');
+    TableUsers.FieldDateExpired := GetTranslate(fLanguage, TableUsers.FieldDateExpired, 'Const_TableUsers_FieldDateExpired');
+    TableUsers.FieldUserExpired := GetTranslate(fLanguage, TableUsers.FieldUserExpired, 'Const_TableUser_FieldUserExpired');
+    TableUsers.FieldUserDaysSun := GetTranslate(fLanguage, TableUsers.FieldUserDaysSun, 'Const_TableUser_FieldUserDaysSun');
+    TableUsers.FieldUserInative := GetTranslate(fLanguage, TableUsers.FieldUserInative, 'Const_TableUser_FieldUserInative');
+    TableUsers.FieldImage := GetTranslate(fLanguage, TableUsers.FieldImage, 'Const_TableUsers_FieldImage');
 
-    TableRights.TableName := GetFieldName(TableRights.TableName, 'Const_TableRights_TableName');
-    TableRights.FieldUserID := GetFieldName(TableRights.FieldUserID, 'Const_TableRights_FieldUserID');
-    TableRights.FieldModule := GetFieldName(TableRights.FieldModule, 'Const_TableRights_FieldModule');
-    TableRights.FieldComponentName := GetFieldName(TableRights.FieldComponentName, 'Const_TableRights_FieldComponentName');
-    TableRights.FieldFormName := GetFieldName(TableRights.FieldFormName, 'Const_TableRights_FieldFormName');
-    TableRights.FieldKey := GetFieldName(TableRights.FieldKey, 'Const_TableRights_FieldKey');
+    TableRights.TableName := GetTranslate(fLanguage, TableRights.TableName, 'Const_TableRights_TableName');
+    TableRights.FieldUserID := GetTranslate(fLanguage, TableRights.FieldUserID, 'Const_TableRights_FieldUserID');
+    TableRights.FieldModule := GetTranslate(fLanguage, TableRights.FieldModule, 'Const_TableRights_FieldModule');
+    TableRights.FieldComponentName := GetTranslate(fLanguage, TableRights.FieldComponentName, 'Const_TableRights_FieldComponentName');
+    TableRights.FieldFormName := GetTranslate(fLanguage, TableRights.FieldFormName, 'Const_TableRights_FieldFormName');
+    TableRights.FieldKey := GetTranslate(fLanguage, TableRights.FieldKey, 'Const_TableRights_FieldKey');
 
-    TableUsersLogged.TableName := GetFieldName(TableUsersLogged.TableName, 'Const_TableUsersLogged_TableName');
-    TableUsersLogged.FieldLogonID := GetFieldName(TableUsersLogged.FieldLogonID, 'Const_TableUsersLogged_FieldLogonID');
-    TableUsersLogged.FieldUserID := GetFieldName(TableUsersLogged.FieldUserID, 'Const_TableUsersLogged_FieldUserID');
-    TableUsersLogged.FieldApplicationID := GetFieldName(TableUsersLogged.FieldApplicationID, 'Const_TableUsersLogged_FieldApplicationID');
-    TableUsersLogged.FieldMachineName := GetFieldName(TableUsersLogged.FieldMachineName, 'Const_TableUsersLogged_FieldMachineName');
-    TableUsersLogged.FieldData := GetFieldName(TableUsersLogged.FieldData, 'Const_TableUsersLogged_FieldData');
+    TableUsersLogged.TableName := GetTranslate(fLanguage, TableUsersLogged.TableName, 'Const_TableUsersLogged_TableName');
+    TableUsersLogged.FieldLogonID := GetTranslate(fLanguage, TableUsersLogged.FieldLogonID, 'Const_TableUsersLogged_FieldLogonID');
+    TableUsersLogged.FieldUserID := GetTranslate(fLanguage, TableUsersLogged.FieldUserID, 'Const_TableUsersLogged_FieldUserID');
+    TableUsersLogged.FieldApplicationID := GetTranslate(fLanguage, TableUsersLogged.FieldApplicationID, 'Const_TableUsersLogged_FieldApplicationID');
+    TableUsersLogged.FieldMachineName := GetTranslate(fLanguage, TableUsersLogged.FieldMachineName, 'Const_TableUsersLogged_FieldMachineName');
+    TableUsersLogged.FieldData := GetTranslate(fLanguage, TableUsersLogged.FieldData, 'Const_TableUsersLogged_FieldData');
 
     if LogControl.TableLog = '' then
       LogControl.TableLog := 'UCLog';
@@ -872,8 +866,7 @@ begin
       begin
         Language := TUCSettings(Owner.Components[Contador]).Language;
         // torna a linguage do UCSETTINGS como padrão
-        FUserSettings.BancoDados := TUCSettings(Owner.Components[Contador])
-          .BancoDados;
+        FUserSettings.BancoDados := TUCSettings(Owner.Components[Contador]).BancoDados;
         ApplySettings(TUCSettings(Owner.Components[Contador]));
       end;
 
@@ -2822,14 +2815,16 @@ begin
     BlankPassword := SourceSettings.CommonMessages.BlankPassword;
     PasswordChanged := SourceSettings.CommonMessages.PasswordChanged;
     InitialMessage.Text := SourceSettings.CommonMessages.InitialMessage.Text;
-    MaxLoginAttemptsError := SourceSettings.CommonMessages.
-      MaxLoginAttemptsError;
+    MaxLoginAttemptsError := SourceSettings.CommonMessages.MaxLoginAttemptsError;
     InvalidLogin := SourceSettings.CommonMessages.InvalidLogin;
     InactiveLogin := SourceSettings.CommonMessages.InactiveLogin;
     AutoLogonError := SourceSettings.CommonMessages.AutoLogonError;
     UsuarioExiste := SourceSettings.CommonMessages.UsuarioExiste;
     PasswordExpired := SourceSettings.CommonMessages.PasswordExpired;
     ForcaTrocaSenha := SourceSettings.CommonMessages.ForcaTrocaSenha;
+    InvalidLogin := SourceSettings.CommonMessages.InvalidLogin;
+    CanNotDeleteUserLogon := SourceSettings.CommonMessages.CanNotDeleteUserLogon;
+    ImageTooLarge := SourceSettings.CommonMessages.ImageTooLarge;
   end;
 
   with UserSettings.Login do
@@ -2872,8 +2867,8 @@ begin
     BtPassword := SourceSettings.UsersForm.BtPassword;
     BtClose := SourceSettings.UsersForm.BtClose;
     PromptDelete := SourceSettings.UsersForm.PromptDelete;
-    PromptDelete_WindowCaption :=
-      SourceSettings.UsersForm.PromptDelete_WindowCaption; // added by fduenas
+    PromptDelete_WindowCaption := SourceSettings.UsersForm.PromptDelete_WindowCaption; // added by fduenas
+    BtApplyFilter := SourceSettings.UsersForm.BtApplyFilter;
   end;
 
   with UserSettings.UsersProfile do

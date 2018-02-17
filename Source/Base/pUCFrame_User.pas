@@ -239,7 +239,7 @@ begin
     ));
     if not DataSetTemp.IsEmpty then
     begin
-      MessageDlg('Impossível excluir usuários logados!', mtWarning, [mbOK], 0);
+      MessageDlg(FUserControl.UserSettings.CommonMessages.CanNotDeleteUserLogon, mtWarning, [mbOK], 0);
       Exit;
     end;
 
@@ -483,6 +483,7 @@ begin
     BtExclui.Caption := BtDelete;
     BtAcess.Caption := BtRights;
     BtPass.Caption := BtPassword;
+    Self.btApplyFilter.Caption := btApplyFilter;
   end;
 
 end;
@@ -509,8 +510,7 @@ begin
     FfrmIncluirUsuario.lbPerfil.Caption := LabelPerfil;
     FfrmIncluirUsuario.btGravar.Caption := BtSave;
     FfrmIncluirUsuario.btCancela.Caption := BtCancel;
-    FfrmIncluirUsuario.Position :=
-      Self.FUsercontrol.UserSettings.WindowsPosition;
+    FfrmIncluirUsuario.Position := Self.FUsercontrol.UserSettings.WindowsPosition;
     FfrmIncluirUsuario.LabelExpira.Caption := ExpiredIn;
     FfrmIncluirUsuario.ckUserExpired.Caption := CheckExpira;
     FfrmIncluirUsuario.ComboPerfil.ListSource := DataPerfil;
@@ -522,6 +522,7 @@ begin
       Add(StatusDisabled);
     end;
     FfrmIncluirUsuario.ComboStatus.ItemIndex := 0;
+    FfrmIncluirUsuario.lImagem.Caption := LabelImage;
   end;
 end;
 

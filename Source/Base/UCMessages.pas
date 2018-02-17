@@ -216,30 +216,31 @@ type
     fPasswordExpired: String;
     fForcaTrocaSenha: String;
     fInactiveLogin: String;
-    procedure SetFErroTrocaSenha(const Value: TUCChangePassError);
+    FCanNotDeleteUserLogon: String;
+    FImageTooLarge: String;
+    FInvalidProfile: String;
+	procedure SetFErroTrocaSenha(const Value: TUCChangePassError);
     procedure SetFFirstMSG(const Value: TStrings);
   protected
-
   public
     constructor Create(Aowner: TComponent);
     destructor Destroy; override;
     procedure Assign(Source: TPersistent); override;
   published
     property AutoLogonError: String read FAutoLogonError write FAutoLogonError;
-    property ChangePasswordError: TUCChangePassError read FChangePasswordError
-      write SetFErroTrocaSenha;
+    property ChangePasswordError: TUCChangePassError read FChangePasswordError write SetFErroTrocaSenha;
     property InvalidLogin: String read FInvalidUserPass write FInvalidUserPass;
     property InactiveLogin: String read fInactiveLogin write fInactiveLogin;
     property InitialMessage: TStrings read FFirstMSG write SetFFirstMSG;
     property MaxLoginAttemptsError: String read FMaxLoginTry write FMaxLoginTry;
-    property PasswordChanged: String read FPasswordChanged
-      write FPasswordChanged;
+    property PasswordChanged: String read FPasswordChanged write FPasswordChanged;
     property BlankPassword: String read FPasswordOFF write FPasswordOFF;
     property UsuarioExiste: String read FUsuarioExiste write FUsuarioExiste;
-    property PasswordExpired: String read fPasswordExpired
-      write fPasswordExpired;
-    property ForcaTrocaSenha: String read fForcaTrocaSenha
-      write fForcaTrocaSenha;
+    property PasswordExpired: String read fPasswordExpired write fPasswordExpired;
+    property ForcaTrocaSenha: String read fForcaTrocaSenha write fForcaTrocaSenha;
+    property InvalidProfile: String read FInvalidProfile write FInvalidProfile;
+    property CanNotDeleteUserLogon: String read FCanNotDeleteUserLogon write FCanNotDeleteUserLogon;
+    property ImageTooLarge: String read FImageTooLarge write FImageTooLarge;
   end;
 
   TUCLoginFormMSG = class(TPersistent)
@@ -292,7 +293,8 @@ type
     FBtPass: String;
     FBtClose: String;
     FConfExc: String;
-    FPromptDelete_WindowCaption: String; // added by fduenas
+    FPromptDelete_WindowCaption: String;
+    FBtApplyFilter: String; // added by fduenas
   protected
 
   public
@@ -301,8 +303,7 @@ type
     procedure Assign(Source: TPersistent); override;
   published
     property WindowCaption: String read FWindowCaption write FWindowCaption;
-    property LabelDescription: String read FLabelDescricao
-      write FLabelDescricao;
+    property LabelDescription: String read FLabelDescricao write FLabelDescricao;
     property ColName: String read FColNome write FColNome;
     property ColLogin: String read FColLogin write FColLogin;
     property ColEmail: String read FColEmail write FColEmail;
@@ -310,11 +311,11 @@ type
     property BtChange: String read FBtAlt write FBtAlt;
     property BtDelete: String read FBtExc write FBtExc;
     property PromptDelete: String read FConfExc write FConfExc;
-    property PromptDelete_WindowCaption: String read FPromptDelete_WindowCaption
-      write FPromptDelete_WindowCaption; // added by fduenas
+    property PromptDelete_WindowCaption: String read FPromptDelete_WindowCaption write FPromptDelete_WindowCaption; // added by fduenas
     property BtRights: String read FBtAccess write FBtAccess;
     property BtPassword: String read FBtPass write FBtPass;
     property BtClose: String read FBtClose write FBtClose;
+    property BtApplyFilter: String read FBtApplyFilter write FBtApplyFilter;
   end;
 
   TUCLogControlFormMSG = class(TPersistent)
@@ -429,6 +430,7 @@ type
     fLabelStatus: String;
     fStatusDisabled: string;
     fStatusActive: String;
+    FLabelImage: string;
   protected
 
   public
@@ -452,6 +454,7 @@ type
     property LabelStatus: String read fLabelStatus write fLabelStatus;
     property StatusActive: String read fStatusActive write fStatusActive;
     property StatusDisabled: string read fStatusDisabled write fStatusDisabled;
+    property LabelImage: string read FLabelImage write FLabelImage;
   end;
 
   TUCAddProfileFormMSG = class(TPersistent)
@@ -579,198 +582,9 @@ type
     property MsgSystem: String read fMsgSystem write fMsgSystem;
   End;
 
-  TUCTypeBancoDados = (Interbase, Firebird, MySql, PARADOX, Oracle, SqlServer,
-    PostgreSQL);
-
-  TUCUserSettings = class(TPersistent)
-  private
-    FUserCommomMSG: TUCUserCommonMSG;
-    FLoginFormMSG: TUCLoginFormMSG;
-    FCadUserFormMSG: TUCCadUserFormMSG;
-    FAddUserFormMSG: TUCAddUserFormMSG;
-    FPermissFormMSG: TUCPermissFormMSG;
-    FTrocaSenhaFormMSG: TUCTrocaSenhaFormMSG;
-    FResetPassword: TUCResetPassword;
-    FProfileUserFormMSG: TUCProfileUserFormMSG;
-    FAddProfileFormMSG: TUCAddProfileFormMSG;
-    FLogControlFormMSG: TUCLogControlFormMSG;
-    FAppMessagesMSG: TUCAppMessagesMSG;
-    FPosition: TPosition;
-    fLanguage: TUCLanguage;
-    fUsersLogged: TUCCadUserLoggedMSG;
-    fBancoDados: TUCTypeBancoDados;
-    procedure SetFResetPassword(const Value: TUCResetPassword);
-    procedure SetFProfileUserFormMSG(const Value: TUCProfileUserFormMSG);
-    procedure SetFAddProfileFormMSG(const Value: TUCAddProfileFormMSG);
-    procedure SetFLogControlFormMSG(const Value: TUCLogControlFormMSG);
-    procedure SetAppMessagesMSG(const Value: TUCAppMessagesMSG);
-    procedure SetfUsersLogged(const Value: TUCCadUserLoggedMSG);
-    procedure SetfBancoDados(const Value: TUCTypeBancoDados);
-  protected
-    procedure SetFUserCommonMsg(const Value: TUCUserCommonMSG);
-    procedure SetFFormLoginMsg(const Value: TUCLoginFormMSG);
-    procedure SetFCadUserFormMSG(const Value: TUCCadUserFormMSG);
-    procedure SetFAddUserFormMSG(const Value: TUCAddUserFormMSG);
-    procedure SetFPermissFormMSG(const Value: TUCPermissFormMSG);
-    procedure SetFTrocaSenhaFormMSG(const Value: TUCTrocaSenhaFormMSG);
-  public
-    Type_Int, Type_Char, Type_VarChar, Type_Memo: String;
-    constructor Create(Aowner: TComponent);
-    destructor Destroy; override;
-    procedure Assign(Source: TPersistent); override;
-
-  published
-    property AppMessages: TUCAppMessagesMSG read FAppMessagesMSG
-      write SetAppMessagesMSG;
-    property CommonMessages: TUCUserCommonMSG read FUserCommomMSG
-      write SetFUserCommonMsg;
-    property Login: TUCLoginFormMSG read FLoginFormMSG write SetFFormLoginMsg;
-    property Log: TUCLogControlFormMSG read FLogControlFormMSG
-      write SetFLogControlFormMSG;
-    property UsersForm: TUCCadUserFormMSG read FCadUserFormMSG
-      write SetFCadUserFormMSG;
-    property AddChangeUser: TUCAddUserFormMSG read FAddUserFormMSG
-      write SetFAddUserFormMSG;
-    property AddChangeProfile: TUCAddProfileFormMSG read FAddProfileFormMSG
-      write SetFAddProfileFormMSG;
-    property UsersProfile: TUCProfileUserFormMSG read FProfileUserFormMSG
-      write SetFProfileUserFormMSG;
-    property Rights: TUCPermissFormMSG read FPermissFormMSG
-      write SetFPermissFormMSG;
-    property ChangePassword: TUCTrocaSenhaFormMSG read FTrocaSenhaFormMSG
-      write SetFTrocaSenhaFormMSG;
-    property ResetPassword: TUCResetPassword read FResetPassword
-      write SetFResetPassword;
-    property WindowsPosition: TPosition read FPosition write FPosition;
-    Property BancoDados: TUCTypeBancoDados read fBancoDados
-      write SetfBancoDados;
-    property Language: TUCLanguage read fLanguage write fLanguage;
-    property UsersLogged: TUCCadUserLoggedMSG read fUsersLogged
-      write SetfUsersLogged;
-  end;
+  TUCTypeBancoDados = (Interbase, Firebird, MySql, PARADOX, Oracle, SqlServer, PostgreSQL);
 
 implementation
-
-uses UCSettings;
-
-{ TUserSettings }
-
-procedure TUCUserSettings.Assign(Source: TPersistent);
-begin
-  if Source is TUCUserSettings then
-    Self.CommonMessages.Assign(TUCUserSettings(Source).CommonMessages)
-  else
-    inherited;
-end;
-
-constructor TUCUserSettings.Create(Aowner: TComponent);
-begin
-  inherited Create;
-  FAppMessagesMSG := TUCAppMessagesMSG.Create(nil);
-  FLoginFormMSG := TUCLoginFormMSG.Create(nil);
-  FUserCommomMSG := TUCUserCommonMSG.Create(nil);
-  FCadUserFormMSG := TUCCadUserFormMSG.Create(nil);
-  FAddUserFormMSG := TUCAddUserFormMSG.Create(nil);
-  FAddProfileFormMSG := TUCAddProfileFormMSG.Create(nil);
-  FPermissFormMSG := TUCPermissFormMSG.Create(nil);
-  FProfileUserFormMSG := TUCProfileUserFormMSG.Create(nil);
-  FTrocaSenhaFormMSG := TUCTrocaSenhaFormMSG.Create(nil);
-  FResetPassword := TUCResetPassword.Create(nil);
-  FLogControlFormMSG := TUCLogControlFormMSG.Create(nil);
-  FPosition := poMainFormCenter;
-  fBancoDados := Firebird;
-  fUsersLogged := TUCCadUserLoggedMSG.Create(nil);
-  RetornaSqlBancoDados(fBancoDados, Type_Int, Type_Char, Type_VarChar,
-    Type_Memo);
-end;
-
-destructor TUCUserSettings.Destroy;
-begin
-  SysUtils.FreeAndNil(FAppMessagesMSG);
-  SysUtils.FreeAndNil(FLoginFormMSG);
-  SysUtils.FreeAndNil(FUserCommomMSG);
-  SysUtils.FreeAndNil(FCadUserFormMSG);
-  SysUtils.FreeAndNil(FAddUserFormMSG);
-  SysUtils.FreeAndNil(FAddProfileFormMSG);
-  SysUtils.FreeAndNil(FPermissFormMSG);
-  SysUtils.FreeAndNil(FProfileUserFormMSG);
-  SysUtils.FreeAndNil(FTrocaSenhaFormMSG);
-  SysUtils.FreeAndNil(FResetPassword);
-  SysUtils.FreeAndNil(FLogControlFormMSG);
-  SysUtils.FreeAndNil(fUsersLogged);
-  inherited;
-end;
-
-procedure TUCUserSettings.SetAppMessagesMSG(const Value: TUCAppMessagesMSG);
-begin
-  FAppMessagesMSG := Value;
-end;
-
-procedure TUCUserSettings.SetFAddProfileFormMSG(const Value
-  : TUCAddProfileFormMSG);
-begin
-  FAddProfileFormMSG := Value;
-end;
-
-procedure TUCUserSettings.SetFAddUserFormMSG(const Value: TUCAddUserFormMSG);
-begin
-  AddChangeUser := Value;
-end;
-
-procedure TUCUserSettings.SetfBancoDados(const Value: TUCTypeBancoDados);
-begin
-  fBancoDados := Value;
-  RetornaSqlBancoDados(fBancoDados, Type_Int, Type_Char, Type_VarChar,
-    Type_Memo);
-end;
-
-procedure TUCUserSettings.SetFCadUserFormMSG(const Value: TUCCadUserFormMSG);
-begin
-  UsersForm := Value;
-end;
-
-procedure TUCUserSettings.SetFFormLoginMsg(const Value: TUCLoginFormMSG);
-begin
-  Login := Value;
-end;
-
-procedure TUCUserSettings.SetFLogControlFormMSG(const Value
-  : TUCLogControlFormMSG);
-begin
-  FLogControlFormMSG := Value;
-end;
-
-procedure TUCUserSettings.SetFPermissFormMSG(const Value: TUCPermissFormMSG);
-begin
-  Rights := Value;
-end;
-
-procedure TUCUserSettings.SetFProfileUserFormMSG(const Value
-  : TUCProfileUserFormMSG);
-begin
-  FProfileUserFormMSG := Value;
-end;
-
-procedure TUCUserSettings.SetFResetPassword(const Value: TUCResetPassword);
-begin
-  FResetPassword := Value;
-end;
-
-procedure TUCUserSettings.SetFTrocaSenhaFormMSG(const Value
-  : TUCTrocaSenhaFormMSG);
-begin
-  ChangePassword := Value;
-end;
-
-procedure TUCUserSettings.SetFUserCommonMsg(const Value: TUCUserCommonMSG);
-begin
-  CommonMessages := Value;
-end;
-
-procedure TUCUserSettings.SetfUsersLogged(const Value: TUCCadUserLoggedMSG);
-begin
-  fUsersLogged := Value;
-end;
 
 { TUserCommonMSG }
 
@@ -886,6 +700,7 @@ begin
       Self.BtClose := BtClose;
       Self.PromptDelete := PromptDelete;
       Self.PromptDelete_WindowCaption := PromptDelete_WindowCaption;
+      Self.BtApplyFilter := BtApplyFilter;
       // added by fduenas
     end
   else
@@ -925,6 +740,7 @@ begin
       Self.LabelStatus := LabelStatus;
       Self.StatusDisabled := StatusDisabled;
       Self.StatusActive := StatusActive;
+      Self.LabelImage := LabelImage;
     end
   else
     inherited;
@@ -1133,8 +949,7 @@ begin
       Self.BtDelete := BtDelete;
       Self.BtClose := BtClose;
       Self.PromptDelete := PromptDelete;
-      Self.PromptDelete_WindowCaption := PromptDelete_WindowCaption;
-      // added by fduenas
+      Self.PromptDelete_WindowCaption := PromptDelete_WindowCaption; // added by fduenas
       Self.OptionUserAll := OptionUserAll; // added by fduenas
       Self.OptionLevelLow := OptionLevelLow; // added by fduenas
       Self.OptionLevelNormal := OptionLevelNormal; // added by fduenas

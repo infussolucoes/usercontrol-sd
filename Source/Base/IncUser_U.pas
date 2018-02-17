@@ -243,7 +243,7 @@ begin
   btGravar.Enabled := False;
   try
     if ((ComboPerfil.ListSource.DataSet.RecordCount > 0) and VarIsNull(ComboPerfil.KeyValue)) then
-      ShowMessage('Falta Informar o Perfil')
+      MessageDlg(FUserControl.UserSettings.CommonMessages.InvalidProfile, mtWarning, [mbOK], 0)
     else
     begin
       vNome := EditNome.Text;
@@ -377,12 +377,14 @@ var
       SysUtils.FindClose(SearchRec);
     end;
   end;
+const
+  ImageMaxSize = 4900;
 begin
   FilePath := GetImagePath;
   if Length(Trim(FilePath)) > 0 then
   begin
-    if GetSize > 4900 then
-      raise Exception.Create('Imagem deve ser menor que 4.901 bytes');
+    if GetSize > ImageMaxSize then
+      raise Exception.Create(Format(FUserControl.UserSettings.CommonMessages.ImageTooLarge, [IntToStr(ImageMaxSize)]));
 
     ms := TMemoryStream.Create;
     try

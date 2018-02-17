@@ -70,7 +70,7 @@ unit UCDataInfo;
 interface
 
 uses
-  Classes, UCMessages;
+  Classes, UCSettings;
 
 type
   TUCCriptografia = (cPadrao, cMD5);
