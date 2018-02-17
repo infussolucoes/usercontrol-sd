@@ -135,7 +135,6 @@ type
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ckUserExpiredClick(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
     procedure miLoadClick(Sender: TObject);
     procedure miClearClick(Sender: TObject);
   private
@@ -143,6 +142,11 @@ type
     function ImageToBase64(Graphic: TGraphic): string;
     function Base64ToImage(Base64: string): TOleGraphic;
     function GetImagePath: string;
+
+    function StreamToBase64(Value: TMemoryStream): string;
+    function Base64ToStream(Value: String): TBytesStream;
+    function CompactStream(Value: TMemoryStream): TMemoryStream;
+    function UnpackStream(Value: TMemoryStream): TMemoryStream;
   public
     FAltera: Boolean;
     FUserControl: TUserControl;
@@ -154,7 +158,7 @@ type
 implementation
 
 uses
-  SenhaForm_U, IdCoderMIME;
+  SenhaForm_U, IdCoderMIME, ZLib;
 
 {$R *.dfm}
 
@@ -172,28 +176,41 @@ end;
 function TfrmIncluirUsuario.Base64ToImage(Base64: string): TOleGraphic;
 var
   bs: TBytesStream;
-  dm: TIdDecoderMIME;
+  ms: TMemoryStream;
 begin
   if Base64 = '' then
     Result := nil
   else
   begin
-    Result := TOleGraphic.Create;
-    bs := TBytesStream.Create;
+    bs := Base64ToStream(Base64);
     try
-      dm := TIdDecoderMIME.Create(nil);
+      bs.Position := 0;
+      ms := UnpackStream(bs);
       try
-        dm.DecodeBegin(bs);
-        dm.Decode(Base64);
-        dm.DecodeEnd;
-        bs.Position := 0;
-        Result.LoadFromStream(bs);
+        Result := TOleGraphic.Create;
+        Result.LoadFromStream(ms);
       finally
-        dm.Free;
+        ms.Free;
       end;
     finally
       bs.Free;
     end;
+  end;
+end;
+
+function TfrmIncluirUsuario.Base64ToStream(Value: String): TBytesStream;
+var
+  dm: TIdDecoderMIME;
+begin
+  Result := TBytesStream.Create;
+  dm := TIdDecoderMIME.Create(nil);
+  try
+    dm.DecodeBegin(Result);
+    dm.Decode(Value);
+    dm.DecodeEnd;
+    Result.Position := 0;
+  finally
+    dm.Free;
   end;
 end;
 
@@ -338,7 +355,7 @@ end;
 
 function TfrmIncluirUsuario.ImageToBase64(Graphic: TGraphic): string;
 var
-  ms: TMemoryStream;
+  ms, msCompact: TMemoryStream;
 begin
   Result := '';
   if Graphic <> nil then
@@ -347,7 +364,12 @@ begin
     try
       Graphic.SaveToStream(ms);
       ms.Position := 0;
-      Result := TIdEncoderMIME.EncodeStream(ms, ms.Size);
+      msCompact := CompactStream(ms);
+      try
+        Result := StreamToBase64(msCompact);
+      finally
+        msCompact.Free;
+      end;
     finally
       ms.Free;
     end;
@@ -378,7 +400,7 @@ var
     end;
   end;
 const
-  ImageMaxSize = 4900;
+  ImageMaxSize = 8100;
 begin
   FilePath := GetImagePath;
   if Length(Trim(FilePath)) > 0 then
@@ -406,6 +428,9 @@ end;
 procedure TfrmIncluirUsuario.SetImage(Image: string);
 var
   og: TOleGraphic;
+  sl: TStringList;
+  s: string;
+  I: Integer;
 begin
   og := Base64ToImage(Image);
   try
@@ -415,9 +440,27 @@ begin
   end;
 end;
 
-procedure TfrmIncluirUsuario.SpeedButton1Click(Sender: TObject);
+function TfrmIncluirUsuario.StreamToBase64(Value: TMemoryStream): string;
 begin
-  //
+  Result := '';
+  if Value <> nil then
+    Result := TIdEncoderMIME.EncodeStream(Value, Value.Size);
+end;
+
+function TfrmIncluirUsuario.UnpackStream(Value: TMemoryStream): TMemoryStream;
+var
+  LUnZip: TZDecompressionStream;
+begin
+  Value.Position := 0;
+  Result := TMemoryStream.Create;
+  LUnZip := TZDecompressionStream.Create(Value);
+  try
+    { Decompress data. }
+    Result.CopyFrom(LUnZip, 0);
+    Result.Position := 0;
+  finally
+    LUnZip.Free;
+  end;
 end;
 
 procedure TfrmIncluirUsuario.btlimpaClick(Sender: TObject);
@@ -457,6 +500,22 @@ end;
 procedure TfrmIncluirUsuario.ckUserExpiredClick(Sender: TObject);
 begin
   SpinExpira.Enabled := not ckUserExpired.Checked;
+end;
+
+function TfrmIncluirUsuario.CompactStream(Value: TMemoryStream): TMemoryStream;
+var
+  LZip: TZCompressionStream;
+begin
+  Result := TMemoryStream.Create;
+  LZip := TZCompressionStream.Create(Result, zcMax, 15);
+  try
+    Value.Position := 0;
+    { Compress data. }
+    LZip.CopyFrom(Value, Value.Size);
+  finally
+    LZip.Free;
+  end;
+  Result.Position := 0;
 end;
 
 end.

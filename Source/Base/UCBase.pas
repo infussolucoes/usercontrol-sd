@@ -504,7 +504,8 @@ type
     procedure Execute;
     procedure StartLogin;
     procedure ShowChangePassword;
-    procedure ChangeUser(IdUser: Integer; Login, Name, Mail: String; Profile, UserExpired, UserDaysSun, Status: Integer; Privuser: Boolean; const Image: string);
+    procedure ChangeUser(IdUser: Integer; Login, Name, Mail: String; Profile, UserExpired, UserDaysSun, Status: Integer;
+      Privuser: Boolean; const Image: string);
     procedure ChangePassword(IdUser: Integer; NewPassword: String);
     procedure AddRight(IdUser: Integer; ItemRight: TObject; FullPath: Boolean = True); overload;
     procedure AddRight(IdUser: Integer; ItemRight: String); overload;
@@ -514,7 +515,8 @@ type
     function VerificaLogin(User, Password: String; SoVerificarUsuarioAdmin: Boolean = False): Integer; // Boolean;
     function GetLocalUserName: String;
     function GetLocalComputerName: String;
-    function AddUser(Login, Password, Name, Mail: String; Profile, UserExpired, DaysExpired: Integer; Privuser: Boolean; const Image: string): Integer;
+    function AddUser(Login, Password, Name, Mail: String; Profile, UserExpired, DaysExpired: Integer; Privuser: Boolean;
+      const Image: string): Integer;
     function ExisteUsuario(Login: String): Boolean;
     property CurrentUser: TUCCurrentUser read FCurrentUser write FCurrentUser;
     property UserSettings: TUCUserSettings read FUserSettings write SetUserSettings;
@@ -1673,7 +1675,8 @@ begin
     OnChangePassword(Self, IdUser, Login, Senha, NewPassword);
 end;
 
-procedure TUserControl.ChangeUser(IdUser: Integer; Login, Name, Mail: String; Profile, UserExpired, UserDaysSun, Status: Integer; Privuser: Boolean; const Image: string);
+procedure TUserControl.ChangeUser(IdUser: Integer; Login, Name, Mail: String; Profile, UserExpired, UserDaysSun,
+  Status: Integer; Privuser: Boolean; const Image: string);
 var
   Key: String;
   Password: String;
