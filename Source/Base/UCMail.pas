@@ -140,7 +140,7 @@ type
     FEsqueceuSenha: TUCMEsqueceuSenha;
     fAuthType: TAlSmtpClientAuthType;
     function ParseMailMSG(Nome, Login, Senha, Email, Perfil,
-      txt: String): String;
+      txt: String): AnsiString;
     {$IF CompilerVersion < 23}
     procedure onStatus(Status: String);
     {$IFEND}
@@ -422,14 +422,14 @@ begin
 end;
 
 function TMailUserControl.ParseMailMSG(Nome, Login, Senha, Email, Perfil,
-  txt: String): String;
+  txt: String): AnsiString;
 begin
   txt := StringReplace(txt, ':nome', Nome, [rfReplaceAll]);
   txt := StringReplace(txt, ':login', Login, [rfReplaceAll]);
   txt := StringReplace(txt, ':senha', Senha, [rfReplaceAll]);
   txt := StringReplace(txt, ':email', Email, [rfReplaceAll]);
   txt := StringReplace(txt, ':perfil', Perfil, [rfReplaceAll]);
-  Result := txt;
+  Result := AnsiString(txt);
 end;
 
 {$IF CompilerVersion < 23}
@@ -473,11 +473,11 @@ begin
   MailMsg.onStatus := onStatus;
   MailRecipients := TStringList.Create;
 {$IFEND}
-  MailHeader.From := EmailRemetente;
-  MailHeader.SendTo := Email;
+  MailHeader.From := AnsiString(EmailRemetente);
+  MailHeader.SendTo := AnsiString(Email);
   MailHeader.ContentType := 'text/html';
-  MailRecipients.Append(Email);
-  MailHeader.Subject := UCMSG.Titulo;
+  MailRecipients.Append(AnsiString(Email));
+  MailHeader.Subject := AnsiString(UCMSG.Titulo);
 
   try
     try
@@ -486,8 +486,8 @@ begin
       UCEMailForm.Show;
       UCEMailForm.Update;
 
-      MailMsg.SendMail(ServidorSMTP, FPorta, EmailRemetente, MailRecipients,
-        Usuario, Senha, fAuthType, MailHeader.RawHeaderText,
+      MailMsg.SendMail(AnsiString(ServidorSMTP), FPorta, AnsiString(EmailRemetente), MailRecipients,
+        AnsiString(Usuario), AnsiString(Senha), fAuthType, MailHeader.RawHeaderText,
         ParseMailMSG(Nome, Login, USenha, Email, Perfil, UCMSG.Mensagem.Text));
 
       UCEMailForm.Update;

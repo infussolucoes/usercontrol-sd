@@ -428,9 +428,6 @@ end;
 procedure TfrmIncluirUsuario.SetImage(Image: string);
 var
   og: TOleGraphic;
-  sl: TStringList;
-  s: string;
-  I: Integer;
 begin
   og := Base64ToImage(Image);
   try

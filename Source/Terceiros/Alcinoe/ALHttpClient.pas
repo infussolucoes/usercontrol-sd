@@ -1380,8 +1380,8 @@ begin
     LPos := AlPos(ParamValues.NameValueSeparator, LStr);
     if LPos > 0 then
       {$IF CompilerVersion >= 28}
-      ParamValues[i] := TNetEncoding.URL.Encode(AlCopyStr(String(LStr), 1, LPos - 1)) + '=' +
-        TNetEncoding.URL.Encode(AlCopyStr(String(LStr), LPos + 1, MaxInt));
+      ParamValues[i] := AnsiString(TNetEncoding.URL.Encode(String(AlCopyStr(LStr, 1, LPos - 1))) + '=' +
+        TNetEncoding.URL.Encode(String(AlCopyStr(LStr, LPos + 1, MaxInt))));
       {$ELSE}
       ParamValues[i] := HTTPEncode(AlCopyStr(LStr, 1, LPos - 1)) + '=' +
         HTTPEncode(AlCopyStr(LStr, LPos + 1, MaxInt));
@@ -2607,8 +2607,8 @@ begin
         P := AlPos(aPostDataStrings.NameValueSeparator, Str);
         if P > 0 then
           {$IF CompilerVersion >= 28}
-          Str := TNetEncoding.URL.Encode(AlCopyStr(String(Str), 1, P - 1)) + '=' +
-            TNetEncoding.URL.Encode(AlCopyStr(String(Str), P + 1, MaxInt))
+          Str := AnsiString(TNetEncoding.URL.Encode(String(AlCopyStr(Str, 1, P - 1))) + '=' +
+            TNetEncoding.URL.Encode(String(AlCopyStr(Str, P + 1, MaxInt))))
           {$ELSE}
           Str := HTTPEncode(AlCopyStr(Str, 1, P - 1)) + '=' +
             HTTPEncode(AlCopyStr(Str, P + 1, MaxInt))
@@ -2616,7 +2616,7 @@ begin
 
         else
           {$IF CompilerVersion >= 28}
-          Str := TNetEncoding.URL.Encode(String(Str));
+          Str := AnsiString(TNetEncoding.URL.Encode(String(Str)));
           {$ELSE}
           Str := HTTPEncode(Str);
           {$IFEND}
@@ -2731,11 +2731,11 @@ begin
     begin
       {$IF CompilerVersion >= 28}
       if P > 0 then
-        Query := Query + TNetEncoding.URL.Encode(AlCopyStr(Str, 1, P - 1)) + '=' +
-          TNetEncoding.URL.Encode(AlCopyStr(Str, P + 1, MaxInt)) +
+        Query := Query + AnsiString(TNetEncoding.URL.Encode(String(AlCopyStr(Str, 1, P - 1))) + '=' +
+          TNetEncoding.URL.Encode(String(AlCopyStr(Str, P + 1, MaxInt)))) +
           ALIfThen(i < aParams.Count - 1, '&')
       else
-        Query := Query + TNetEncoding.URL.Encode(Str) + ALIfThen(i < aParams.Count - 1, '&')
+        Query := Query + AnsiString(TNetEncoding.URL.Encode(String(Str))) + ALIfThen(i < aParams.Count - 1, '&')
       {$ELSE}
       if P > 0 then
         Query := Query + HTTPEncode(AlCopyStr(Str, 1, P - 1)) + '=' +
@@ -2846,10 +2846,10 @@ begin
 
         {$IF CompilerVersion >= 28}
         if P > 0 then
-          Str := TNetEncoding.URL.Encode(AlCopyStr(Str, 1, P - 1)) + '=' +
-            TNetEncoding.URL.Encode(AlCopyStr(Str, P + 1, MaxInt))
+          Str := AnsiString(TNetEncoding.URL.Encode(String(AlCopyStr(Str, 1, P - 1))) + '=' +
+            TNetEncoding.URL.Encode(String(AlCopyStr(Str, P + 1, MaxInt))))
         else
-          Str := TNetEncoding.URL.Encode(Str);
+          Str := AnsiString(TNetEncoding.URL.Encode(String(Str)));
         {$ELSE}
         if P > 0 then
           Str := HTTPEncode(AlCopyStr(Str, 1, P - 1)) + '=' +
