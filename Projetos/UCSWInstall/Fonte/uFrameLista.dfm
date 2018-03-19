@@ -260,6 +260,34 @@ object framePacotes: TframePacotes
     Font.Style = [fsBold]
     ParentFont = False
   end
+  object Label12: TLabel
+    Left = 63
+    Top = 374
+    Width = 376
+    Height = 16
+    Margins.Left = 5
+    Caption = 'Somente para vers'#245'es iguais ou superiores ao Delphi XE 8'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label14: TLabel
+    Left = 289
+    Top = 400
+    Width = 165
+    Height = 13
+    Margins.Left = 5
+    Caption = 'Rest Dataware (Vers'#227'o Datasnap)'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
   object pckUCDataConnector_dpk: TCheckBox
     Left = 18
     Top = 16
@@ -518,6 +546,26 @@ object framePacotes: TframePacotes
     Font.Style = []
     ParentFont = False
     TabOrder = 12
+    OnClick = VerificarCheckboxes
+  end
+  object PckUCRestDwConn_dpk: TCheckBox
+    Tag = 9
+    Left = 63
+    Top = 399
+    Width = 163
+    Height = 17
+    Margins.Left = 25
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    Caption = 'PckUCRestDwConn.dpk'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 13
     OnClick = VerificarCheckboxes
   end
 end

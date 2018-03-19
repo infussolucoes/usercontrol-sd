@@ -1,0 +1,38 @@
+package PckUCRestDwConn;
+
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$DESCRIPTION 'SWDelphi - User Control RestDataware DataSnap Connector'}
+{$IMPLICITBUILD ON}
+
+requires
+  pckUCDataConnector,
+  RestEasyObjects;
+
+contains
+  UCRestDWConn in '..\..\..\Source\Connectors\UCRestDWConn\UCRestDWConn.pas',
+  UCRestDWConnReg in '..\..\..\Source\Connectors\UCRestDWConn\UCRestDWConnReg.pas';
+
+end.
