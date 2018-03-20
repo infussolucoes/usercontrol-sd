@@ -189,11 +189,12 @@ begin
 
   try
     vDataSet.DataBase := Self.DataBase;
+    vDataSet.SQL.Text := FSQL;
     vDataSet.ExecSQL(vError);
 
     if vError <> EmptyStr then
     begin
-      raise Exception.Create('UserControl: ' + vError);
+      raise Exception.Create('UserControl ExeSQL: ' + vError);
     end;
   finally
     FreeAndNil(vDataSet);
@@ -217,20 +218,24 @@ begin
 end;
 
 function TUCRestDWConn.UCGetSQLDataset(FSQL: String): TDataset;
+var
+  vDataSet : TRESTClientSQL;
 begin
-  Result := TRESTClientSQL(Result).Create(Self);
+  vDataSet := TRESTClientSQL.Create(Self);
 
   try
-    Result.Close;
-    TRESTClientSQL(Result).DataBase := Self.DataBase;
-    TRESTClientSQL(Result).SQL.Text := FSQL;
-    TRESTClientSQL(Result).Open;
+    vDataSet.Close;
+    vDataSet.DataBase := Self.DataBase;
+    vDataSet.SQL.Text := FSQL;
+    vDataSet.Open;
   except on E: Exception do
     begin
-      FreeAndNil(Result);
-      raise Exception.Create('UserControl: ' + E.Message);
+      FreeAndNil(vDataSet);
+      raise Exception.Create('UserControl GetDataSet: ' + E.Message);
     end;
   end;
+
+  Result := vDataSet;
 end;
 
 end.
