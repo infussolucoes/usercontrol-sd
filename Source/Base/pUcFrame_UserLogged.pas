@@ -167,8 +167,9 @@ procedure TUCFrame_UsersLogged.BitRefreshClick(Sender: TObject);
 begin
   try
     Screen.Cursor := crHourGlass;
-    dsDados.Dataset.Close;
-    dsDados.Dataset.Open;
+
+    FUserControl.DataConnector.CloseDataSet(dsDados.Dataset);
+    FUserControl.DataConnector.OpenDataSet(dsDados.Dataset);
   finally
     Screen.Cursor := crDefault;
   end;

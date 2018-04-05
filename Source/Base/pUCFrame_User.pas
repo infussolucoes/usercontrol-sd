@@ -249,8 +249,10 @@ begin
     FUsercontrol.DataConnector.UCExecSQL
       ('Delete from ' + FUsercontrol.TableUsers.TableName + ' where ' +
       FUsercontrol.TableUsers.FieldUserID + ' = ' + IntToStr(TempID));
-    FDataSetCadastroUsuario.Close;
-    FDataSetCadastroUsuario.Open;
+
+    { Giovani da Cruz (G7) // Alteração para adequação de alguns connectores }
+    FUsercontrol.DataConnector.CloseDataSet(FDataSetCadastroUsuario);
+    FUsercontrol.DataConnector.OpenDataSet(FDataSetCadastroUsuario);
   end;
 end;
 
@@ -441,8 +443,9 @@ begin
 
     UserPermis.Show;
 
-    FDataSetCadastroUsuario.Close;
-    FDataSetCadastroUsuario.Open;
+    { Giovani da Cruz (G7) // Alteração para adequação de alguns connectores }
+    FUsercontrol.DataConnector.CloseDataSet(FDataSetCadastroUsuario);
+    FUsercontrol.DataConnector.OpenDataSet(FDataSetCadastroUsuario);
 
     FDataSetCadastroUsuario.Locate('idUser', UserPermis.FTempIdUser, []);
   end;

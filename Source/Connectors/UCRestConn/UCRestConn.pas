@@ -77,6 +77,10 @@ Vicente Barros Leonel [ Fknyght ]
   |* 26/12/2015: Giovani Da Cruz
   |*  - Criação e distribuição da Primeira deste connector
   |*
+  |*
+  |* 05/04/2018: Giovani Da Cruz
+  |*  - Melhoria para a atualização de dados
+  |*
   **************************************************************************** }
 unit UCRestConn;
 
@@ -89,6 +93,15 @@ uses
   UCDataConnector, FireDAC.Comp.Client;
 
 type
+  TFDMemTable = class(FireDAC.Comp.Client.TFDMemTable)
+  private
+    FSQL: TStrings;  public
+  public
+    constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
+    property SQL : TStrings read FSQL write FSQL;
+  end;
+
   TUCRestConn = class(TUCDataConnector)
   private
     FInstanceOwner: Boolean;
@@ -109,6 +122,8 @@ type
     function UCGetSQLDataset(FSQL: String): TDataset; override;
     procedure UCExecSQL(FSQL: String); override;
     procedure OrderBy(const DataSet: TDataSet; const FieldName: string); override;
+    procedure CloseDataSet(DataSet : TDataSet); override;
+    procedure OpenDataSet(DataSet : TDataSet); override;
   published
     property Connection: TDSRestConnection read FConnection write SetConnection;
     property DSClient: TDSUserRemote read FDSClient write FDSClient;
@@ -118,6 +133,13 @@ type
 implementation
 
 { TUCRestConn }
+
+procedure TUCRestConn.CloseDataSet(DataSet: TDataSet);
+begin
+  inherited;
+
+  DataSet.Close;
+end;
 
 constructor TUCRestConn.Create(AOwner: TComponent);
 begin
@@ -159,6 +181,19 @@ begin
   inherited Notification(AComponent, Operation);
 end;
 
+procedure TUCRestConn.OpenDataSet(DataSet: TDataSet);
+var
+  FList: TFDJSONDataSets;
+begin
+  FList := DSClient.GetDataSet2((DataSet as TFDMemTable).SQL, '');
+
+  DataSet.Close;
+
+  (DataSet as TFDMemTable).Fields.Clear;
+  (DataSet as TFDMemTable).AppendData(
+  TFDJSONDataSetsReader.GetListValue(FList, 0));
+end;
+
 procedure TUCRestConn.OrderBy(const DataSet: TDataSet; const FieldName: string);
 begin
   inherited;
@@ -189,11 +224,15 @@ end;
 
 function TUCRestConn.UCFindFieldTable(const Tablename, FieldName: string): Boolean;
 begin
+  // precisa estar implementado no servidor
+
   Result := True;//DSClient.FindFieldTable(Tablename, FieldName);
 end;
 
 function TUCRestConn.UCFindTable(const Tablename: String): Boolean;
 begin
+  // precisa estar implementado no servidor
+
   Result := True;//DSClient.FindTable(Tablename, Self.SchemaName);
 end;
 
@@ -206,9 +245,25 @@ begin
   Result := TFDMemTable.Create(Self);
   Result.Close;
 
+  (Result as TFDMemTable).SQL.Text := FSQL;
+
   Result.Fields.Clear;
   TFDMemTable(Result).AppendData(
   TFDJSONDataSetsReader.GetListValue(FList, 0));
+end;
+
+{ TFDMemTable }
+
+constructor TFDMemTable.Create(AOwner: TComponent);
+begin
+  inherited;
+  FSQL := TStringList.Create;
+end;
+
+destructor TFDMemTable.Destroy;
+begin
+  FSQL.Destroy;
+  inherited;
 end;
 
 end.

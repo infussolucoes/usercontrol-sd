@@ -64,6 +64,10 @@ Vicente Barros Leonel [ Fknyght ]
   |*
   |* 19/03/2018: Giovani Da Cruz
   |*  - Criação do Connector
+  |*
+  |* 05/04/2018: Giovani Da Cruz
+  |*  - Melhoria para a atualização de dados
+  |*
   ******************************************************************************* }
 unit UCRestDWConn;
 
@@ -97,6 +101,8 @@ type
     function UCGetSQLDataset(FSQL: String): TDataset; override;
     procedure UCExecSQL(FSQL: String); override;
     procedure OrderBy(const DataSet: TDataSet; const FieldName: string); override;
+    procedure CloseDataSet(DataSet : TDataSet); override;
+    procedure OpenDataSet(DataSet : TDataSet); override;
   published
     property DataBase : TRESTDataBase read FDataBase write FDataBase;
     property SchemaName: String read FSchema write FSchema;
@@ -106,6 +112,11 @@ type
 implementation
 
 { TUCRestDWConn }
+
+procedure TUCRestDWConn.CloseDataSet(DataSet: TDataSet);
+begin
+  (DataSet as TRESTClientSQL).Close;
+end;
 
 constructor TUCRestDWConn.Create(AOwner: TComponent);
 begin
@@ -143,6 +154,11 @@ begin
   if (Operation = opRemove) and (AComponent = DataBase) then
     FDataBase := nil;
   inherited Notification(AComponent, Operation);
+end;
+
+procedure TUCRestDWConn.OpenDataSet(DataSet: TDataSet);
+begin
+  (DataSet as TRESTClientSQL).Open;
 end;
 
 procedure TUCRestDWConn.OrderBy(const DataSet: TDataSet;

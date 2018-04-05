@@ -306,8 +306,9 @@ begin
         end;
       end;
 
-      FDataSetCadastroUsuario.Close;
-      FDataSetCadastroUsuario.Open;
+      FUserControl.DataConnector.CloseDataSet(FDataSetCadastroUsuario);
+      FUserControl.DataConnector.OpenDataSet(FDataSetCadastroUsuario);
+
       FDataSetCadastroUsuario.Locate('idUser', vNovoIDUsuario, []);
       Close;
     end;
@@ -466,6 +467,8 @@ begin
 end;
 
 procedure TfrmIncluirUsuario.FormShow(Sender: TObject);
+var
+  vAux : Variant;
 begin
   if not FUserControl.UserProfile.Active then
   begin
@@ -475,8 +478,14 @@ begin
   end
   else
   begin
-    ComboPerfil.ListSource.DataSet.Close;
-    ComboPerfil.ListSource.DataSet.Open;
+    { Alteração necessaria para aluns conectors }
+    vAux := ComboPerfil.KeyValue;
+
+    FUserControl.DataConnector.CloseDataSet(ComboPerfil.ListSource.DataSet);
+    FUserControl.DataConnector.OpenDataSet(ComboPerfil.ListSource.DataSet);
+
+    ComboPerfil.KeyValue := Null;
+    ComboPerfil.KeyValue := vAux;
   end;
 
   // Opção de senha so deve aparecer qdo setada como true no componente By Vicente Barros Leonel

@@ -191,8 +191,10 @@ begin
 
     UserPermis.Show;
 
-    FDataSetPerfilUsuario.Close;
-    FDataSetPerfilUsuario.Open;
+    { Giovani da Cruz (G7) // Alteração para adequação de alguns connectores }
+    FUserControl.DataConnector.CloseDataSet(FDataSetPerfilUsuario);
+    FUserControl.DataConnector.OpenDataSet(FDataSetPerfilUsuario);
+
     FDataSetPerfilUsuario.Locate('idUser', UserPermis.FTempIdUser, []);
   end;
 end;
@@ -338,8 +340,10 @@ begin
       TableUsers.FieldProfile + ' = null where ' + TableUsers.FieldUserID +
       ' = ' + IntToStr(TempID));
   end;
-  FDataSetPerfilUsuario.Close;
-  FDataSetPerfilUsuario.Open;
+
+  { Giovani da Cruz (G7) // Alteração para adequação de alguns connectores }
+  FUsercontrol.DataConnector.CloseDataSet(FDataSetPerfilUsuario);
+  FUsercontrol.DataConnector.OpenDataSet(FDataSetPerfilUsuario);
 end;
 
 destructor TFrame_Profile.Destroy;

@@ -64,6 +64,11 @@ Vicente Barros Leonel [ Fknyght ]
   |*
   |* 01/07/2015: Giovani Da Cruz
   |*  - Criação e distribuição da Primeira Versao ShowDelphi
+  |*
+  |* 05/04/2018: Giovani Da Cruz
+  |*  - Adição de Metodos DataSetClose e DataSetOpen para permitir melhor
+  |*  compatibilidade entre os conectors.
+  |*
   ******************************************************************************* }
 unit UCDataConnector;
 
@@ -91,11 +96,23 @@ type
     function GetDBObjectName: String; virtual; abstract;
     function GetTransObjectName: String; virtual; abstract;
     procedure OrderBy(const DataSet: TDataSet; const FieldName: string); virtual;
+    procedure CloseDataSet(DataSet : TDataSet); virtual;
+    procedure OpenDataSet(DataSet : TDataSet); virtual;
   end;
 
 implementation
 
 { TUCDataConnector }
+
+procedure TUCDataConnector.CloseDataSet(DataSet: TDataSet);
+begin
+  DataSet.Close;
+end;
+
+procedure TUCDataConnector.OpenDataSet(DataSet: TDataSet);
+begin
+  DataSet.Open;
+end;
 
 procedure TUCDataConnector.OrderBy(const DataSet: TDataSet; const FieldName: string);
 begin
