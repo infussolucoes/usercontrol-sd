@@ -35,9 +35,14 @@ Lembramos também que o Berlin Starter, por padrão, não tem componentes de con
 recomendamos a instalação do Zeos que é Open Source, assim será possível de utilizar o UserControl. 
 
 Conectors Suportados até o momento:
-ADOConnector, IBXConnector, DBXConnector, FireDACConnector, ZeosConnector, DataSnapConnector.
+ADOConnector, IBXConnector, DBXConnector, FireDACConnector, ZeosConnector, DataSnapConnector,
+RestConnector e RestDWConnector (Versão Datasnap).
 
-O RestConnector é experimental.
+Alguns detalhes:
+
+RestConnector faz uso de funções do Firedac, logo é necessário que o FireDac esteja instalado.
+RestDWConnector foi preparado para utilizar o RestDaware que utiliza o DataSnap.
+
 O Midas Connector é somente até o Delphi XE 8.
 
 Há ainda outros connectors na pasta "conectors para testar", no entando estes connector não foram
@@ -49,6 +54,8 @@ NexusDBConn, ODACConn, UIBConn, UniDACConn.
 O componente UserControl é compatível com a compilação em 64 bits.
 
 Para ver uma descrição completa dos componentes acesse: http://showdelphi.com.br/descricao-dos-componentes-usercontrol/
+
+Caso queria baixar o RestDaware versão Datasnap que mantemos, acesse: https://github.com/infussolucoes/RestDataware
 
 Visite a comunidade: http://showdelphi.com.br
 
