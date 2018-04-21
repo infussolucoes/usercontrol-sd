@@ -16,9 +16,7 @@ object dmUC: TdmUC
     SQLHourGlass = True
     HostName = ''
     Port = 3050
-    Database = 
-      'D:\Program Files (x86)\Embarcadero\Componentes\UserControl\Exemp' +
-      'los\Apli_Zeos\DBase\APLICATIVO_UC.FDB'
+    Database = ''
     User = 'SYSDBA'
     Password = 'materkey'
     Protocol = 'firebird-2.5'
