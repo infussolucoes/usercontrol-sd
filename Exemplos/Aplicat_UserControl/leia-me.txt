@@ -2,4 +2,10 @@ Exemplo baseado em um artigo de exio no planeta delphi
 
 # Comunidade Show Delphi
 
-www.showdelphi.com.br
+https://showdelphi.com.br
+
+
+# Fórum Oficial do User Control Show Delphi Edition
+
+https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
+

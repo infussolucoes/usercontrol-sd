@@ -185,7 +185,7 @@ procedure TUCRestConn.OpenDataSet(DataSet: TDataSet);
 var
   FList: TFDJSONDataSets;
 begin
-  FList := DSClient.GetDataSet2((DataSet as TFDMemTable).SQL, '');
+  FList := DSClient.GetDataSet2((DataSet as TFDMemTable).SQL.Text, '');
 
   DataSet.Close;
 
