@@ -1596,7 +1596,7 @@ begin
       TableUsers.FieldUserInative, TableUsers.FieldImage,
       Result, QuotedStr(Name), QuotedStr(Login), QuotedStr(Senha), QuotedStr(Mail), BoolToStr(Privuser), Profile,
       QuotedStr('U'), QuotedStr(Key), QuotedStr(FormatDateTime('dd/mm/yyyy', Date + FLogin.fDaysOfSunExpired)),
-      UserExpired, DaysExpired, '0', QuotedStr(ReplaceStr(Image, '''', ''''''''))
+      UserExpired, DaysExpired, '0', QuotedStr(StringReplace(Image, '''', '''''''', [rfReplaceAll]))
     ]
   );
   if Assigned(DataConnector) then
@@ -1731,7 +1731,7 @@ begin
       TableUsers.FieldUserExpired, IntToStr(UserExpired),
       TableUsers.FieldUserDaysSun, IntToStr(UserDaysSun),
       TableUsers.FieldUserInative, IntToStr(Status),
-      TableUsers.FieldImage, QuotedStr(ReplaceStr(Image, '''', '''''''')),
+      TableUsers.FieldImage, QuotedStr(StringReplace(Image, '''', '''''''', [rfReplaceAll])),
       TableUsers.FieldUserID, IntToStr(IdUser)
     ]));
 
@@ -2642,6 +2642,7 @@ var
   Mensagens: TStrings;
   DataSetUsuario, DataSetPermissao: TDataSet;
   SQLstmt, UsuarioInicial, PasswordInicial, sFieldName: String;
+  I : Integer;
 begin
   if Assigned(DataConnector) then
   begin
@@ -2686,9 +2687,12 @@ begin
     end
     else
     begin
-      for sFieldName in TableUsers.GetFieldList do
+      
+	  for I := 0 to TableUsers.GetFieldList.Count - 1 do
       begin
-        if not DataConnector.UCFindFieldTable(TableUsers.TableName, sFieldName) then
+        sFieldName := TableUsers.GetFieldList[i];
+		
+		if not DataConnector.UCFindFieldTable(TableUsers.TableName, sFieldName) then
         begin
           SQLstmt := Format('alter table %s add %s %s;', [TableUsers.TableName, sFieldName, TableUsers.GetFieldType(sFieldName, Self.Criptografia)]);
           DataConnector.UCExecSQL(SQLstmt);

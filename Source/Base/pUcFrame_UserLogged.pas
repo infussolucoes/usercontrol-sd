@@ -73,7 +73,7 @@ interface
 
 uses
   Variants, Buttons, Classes, Controls, DB, DBCtrls, Dialogs, ExtCtrls, Forms, Graphics, Messages, Spin, StdCtrls,
-  SysUtils, Windows, DBGrids, Grids, Vcl.Menus,
+  SysUtils, Windows, DBGrids, Grids, Menus,
 
 
   IncUser_U, UCBase;

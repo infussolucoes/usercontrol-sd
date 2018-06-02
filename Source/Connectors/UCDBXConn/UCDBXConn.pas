@@ -189,10 +189,14 @@ var
 begin
   TempList := TStringList.Create;
   try
-    if SchemaName <> '' then
+    {$IFDEF DELPHI2009_UP}	
+	if SchemaName <> '' then
       FConnection.GetFieldNames(Tablename, SchemaName, TempList)
     else
       FConnection.GetFieldNames(Tablename, TempList);
+	{$ELSE}
+    FConnection.GetFieldNames(Tablename, TempList);
+    {$ENDIF}	
     TempList.Text := UpperCase(TempList.Text);
     Result := TempList.IndexOf(UpperCase(FieldName)) > -1;
   finally

@@ -305,7 +305,7 @@ object EnvMsgForm: TEnvMsgForm
       4D4D4D4D4D0202020202}
   end
   object DataSource1: TDataSource
-    Left = 144
+    Left = 145
     Top = 96
   end
 end

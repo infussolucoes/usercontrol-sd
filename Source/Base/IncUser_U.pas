@@ -139,20 +139,26 @@ type
     procedure miClearClick(Sender: TObject);
   private
     FormSenha: TCustomForm;
-    function ImageToBase64(Graphic: TGraphic): string;
+    
+	{$IFDEF DELPHI2006_UP}
+	function ImageToBase64(Graphic: TGraphic): string;
     function Base64ToImage(Base64: string): TOleGraphic;
     function GetImagePath: string;
 
     function StreamToBase64(Value: TMemoryStream): string;
     function Base64ToStream(Value: String): TBytesStream;
-    function CompactStream(Value: TMemoryStream): TMemoryStream;
+    
+	function CompactStream(Value: TMemoryStream): TMemoryStream;
     function UnpackStream(Value: TMemoryStream): TMemoryStream;
+	{$ENDIF}
   public
     FAltera: Boolean;
     FUserControl: TUserControl;
     FDataSetCadastroUsuario: TDataSet;
     vNovoIDUsuario: Integer;
+	{$IFDEF DELPHI2006_UP}
     procedure SetImage(Image: string);
+	{$ENDIF}
   end;
 
 implementation
@@ -173,11 +179,14 @@ begin
   Self.BorderStyle := bsDialog;
 end;
 
+{$IFDEF DELPHI2006_UP}
 function TfrmIncluirUsuario.Base64ToImage(Base64: string): TOleGraphic;
 var
   bs: TBytesStream;
-  ms: TMemoryStream;
+  ms: TMemoryStream; 
 begin
+  Result := nil;
+  
   if Base64 = '' then
     Result := nil
   else
@@ -197,7 +206,9 @@ begin
     end;
   end;
 end;
+{$ENDIF}
 
+{$IFDEF DELPHI2006_UP}
 function TfrmIncluirUsuario.Base64ToStream(Value: String): TBytesStream;
 var
   dm: TIdDecoderMIME;
@@ -213,6 +224,7 @@ begin
     dm.Free;
   end;
 end;
+{$ENDIF}
 
 procedure TfrmIncluirUsuario.btCancelaClick(Sender: TObject);
 begin
@@ -277,7 +289,14 @@ begin
       if FAltera then
       begin // alterar user
         FUserControl.ChangeUser(vNovoIDUsuario, vLogin, vNome, vEmail, vPerfil, vUserExpired, SpinExpira.Value,
-          ComboStatus.ItemIndex, vPrivilegiado, ImageToBase64(iUserImage.Picture.Graphic));
+          ComboStatus.ItemIndex, vPrivilegiado, 
+		  {$IFDEF DELPHI2006_UP}
+		  ImageToBase64(iUserImage.Picture.Graphic)
+		  {$ELSE}
+		  ''
+		  {$ENDIF}
+		  
+		  );
 
         SendEmail;
       end
@@ -299,7 +318,13 @@ begin
             FreeAndNil(FormSenha);
 
             FUserControl.AddUser(vLogin, vNovaSenha, vNome, vEmail, vPerfil, vUserExpired, SpinExpira.Value,
-              vPrivilegiado, ImageToBase64(iUserImage.Picture.Graphic));
+              vPrivilegiado, 
+			  {$IFDEF DELPHI2006_UP}
+			  ImageToBase64(iUserImage.Picture.Graphic)
+			  {$ELSE}
+			  ''
+			  {$ENDIF}
+			  );
 
             SendEmail;
           end;
@@ -318,6 +343,7 @@ begin
 end;
 {$WARNINGS ON}
 
+{$IFDEF DELPHI2006_UP}
 function TfrmIncluirUsuario.GetImagePath: string;
 var
   FOpenDialog: TOpenDialog;
@@ -333,6 +359,7 @@ begin
     FOpenDialog.Free;
   end;
 end;
+{$ENDIF}
 
 function TfrmIncluirUsuario.GetNewIdUser: Integer;
 var
@@ -354,6 +381,7 @@ begin
   end;
 end;
 
+{$IFDEF DELPHI2006_UP}
 function TfrmIncluirUsuario.ImageToBase64(Graphic: TGraphic): string;
 var
   ms, msCompact: TMemoryStream;
@@ -376,6 +404,7 @@ begin
     end;
   end;
 end;
+{$ENDIF}
 
 procedure TfrmIncluirUsuario.miClearClick(Sender: TObject);
 begin
@@ -403,7 +432,11 @@ var
 const
   ImageMaxSize = 8100;
 begin
+  {$IFDEF DELPHI2006_UP}
   FilePath := GetImagePath;
+  {$ELSE}
+  FilePath := '';
+  {$ENDIF}
   if Length(Trim(FilePath)) > 0 then
   begin
     if GetSize > ImageMaxSize then
@@ -426,6 +459,7 @@ begin
   end;
 end;
 
+{$IFDEF DELPHI2006_UP}
 procedure TfrmIncluirUsuario.SetImage(Image: string);
 var
   og: TOleGraphic;
@@ -437,14 +471,20 @@ begin
     og.Free;
   end;
 end;
+{$ENDIF}
 
+{$IFDEF DELPHI2006_UP}
 function TfrmIncluirUsuario.StreamToBase64(Value: TMemoryStream): string;
 begin
   Result := '';
+
   if Value <> nil then
     Result := TIdEncoderMIME.EncodeStream(Value, Value.Size);
-end;
 
+end;
+{$ENDIF}
+
+{$IFDEF DELPHI2006_UP}
 function TfrmIncluirUsuario.UnpackStream(Value: TMemoryStream): TMemoryStream;
 var
   LUnZip: TZDecompressionStream;
@@ -460,6 +500,7 @@ begin
     LUnZip.Free;
   end;
 end;
+{$ENDIF}
 
 procedure TfrmIncluirUsuario.btlimpaClick(Sender: TObject);
 begin
@@ -508,6 +549,7 @@ begin
   SpinExpira.Enabled := not ckUserExpired.Checked;
 end;
 
+{$IFDEF DELPHI2006_UP}
 function TfrmIncluirUsuario.CompactStream(Value: TMemoryStream): TMemoryStream;
 var
   LZip: TZCompressionStream;
@@ -523,5 +565,6 @@ begin
   end;
   Result.Position := 0;
 end;
+{$ENDIF}
 
 end.

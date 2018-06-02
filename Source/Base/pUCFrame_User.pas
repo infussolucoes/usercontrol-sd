@@ -91,11 +91,10 @@ uses
   DBGrids,
   Grids,
   ImgList,
-  ImageList,
-
-
+  
   {$IF CompilerVersion >= 23}
   System.UITypes,
+  ImageList,
   {$IFEND}
 
   IncUser_U,
@@ -185,7 +184,9 @@ begin
     ckPrivilegiado.Checked := StrToBool(FDataSetCadastroUsuario.FieldByName('Privilegiado').AsString);
     ckUserExpired.Checked := StrToBool(FDataSetCadastroUsuario.FieldByName('UserNaoExpira').AsString);
     SpinExpira.Value := FDataSetCadastroUsuario.FieldByName('DaysOfExpire').AsInteger;
+	{$IFDEF DELPHI2006_UP}
     SetImage(FDataSetCadastroUsuario.FieldByName('Image').AsString);
+	{$ENDIF}
     ComboStatus.ItemIndex := FDataSetCadastroUsuario.FieldByName('UserInative').AsInteger;
     FfrmIncluirUsuario.ComboStatus.Enabled :=
       FfrmIncluirUsuario.ComboStatus.Enabled and

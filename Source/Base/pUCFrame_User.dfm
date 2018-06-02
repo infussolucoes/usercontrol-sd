@@ -1,16 +1,16 @@
 object UCFrame_User: TUCFrame_User
   Left = 0
   Top = 0
-  Width = 712
-  Height = 571
+  Width = 729
+  Height = 588
   Anchors = [akLeft, akTop, akRight, akBottom]
   TabOrder = 0
   TabStop = True
   object Panel3: TPanel
-    Left = 614
+    Left = 631
     Top = 0
     Width = 98
-    Height = 571
+    Height = 588
     Align = alRight
     BevelOuter = bvNone
     TabOrder = 0
@@ -21,6 +21,8 @@ object UCFrame_User: TUCFrame_User
       Height = 25
       Cursor = crHandPoint
       Caption = '&Adicionar'
+      TabOrder = 0
+      OnClick = btAdicClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -73,8 +75,6 @@ object UCFrame_User: TUCFrame_User
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
-      TabOrder = 0
-      OnClick = btAdicClick
     end
     object BtAlt: TBitBtn
       Left = 9
@@ -83,6 +83,8 @@ object UCFrame_User: TUCFrame_User
       Height = 25
       Cursor = crHandPoint
       Caption = '&Alterar'
+      TabOrder = 1
+      OnClick = BtAltClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -135,8 +137,6 @@ object UCFrame_User: TUCFrame_User
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
-      TabOrder = 1
-      OnClick = BtAltClick
     end
     object BtExclui: TBitBtn
       Left = 9
@@ -145,6 +145,8 @@ object UCFrame_User: TUCFrame_User
       Height = 25
       Cursor = crHandPoint
       Caption = '&Excluir'
+      TabOrder = 2
+      OnClick = BtExcluiClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -197,8 +199,6 @@ object UCFrame_User: TUCFrame_User
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
-      TabOrder = 2
-      OnClick = BtExcluiClick
     end
     object BtAcess: TBitBtn
       Left = 9
@@ -207,6 +207,8 @@ object UCFrame_User: TUCFrame_User
       Height = 25
       Cursor = crHandPoint
       Caption = '&Acessos'
+      TabOrder = 3
+      OnClick = BtAcessClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000FF00FFFF00FF
@@ -259,8 +261,6 @@ object UCFrame_User: TUCFrame_User
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       NumGlyphs = 2
-      TabOrder = 3
-      OnClick = BtAcessClick
     end
     object BtPass: TBitBtn
       Left = 9
@@ -269,6 +269,8 @@ object UCFrame_User: TUCFrame_User
       Height = 25
       Cursor = crHandPoint
       Caption = '&Senha'
+      TabOrder = 4
+      OnClick = BtPassClick
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
         18000000000000060000120B0000120B00000000000000000000C8D0D4C8D0D4
@@ -321,27 +323,24 @@ object UCFrame_User: TUCFrame_User
         D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8CDCFC8C9CABDBEBEB4
         B6B7BBC1C4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4C8D0D4}
       NumGlyphs = 2
-      TabOrder = 4
-      OnClick = BtPassClick
     end
   end
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 614
-    Height = 571
+    Width = 631
+    Height = 588
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
     object DbGridUser: TDBGrid
       Left = 0
       Top = 0
-      Width = 614
-      Height = 476
+      Width = 631
+      Height = 493
       Align = alClient
       Ctl3D = True
       DataSource = DataUser
-      Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick]
       ParentCtl3D = False
       ReadOnly = True
       TabOrder = 0
@@ -377,8 +376,8 @@ object UCFrame_User: TUCFrame_User
     end
     object Panel2: TPanel
       Left = 0
-      Top = 476
-      Width = 614
+      Top = 493
+      Width = 631
       Height = 95
       Align = alBottom
       BevelOuter = bvNone
