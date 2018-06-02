@@ -34,7 +34,13 @@ requires
   vclactnband,
   vcldb,
   VclSmp,
+  {$IFDEF DELPHI2006_UP}
   IndyProtocols;
+  {$ELSE}
+	{$IFDEF DELPHI7}
+	IndyProtocols70;
+	{$ENDIF}
+  {$ENDIF}
 
 contains
   TrocaSenha_U in '..\..\source\Base\TrocaSenha_U.pas',
