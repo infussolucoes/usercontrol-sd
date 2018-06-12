@@ -41,7 +41,7 @@ RestConnector e RestDWConnector (Versão Datasnap).
 Alguns detalhes:
 
 RestConnector faz uso de funções do Firedac, logo é necessário que o FireDac esteja instalado.
-RestDWConnector foi preparado para utilizar o RestDaware que utiliza o DataSnap.
+RestDWConnector foi preparado para utilizar o RestWare, versão inicial do RestDataWare que utilizava o DataSnap.
 
 O Midas Connector é somente até o Delphi XE 8.
 
@@ -55,7 +55,7 @@ O componente UserControl é compatível com a compilação em 64 bits.
 
 Para ver uma descrição completa dos componentes acesse: http://showdelphi.com.br/descricao-dos-componentes-usercontrol/
 
-Caso queria baixar o RestDaware versão Datasnap que mantemos, acesse: https://github.com/infussolucoes/RestDataware
+Caso queria baixar o RestWare versão Datasnap que mantemos, acesse: https://github.com/infussolucoes/Datasnap-Restware
 
 Visite a comunidade: http://showdelphi.com.br
 
