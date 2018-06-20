@@ -92,10 +92,10 @@ uses
   Grids,
   ImgList,
   
-  {$IF CompilerVersion >= 23}
+  {$IFDEF DELPHIXE8_UP}
   System.UITypes,
   ImageList,
-  {$IFEND}
+  {$ENDIF}
 
   IncUser_U,
   SenhaForm_U,
