@@ -839,7 +839,9 @@ begin
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd24' then
       edtDelphiVersion.Items.Add('Delphi 10.1 Berlin')
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd25' then
-      edtDelphiVersion.Items.Add('Delphi 10.2 Tokyo');
+      edtDelphiVersion.Items.Add('Delphi 10.2 Tokyo')
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd26' then
+      edtDelphiVersion.Items.Add('Delphi 10.3 Rio');
 
     // -- Evento disparado antes de iniciar a execução do processo.
     oUserControl.Installations[iFor].DCC32.OnBeforeExecute := BeforeExecute;

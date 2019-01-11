@@ -512,7 +512,8 @@ type
     procedure AddRightEX(IdUser: Integer; Module, FormName, ObjName: String);
     procedure HideField(Sender: TField; var Text: String; DisplayText: Boolean);
     procedure Log(Msg: String; Level: Integer = llNormal);
-    function VerificaLogin(User, Password: String; SoVerificarUsuarioAdmin: Boolean = False): Integer; // Boolean;
+    function VerificaLogin(User, Password: String; SoVerificarUsuarioAdmin, DesconsiderarInativo: Boolean): Integer; overload;
+    function VerificaLogin(User, Password: String; SoVerificarUsuarioAdmin: Boolean = False): Integer; overload;
     function GetLocalUserName: String;
     function GetLocalComputerName: String;
     function AddUser(Login, Password, Name, Mail: String; Profile, UserExpired, DaysExpired: Integer; Privuser: Boolean;
@@ -1438,81 +1439,8 @@ end;
 
 function TUserControl.VerificaLogin(User, Password: String;
   SoVerificarUsuarioAdmin: Boolean = False): Integer; // Boolean;
-var
-  Senha: String;
-  Key: String;
-  SQLstmt: String;
-  DataSet: TDataSet;
-  VerifKey: String;
 begin
-  case Self.Criptografia of
-    cPadrao:
-      Senha := TableUsers.FieldPassword + ' = ' +
-        QuotedStr(Encrypt(Password, EncryptKey));
-    cMD5:
-      Senha := TableUsers.FieldPassword + ' = ' + QuotedStr(MD5Sum(Password));
-  end;
-  if SoVerificarUsuarioAdmin = False then
-    SQLstmt := 'SELECT * FROM ' + TableUsers.TableName + ' WHERE ' +
-      TableUsers.FieldLogin + ' = ' + QuotedStr(User) + ' AND ' + Senha
-  else
-    SQLstmt := 'SELECT * FROM ' + TableUsers.TableName + ' WHERE ' +
-      TableUsers.FieldLogin + ' = ' + QuotedStr(User) + ' AND ' + Senha +
-      ' AND ' + TableUsers.FieldPrivileged + ' = ' +
-      BoolToStr(SoVerificarUsuarioAdmin);
-
-  DataSet := DataConnector.UCGetSQLDataset(SQLstmt);
-  with DataSet do
-    try
-      if not IsEmpty then
-      begin
-        case Self.Criptografia of
-          cPadrao:
-            begin
-              Key := Decrypt(DataSet.FieldByName(TableUsers.FieldKey).AsString,
-                EncryptKey);
-              VerifKey := DataSet.FieldByName(TableUsers.FieldUserID).AsString +
-                DataSet.FieldByName(TableUsers.FieldLogin).AsString +
-                Decrypt(DataSet.FieldByName(TableUsers.FieldPassword).AsString,
-                EncryptKey);
-            end;
-          cMD5:
-            begin
-              Key := DataSet.FieldByName(TableUsers.FieldKey).AsString;
-              VerifKey := MD5Sum(DataSet.FieldByName(TableUsers.FieldUserID)
-                .AsString + DataSet.FieldByName(TableUsers.FieldLogin).AsString
-                + DataSet.FieldByName(TableUsers.FieldPassword).AsString);
-            end;
-        end;
-        if Key <> VerifKey then
-        begin
-          Result := 1;
-          if Assigned(OnLoginError) then
-            OnLoginError(Self, User, Password);
-        end
-        else
-        begin
-          if (DataSet.FieldByName(TableUsers.FieldUserInative).AsInteger = 0)
-          then
-          begin
-            if SoVerificarUsuarioAdmin = False then
-              RegistraCurrentUser(DataSet, Password);
-            Result := 0;
-          end
-          else
-            Result := 2;
-        end;
-      end
-      else
-      begin
-        Result := 1;
-        if Assigned(OnLoginError) then
-          OnLoginError(Self, User, Password);
-      end;
-    finally
-      Close;
-      Free;
-    end;
+  Result := VerificaLogin(User, Password, SoVerificarUsuarioAdmin, False);
 end;
 
 procedure TUserControl.Logoff;
@@ -2441,6 +2369,93 @@ begin
     TField(FormObj.FindComponent(ObjName)).Visible := True;
     TField(FormObj.FindComponent(ObjName)).onGetText := nil;
   end;
+end;
+
+function TUserControl.VerificaLogin(User, Password: String;
+  SoVerificarUsuarioAdmin, DesconsiderarInativo: Boolean): Integer;
+var
+  Senha: String;
+  Key: String;
+  SQLstmt: String;
+  DataSet: TDataSet;
+  VerifKey: String;
+begin
+  case Self.Criptografia of
+    cPadrao:
+      Senha := TableUsers.FieldPassword + ' = ' +
+        QuotedStr(Encrypt(Password, EncryptKey));
+    cMD5:
+      Senha := TableUsers.FieldPassword + ' = ' + QuotedStr(MD5Sum(Password));
+  end;
+  if SoVerificarUsuarioAdmin = False then
+    SQLstmt := 'SELECT * FROM ' + TableUsers.TableName + ' WHERE ' +
+      TableUsers.FieldLogin + ' = ' + QuotedStr(User) + ' AND ' + Senha
+  else
+    SQLstmt := 'SELECT * FROM ' + TableUsers.TableName + ' WHERE ' +
+      TableUsers.FieldLogin + ' = ' + QuotedStr(User) + ' AND ' + Senha +
+      ' AND ' + TableUsers.FieldPrivileged + ' = ' +
+      BoolToStr(SoVerificarUsuarioAdmin);
+
+  { Ignorando usuários inativos - Giovani Da Cruz }
+  if DesconsiderarInativo then
+  begin
+    SQLstmt := SQLstmt +
+      ' and coalesce( UCINATIVE, 0) = 0 ';
+  end;
+
+  DataSet := DataConnector.UCGetSQLDataset(SQLstmt);
+  with DataSet do
+    try
+      if not IsEmpty then
+      begin
+        case Self.Criptografia of
+          cPadrao:
+            begin
+              Key := Decrypt(DataSet.FieldByName(TableUsers.FieldKey).AsString,
+                EncryptKey);
+              VerifKey := DataSet.FieldByName(TableUsers.FieldUserID).AsString +
+                DataSet.FieldByName(TableUsers.FieldLogin).AsString +
+                Decrypt(DataSet.FieldByName(TableUsers.FieldPassword).AsString,
+                EncryptKey);
+            end;
+          cMD5:
+            begin
+              Key := DataSet.FieldByName(TableUsers.FieldKey).AsString;
+              VerifKey := MD5Sum(DataSet.FieldByName(TableUsers.FieldUserID)
+                .AsString + DataSet.FieldByName(TableUsers.FieldLogin).AsString
+                + DataSet.FieldByName(TableUsers.FieldPassword).AsString);
+            end;
+        end;
+        if Key <> VerifKey then
+        begin
+          Result := 1;
+          if Assigned(OnLoginError) then
+            OnLoginError(Self, User, Password);
+        end
+        else
+        begin
+          if (DataSet.FieldByName(TableUsers.FieldUserInative).AsInteger = 0)
+          then
+          begin
+            if SoVerificarUsuarioAdmin = False then
+              RegistraCurrentUser(DataSet, Password);
+            Result := 0;
+          end
+          else
+            Result := 2;
+        end;
+      end
+      else
+      begin
+        Result := 1;
+        if Assigned(OnLoginError) then
+          OnLoginError(Self, User, Password);
+      end;
+    finally
+      Close;
+      Free;
+    end;
+
 end;
 
 procedure TUserControl.LockEX(FormObj: TCustomForm; ObjName: String;
