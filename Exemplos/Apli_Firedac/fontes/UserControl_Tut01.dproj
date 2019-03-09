@@ -136,9 +136,6 @@
                 <Source>
                     <Source Name="MainSource">UserControl_Tut01.dpr</Source>
                 </Source>
-                <Language>
-                    <Language Name="RootDir">C:\Program Files (x86)\Embarcadero\Componentes\usercontrol-sd\Exemplos\Apli_Firedac\fontes\</Language>
-                </Language>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k260.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp260.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
