@@ -93,6 +93,9 @@ interface
 
 // http://docwiki.embarcadero.com/RADStudio/en/Conditional_compilation_(Delphi)
 // http://docwiki.embarcadero.com/RADStudio/en/Compiler_Versions
+
+{$I UserControl.inc}
+
 {$IF CompilerVersion >= 23} { Delphi XE2 }
 {$IFDEF CPUX86}
 {$DEFINE X86ASM}
@@ -1752,15 +1755,22 @@ begin
   {$IFDEF DELPHIX_RIO_UP}
   {$ELSE}
     Opts := PCRE_NOTBOL
-  {$ENDIF}	
+  {$ENDIF}
   else
     Opts := 0;
   if preNotEOL in State then
     Opts := Opts or PCRE_NOTEOL;
   if preNotEmpty in State then
     Opts := Opts or PCRE_NOTEMPTY;
+  {$IFDEF DELPHIX_RIO_UP}
+  OffsetCount := pcre_exec(FPattern, FHints, PWideChar(FSubjectPChar), FStop, 0,
+  Opts, @Offsets[0], High(Offsets));
+  {$ELSE}
   OffsetCount := pcre_exec(FPattern, FHints, FSubjectPChar, FStop, 0, Opts,
-    @Offsets[0], High(Offsets));
+  @Offsets[0], High(Offsets));
+  {$ENDIF}
+
+
   Result := OffsetCount > 0;
   // Convert offsets into AnsiString indices
   if Result then
@@ -1801,8 +1811,14 @@ begin
     aOpts := aOpts or PCRE_NOTEOL;
   if preNotEmpty in State then
     aOpts := aOpts or PCRE_NOTEMPTY;
+  {$IFDEF DELPHIX_RIO_UP}
+  aOffsetCount := pcre_exec(FPattern, FHints, PWideChar(aSubjectPChar), aStop, 0, aOpts,
+    @aOffsets[0], High(aOffsets));
+  {$ELSE}
   aOffsetCount := pcre_exec(FPattern, FHints, aSubjectPChar, aStop, 0, aOpts,
     @aOffsets[0], High(aOffsets));
+  {$ENDIF}
+
   Result := aOffsetCount > 0;
   aGroups.Clear;
   if Result then
@@ -1836,8 +1852,13 @@ begin
   if FStart - 1 > FStop then
     OffsetCount := -1
   else
+    {$IFDEF DELPHIX_RIO_UP}
+    OffsetCount := pcre_exec(FPattern, FHints, PWideChar(FSubjectPChar), FStop, FStart - 1,
+      Opts, @Offsets[0], High(Offsets));
+    {$ELSE}
     OffsetCount := pcre_exec(FPattern, FHints, FSubjectPChar, FStop, FStart - 1,
       Opts, @Offsets[0], High(Offsets));
+    {$ENDIF}
   Result := OffsetCount > 0;
   // Convert offsets into AnsiString indices
   if Result then
@@ -1857,7 +1878,11 @@ end;
 { Delphi XE2 }
 function TALPerlRegEx.NamedGroup(const Name: AnsiString): Integer;
 begin
+  {$IFDEF DELPHIX_RIO_UP}
+  Result := pcre_get_stringnumber(FPattern, PWideChar(Name));
+  {$ELSE}
   Result := pcre_get_stringnumber(FPattern, PAnsiChar(Name));
+  {$ENDIF}
 end;
 {$IFEND}
 { ************************************* }
