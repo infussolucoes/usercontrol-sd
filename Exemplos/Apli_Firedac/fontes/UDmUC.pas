@@ -31,14 +31,15 @@ var
 implementation
 
 uses
-  IWSystem;
+  Forms;
 
 {$R *.dfm}
 
 procedure TdmUC.DataModuleCreate(Sender: TObject);
 begin
   FDConnection1.Close;
-  FDConnection1.Params.Database := gsAppPath + '..\DBase\APLICATIVO_UC.FDB';
+  FDConnection1.Params.Database :=
+    ExtractFilePath(Application.ExeName) + '..\DBase\APLICATIVO_UC.FDB';
   FDConnection1.Open;
 end;
 
