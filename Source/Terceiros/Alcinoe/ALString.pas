@@ -1317,8 +1317,15 @@ begin
     else
       Exit;
   end;
+  
+  {$IFDEF DELPHIX_RIO_UP}
+  FPattern := pcre_compile(PWideChar(FRegEx), FPCREOptions, @Error,
+    @ErrorOffset, FCharTable);
+  {$ELSE}
   FPattern := pcre_compile(PAnsiChar(FRegEx), FPCREOptions, @Error,
     @ErrorOffset, FCharTable);
+  {$ENDIF}
+  
   if FPattern = nil then
   begin
     if RaiseException then
@@ -1742,7 +1749,10 @@ begin
   if not Compiled then
     Compile;
   if preNotBOL in State then
+  {$IFDEF DELPHIX_RIO_UP}
+  {$ELSE}
     Opts := PCRE_NOTBOL
+  {$ENDIF}	
   else
     Opts := 0;
   if preNotEOL in State then
