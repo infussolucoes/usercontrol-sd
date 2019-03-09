@@ -7,7 +7,7 @@ que possível.
 
 Fórum oficial: http://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
 
-O componente tem suporte do Delphi 7 até o Delphi 10.2 Tokyo.
+O componente tem suporte do Delphi 7 até o Delphi 10.3 Rio.
 
 Versões testadas até o momento:
 
@@ -29,7 +29,7 @@ Delphi 10.1 Berlin
 
 Delphi 10.2 Tokyo
 
-Delphi 10.3 Tokyo (Beta - Favor testarem mais)
+Delphi 10.3 Rio (Inclusive a versão Started)
 
 Obs: Quem estiver utilizando a versão Starter do Berlin, precisa realizar a instalação manualmente,
 pois o delphi não gera as bpls se você utilizar o instalador.
