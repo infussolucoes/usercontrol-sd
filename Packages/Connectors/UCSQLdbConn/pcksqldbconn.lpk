@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="4">
+    <PathDelim Value="\"/>
+    <Name Value="pckSQLdbConn"/>
+    <Type Value="RunAndDesignTime"/>
+    <Author Value="Giovani Da Cruz"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <PathDelim Value="\"/>
+      <SearchPaths>
+        <IncludeFiles Value="..\..\..\source;..\..\..\Source\Base"/>
+        <OtherUnitFiles Value="..\..\..\Source\Connectors\UCSQLdbConn"/>
+        <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+      <Parsing>
+        <SyntaxOptions>
+          <SyntaxMode Value="Delphi"/>
+        </SyntaxOptions>
+      </Parsing>
+      <Other>
+        <CustomOptions Value="-dBorland -dVer150 -dDelphi7 -dCompiler6_Up -dPUREPASCAL"/>
+      </Other>
+    </CompilerOptions>
+    <Description Value="Connector do UserControl com o SQLdb"/>
+    <Version Major="1"/>
+    <Files Count="4">
+      <Item1>
+        <Filename Value="ucsqldbconn.lrs"/>
+        <Type Value="LRS"/>
+      </Item1>
+      <Item2>
+        <Filename Value="..\..\..\Source\Connectors\UCSQLdbConn\UCSQLdbConn.pas"/>
+        <UnitName Value="UCSQLdbConn"/>
+      </Item2>
+      <Item3>
+        <Filename Value="..\..\..\Source\Connectors\UCSQLdbConn\ucsqldbconnreg.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="ucsqldbconnreg"/>
+      </Item3>
+      <Item4>
+        <Filename Value="..\..\..\Source\Base\UserControl.inc"/>
+        <Type Value="Include"/>
+      </Item4>
+    </Files>
+    <RequiredPkgs Count="2">
+      <Item1>
+        <PackageName Value="pckUCDataConnector"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <CustomOptions Items="ExternHelp" Version="2">
+      <_ExternHelp Items="Count"/>
+    </CustomOptions>
+  </Package>
+</CONFIG>
