@@ -87,7 +87,11 @@ uses
   Spin,
   StdCtrls,
   SysUtils,
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
   Windows,
+  {$ENDIF}
   DBGrids,
   Grids,
   ImgList,
@@ -160,9 +164,13 @@ begin
   FfrmIncluirUsuario := TfrmIncluirUsuario.Create(Self);
   FfrmIncluirUsuario.FUsercontrol := Self.FUsercontrol;
   SetWindowUser(True);
+
+  {$IFNDEF FPC}
   Application.NormalizeTopMosts;
-  FfrmIncluirUsuario.ShowModal;
   Application.RestoreTopMosts;
+  {$ENDIF}
+
+  FfrmIncluirUsuario.ShowModal;
   FreeAndNil(FfrmIncluirUsuario);
 end;
 

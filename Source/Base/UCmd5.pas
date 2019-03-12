@@ -106,14 +106,17 @@ unit UCmd5;
 // -----------------------------------------------------------------------------------------------
 interface
 
+{$I 'UserControl.inc'}
+
 // -----------------------------------------------------------------------------------------------
 
 uses
-{$IF CompilerVersion >= 23} {Delphi XE2}
-  WinAPI.Windows;
-{$ELSE}
-  Windows;
-{$IFEND}
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows{$ELSE}LCLType{$ENDIF}
+  {$ELSE}
+  Windows
+  {$ENDIF}
+  ;
 
 type
   MD5Count = array [0 .. 1] of DWORD;

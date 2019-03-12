@@ -73,16 +73,31 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  ActnList, ActnMan, ActnMenus, Classes, Controls, DB, ExtActns, Forms, Graphics,  
-  Menus, StdCtrls, SysUtils,
-  {.$IFDEF DELPHI5_UP}
+  ActnList,
+  {$IFNDEF FPC}
+  ActnMan,
+  ActnMenus,
+  ExtActns,
+  {$ENDIF}
+  Classes,
+  Controls,
+  DB,
+  Forms,
+  Graphics,
+  Menus,
+  StdCtrls,
+  SysUtils,
   Variants,
-  {.$ENDIF}
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
   Windows,
-  {$IF CompilerVersion >= 23}
+  {$ENDIF}
+  {$IFDEF DELPHIXE2_UP}
   System.UITypes,
-  {$IFEND}
-  UCmd5, UcConsts_Language, UCDataConnector, UCDataInfo, UCMail, UCMessages, UCSettings;
+  {$ENDIF}
+  UCmd5, UcConsts_Language, UCDataConnector, UCDataInfo, UCMail, UCMessages,
+  UCSettings;
 
 const
   llBaixo = 0;
@@ -323,12 +338,16 @@ type
     // Menu / ActionList/ActionManager ou ActionMainMenuBar a serem Controlados
   private
     FActionList: TActionList;
+    {$IFNDEF FPC}
     FActionManager: TActionManager;
     FActionMainMenuBar: TActionMainMenuBar;
+    {$ENDIF}
     FMainMenu: TMenu;
     procedure SetActionList(const Value: TActionList);
+    {$IFNDEF FPC}
     procedure SetActionManager(const Value: TActionManager);
     procedure SetActionMainMenuBar(const Value: TActionMainMenuBar);
+    {$ENDIF}
     procedure SetMainMenu(const Value: TMenu);
   public
     constructor Create(AOwner: TComponent);
@@ -337,10 +356,12 @@ type
   published
     property ActionList: TActionList read FActionList write SetActionList;
     property MainMenu: TMenu read FMainMenu write SetMainMenu;
+    {$IFNDEF FPC}
     property ActionManager: TActionManager read FActionManager
       write SetActionManager;
     property ActionMainMenuBar: TActionMainMenuBar read FActionMainMenuBar
       write SetActionMainMenuBar;
+    {$ENDIF}
   end;
 
   TOnLogin = procedure(Sender: TObject; var User, Password: String) of object;
@@ -447,8 +468,10 @@ type
     procedure LockEX(FormObj: TCustomForm; ObjName: String;
       naInvisible: Boolean);
     { .$IFDEF UCACTMANAGER }
+    {$IFNDEF FPC}
     procedure TrataActMenuBarIt(IT: TActionClientItem; ADataset: TDataSet);
     procedure IncPermissActMenuBar(IdUser: Integer; Act: TAction);
+    {$ENDIF}
     { .$ENDIF }
     procedure SetDataConnector(const Value: TUCDataConnector);
     procedure DoCheckValidationField;
@@ -857,12 +880,19 @@ begin
     if ApplicationID = '' then
       raise Exception.Create(RetornaLingua(fLanguage, 'MsgExceptAppID'));
 
+    {$IFNDEF FPC}
     if ((not Assigned(ControlRight.ActionList)) and
       (not Assigned(ControlRight.ActionManager)) and
       (not Assigned(ControlRight.MainMenu)) and
       (not Assigned(ControlRight.ActionMainMenuBar))) then
       raise Exception.Create(Format(RetornaLingua(fLanguage,
         'MsgExceptPropriedade'), ['ControlRight']));
+    {$ELSE}
+    if ((not Assigned(ControlRight.ActionList)) and
+      (not Assigned(ControlRight.MainMenu))) then
+      raise Exception.Create(Format(RetornaLingua(fLanguage,
+        'MsgExceptPropriedade'), ['ControlRight']));
+    {$ENDIF}
 
     for Contador := 0 to Pred(Owner.ComponentCount) do
       if Owner.Components[Contador] is TUCSettings then
@@ -1300,12 +1330,15 @@ begin
       ControlRight.MainMenu := nil;
     if AComponent = ControlRight.ActionList then
       ControlRight.ActionList := nil;
+
+    {$IFNDEF FPC}
     { .$IFDEF UCACTMANAGER }
     if AComponent = ControlRight.ActionManager then
       ControlRight.ActionManager := nil;
     if AComponent = ControlRight.ActionMainMenuBar then
       ControlRight.ActionMainMenuBar := nil;
     { .$ENDIF }
+    {$ENDIF}
 
     if AComponent = FDataConnector then
     begin
@@ -2234,15 +2267,15 @@ begin
 
   // Permissao de Actions
   if (Assigned(ControlRight.ActionList))
-  { .$IFDEF UCACTMANAGER } or (Assigned(ControlRight.ActionManager)) { .$ENDIF }
+  {$IFNDEF FPC}  { .$IFDEF UCACTMANAGER } or (Assigned(ControlRight.ActionManager)) { .$ENDIF } {$ENDIF}
   then
   begin
     if Assigned(ControlRight.ActionList) then
       ObjetoAction := ControlRight.ActionList
-      { .$IFDEF UCACTMANAGER }
+      {$IFNDEF FPC}  { .$IFDEF UCACTMANAGER }
     else
       ObjetoAction := ControlRight.ActionManager
-      { .$ENDIF };
+      { .$ENDIF }{$ENDIF};
     for Contador := 0 to TActionList(ObjetoAction).ActionCount - 1 do
     begin
       if not FProfile then
@@ -2298,6 +2331,7 @@ begin
     end;
   end; // Fim das permissões de Actions
 
+  {$IFNDEF FPC}
   { .$IFDEF UCACTMANAGER }
   if Assigned(ControlRight.ActionMainMenuBar) then
     for Contador := 0 to ControlRight.ActionMainMenuBar.ActionClient.Items.
@@ -2332,6 +2366,7 @@ begin
       end;
     end;
   { .$ENDIF }
+  {$ENDIF}
 end;
 
 procedure TUserControl.UnlockEX(FormObj: TCustomForm; ObjName: String);
@@ -2496,6 +2531,7 @@ begin
   end;
 end;
 
+{$IFNDEF FPC}
 { .$IFDEF UCACTMANAGER }
 procedure TUserControl.TrataActMenuBarIt(IT: TActionClientItem;
   ADataset: TDataSet);
@@ -2514,6 +2550,7 @@ begin
 end;
 
 { .$ENDIF }
+{$ENDIF}
 
 procedure TUserControl.CriaTabelaRights(ExtraRights: Boolean = False);
 var
@@ -2632,6 +2669,7 @@ begin
       UserSettings.Type_Int]));
 end;
 
+{$IFNDEF FPC}
 { .$IFDEF UCACTMANAGER }
 procedure TUserControl.IncPermissActMenuBar(IdUser: Integer; Act: TAction);
 var
@@ -2649,6 +2687,7 @@ begin
 end;
 
 { .$ENDIF }
+{$ENDIF}
 
 procedure TUserControl.CriaTabelaUsuarios;
 var
@@ -2779,6 +2818,7 @@ begin
   AddRight(IDUsuario, UsersLogoff.MenuItem);
   AddRight(IDUsuario, UsersLogoff.Action);
 
+  {$IFNDEF FPC}
   { .$IFDEF UCACTMANAGER }
   if Assigned(ControlRight.ActionMainMenuBar) then
     IncPermissActMenuBar(IDUsuario, User.Action);
@@ -2786,6 +2826,7 @@ begin
   if Assigned(ControlRight.ActionMainMenuBar) then
     IncPermissActMenuBar(IDUsuario, UserPasswordChange.Action);
   { .$ENDIF }
+  {$ENDIF}
 
   for Contador := 0 to Pred(Login.InitialLogin.InitialRights.Count) do
   begin
@@ -3496,6 +3537,7 @@ begin
     Value.FreeNotification(Self.ActionList);
 end;
 
+{$IFNDEF FPC}
 { .$IFDEF UCACTMANAGER }
 procedure TUCControlRight.SetActionMainMenuBar(const Value: TActionMainMenuBar);
 begin
@@ -3512,6 +3554,7 @@ begin
 end;
 
 { .$ENDIF }
+{$ENDIF}
 
 procedure TUCControlRight.SetMainMenu(const Value: TMenu);
 begin

@@ -87,16 +87,20 @@ uses
   Spin,
   StdCtrls,
   SysUtils,
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
   Windows,
+  {$ENDIF}
   DBGrids,
   Grids,
 
 
   FMTBcd,
 
-  {$IF CompilerVersion >= 23}
+  {$IFDEF DELPHIXE2_UP}
   System.UITypes,
-  {$IFEND}
+  {$ENDIF}
 
   IncPerfil_U,
   UcBase,

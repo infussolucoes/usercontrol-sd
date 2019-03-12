@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="4">
+    <PathDelim Value="\"/>
+    <Name Value="pckUserControlRuntime"/>
+    <Type Value="RunAndDesignTime"/>
+    <AddToProjectUsesSection Value="True"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <PathDelim Value="\"/>
+      <SearchPaths>
+        <IncludeFiles Value="..\..\source\Base"/>
+        <OtherUnitFiles Value="..\..\source\Base"/>
+        <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+      <Parsing>
+        <SyntaxOptions>
+          <SyntaxMode Value="Delphi"/>
+        </SyntaxOptions>
+      </Parsing>
+      <Linking>
+        <Debugging>
+          <DebugInfoType Value="dsStabs"/>
+        </Debugging>
+      </Linking>
+      <Other>
+        <Verbosity>
+          <ShowAll Value="True"/>
+        </Verbosity>
+      </Other>
+    </CompilerOptions>
+    <Version Major="2" Minor="33"/>
+    <Files Count="23">
+      <Item1>
+        <Filename Value="..\..\source\Base\TrocaSenha_U.pas"/>
+        <UnitName Value="TrocaSenha_U"/>
+      </Item1>
+      <Item2>
+        <Filename Value="..\..\source\Base\UCBase.pas"/>
+        <UnitName Value="UCBase"/>
+      </Item2>
+      <Item3>
+        <Filename Value="..\..\source\Base\SenhaForm_U.pas"/>
+        <UnitName Value="SenhaForm_U"/>
+      </Item3>
+      <Item4>
+        <Filename Value="..\..\source\Base\EnvMsgForm_U.pas"/>
+        <UnitName Value="EnvMsgForm_U"/>
+      </Item4>
+      <Item5>
+        <Filename Value="..\..\source\Base\MsgRecForm_U.pas"/>
+        <UnitName Value="MsgRecForm_U"/>
+      </Item5>
+      <Item6>
+        <Filename Value="..\..\source\Base\MsgsForm_U.pas"/>
+        <UnitName Value="MsgsForm_U"/>
+      </Item6>
+      <Item7>
+        <Filename Value="..\..\source\Base\UCDataInfo.pas"/>
+        <UnitName Value="UCDataInfo"/>
+      </Item7>
+      <Item8>
+        <Filename Value="..\..\source\Base\UCMessages.pas"/>
+        <UnitName Value="UCMessages"/>
+      </Item8>
+      <Item9>
+        <Filename Value="..\..\source\Base\UserPermis_U.pas"/>
+        <UnitName Value="UserPermis_U"/>
+      </Item9>
+      <Item10>
+        <Filename Value="..\..\source\Base\UCSettings.pas"/>
+        <UnitName Value="UCSettings"/>
+      </Item10>
+      <Item11>
+        <Filename Value="..\..\source\Base\LoginWindow_U.pas"/>
+        <UnitName Value="LoginWindow_U"/>
+      </Item11>
+      <Item12>
+        <Filename Value="..\..\source\Base\UcConsts_Language.pas"/>
+        <UnitName Value="UcConsts_Language"/>
+      </Item12>
+      <Item13>
+        <Filename Value="..\..\source\Base\pUCGeral.pas"/>
+        <UnitName Value="pUCGeral"/>
+      </Item13>
+      <Item14>
+        <Filename Value="..\..\source\Base\pUCFrame_User.pas"/>
+        <UnitName Value="pUCFrame_User"/>
+      </Item14>
+      <Item15>
+        <Filename Value="..\..\source\Base\pUCFrame_Profile.pas"/>
+        <UnitName Value="pUCFrame_Profile"/>
+      </Item15>
+      <Item16>
+        <Filename Value="..\..\source\Base\pUCFrame_Log.pas"/>
+        <UnitName Value="pUCFrame_Log"/>
+      </Item16>
+      <Item17>
+        <Filename Value="..\..\source\Base\pUcFrame_UserLogged.pas"/>
+        <UnitName Value="pUcFrame_UserLogged"/>
+      </Item17>
+      <Item18>
+        <Filename Value="..\..\source\Base\UCMail.pas"/>
+        <UnitName Value="UCMail"/>
+      </Item18>
+      <Item19>
+        <Filename Value="..\..\source\Base\UCEMailForm_U.pas"/>
+        <UnitName Value="UCEMailForm_U"/>
+      </Item19>
+      <Item20>
+        <Filename Value="..\..\source\Base\IncUser_U.pas"/>
+        <UnitName Value="IncUser_U"/>
+      </Item20>
+      <Item21>
+        <Filename Value="..\..\source\Base\IncPerfil_U.pas"/>
+        <UnitName Value="IncPerfil_U"/>
+      </Item21>
+      <Item22>
+        <Filename Value="..\..\source\Base\UserControl.inc"/>
+        <Type Value="Include"/>
+      </Item22>
+      <Item23>
+        <Filename Value="..\..\Source\Base\UCmd5.pas"/>
+        <UnitName Value="UCmd5"/>
+      </Item23>
+    </Files>
+    <RequiredPkgs Count="3">
+      <Item1>
+        <PackageName Value="DateTimeCtrls"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="pckUCDataConnector"/>
+        <MinVersion Major="2" Minor="32" Valid="True"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="LCL"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item3>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+    <CustomOptions Items="ExternHelp" Version="2">
+      <_ExternHelp Items="Count"/>
+    </CustomOptions>
+  </Package>
+</CONFIG>

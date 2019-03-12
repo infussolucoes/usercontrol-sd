@@ -73,24 +73,29 @@ interface
 { .$I 'UserControl.inc' }
 
 uses
+  {$IFNDEF FPC}
   ActnCtrls,
-  ActnList,
   ActnMan,
   ActnMenus,
+  jpeg,
+  {$ENDIF}
+
+  ActnList,
   Buttons,
   Classes,
   ComCtrls,
-  {$IF CompilerVersion >= 23}
-  system.Contnrs,
+  Contnrs,
+
+  {$IFDEF DELPHIXE2_UP}
   system.Actions,
-  {$IFEND}
+  {$ENDIF}
+
   Controls,
   Dialogs,
   ExtCtrls,
   ExtDlgs,
   Forms,
   Graphics,
-  jpeg,
   Menus,
   Spin,
   StdCtrls,
@@ -245,11 +250,15 @@ implementation
 
 uses
   LoginWindow_U,
-  ShellAPI,
-  SysUtils,
   UcConsts_Language,
-  UCMessages,
-  Windows;
+
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}ShellAPI, Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
+  ShellAPI, Windows,
+  {$ENDIF}
+
+  SysUtils;
 
 {$R *.dfm}
 
@@ -416,11 +425,13 @@ begin
     if Formulario.Components[I] is TActionList then
       cbActionList.Items.Add(Formulario.Components[I].Name);
 
+    {$IFNDEF FPC}
     if Formulario.Components[I] is TActionMainMenuBar then
       cbActionMainMenuBar.Items.Add(Formulario.Components[I].Name);
 
     if Formulario.Components[I] is TActionManager then
       cbActionManager.Items.Add(Formulario.Components[I].Name);
+    {$ENDIF}
 
     if Formulario.Components[I] is TMainMenu then
       cbMainMenu.Items.Add(Formulario.Components[I].Name);
@@ -434,6 +445,7 @@ begin
     if Assigned(MainMenu) then
       cbMainMenu.ItemIndex := (cbMainMenu.Items.IndexOf(MainMenu.Name));
 
+    {$IFNDEF FPC}
     if Assigned(ActionMainMenuBar) then
       cbActionMainMenuBar.ItemIndex :=
         (cbActionMainMenuBar.Items.IndexOf(ActionMainMenuBar.Name));
@@ -441,6 +453,7 @@ begin
     if Assigned(ActionManager) then
       cbActionManager.ItemIndex :=
         (cbActionManager.Items.IndexOf(ActionManager.Name));
+    {$ENDIF}
   end;
 
   // Action e MenuItem USER
@@ -520,8 +533,10 @@ begin
     with frmLogin do
     begin
       FUserControl := Self.FUserControl;
+      {$IFNDEF FPC}
       btOK.onClick := BotoesClickVisualizacao;
       BtCancela.onClick := BotoesClickVisualizacao;
+      {$ENDIF}
       Caption := Self.FUserControl.UserSettings.Login.WindowCaption;
       LbUsuario.Caption := Self.FUserControl.UserSettings.Login.LabelUser;
       LbSenha.Caption := Self.FUserControl.UserSettings.Login.LabelPassword;

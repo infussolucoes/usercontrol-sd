@@ -77,7 +77,7 @@ Type
 
 ResourceString   
 	rsSobreTitulo = 'UserControl ShowDelphi Edition VCL'; 
-	rsSobreDescricao = 'UserControl ShowDelphi E. http://showdelphi.com.br/' + #13#10 +	
+	rsSobreDescricao = 'UserControl ShowDelphi E. https://showdelphi.com.br/' + #13#10 +	
                      'Componentes Controle de Usuários' + #13#10 +                        
                      'Lesser General Public License version 2.0';						
 	rsSobreLicencaStatus = 'LGPLv2';

@@ -72,19 +72,18 @@ Vicente Barros Leonel [ Fknyght ]
   ******************************************************************************* }
 unit UCDataConnector;
 
+{$IFDEF FPC}
+  {$MODE Delphi}
+{$ENDIF}
+
 interface
 
 { .$I 'UserControl.inc' }
 
 uses
-{$IF CompilerVersion >= 23} {Delphi XE2}
-  System.Classes,
-  Data.DB;
-{$ELSE}
   Classes,
   DB;
-{$IFEND}
-  
+
 type
   TUCDataConnector = class(TComponent)
   public

@@ -1,4 +1,4 @@
-object AboutForm: TAboutForm
+object UCAboutForm: TUCAboutForm
   Left = 296
   Top = 71
   BorderStyle = bsNone

@@ -73,6 +73,7 @@ uses
   Variants,
   Buttons,
   Classes,
+  ComCtrls,
   Controls,
   DB,
   DBCtrls,
@@ -83,7 +84,11 @@ uses
   Messages,
   StdCtrls,
   SysUtils,
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
   Windows,
+  {$ENDIF}
 
   UcBase;
 

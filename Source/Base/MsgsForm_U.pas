@@ -76,6 +76,7 @@ uses
   Variants,
   Buttons,
   Classes,
+  ComCtrls,
   Controls,
   DB,
   DBCtrls,
@@ -87,13 +88,17 @@ uses
   Spin,
   StdCtrls,
   SysUtils,
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
   Windows,
-  ComCtrls,
+  {$ENDIF}
+
   ImgList,
 
   // Delphi XE 8 ou superior
   {$IFDEF DELPHI22_UP}
-      System.ImageList,
+    System.ImageList,
   {$ENDIF}
 
   ToolWin;
@@ -234,7 +239,9 @@ begin
     FAsc := True;
     ListView1.Columns[FColuna].ImageIndex := Integer(FAsc);
   end;
+  {$IFNDEF FPC}
   (Sender as TCustomListView).AlphaSort;
+  {$ENDIF}
 end;
 
 procedure TMsgsForm.ListView1Compare(Sender: TObject; Item1, Item2: TListItem;
@@ -306,7 +313,11 @@ begin
 {$IFDEF DELPHI5}
     ListView1.Selected.Delete;
 {$ELSE}
-    ListView1.DeleteSelected;
+  {$IFNDEF FPC}
+  ListView1.DeleteSelected;
+  {$ELSE}
+  ListView1.Selected.Delete;
+  {$ENDIF}
 {$ENDIF}
   end
   else
@@ -318,7 +329,11 @@ begin
 {$IFDEF DELPHI5}
     ListView1.Selected.Delete;
 {$ELSE}
+    {$IFNDEF FPC}
     ListView1.DeleteSelected;
+    {$ELSE}
+    ListView1.Selected.Delete;
+    {$ENDIF}
 {$ENDIF}
   end;
 

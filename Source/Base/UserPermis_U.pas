@@ -88,18 +88,21 @@ uses
   Spin,
   StdCtrls,
   SysUtils,
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
   Windows,
+  {$ENDIF}
   DBGrids,
   Grids,
 
   UCBase,
-
+  {$IFNDEF FPC}
   ActnMan,
   ActnMenus,
-
+  {$ENDIF}
 
   ComCtrls,
-
   ImgList,
 
   // Delphi XE 8 ou superior
@@ -187,10 +190,12 @@ type
     FListaAction: array of PTreeAction;
     FListaMenu: array of PTreeMenu;
     FListaControl: array of PTreeControl;
+    {$IFNDEF FPC}
     { .$IFDEF UCACTMANAGER }
     FActionMainMenuBar: TActionMainMenuBar;
     procedure TrataItem(IT: TActionClientItem; node: TTreeNode); overload;
     { .$ENDIF }
+    {$ENDIF}
     procedure TrataItem(IT: TMenuItem; node: TTreeNode); overload;
     procedure TreeMenuItem(marca: Boolean);
     procedure Atualiza(Selec: Boolean);
@@ -301,6 +306,7 @@ begin
       end;
 end;
 
+{$IFNDEF FPC}
 { .$IFDEF UCACTMANAGER }
 procedure TUserPermis.TrataItem(IT: TActionClientItem; node: TTreeNode);
 var
@@ -339,6 +345,7 @@ begin
 end;
 
 { .$ENDIF }
+{$ENDIF}
 
 procedure TUserPermis.CarregaTreeviews;
 var
@@ -359,11 +366,20 @@ begin
     Self.FActions := fUserControl.ControlRight.ActionManager; }
 
   Self.FMenu := FUserControl.ControlRight.MainMenu;
+
+  {$IFNDEF FPC}
   Self.FActionMainMenuBar := FUserControl.ControlRight.ActionMainMenuBar;
+  {$ENDIF}
+
   if Assigned(FUserControl.ControlRight.ActionList) then
     Self.FActions := FUserControl.ControlRight.ActionList
   else
+  begin
+    {$IFNDEF FPC}
     Self.FActions := FUserControl.ControlRight.ActionManager;
+    {$ENDIF}
+  end;
+
   Self.FExtraRights := FUserControl.ExtraRights;
 
   (* if (not Assigned(FMenu)) and (not Assigned(fUserControl.ControlRight.ActionList))
@@ -411,6 +427,7 @@ begin
     TreeMenu.Perform(WM_VSCROLL, SB_TOP, 0);
   end;
 
+  {$IFNDEF FPC}
   { .$IFDEF UCACTMANAGER }
   // TempNode := nil;
   if Assigned(FActionMainMenuBar) then
@@ -459,6 +476,7 @@ begin
     end;
   end;
   { .$ENDIF }
+  {$ENDIF}
 
   (* if (Assigned(fUserControl.ControlRight.ActionList))
     {.$IFDEF UCACTMANAGER} or (Assigned(fUserControl.ControlRight.ActionManager))

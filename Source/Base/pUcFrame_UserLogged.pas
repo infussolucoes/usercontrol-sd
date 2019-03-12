@@ -72,8 +72,16 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  Variants, Buttons, Classes, Controls, DB, DBCtrls, Dialogs, ExtCtrls, Forms, Graphics, Messages, Spin, StdCtrls,
-  SysUtils, Windows, DBGrids, Grids, Menus,
+  Variants, Buttons, Classes,
+  Controls, DB, DBCtrls, Dialogs, ExtCtrls,
+  Forms, Graphics, Messages, Spin, StdCtrls,
+  SysUtils,
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
+  Windows,
+  {$ENDIF}
+  DBGrids, Grids, Menus,
 
 
   IncUser_U, UCBase;

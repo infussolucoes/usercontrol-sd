@@ -73,6 +73,10 @@ interface
 {$I 'UserControl.inc'}
 
 uses
+  {$IFDEF FPC}
+  DateTimePicker,
+  {$ENDIF}
+
   Variants,
   Buttons,
   Classes,
@@ -87,7 +91,11 @@ uses
   Spin,
   StdCtrls,
   SysUtils,
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
   Windows,
+  {$ENDIF}
   ComCtrls,
   DBGrids,
 

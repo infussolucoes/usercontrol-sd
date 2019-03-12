@@ -69,8 +69,13 @@ unit UCIdle;
 
 interface
 
-uses Classes, UCBase, Dialogs, Windows, Forms,
-ExtCtrls, Messages, SysUtils;
+uses Classes, UCBase, Dialogs,
+{$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
+  Windows,
+  {$ENDIF}
+Forms, ExtCtrls, Messages, SysUtils;
 
 type
 
@@ -94,7 +99,9 @@ type
     FTimeOut: Integer;
     FOnIdle: TNotifyEvent;
     FUserControl: TUserControl; // changed from FUCComp to FUserControl
+    {$IFNDEF FPC}
     FOnAppMessage: TMessageEvent;
+    {$ENDIF}
     FTimeLeftNotify: TUCIdleTimeLeft;
     procedure UCAppMessage(var Msg: TMsg; var Handled: Boolean);
     procedure SetUserControl(const Value: TUserControl);
@@ -144,6 +151,7 @@ begin
   if not(csDesigning in ComponentState) then
     if (Assigned(UserControl)) or (Assigned(OnIdle)) then
     begin
+      {$IFNDEF FPC}
       if Assigned(Application.OnMessage) then
         FOnAppMessage := Application.OnMessage;
       Application.OnMessage := UCAppMessage;
@@ -151,6 +159,7 @@ begin
       FThIdle.CurrentMilisec := 0;
       FThIdle.UCIdle := Self;
       FThIdle.Resume;
+      {$ENDIF}
     end;
 end;
 
@@ -175,8 +184,10 @@ begin
   if (Msg.message = wm_mousemove) or (Msg.message = wm_keydown) then
     FThIdle.CurrentMilisec := 0;
 
+  {$IFNDEF FPC}
   if Assigned(FOnAppMessage) then
     FOnAppMessage(Msg, Handled);
+  {$ENDIF}
 end;
 
 { TThUCIdle }
@@ -200,12 +211,16 @@ begin
     if UCIdle.Timeout <= CurrentMilisec then
     begin
       CurrentMilisec := 0;
+      {$IFNDEF FPC}
       Synchronize(DoIdle);
+      {$ENDIF}
     end
     else
     begin
       Inc(CurrentMilisec, 1000);
+      {$IFNDEF FPC}
       Synchronize(TimeLeftSinc);
+      {$ENDIF}
     end;
   end;
 end;

@@ -86,7 +86,11 @@ uses
   Messages,
   StdCtrls,
   SysUtils,
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
   Windows,
+  {$ENDIF}
   ComCtrls,
 
   UCBase;
@@ -208,7 +212,11 @@ begin
     if TfrmLoginWindow(Sender).ActiveControl = EditSenha then
       btOK.Click
     else
+    {$IFDEF WINDOWS}
       Perform(WM_NEXTDLGCTL, 0, 0);
+    {$ELSE}
+      SelectNext(activecontrol,True,True);
+    {$ENDIF}
   End;
 end;
 

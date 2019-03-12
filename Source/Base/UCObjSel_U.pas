@@ -118,7 +118,7 @@ type
     btunsel: TSpeedButton;
     btunselall: TSpeedButton;
     Splitter1: TSplitter;
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormClose(Sender: TObject{$IFNDEF FPC}  ; var Action: TCloseAction{$ENDIF});
     procedure FormShow(Sender: TObject);
     procedure btsellallClick(Sender: TObject);
     procedure btunselallClick(Sender: TObject);
@@ -145,9 +145,9 @@ implementation
 
 {$R *.dfm}
 
-procedure TUCObjSel.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TUCObjSel.FormClose(Sender: TObject{$IFNDEF FPC}  ; var Action: TCloseAction{$ENDIF});
 begin
-  Action := caFree;
+  {$IFNDEF FPC}  Action := caFree; {$ENDIF}
   Self.Release; { By Cleilson Sousa }
 end;
 

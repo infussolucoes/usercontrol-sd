@@ -77,7 +77,6 @@ uses
   Buttons,
   Classes,
   Controls,
-  DB,
   DBCtrls,
   Dialogs,
   ExtCtrls,
@@ -86,12 +85,15 @@ uses
   Messages,
   StdCtrls,
   SysUtils,
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
   Windows,
+  {$ENDIF}
 
-  {$IF CompilerVersion >= 23}
+  {$IFDEF DELPHIXE2_UP}
   System.UITypes,
-  {$IFEND}
-
+  {$ENDIF}
 
   UCBase;
 
@@ -118,6 +120,7 @@ type
 implementation
 
 {$R *.dfm}
+
 { TSenhaForm }
 
 function TSenhaForm.CompararSenhas(Senha, ConfirmaSenha: String): Boolean;

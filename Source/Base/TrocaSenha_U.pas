@@ -72,9 +72,9 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  {$IF CompilerVersion >= 23}
+  {$IFDEF DELPHIXE2_UP}
   System.UITypes,
-  {$IFEND}
+  {$ENDIF}
 
   Variants,
   Buttons,
@@ -87,7 +87,11 @@ uses
   Messages,
   StdCtrls,
   SysUtils,
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
   Windows,
+  {$ENDIF}
 
   UCBase; { Por Vicente Barros Leonel }
 

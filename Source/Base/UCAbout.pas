@@ -64,6 +64,8 @@ Vicente Barros Leonel [ Fknyght ]
   |*
   |* 01/07/2015: Giovani Da Cruz
   |*  - Criação e distribuição da Primeira Versao ShowDelphi
+  |* 12/03/2019: Giovani Da Cruz
+  |*  - Criação e distribuição da Primeira Versao para Lazarus
   ******************************************************************************* }
 
 unit UCAbout;
@@ -79,11 +81,13 @@ uses
   Controls,
   ExtCtrls,
   Forms,
+  {$IFNDEF FPC}
   jpeg,
+  {$ENDIF}
   StdCtrls;
 
 type
-  TAboutForm = class(TForm)
+  TUCAboutForm = class(TForm)
     Panel1: TPanel;
     lblVersao: TLabel;
     Panel2: TPanel;
@@ -122,35 +126,52 @@ type
 implementation
 
 uses
-  ShellAPI,
-  UCBase,
-  Windows;
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}ShellAPI, Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
+  ShellAPI, Windows,
+  {$ENDIF}
+
+  UCBase;
 
 {$R *.dfm}
 
-procedure TAboutForm.FormClose(Sender: TObject; var Action: TCloseAction);
+procedure TUCAboutForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Action := caFree;
 end;
 
-procedure TAboutForm.Label4Click(Sender: TObject);
+procedure TUCAboutForm.Label4Click(Sender: TObject);
 begin
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}
   ShellExecute(0, 'open', 'mailto:qmd@usercontrol.com.br', '', '', SW_SHOW);
+  {$ENDIF}
+  {$ELSE}
+  ShellExecute(0, 'open', 'mailto:qmd@usercontrol.com.br', '', '', SW_SHOW);
+  {$ENDIF}
 end;
 
-procedure TAboutForm.Label6Click(Sender: TObject);
+procedure TUCAboutForm.Label6Click(Sender: TObject);
 begin
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}
   ShellExecute(0, 'open', 'http://infussolucoes.github.io/usercontrol-sd', '',
     '', SW_SHOW);
+  {$ENDIF}
+  {$ELSE}
+  ShellExecute(0, 'open', 'http://infussolucoes.github.io/usercontrol-sd', '',
+    '', SW_SHOW);
+  {$ENDIF}
 end;
 
-procedure TAboutForm.FormCreate(Sender: TObject);
+procedure TUCAboutForm.FormCreate(Sender: TObject);
 begin
   Self.BorderStyle := bsNone;
   lblVersao.Caption := 'Versão ' + UCVersion;
 end;
 
-procedure TAboutForm.WMNChitTest(var M: TWMNchitTest);
+procedure TUCAboutForm.WMNChitTest(var M: TWMNchitTest);
 begin
   inherited;
 

@@ -84,14 +84,16 @@ uses
   Dialogs,
   SysUtils,
 
-{$IF CompilerVersion >= 23}
+{$IFDEF DELPHIXE2_UP}
   System.UITypes,
   ALSMTPClient,
   ALInternetMessages,
   ALStringList,
 {$ELSE}
+  {$IFNDEF FPC}
   UCALSMTPClient,
-{$IFEND}
+  {$ENDIF}
+{$ENDIF}
   UcConsts_Language;
 
 type
@@ -138,12 +140,16 @@ type
     FAlteraUsuario: TUCMailMessage;
     FSenhaForcada: TUCMailMessage;
     FEsqueceuSenha: TUCMEsqueceuSenha;
+    {$IFNDEF FPC}
     fAuthType: TAlSmtpClientAuthType;
+    {$ENDIF}
     function ParseMailMSG(Nome, Login, Senha, Email, Perfil,
       txt: String): AnsiString;
-    {$IF CompilerVersion < 23}
+    {$IFNDEF FPC}
+    {$IFNDEF DELPHIXE2_UP}
     procedure onStatus(Status: String);
-    {$IFEND}
+    {$ENDIF}
+    {$ENDIF}
     function TrataSenha(Senha: String; Key: Word; GerarNova: Boolean;
       IDUser: Integer): String;
   protected
@@ -163,7 +169,9 @@ type
     procedure EnviaEsqueceuSenha(ID: Integer; Nome, Login, Senha, Email,
       Perfil: String); // Key: Word
   published
+    {$IFNDEF FPC}
     property AuthType: TAlSmtpClientAuthType read fAuthType write fAuthType;
+    {$ENDIF}
     property ServidorSMTP: String read FSMTPServer write FSMTPServer;
     property Usuario: String read FUsuario write FUsuario;
     property Senha: String read FSenha write FSenha;
@@ -367,7 +375,10 @@ begin
     '<p>Administrador do sistema</p></body></html>');
   SenhaTrocada.FTitulo := 'Alteração de senha';
 
+  {$IFNDEF FPC}
   fAuthType := alsmtpClientAuthPlain;
+  {$ENDIF}
+
   if csDesigning in ComponentState then
   begin
     Porta := 25;
@@ -432,7 +443,8 @@ begin
   Result := AnsiString(txt);
 end;
 
-{$IF CompilerVersion < 23}
+{$IFNDEF FPC}
+{$IFNDEF DELPHIXE2_UP}
 procedure TMailUserControl.onStatus(Status: String);
 begin
   if not Assigned(UCEMailForm) then
@@ -440,14 +452,16 @@ begin
   UCEMailForm.lbStatus.Caption := Status;
   UCEMailForm.Update;
 end;
-{$IFEND}
+{$ENDIF}
+{$ENDIF}
 
 Function TMailUserControl.EnviaEmailTp(Nome, Login, USenha, Email,
   Perfil: String; UCMSG: TUCMailMessage): Boolean;
+{$IFNDEF FPC}
 var
   MailMsg: TAlSmtpClient;
 
-{$IF CompilerVersion >= 23}
+{$IFDEF DELPHIXE2_UP}
   // - Ajuste de Emers0n em 01/12/2016
   MailRecipients: TALStringList;
 
@@ -455,14 +469,14 @@ var
 {$ELSE}
   MailRecipients: TStringList;
   MailHeader: TALSMTPClientHeader;
-{$IFEND}
+{$ENDIF}
 begin
   Result := False;
   if Trim(Email) = '' then
     Exit;
   MailMsg := TAlSmtpClient.Create;
 
-{$IF CompilerVersion >= 23}
+  {$IFDEF DELPHIXE2_UP}
   // MailMsg.OnStatus := OnStatus;
 
 
@@ -506,6 +520,9 @@ begin
     FreeAndNil(MailRecipients);
     FreeAndNil(UCEMailForm);
   end;
+{$ELSE}
+begin
+{$ENDIF}
 end;
 
 procedure TMailUserControl.EnviaEsqueceuSenha(ID: Integer;

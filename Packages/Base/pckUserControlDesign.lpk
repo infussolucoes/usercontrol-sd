@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="4">
+    <PathDelim Value="\"/>
+    <Name Value="pckUserControlDesign"/>
+    <Type Value="RunAndDesignTime"/>
+    <AddToProjectUsesSection Value="True"/>
+    <Author Value="Giovani Da Cruz"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <PathDelim Value="\"/>
+      <SearchPaths>
+        <IncludeFiles Value="..\..\source\Base"/>
+        <OtherUnitFiles Value="..\..\source\Base"/>
+        <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+      <Parsing>
+        <SyntaxOptions>
+          <SyntaxMode Value="Delphi"/>
+        </SyntaxOptions>
+      </Parsing>
+      <Linking>
+        <Debugging>
+          <DebugInfoType Value="dsStabs"/>
+        </Debugging>
+      </Linking>
+      <Other>
+        <Verbosity>
+          <ShowAll Value="True"/>
+        </Verbosity>
+      </Other>
+    </CompilerOptions>
+    <Description Value="Pacote que instala os componentes User Control da comunidade Show Delphi"/>
+    <Version Major="2" Minor="4"/>
+    <Files Count="5">
+      <Item1>
+        <Filename Value="..\..\source\Base\UCEditorForm_U.pas"/>
+        <UnitName Value="UCEditorForm_U"/>
+      </Item1>
+      <Item2>
+        <Filename Value="..\..\source\Base\UCIdle.pas"/>
+        <UnitName Value="UCIdle"/>
+      </Item2>
+      <Item3>
+        <Filename Value="..\..\source\Base\UCReg.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="UCReg"/>
+      </Item3>
+      <Item4>
+        <Filename Value="..\..\source\Base\UserControl.inc"/>
+        <Type Value="Include"/>
+      </Item4>
+      <Item5>
+        <Filename Value="..\..\Source\Base\UCAbout.pas"/>
+        <UnitName Value="UCAbout"/>
+      </Item5>
+    </Files>
+    <RequiredPkgs Count="4">
+      <Item1>
+        <PackageName Value="IDEIntf"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="pckUserControlRuntime"/>
+        <MinVersion Major="2" Minor="32" Valid="True"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="pckUCDataConnector"/>
+        <MinVersion Major="2" Minor="32" Valid="True"/>
+      </Item3>
+      <Item4>
+        <PackageName Value="LCL"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item4>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>

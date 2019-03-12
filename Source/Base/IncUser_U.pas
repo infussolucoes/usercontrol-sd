@@ -87,13 +87,19 @@ uses
   Spin,
   StdCtrls,
   SysUtils,
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
   Windows,
+  {$ENDIF}
+  {$IFNDEF FPC}
   AxCtrls,
+  {$ENDIF}
   Menus,
 
-  {$IF CompilerVersion >= 23}
+  {$IFDEF DELPHIXE2_UP}
   System.UITypes,
-  {$IFEND}
+  {$ENDIF}
 
   UCBase;
 
@@ -164,7 +170,11 @@ type
 implementation
 
 uses
-  SenhaForm_U, IdCoderMIME, ZLib;
+  SenhaForm_U,
+  {$IFNDEF FPC}
+  IdCoderMIME,
+  {$ENDIF}
+  ZLib;
 
 {$R *.dfm}
 
@@ -412,6 +422,7 @@ begin
 end;
 
 procedure TfrmIncluirUsuario.miLoadClick(Sender: TObject);
+{$IFNDEF FPC}
 var
   ms: TMemoryStream;
   og: TOleGraphic;
@@ -457,6 +468,9 @@ begin
       ms.Free;
     end;
   end;
+{$ELSE}
+begin
+{$ENDIF}
 end;
 
 {$IFDEF DELPHI2006_UP}
@@ -519,7 +533,7 @@ begin
   end
   else
   begin
-    { Alteração necessaria para aluns conectors }
+    { Alteração necessaria para alguns conectors }
     vAux := ComboPerfil.KeyValue;
 
     FUserControl.DataConnector.CloseDataSet(ComboPerfil.ListSource.DataSet);

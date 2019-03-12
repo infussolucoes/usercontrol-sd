@@ -72,7 +72,19 @@ interface
 {$I 'UserControl.inc'}
 
 uses
-  Classes, Controls, DesignEditors, DesignIntf,  TypInfo, UCBase, ToolsApi, Windows, Graphics;
+  Classes, Controls,
+  {$IFNDEF FPC}
+  DesignEditors, DesignIntf, ToolsApi,
+  {$ELSE}
+  PropEdits, lazideintf, ComponentEditors, LResources,
+  {$ENDIF}
+
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
+  Windows,
+  {$ENDIF}
+  Graphics, TypInfo, UCBase;
 
 type
   TUCComponentsVarProperty = class(TStringProperty)
@@ -102,18 +114,36 @@ type
   end;
 
 procedure Register;
+
 procedure ShowControlsEditor(Componente: TUCControls);
+{$IFNDEF FPC}
 procedure ShowUserControlsEditor(Componente: TUserControl);
+{$ENDIF}
 
 {$IFDEF  DELPHI9_UP}
-	{$R UCReg.dcr}
+  {$R UCReg.dcr}
 {$ENDIF}
 
 implementation
 
 uses
-  Dialogs, Forms, SysUtils, UCAbout, UCIdle, UCObjSel_U, UCEditorForm_U, ActnList,
-  ActnMan, ActnMenus, Menus, StdCtrls, UCSettings, Variants, UcMail, UcConsts_Language, UCDataInfo;
+  Variants,
+  Dialogs,
+  Forms,
+  SysUtils,
+  Menus,
+  StdCtrls,
+
+  UCAbout,
+  UCIdle,
+  UCObjSel_U,
+  UCEditorForm_U,
+
+  {$IFNDEF FPC}
+  ActnList, ActnMan, ActnMenus,
+  {$ENDIF}
+
+  UCSettings, UcMail, UcConsts_Language, UCDataInfo;
 
 {$IFDEF  RTL170_UP}
 var
@@ -154,8 +184,13 @@ end;
 	
 procedure Register;
 begin
-  RegisterComponents('SWDelphi - UC Main', [TUserControl, TUCSettings,
-    TUCControls, TUCApplicationMessage, TUCIdle, TMailUserControl]);
+  RegisterComponents('SWDelphi - UC Main',
+  [TUserControl,
+   TUCSettings,
+   TUCControls,
+   TUCApplicationMessage,
+   TUCIdle,
+   TMailUserControl]);
 
   RegisterPropertyEditor(TypeInfo(TUCAboutVar), TUserControl, 'About',
     TUCAboutVarProperty);
@@ -185,7 +220,7 @@ end;
 
 procedure TUCAboutVarProperty.Edit;
 begin
-  with TAboutForm.Create(nil) do
+  with TUCAboutForm.Create(nil) do
   begin
     ShowModal;
     Free;
@@ -202,8 +237,10 @@ begin
   Result := 'Versao ' + UCVersion;
 end;
 
+{$IFNDEF FPC}
 procedure ShowUserControlsEditor(Componente: TUserControl);
 var
+
   Editor: IOTAEditor;
   Modulo: IOTAModule;
   FormEditor: IOTAFormEditor;
@@ -280,6 +317,7 @@ begin
             ControlRight.ActionList :=
               TActionList(FormularioDono.Components[I]);
 
+          {$IFNDEF FPC}
           if (FormularioDono.Components[I].Name = Controle_ActionMainMenuBar)
             and (Formulario.cbActionMainMenuBar.ItemIndex >= 0) then
             ControlRight.ActionMainMenuBar :=
@@ -289,6 +327,7 @@ begin
             (Formulario.cbActionManager.ItemIndex >= 0) then
             ControlRight.ActionManager :=
               TActionManager(FormularioDono.Components[I]);
+          {$ENDIF}
 
           if (FormularioDono.Components[I].Name = Controle_MainMenu) and
             (Formulario.cbMainMenu.ItemIndex >= 0) then
@@ -410,6 +449,33 @@ begin
       end;
     end;
 end;
+{$ELSE}
+procedure ShowControlsEditor(Componente: TUCControls);
+var
+  FUCControl: TUCControls;
+begin
+  FUCControl := Componente;
+  if not Assigned(FUCControl.UserControl) then
+  begin
+    MessageDlg('A propriedade UserControl tem que ser informada e o componente '
+      + #13 + #10 + 'tem que estar visível!', mtInformation, [mbOK], 0);
+    Exit;
+  end;
+
+  with TUCObjSel.Create(nil) do
+  begin
+    FForm := TCustomForm(FUCControl.Owner);
+    FUserControl := FUCControl.UserControl;
+    FInitialObjs := TStringList.Create;
+    FUCControl.ListComponents(FForm.Name, FInitialObjs);
+    lbGroup.Caption := FUCControl.GroupName;
+
+    ShowModal;
+    Free;
+  end;
+end;
+
+{$ENDIF}
 
 { TUCControlsEditor }
 
@@ -437,7 +503,9 @@ end;
 
 procedure TUserControlEditor.Edit;
 begin
+  {$IFNDEF FPC}
   ShowUserControlsEditor(TUserControl(Component));
+  {$ENDIF}
 end;
 
 procedure TUserControlEditor.ExecuteVerb(Index: Integer);
@@ -466,7 +534,7 @@ finalization
 
 {$IFDEF FPC}
 initialization
-   //{$I XXXXX.lrs}
+  {$I usercontrol.lrs}
 {$ENDIF}
 
 end.
