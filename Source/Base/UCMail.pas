@@ -486,7 +486,7 @@ begin
   MailMsg := TAlSmtpClient.Create;
   MailMsg.onStatus := onStatus;
   MailRecipients := TStringList.Create;
-{$IFEND}
+{$ENDIF}
   MailHeader.From := AnsiString(EmailRemetente);
   MailHeader.SendTo := AnsiString(Email);
   MailHeader.ContentType := 'text/html';
