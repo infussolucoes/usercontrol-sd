@@ -1,0 +1,37 @@
+object dmUC: TdmUC
+  OnCreate = DataModuleCreate
+  OldCreateOrder = False
+  Height = 468
+  HorizontalOffset = 494
+  VerticalOffset = 97
+  Width = 447
+  PPI = 96
+  object ZConnection1: TZConnection
+    ControlsCodePage = cGET_ACP
+    AutoEncodeStrings = False
+    ClientCodepage = 'ISO8859_1'
+    Properties.Strings = (
+      'codepage=ISO8859_1'
+      'controls_cp=GET_ACP'
+      'AutoEncodeStrings=True'
+    )
+    AutoCommit = False
+    TransactIsolationLevel = tiReadCommitted
+    SQLHourGlass = True
+    Port = 3050
+    User = 'SYSDBA'
+    Password = 'masterkey'
+    Protocol = 'firebirdd-3.0'
+    left = 88
+    top = 248
+  end
+  object QryBanco: TZQuery
+    Connection = ZConnection1
+    SQL.Strings = (
+      'select * from bancos'
+    )
+    Params = <>
+    left = 232
+    top = 248
+  end
+end

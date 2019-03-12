@@ -1,0 +1,150 @@
+object FrmPrincipal: TFrmPrincipal
+  Left = 408
+  Height = 306
+  Top = 246
+  Width = 619
+  Caption = 'Tutorial UserControl - Zeos Connector - www.showdelphi.com.br'
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Menu = MainMenu1
+  Position = poScreenCenter
+  LCLVersion = '2.0.0.4'
+  object MainMenu1: TMainMenu
+    left = 128
+    top = 48
+    object Cadastro1: TMenuItem
+      Caption = 'Cadastro'
+      object Bancos1: TMenuItem
+        Caption = 'Bancos'
+        OnClick = Bancos1Click
+      end
+      object Clientes1: TMenuItem
+        Caption = 'Clientes'
+        OnClick = Clientes1Click
+      end
+      object Cidades1: TMenuItem
+        Caption = 'Cidades'
+        OnClick = Cidades1Click
+      end
+      object Produtos1: TMenuItem
+        Caption = 'Produtos'
+        OnClick = Produtos1Click
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object Sair1: TMenuItem
+        Caption = 'Sair'
+        OnClick = Sair1Click
+      end
+    end
+    object Seguranca1: TMenuItem
+      Caption = 'Segurança'
+      object CadastrodeUsurios1: TMenuItem
+        Caption = 'Cadastro de Usuários'
+      end
+      object rocarSenha1: TMenuItem
+        Caption = 'Trocar Senha'
+      end
+      object N3: TMenuItem
+        Caption = '-'
+      end
+      object Executarlogon1: TMenuItem
+        Caption = 'Conectar com outro usuário...'
+      end
+      object N2: TMenuItem
+        Caption = '-'
+      end
+      object Mensagens1: TMenuItem
+        Caption = 'Mensagens'
+        OnClick = Mensagens1Click
+      end
+    end
+    object estes1: TMenuItem
+      Caption = 'Testes'
+      object GerarLog1: TMenuItem
+        Caption = 'Gerar Log'
+        OnClick = GerarLog1Click
+      end
+    end
+  end
+  object ucMyControl: TUserControl
+    AutoStart = True
+    ApplicationID = 'NewProject'
+    ControlRight.MainMenu = MainMenu1
+    User.MenuItem = CadastrodeUsurios1
+    UserPasswordChange.MenuItem = rocarSenha1
+    UsersLogoff.MenuItem = Executarlogon1
+    LogControl.TableLog = 'UCLog'
+    Language = ucPortuguesBr
+    EncryptKey = 0
+    Login.InitialLogin.User = 'Admin'
+    Login.InitialLogin.Email = 'teste@teste.com.br'
+    Login.InitialLogin.Password = '#delphi'
+    Login.MaxLoginAttempts = 0
+    ExtraRights = <    
+      item
+        FormName = 'FrmCliente'
+        CompName = 'BtnIncluir'
+        Caption = 'Incluir'
+        GroupName = 'Tela de Clientes'
+      end    
+      item
+        FormName = 'FrmCliente'
+        CompName = 'BtnAlterar'
+        Caption = 'Alterar'
+        GroupName = 'Tela de Clientes'
+      end    
+      item
+        FormName = 'FrmCliente'
+        CompName = 'BtnExcluir'
+        Caption = 'Excluir'
+        GroupName = 'Tela de Clientes'
+      end>
+    TableUsers.FieldUserID = 'UCIdUser'
+    TableUsers.FieldUserName = 'UCUserName'
+    TableUsers.FieldLogin = 'UCLogin'
+    TableUsers.FieldPassword = 'UCPassword'
+    TableUsers.FieldEmail = 'UCEmail'
+    TableUsers.FieldPrivileged = 'UCPrivileged'
+    TableUsers.FieldTypeRec = 'UCTypeRec'
+    TableUsers.FieldProfile = 'UCProfile'
+    TableUsers.FieldKey = 'UCKey'
+    TableUsers.FieldDateExpired = 'UCPASSEXPIRED'
+    TableUsers.FieldUserExpired = 'UCUserExpired'
+    TableUsers.FieldUserDaysSun = 'UCUserDaysSun'
+    TableUsers.FieldUserInative = 'UCInative'
+    TableUsers.TableName = 'UCTabUsers'
+    TableUsers.FieldImage = 'UCImage'
+    TableRights.FieldUserID = 'UCIdUser'
+    TableRights.FieldModule = 'UCModule'
+    TableRights.FieldComponentName = 'UCCompName'
+    TableRights.FieldFormName = 'UCFormName'
+    TableRights.FieldKey = 'UCKey'
+    TableRights.TableName = 'UCTabRights'
+    TableUsersLogged.FieldLogonID = 'UCIdLogon'
+    TableUsersLogged.FieldUserID = 'UCIdUser'
+    TableUsersLogged.FieldApplicationID = 'UCApplicationId'
+    TableUsersLogged.FieldMachineName = 'UCMachineName'
+    TableUsersLogged.FieldData = 'UCData'
+    TableUsersLogged.TableName = 'UCTabUsersLogged'
+    DataConnector = UCZEOSConn1
+    left = 240
+    top = 48
+  end
+  object UCApplicationMessage1: TUCApplicationMessage
+    Active = True
+    Interval = 60000
+    TableMessages = 'UCTABMESSAGES'
+    UserControl = ucMyControl
+    left = 248
+    top = 152
+  end
+  object UCZEOSConn1: TUCZEOSConn
+    Connection = dmUC.ZConnection1
+    left = 120
+    top = 152
+  end
+end
