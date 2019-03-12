@@ -1,45 +1,45 @@
 object UCObjSel: TUCObjSel
   Left = 258
-  Height = 609
   Top = 55
   Width = 938
+  Height = 609
   Caption = 'User Control Package '
-  ClientHeight = 0
-  ClientWidth = 0
   Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = True
+  Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
   OnShow = FormShow
-  Position = poScreenCenter
-  LCLVersion = '2.0.0.4'
+  PixelsPerInch = 96
+  TextHeight = 13
   object Splitter1: TSplitter
     Left = 377
-    Height = 560
     Top = 49
     Width = 5
+    Height = 526
   end
   object Panel1: TPanel
     Left = 0
-    Height = 49
     Top = 0
-    Width = 938
+    Width = 930
+    Height = 49
     Align = alTop
     BevelOuter = bvLowered
-    ClientHeight = 49
-    ClientWidth = 938
     Color = clWhite
-    ParentColor = False
     TabOrder = 0
     object lbForm: TLabel
       Left = 364
-      Height = 18
       Top = 5
       Width = 78
+      Height = 18
       Caption = 'Form999'
-      Font.CharSet = ANSI_CHARSET
+      Color = clWhite
+      Font.Charset = ANSI_CHARSET
       Font.Color = clBlue
       Font.Height = -16
       Font.Name = 'Verdana'
@@ -49,9 +49,9 @@ object UCObjSel: TUCObjSel
     end
     object Image1: TImage
       Left = 8
-      Height = 28
       Top = 10
       Width = 28
+      Height = 28
       AutoSize = True
       Picture.Data = {
         07544269746D617066090000424D660900000000000036000000280000001C00
@@ -129,42 +129,46 @@ object UCObjSel: TUCObjSel
         CAB5A6694731FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-      }
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     end
     object lbTitle: TLabel
       Left = 56
-      Height = 18
       Top = 5
       Width = 298
-      Caption = 'Seleção de Componentes do Form. :'
-      Font.CharSet = ANSI_CHARSET
+      Height = 18
+      Caption = 'Sele'#231#227'o de Componentes do Form. :'
+      Color = clWhite
+      Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -16
       Font.Name = 'Verdana'
+      Font.Style = []
       ParentColor = False
       ParentFont = False
     end
     object lbGrupo: TLabel
       Left = 56
-      Height = 18
       Top = 29
       Width = 61
+      Height = 18
       Caption = 'Grupo :'
-      Font.CharSet = ANSI_CHARSET
+      Color = clWhite
+      Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -16
       Font.Name = 'Verdana'
+      Font.Style = []
       ParentColor = False
       ParentFont = False
     end
     object lbGroup: TLabel
       Left = 128
-      Height = 18
       Top = 29
       Width = 54
+      Height = 18
       Caption = 'Grupo'
-      Font.CharSet = ANSI_CHARSET
+      Color = clWhite
+      Font.Charset = ANSI_CHARSET
       Font.Color = clBlue
       Font.Height = -16
       Font.Name = 'Verdana'
@@ -175,23 +179,25 @@ object UCObjSel: TUCObjSel
   end
   object Panel2: TPanel
     Left = 0
-    Height = 560
     Top = 49
     Width = 377
+    Height = 526
     Align = alLeft
     BevelOuter = bvLowered
-    ClientHeight = 560
-    ClientWidth = 377
     Color = clWhite
-    ParentColor = False
     TabOrder = 1
+    DesignSize = (
+      377
+      526)
     object lbCompDisp: TLabel
       Left = 12
-      Height = 13
       Top = 10
-      Width = 130
-      Anchors = [akTop, akLeft, akRight]
-      Caption = 'Componentes Disponíveis :'
+      Width = 136
+      Height = 13
+      Anchors = [akLeft, akTop, akRight]
+      Caption = 'Componentes Dispon'#195#173'veis :'
+      Color = clWhite
+      Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'MS Sans Serif'
@@ -201,29 +207,26 @@ object UCObjSel: TUCObjSel
     end
     object ListaCompsDisponiveis: TListView
       Left = 14
-      Height = 468
       Top = 33
       Width = 357
-      Anchors = [akTop, akLeft, akRight, akBottom]
+      Height = 468
+      Anchors = [akLeft, akTop, akRight, akBottom]
       Color = 15531005
-      Columns = <      
+      Columns = <
         item
           AutoSize = True
           Caption = 'Class'
           MinWidth = 80
-          Width = 42
-        end      
+        end
         item
           AutoSize = True
           Caption = 'Name'
           MinWidth = 80
-          Width = 47
-        end      
+        end
         item
           AutoSize = True
           Caption = 'Caption'
           MinWidth = 100
-          Width = 57
         end>
       ColumnClick = False
       GridLines = True
@@ -237,11 +240,13 @@ object UCObjSel: TUCObjSel
     end
     object btCancel: TBitBtn
       Left = 128
-      Height = 40
       Top = 512
       Width = 117
+      Height = 40
       Anchors = [akLeft, akBottom]
       Caption = '&Cancelar'
+      TabOrder = 1
+      OnClick = btCancelClick
       Glyph.Data = {
         66030000424D6603000000000000660200002800000010000000100000000100
         08000000000000010000120B0000120B00008C0000008C00000000000000FFFF
@@ -270,18 +275,17 @@ object UCObjSel: TUCObjSel
         01363701606D4B8750454D190911161D28203164638855134845024D0B8B100F
         14212E44757D69577902024D0D08011218241F3253016140790202024D0A0C01
         0E1C2A390156787902020202024D4D1A1B2735334C797902020202020202024D
-        4D4D4D4D4D0202020202
-      }
-      OnClick = btCancelClick
-      TabOrder = 1
+        4D4D4D4D4D0202020202}
     end
     object BtOK: TBitBtn
       Left = 14
-      Height = 40
       Top = 512
       Width = 117
+      Height = 40
       Anchors = [akLeft, akBottom]
       Caption = '&OK'
+      TabOrder = 2
+      OnClick = BtOKClick
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
         2000000000000004000000000000000000000000000000000000FF00FF00FF00
@@ -316,18 +320,19 @@ object UCObjSel: TUCObjSel
         6F00F0C1BC00C8635C00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFF
         FF00FCF8F700F8F1EE00F4EAE600C8635C00C88A86006D422F00FF00FF00CE72
         6F00CE726F00CE726F00CE726F00CE726F00CE726F00CE726F00CE726F00CE72
-        6F00CE726F00CE726F00CE726F00CE726F00CE726F00CE726F00
-      }
-      OnClick = BtOKClick
-      TabOrder = 2
+        6F00CE726F00CE726F00CE726F00CE726F00CE726F00CE726F00}
     end
     object cbFilter: TComboBox
       Left = 150
-      Height = 21
       Top = 6
       Width = 221
-      Anchors = [akTop, akLeft, akRight]
+      Height = 21
+      Style = csDropDownList
+      Anchors = [akLeft, akTop, akRight]
       ItemHeight = 13
+      TabOrder = 3
+      OnClick = cbFilterClick
+      OnKeyUp = cbFilterKeyUp
       Items.Strings = (
         'All'
         'Buttons'
@@ -335,32 +340,29 @@ object UCObjSel: TUCObjSel
         'Edits'
         'Labels'
         'MenuItems'
-        'Actions'
-      )
-      OnClick = cbFilterClick
-      OnKeyUp = cbFilterKeyUp
-      Style = csDropDownList
-      TabOrder = 3
+        'Actions')
     end
   end
   object Panel3: TPanel
     Left = 382
-    Height = 560
     Top = 49
-    Width = 556
+    Width = 548
+    Height = 526
     Align = alClient
     BevelOuter = bvLowered
-    ClientHeight = 560
-    ClientWidth = 556
     Color = clWhite
-    ParentColor = False
     TabOrder = 2
+    DesignSize = (
+      548
+      526)
     object lbCompSel: TLabel
       Left = 42
-      Height = 13
       Top = 6
       Width = 138
+      Height = 13
       Caption = 'Componentes Selecionados :'
+      Color = clWhite
+      Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
       Font.Name = 'MS Sans Serif'
@@ -370,10 +372,10 @@ object UCObjSel: TUCObjSel
     end
     object btsellall: TSpeedButton
       Left = 3
-      Height = 33
-      Hint = 'Selecionar Todos'
       Top = 96
       Width = 33
+      Height = 33
+      Hint = 'Selecionar Todos'
       Flat = True
       Glyph.Data = {
         36090000424D3609000000000000360000002800000018000000180000000100
@@ -449,17 +451,16 @@ object UCObjSel: TUCObjSel
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
-        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
-      }
-      OnClick = btsellallClick
-      ShowHint = True
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00}
       ParentShowHint = False
+      ShowHint = True
+      OnClick = btsellallClick
     end
     object btsel: TSpeedButton
       Left = 3
-      Height = 33
       Top = 135
       Width = 33
+      Height = 33
       Flat = True
       Glyph.Data = {
         36090000424D3609000000000000360000002800000018000000180000000100
@@ -535,17 +536,16 @@ object UCObjSel: TUCObjSel
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
-        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
-      }
-      OnClick = btselClick
-      ShowHint = True
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00}
       ParentShowHint = False
+      ShowHint = True
+      OnClick = btselClick
     end
     object btunsel: TSpeedButton
       Left = 3
-      Height = 33
       Top = 174
       Width = 33
+      Height = 33
       Flat = True
       Glyph.Data = {
         36090000424D3609000000000000360000002800000018000000180000000100
@@ -621,18 +621,17 @@ object UCObjSel: TUCObjSel
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
-        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
-      }
-      OnClick = btunselClick
-      ShowHint = True
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00}
       ParentShowHint = False
+      ShowHint = True
+      OnClick = btunselClick
     end
     object btunselall: TSpeedButton
       Left = 3
-      Height = 33
-      Hint = 'Desmarcar Todos'
       Top = 213
       Width = 33
+      Height = 33
+      Hint = 'Desmarcar Todos'
       Flat = True
       Glyph.Data = {
         36090000424D3609000000000000360000002800000018000000180000000100
@@ -708,30 +707,29 @@ object UCObjSel: TUCObjSel
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
-        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
-      }
-      OnClick = btunselallClick
-      ShowHint = True
+        FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00}
       ParentShowHint = False
+      ShowHint = True
+      OnClick = btunselallClick
     end
     object ListaCompsSelecionados: TListView
       Left = 42
-      Height = 468
       Top = 33
       Width = 502
-      Anchors = [akTop, akLeft, akRight, akBottom]
+      Height = 468
+      Anchors = [akLeft, akTop, akRight, akBottom]
       Color = 15531005
-      Columns = <      
+      Columns = <
         item
-          Caption = 'Descrição'
+          Caption = 'Descri'#195#167#195#163'o'
           MinWidth = 150
           Width = 200
-        end      
+        end
         item
           Caption = 'Name'
           MinWidth = 100
           Width = 200
-        end      
+        end
         item
           Caption = 'Class'
           MinWidth = 100
