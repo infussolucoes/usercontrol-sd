@@ -64,13 +64,22 @@ Vicente Barros Leonel [ Fknyght ]
   |*
   |* 01/07/2015: Giovani Da Cruz
   |*  - Criação e distribuição da Primeira Versao ShowDelphi
+  |* 12/03/2019: Giovani Da Cruz
+  |*  - Criação e distribuição da Primeira Versao ShowDelphi para Lazarus
   ******************************************************************************* }
 
 unit UCZEOSConnReg;
 
 interface
 
-uses Classes;
+{$I 'UserControl.inc'}
+
+uses
+  Classes
+  {$IFDEF FPC}
+  , LResources
+  {$ENDIF}
+  ;
 
 procedure Register;
 
@@ -82,5 +91,10 @@ procedure Register;
 begin
   RegisterComponents('SWDelphi - UC Connectors', [TUCZEOSConn]);
 end;
+
+{$IFDEF FPC}
+initialization
+  {$I uczeosconn.lrs}
+{$ENDIF}
 
 end.
