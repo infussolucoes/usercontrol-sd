@@ -5,7 +5,7 @@ A comunidade tem o objetivo de manter esta biblioteca de componentes
 compatíveis com as novas versões do Delphi e Lazarus, realizando melhorias, sempre 
 que possível.
 
-Fórum oficial: http://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
+Fórum oficial: https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
 
 O componente tem suporte do Delphi 7 até o Delphi 10.3 Rio.
 
