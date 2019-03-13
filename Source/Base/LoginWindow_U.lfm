@@ -100,7 +100,7 @@ object frmLoginWindow: TfrmLoginWindow
         Top = 10
         Width = 42
         Alignment = taRightJustify
-        Caption = 'Usu√°rio :'
+        Caption = 'Usu·rio :'
         ParentColor = False
       end
       object LbSenha: TLabel
@@ -190,6 +190,7 @@ object frmLoginWindow: TfrmLoginWindow
           D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0
           D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400
         }
+        ModalResult = 1
         OnClick = btOKClick
         TabOrder = 2
       end
@@ -236,6 +237,7 @@ object frmLoginWindow: TfrmLoginWindow
           D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0
           D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400C8D0D400
         }
+        ModalResult = 2
         OnClick = BtCancelaClick
         TabOrder = 3
       end

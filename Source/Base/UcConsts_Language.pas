@@ -87,7 +87,11 @@ ResourceString
 const
   MaxArray = 233;
 
+  {$IFDEF FPC}
+  UC_PTBR: Array [0 .. MaxArray, 0 .. 1] of utf8string = (
+  {$ELSE}
   UC_PTBR: Array [0 .. MaxArray, 0 .. 1] of string = (
+  {$ENDIF}  
     ('Const_Contr_TitleLabel', 'Seleção de Componentes do Form. :'),
     ('Const_Contr_GroupLabel', 'Grupo :'),
     ('Const_Contr_CompDispLabel', 'Componentes Disponíveis :'),
@@ -1062,8 +1066,13 @@ Begin
   Begin
     Case Lingua of
       ucPortuguesBr:
+        {$IFDEF FPC}
+        If UpperCase(UC_PTBR[I, 0]) = UpperCase(Prop) then
+          Result := UTF8Encode(UC_PTBR[I, 1]);
+        {$ELSE}
         If UpperCase(UC_PTBR[I, 0]) = UpperCase(Prop) then
           Result := UC_PTBR[I, 1];
+        {$ENDIF}
       ucEnglish:
         If UpperCase(UC_ENGLISH[I, 0]) = UpperCase(Prop) then
           Result := UC_ENGLISH[I, 1];
