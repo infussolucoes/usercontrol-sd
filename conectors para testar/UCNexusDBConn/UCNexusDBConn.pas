@@ -4,7 +4,7 @@ unit UCNexusDBConn;
 
 interface
 
-{.$I 'UserControl.inc'}
+{$I 'UserControl.inc'}
 
 uses
   SysUtils, Classes, DB, UCDataConnector, nxdb, nxsdFmtBCD;
