@@ -70,7 +70,7 @@ unit UCEditorForm_U;
 
 interface
 
-{ .$I 'UserControl.inc' }
+{$I 'UserControl.inc'}
 
 uses
   {$IFNDEF FPC}

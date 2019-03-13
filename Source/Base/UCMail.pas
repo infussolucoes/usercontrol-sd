@@ -76,7 +76,7 @@ unit UCMail;
 
 interface
 
-{ .$I 'UserControl.inc' }
+{$I 'UserControl.inc'}
 
 uses
   Classes,

@@ -78,7 +78,7 @@ unit UCDataConnector;
 
 interface
 
-{ .$I 'UserControl.inc' }
+{$I 'UserControl.inc'}
 
 uses
   Classes,
