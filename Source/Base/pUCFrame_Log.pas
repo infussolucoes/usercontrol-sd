@@ -148,7 +148,11 @@ implementation
 uses
   UCDataInfo;
 
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
 {$R *.dfm}
+{$ENDIF}
 
 destructor TUCFrame_Log.Destroy;
 begin

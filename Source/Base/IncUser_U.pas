@@ -176,7 +176,11 @@ uses
   {$ENDIF}
   ZLib;
 
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
 {$R *.dfm}
+{$ENDIF}
 
 procedure TfrmIncluirUsuario.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

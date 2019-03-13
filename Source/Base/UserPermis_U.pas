@@ -224,7 +224,11 @@ uses
   ActnList,
   pUCFrame_Profile;
 
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
 {$R *.dfm}
+{$ENDIF}
 
 procedure TUserPermis.BtGravaClick(Sender: TObject);
 var

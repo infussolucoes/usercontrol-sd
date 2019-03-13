@@ -139,7 +139,11 @@ type
 
 implementation
 
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
 {$R *.dfm}
+{$ENDIF}
 
 procedure TFrame_Profile.SetWindowPerfil(Adicionar: Boolean);
 begin

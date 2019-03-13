@@ -260,7 +260,11 @@ uses
 
   SysUtils;
 
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
 {$R *.dfm}
+{$ENDIF}
 
 procedure TUCEditorForm.edtTableRightsChange(Sender: TObject);
 begin

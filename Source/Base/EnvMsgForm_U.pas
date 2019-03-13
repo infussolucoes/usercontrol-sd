@@ -131,7 +131,11 @@ uses
   MsgsForm_U,
   UCMessages;
 
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
 {$R *.dfm}
+{$ENDIF}
 
 procedure TEnvMsgForm.btCancelaClick(Sender: TObject);
 begin

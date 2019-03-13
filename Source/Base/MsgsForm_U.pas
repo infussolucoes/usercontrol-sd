@@ -157,7 +157,11 @@ uses
   MsgRecForm_U,
   UCBase;
 
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
 {$R *.dfm}
+{$ENDIF}
 
 procedure TMsgsForm.btCloseClick(Sender: TObject);
 begin

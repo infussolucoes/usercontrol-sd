@@ -123,7 +123,11 @@ implementation
 uses
   UCMessages;
 
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
 {$R *.dfm}
+{$ENDIF}
 
 procedure TMsgRecForm.btFecharClick(Sender: TObject);
 begin

@@ -134,7 +134,11 @@ uses
 
   UCBase;
 
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
 {$R *.dfm}
+{$ENDIF}
 
 procedure TUCAboutForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

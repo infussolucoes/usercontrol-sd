@@ -135,7 +135,11 @@ uses
   pUcFrame_UserLogged,
   UCMessages;
 
-{$R *.dfm} { ------ FORM ------------------------------------------ }
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
+{$R *.dfm}
+{$ENDIF}
 
 procedure TFormUserPerf.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

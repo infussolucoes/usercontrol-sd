@@ -157,7 +157,11 @@ implementation
 uses
   UCMessages, UCDataInfo;
 
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
 {$R *.dfm}
+{$ENDIF}
 
 procedure TUCFrame_User.btAdicClick(Sender: TObject);
 begin

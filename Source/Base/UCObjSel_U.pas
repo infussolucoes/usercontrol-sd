@@ -87,9 +87,15 @@ uses
   Messages,
   StdCtrls,
   SysUtils,
+  
+  {$IFDEF FPC}
+  {$IFDEF WINDOWS}Windows,{$ELSE}LCLType,{$ENDIF}
+  {$ELSE}
+  Windows,
+  {$ENDIF}
+  
   UCBase,
-  UcConsts_Language,
-  Windows;
+  UcConsts_Language;
 
 type
   TQControl = class(TControl)
@@ -118,7 +124,7 @@ type
     btunsel: TSpeedButton;
     btunselall: TSpeedButton;
     Splitter1: TSplitter;
-    procedure FormClose(Sender: TObject{$IFNDEF FPC}  ; var Action: TCloseAction{$ENDIF});
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure btsellallClick(Sender: TObject);
     procedure btunselallClick(Sender: TObject);
@@ -143,11 +149,15 @@ type
 
 implementation
 
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
 {$R *.dfm}
+{$ENDIF}
 
-procedure TUCObjSel.FormClose(Sender: TObject{$IFNDEF FPC}  ; var Action: TCloseAction{$ENDIF});
+procedure TUCObjSel.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  {$IFNDEF FPC}  Action := caFree; {$ENDIF}
+  Action := caFree;
   Self.Release; { By Cleilson Sousa }
 end;
 

@@ -114,7 +114,11 @@ implementation
 uses
   UCMessages;
 
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
 {$R *.dfm}
+{$ENDIF}
 
 procedure TUCFrame_UsersLogged.SetWindow;
 const

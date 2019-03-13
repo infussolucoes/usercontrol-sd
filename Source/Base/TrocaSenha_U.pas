@@ -124,7 +124,11 @@ type
 
 implementation
 
+{$IFDEF FPC}
+{$R *.lfm}
+{$ELSE}
 {$R *.dfm}
+{$ENDIF}
 
 procedure TTrocaSenha.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
