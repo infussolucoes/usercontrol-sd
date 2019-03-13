@@ -1,11 +1,11 @@
 object UserPermis: TUserPermis
-  Left = 255
+  Left = 342
   Height = 560
-  Top = 154
-  Width = 597
+  Top = 87
+  Width = 640
   Caption = 'Segurança'
   ClientHeight = 560
-  ClientWidth = 597
+  ClientWidth = 640
   Color = clBtnFace
   Font.Color = clWindowText
   Font.Height = -11
@@ -20,11 +20,11 @@ object UserPermis: TUserPermis
     Left = 0
     Height = 35
     Top = 0
-    Width = 597
+    Width = 640
     Align = alTop
     BevelOuter = bvNone
     ClientHeight = 35
-    ClientWidth = 597
+    ClientWidth = 640
     Color = clWhite
     ParentColor = False
     TabOrder = 0
@@ -168,20 +168,20 @@ object UserPermis: TUserPermis
     end
   end
   object Panel3: TPanel
-    Left = 496
+    Left = 531
     Height = 525
     Top = 35
-    Width = 101
+    Width = 109
     Align = alRight
     BevelOuter = bvNone
     ClientHeight = 525
-    ClientWidth = 101
+    ClientWidth = 109
     TabOrder = 1
     object BtLibera: TBitBtn
       Left = 8
       Height = 25
       Top = 24
-      Width = 82
+      Width = 90
       Caption = '&Liberar'
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
@@ -243,7 +243,7 @@ object UserPermis: TUserPermis
       Left = 8
       Height = 25
       Top = 55
-      Width = 82
+      Width = 90
       Caption = '&Bloquear'
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
@@ -305,7 +305,7 @@ object UserPermis: TUserPermis
       Left = 8
       Height = 25
       Top = 86
-      Width = 82
+      Width = 90
       Caption = '&Gravar'
       Glyph.Data = {
         36060000424D3606000000000000360000002800000020000000100000000100
@@ -367,7 +367,7 @@ object UserPermis: TUserPermis
       Left = 8
       Height = 25
       Top = 117
-      Width = 82
+      Width = 90
       Caption = '&Cancelar'
       Glyph.Data = {
         66030000424D6603000000000000660200002800000010000000100000000100
@@ -406,10 +406,10 @@ object UserPermis: TUserPermis
       Left = 8
       Height = 100
       Top = 148
-      Width = 82
+      Width = 90
       Caption = 'Exemplo'
       ClientHeight = 82
-      ClientWidth = 78
+      ClientWidth = 86
       Enabled = False
       TabOrder = 4
       object CBBloqueado: TCheckBox
@@ -436,7 +436,7 @@ object UserPermis: TUserPermis
     Left = 0
     Height = 525
     Top = 35
-    Width = 496
+    Width = 531
     ActivePage = PageMenu
     Align = alClient
     Font.Color = clBlack
@@ -451,12 +451,12 @@ object UserPermis: TUserPermis
     object PageMenu: TTabSheet
       Caption = 'Menu Controle de Usuarios'
       ClientHeight = 499
-      ClientWidth = 488
+      ClientWidth = 523
       object TreeMenu: TTreeView
         Left = 0
         Height = 499
         Top = 0
-        Width = 488
+        Width = 523
         Align = alClient
         Images = ImageList1
         Indent = 19
@@ -472,14 +472,14 @@ object UserPermis: TUserPermis
     end
     object PageAction: TTabSheet
       Caption = 'Menu Controle de Usuarios'
-      ClientHeight = 0
-      ClientWidth = 0
+      ClientHeight = 499
+      ClientWidth = 495
       ImageIndex = 1
       object TreeAction: TTreeView
         Left = 0
-        Height = 463
+        Height = 499
         Top = 0
-        Width = 480
+        Width = 495
         Align = alClient
         Images = ImageList1
         Indent = 19

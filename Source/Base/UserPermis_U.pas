@@ -57,14 +57,16 @@ Vicente Barros Leonel [ Fknyght ]
 {                                                                              }
 { Giovani Da Cruz  -  giovani@infus.inf.br  -  www.infus.inf.br                }
 {                                                                              }
-{ ****************************************************************************** }
+{ **************************************************************************** }
 
 { ******************************************************************************
   |* Historico
   |*
   |* 01/07/2015: Giovani Da Cruz
   |*  - Criação e distribuição da Primeira Versao ShowDelphi
-  ******************************************************************************* }
+  |* 13/03/2019: Giovani Da Cruz
+  |*  - Criação e distribuição da Primeira Versao ShowDelphi para Lazarus
+  **************************************************************************** }
 
 unit UserPermis_U;
 
