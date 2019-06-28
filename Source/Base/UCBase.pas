@@ -1723,7 +1723,7 @@ end;
 procedure TUserControl.CriaTabelaMsgs(const TableName: String);
 begin
   if Assigned(DataConnector) then
-    DataConnector.UCExecSQL('CREATE TABLE ' + TableName + ' ( ' + 'IdMsg   ' +
+    DataConnector.UCExecSQL('CREATE TABLE IF NOT EXISTS ' + TableName + ' ( ' + 'IdMsg   ' +
       UserSettings.Type_Int + ' , ' + 'UsrFrom ' + UserSettings.Type_Int + ' , '
       + 'UsrTo   ' + UserSettings.Type_Int + ' , ' + 'Subject ' +
       UserSettings.Type_VarChar + '(50),' + 'Msg     ' +
@@ -2567,7 +2567,7 @@ begin
   with TableRights do
     if not ExtraRights then
     begin
-      SQLstmt := Format('CREATE TABLE %s( %s %s, %s %s(50), %s %s(50), %s %s )',
+      SQLstmt := Format('CREATE TABLE IF NOT EXISTS %s( %s %s, %s %s(50), %s %s(50), %s %s )',
         [TableName, FieldUserID, UserSettings.Type_Int, FieldModule,
         UserSettings.Type_VarChar, FieldComponentName,
         UserSettings.Type_VarChar, FieldKey, TipoCampo]);
@@ -2577,7 +2577,7 @@ begin
     else
     begin
       SQLstmt :=
-        Format('CREATE TABLE %sEX( %s %s, %s %s(50), %s %s(50), %s %s(50), %s %s )',
+        Format('CREATE TABLE IF NOT EXISTS %sEX( %s %s, %s %s(50), %s %s(50), %s %s(50), %s %s )',
         [TableName, FieldUserID, UserSettings.Type_Int, FieldModule,
         UserSettings.Type_VarChar, FieldComponentName,
         UserSettings.Type_VarChar, FieldFormName, UserSettings.Type_VarChar,
@@ -2663,7 +2663,7 @@ procedure TUserControl.CriaTabelaLog;
 begin
   if Assigned(DataConnector) then
     DataConnector.UCExecSQL
-      (Format('CREATE TABLE %S  (APPLICATIONID %s(250), IDUSER %s , MSG %s(250), DATA %s(14), NIVEL %s)',
+      (Format('CREATE TABLE IF NOT EXISTS %S  (APPLICATIONID %s(250), IDUSER %s , MSG %s(250), DATA %s(14), NIVEL %s)',
       [LogControl.TableLog, UserSettings.Type_VarChar, UserSettings.Type_Int,
       UserSettings.Type_VarChar, UserSettings.Type_VarChar,
       UserSettings.Type_Int]));
@@ -2703,7 +2703,7 @@ begin
     if not DataConnector.UCFindTable(FTableUsers.TableName) then
     begin
       SQLstmt := Format(
-        'Create Table %s (' + // TableName
+        'Create Table IF NOT EXISTS %s (' + // TableName
         '  %s %s, ' + // FieldUserID
         '  %s %s(30), ' + // FieldUserName
         '  %s %s(30), ' + // FieldLogin
@@ -2736,7 +2736,6 @@ begin
           TableUsers.FieldImage, TableUsers.GetFieldType(TableUsers.FieldImage, Self.Criptografia)
         ]
       );
-
       DataConnector.UCExecSQL(SQLstmt);
     end
     else
@@ -4166,7 +4165,7 @@ begin
 
   with FUserControl.TableUsersLogged do
     SQLstmt :=
-      Format('CREATE TABLE %s (%s %s(38), %s %s, %s %s(50), %s %s(50), %s %s(14))',
+      Format('CREATE TABLE IF NOT EXISTS %s (%s %s(38), %s %s, %s %s(50), %s %s(50), %s %s(14))',
       [TableName, FieldLogonID, FUserControl.UserSettings.Type_Char,
 
       FieldUserID, FUserControl.UserSettings.Type_Int,

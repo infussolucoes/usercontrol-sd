@@ -330,7 +330,7 @@ begin
   if FieldName = FieldUserInative then
     Result := UserSettings.Type_Int;
   if FieldName = FieldImage then
-    Result := UserSettings.Type_Memo;
+    Result := UserSettings.Type_Blob; //Type_Memo;
 end;
 
 { TUCTableUsersLogged }
