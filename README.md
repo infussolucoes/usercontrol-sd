@@ -12,6 +12,7 @@ Fórum oficial: https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relaci
 Doe você também!
 
 PELO PAGSEGURO: https://pag.ae/7VccpnuCN
+
 APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL
 
 
