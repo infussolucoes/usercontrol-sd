@@ -7,6 +7,13 @@ que possível.
 
 Fórum oficial: https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
 
+# Apoie este trabalho!
+
+Doe você também.
+PELO PAGSEGURO: https://pag.ae/7VccpnuCN
+APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL
+
+
 O componente tem suporte do Delphi 7 até o Delphi 10.3 Rio.
 
 A partir de 12/03/2019 foi incluso a primeira versão com suporte a Lazarus.
