@@ -59,6 +59,12 @@ Vicente Barros Leonel [ Fknyght ]
 {                                                                              }
 { **************************************************************************** }
 
+{ AJUDE O PROJETO COM UMA XÍCARA DE CAFÉ OU DUAS. CONSIDERE UMA DOAÇÃO!        }
+{                                                                              }
+{ VIA PAGSEGURO: https://pag.ae/7VccpnuCN                                      }
+{ APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL                        }
+{
+
 { ******************************************************************************
   |* Historico
   |*
@@ -67,6 +73,9 @@ Vicente Barros Leonel [ Fknyght ]
   |*
   |* 06/02/2016: Giovani Da Cruz
   |*  - Ajuste para a adição automática no library do delphi.
+  |*
+  |* 31/08/2019: Gioavni Da Cruz
+  |*  - Revisão para a instalação do DWCore Conector
   **************************************************************************** }
 
 unit Visual.Main;
@@ -120,8 +129,6 @@ type
     Label1: TLabel;
     Label9: TLabel;
     Label10: TLabel;
-    Label22: TLabel;
-    Label23: TLabel;
     Label24: TLabel;
     Label25: TLabel;
     Image1: TImage;
@@ -135,6 +142,12 @@ type
     Label18: TLabel;
     chkDeixarSomenteLIB: TCheckBox;
     btnInstalar: TButton;
+    Label3: TLabel;
+    Label14: TLabel;
+    Label22: TLabel;
+    Label23: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure edtDelphiVersionChange(Sender: TObject);
@@ -160,7 +173,7 @@ type
     sDirRoot: string;
     sDirLibrary: string;
     sDirPackage: string;
-    sDestino   : TDestino;
+   // sDestino   : TDestino;
     sPathBin   : String;
     procedure BeforeExecute(Sender: TJclBorlandCommandLineTool);
     procedure AddLibrarySearchPath;
@@ -1109,10 +1122,10 @@ begin
   end;
 
   { Cria os diretorios }
-  if not (DirectoryExists(sDirRoot + sTipo)) then
+  if not (System.SysUtils.DirectoryExists(sDirRoot + sTipo)) then
     MkDir(sDirRoot + sTipo);
 
-  if not (DirectoryExists(sDirLibrary)) then
+  if not (System.SysUtils.DirectoryExists(sDirLibrary)) then
     MkDir(sDirLibrary);
 end;
 

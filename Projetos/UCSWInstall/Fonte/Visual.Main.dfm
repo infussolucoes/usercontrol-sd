@@ -1,7 +1,7 @@
 object FrmPrincipal: TFrmPrincipal
   Left = 0
   Top = 0
-  ActiveControl = edtDirDestino
+  ActiveControl = frameDpk.pckHistorico_dpk
   Caption = 'Instalador do UserControl ShowDelphi Edition'
   ClientHeight = 548
   ClientWidth = 736
@@ -22,7 +22,7 @@ object FrmPrincipal: TFrmPrincipal
     Top = 71
     Width = 736
     Height = 477
-    ActivePage = wizPgConfiguracao
+    ActivePage = wizPgPacote
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -93,12 +93,12 @@ object FrmPrincipal: TFrmPrincipal
       object lblUrlForum1: TLabel
         Left = 101
         Top = 340
-        Width = 432
+        Width = 437
         Height = 13
         Cursor = crHandPoint
         Caption = 
-          'http://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacio' +
-          'nados-ao-usercontrol/'
+          'https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relaci' +
+          'onados-ao-usercontrol/'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlue
         Font.Height = -11
@@ -108,15 +108,15 @@ object FrmPrincipal: TFrmPrincipal
         OnClick = URLClick
       end
       object lblUrlUserControl1: TLabel
-        Left = 101
-        Top = 282
-        Width = 219
-        Height = 13
+        Left = 180
+        Top = 254
+        Width = 151
+        Height = 16
         Cursor = crHandPoint
-        Caption = 'http://infussolucoes.github.io/usercontrol-sd/'
+        Caption = 'https://pag.ae/7VccpnuCN'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlue
-        Font.Height = -11
+        Font.Height = -13
         Font.Name = 'Tahoma'
         Font.Style = [fsUnderline]
         ParentFont = False
@@ -124,17 +124,17 @@ object FrmPrincipal: TFrmPrincipal
       end
       object Label19: TLabel
         Left = 33
-        Top = 266
-        Width = 385
-        Height = 13
+        Top = 229
+        Width = 439
+        Height = 16
         Caption = 
-          'Para maiores informa'#231#245'es sobre o projeto UserControl ShowDelphi ' +
-          'Edition visite:'
+          'Considere colaborar com o projeto com uma x'#237'cara de caf'#233' ou duas' +
+          '.'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
-        Font.Height = -11
+        Font.Height = -13
         Font.Name = 'Tahoma'
-        Font.Style = []
+        Font.Style = [fsBold]
         ParentFont = False
       end
       object Label21: TLabel
@@ -196,7 +196,7 @@ object FrmPrincipal: TFrmPrincipal
       end
       object Label20: TLabel
         Left = 33
-        Top = 207
+        Top = 169
         Width = 469
         Height = 13
         Caption = 
@@ -211,11 +211,11 @@ object FrmPrincipal: TFrmPrincipal
       end
       object Label1: TLabel
         Left = 101
-        Top = 226
-        Width = 150
+        Top = 188
+        Width = 127
         Height = 13
         Cursor = crHandPoint
-        Caption = 'http://www.showdelphi.com.br'
+        Caption = 'https://showdelphi.com.br'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlue
         Font.Height = -11
@@ -781,6 +781,32 @@ object FrmPrincipal: TFrmPrincipal
           3A41ED242725217282DA494E4A62E404B5939C94C4E8FF00F8405C0397214B68
           0000000049454E44AE426082}
       end
+      object Label3: TLabel
+        Left = 57
+        Top = 254
+        Width = 117
+        Height = 16
+        Caption = 'Doe via Pag Seguro:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGreen
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label14: TLabel
+        Left = 57
+        Top = 276
+        Width = 359
+        Height = 16
+        Caption = 'Apoie com bitcoins: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGreen
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
     end
     object wizPgConfiguracao: TJvWizardInteriorPage
       Header.Visible = False
@@ -1056,10 +1082,18 @@ object FrmPrincipal: TFrmPrincipal
         end
         inherited Label11: TLabel
           Left = 290
+          Top = 309
           Width = 250
           Caption = 'Para uso com Conex'#227'o Rest (Experimental / Testes)'
           ExplicitLeft = 290
+          ExplicitTop = 309
           ExplicitWidth = 250
+        end
+        inherited Label16: TLabel
+          Left = 290
+          Top = 203
+          ExplicitLeft = 290
+          ExplicitTop = 203
         end
         inherited pckUCDataConnector_dpk: TCheckBox
           Left = 17
@@ -1119,7 +1153,15 @@ object FrmPrincipal: TFrmPrincipal
         end
         inherited pckUCRestConn_dpk: TCheckBox
           Left = 64
+          Top = 308
           ExplicitLeft = 64
+          ExplicitTop = 308
+        end
+        inherited PckUCRestDwCoreConn_dpk: TCheckBox
+          Left = 64
+          Top = 202
+          ExplicitLeft = 64
+          ExplicitTop = 202
         end
       end
     end
@@ -1253,40 +1295,10 @@ object FrmPrincipal: TFrmPrincipal
       object Label10: TLabel
         Left = 107
         Top = 349
-        Width = 150
+        Width = 127
         Height = 13
         Cursor = crHandPoint
-        Caption = 'http://www.showdelphi.com.br'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlue
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = [fsUnderline]
-        ParentFont = False
-        OnClick = URLClick
-      end
-      object Label22: TLabel
-        Left = 39
-        Top = 213
-        Width = 385
-        Height = 13
-        Caption = 
-          'Para maiores informa'#231#245'es sobre o projeto UserControl ShowDelphi ' +
-          'Edition visite:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -11
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label23: TLabel
-        Left = 107
-        Top = 232
-        Width = 219
-        Height = 13
-        Cursor = crHandPoint
-        Caption = 'http://infussolucoes.github.io/usercontrol-sd/'
+        Caption = 'https://showdelphi.com.br'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlue
         Font.Height = -11
@@ -1311,12 +1323,12 @@ object FrmPrincipal: TFrmPrincipal
       object Label25: TLabel
         Left = 107
         Top = 290
-        Width = 432
+        Width = 437
         Height = 13
         Cursor = crHandPoint
         Caption = 
-          'http://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacio' +
-          'nados-ao-usercontrol/'
+          'https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relaci' +
+          'onados-ao-usercontrol/'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlue
         Font.Height = -11
@@ -1341,6 +1353,62 @@ object FrmPrincipal: TFrmPrincipal
         Font.Quality = fqClearType
         ParentFont = False
         WordWrap = True
+      end
+      object Label22: TLabel
+        Left = 190
+        Top = 179
+        Width = 151
+        Height = 16
+        Cursor = crHandPoint
+        Caption = 'https://pag.ae/7VccpnuCN'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsUnderline]
+        ParentFont = False
+        OnClick = URLClick
+      end
+      object Label23: TLabel
+        Left = 39
+        Top = 152
+        Width = 439
+        Height = 16
+        Caption = 
+          'Considere colaborar com o projeto com uma x'#237'cara de caf'#233' ou duas' +
+          '.'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGreen
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label26: TLabel
+        Left = 63
+        Top = 179
+        Width = 117
+        Height = 16
+        Caption = 'Doe via Pag Seguro:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGreen
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object Label27: TLabel
+        Left = 63
+        Top = 203
+        Width = 359
+        Height = 16
+        Caption = 'Apoie com bitcoins: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGreen
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
       end
     end
     object wizMapa: TJvWizardRouteMapNodes
@@ -1391,10 +1459,10 @@ object FrmPrincipal: TFrmPrincipal
     object Label17: TLabel
       Left = 14
       Top = 41
-      Width = 154
+      Width = 131
       Height = 13
       Cursor = crHandPoint
-      Caption = 'http://www.showdelphi.com.br/'
+      Caption = 'https://showdelphi.com.br/'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWhite
       Font.Height = -11

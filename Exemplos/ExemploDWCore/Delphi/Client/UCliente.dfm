@@ -1,9 +1,9 @@
 object FrmCliente: TFrmCliente
   Left = 0
   Top = 0
-  Caption = 'Cadastro de Clientes'
-  ClientHeight = 267
-  ClientWidth = 635
+  Caption = 'Cadestro de Clientes'
+  ClientHeight = 313
+  ClientWidth = 714
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,10 +15,10 @@ object FrmCliente: TFrmCliente
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 288
-    Top = 88
-    Width = 305
-    Height = 81
+    Left = 352
+    Top = 112
+    Width = 303
+    Height = 57
     Caption = 
       'Os bot'#245'es Incluir, alterar e excluir estar'#227'o vis'#237'veis ou n'#227'o con' +
       'forme as premiss'#245'es do usu'#225'rio.'
@@ -31,28 +31,28 @@ object FrmCliente: TFrmCliente
     WordWrap = True
   end
   object BtnIncluir: TButton
-    Left = 32
-    Top = 40
-    Width = 202
-    Height = 41
+    Left = 56
+    Top = 48
+    Width = 225
+    Height = 49
     Caption = 'Incluir'
     TabOrder = 0
     OnClick = BtnIncluirClick
   end
   object BtnAlterar: TButton
-    Left = 32
-    Top = 103
-    Width = 202
-    Height = 41
+    Left = 56
+    Top = 128
+    Width = 225
+    Height = 49
     Caption = 'Alterar'
     TabOrder = 1
     OnClick = BtnIncluirClick
   end
   object BtnExcluir: TButton
-    Left = 32
-    Top = 168
-    Width = 202
-    Height = 41
+    Left = 56
+    Top = 208
+    Width = 225
+    Height = 49
     Caption = 'Excluir'
     TabOrder = 2
     OnClick = BtnIncluirClick
@@ -62,7 +62,7 @@ object FrmCliente: TFrmCliente
     UserControl = FrmPrincipal.ucMyControl
     Components = ''
     NotAllowed = naDisabled
-    Left = 552
-    Top = 208
+    Left = 472
+    Top = 200
   end
 end

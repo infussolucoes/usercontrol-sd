@@ -4,12 +4,13 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{                APLICAÇÃO DE EXEMPLO - FIREDAC CONECTOR                       }
+{                                                                              }                           
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }
 { Direitos Autorais Reservados (c) 2019   Giovani Da Cruz                      }
 {                                                                              }
+{ Colaboradores nesse arquivo:                                                 }
 {                                                                              }
 { Você pode obter a última versão desse arquivo na pagina do projeto           }
 { User Control ShowDelphi Edition                                              }
@@ -43,14 +44,30 @@
 { VIA PAGSEGURO: https://pag.ae/7VccpnuCN                                      }
 { APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL                        }
 {
-{ *****************************************************************************}
 
-# Comunidade Show Delphi
+{ *****************************************************************************
+  |* Historico
+  |*
+  |* 31/08/2019: Giovani Da Cruz
+  |*  - Criação do Connector
+  **************************************************************************** }
+unit UCRestDWCoreConnReg;
 
-https://showdelphi.com.br
+interface
 
+uses
+  System.Classes;
 
-# Fórum Oficial do User Control Show Delphi Edition
+procedure Register;
 
-https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
+implementation
 
+uses
+  UCRestDWCoreConn;
+
+procedure Register;
+begin
+  RegisterComponents('SWDelphi - UC Connectors', [TUCRestDWCoreConn]);
+end;
+
+end.

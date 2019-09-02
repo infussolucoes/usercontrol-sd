@@ -134,7 +134,7 @@ object framePacotes: TframePacotes
   end
   object Label6: TLabel
     Left = 291
-    Top = 296
+    Top = 271
     Width = 188
     Height = 13
     Margins.Left = 5
@@ -161,12 +161,12 @@ object framePacotes: TframePacotes
     ParentFont = False
   end
   object Label10: TLabel
-    Left = 291
-    Top = 186
-    Width = 210
+    Left = 289
+    Top = 440
+    Width = 149
     Height = 13
     Margins.Left = 5
-    Caption = 'Uso Midas (Somente para vers'#245'es <= XE 8)'
+    Caption = 'Uso Midas (N'#227'o Recomendado)'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clMaroon
     Font.Height = -11
@@ -204,7 +204,7 @@ object framePacotes: TframePacotes
   end
   object Label4: TLabel
     Left = 291
-    Top = 315
+    Top = 290
     Width = 202
     Height = 13
     Margins.Left = 5
@@ -218,7 +218,7 @@ object framePacotes: TframePacotes
   end
   object Label8: TLabel
     Left = 291
-    Top = 204
+    Top = 186
     Width = 106
     Height = 13
     Margins.Left = 5
@@ -232,7 +232,7 @@ object framePacotes: TframePacotes
   end
   object Label11: TLabel
     Left = 291
-    Top = 333
+    Top = 308
     Width = 224
     Height = 13
     Margins.Left = 5
@@ -246,7 +246,7 @@ object framePacotes: TframePacotes
   end
   object Label13: TLabel
     Left = 65
-    Top = 270
+    Top = 245
     Width = 438
     Height = 16
     Margins.Left = 5
@@ -262,7 +262,7 @@ object framePacotes: TframePacotes
   end
   object Label12: TLabel
     Left = 63
-    Top = 374
+    Top = 349
     Width = 376
     Height = 16
     Margins.Left = 5
@@ -276,11 +276,39 @@ object framePacotes: TframePacotes
   end
   object Label14: TLabel
     Left = 289
-    Top = 400
+    Top = 375
     Width = 165
     Height = 13
     Margins.Left = 5
     Caption = 'Rest Dataware (Vers'#227'o Datasnap)'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label15: TLabel
+    Left = 63
+    Top = 415
+    Width = 324
+    Height = 16
+    Margins.Left = 5
+    Caption = 'Somente para vers'#245'es antigas (2009) ou anterior'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label16: TLabel
+    Left = 291
+    Top = 205
+    Width = 147
+    Height = 13
+    Margins.Left = 5
+    Caption = 'Rest Dataware (Vers'#227'o CORE)'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clMaroon
     Font.Height = -11
@@ -351,7 +379,7 @@ object framePacotes: TframePacotes
   object pckFireDacConn_dpk: TCheckBox
     Tag = 9
     Left = 65
-    Top = 295
+    Top = 270
     Width = 163
     Height = 17
     Margins.Left = 25
@@ -391,7 +419,7 @@ object framePacotes: TframePacotes
   object pckUCMidasConn_dpk: TCheckBox
     Tag = 9
     Left = 65
-    Top = 185
+    Top = 439
     Width = 163
     Height = 17
     Margins.Left = 25
@@ -491,7 +519,7 @@ object framePacotes: TframePacotes
   object pckUCDataSnapConn_dpk: TCheckBox
     Tag = 9
     Left = 65
-    Top = 314
+    Top = 289
     Width = 163
     Height = 17
     Margins.Left = 25
@@ -511,7 +539,7 @@ object framePacotes: TframePacotes
   object pckZeosConn_dpk: TCheckBox
     Tag = 9
     Left = 65
-    Top = 203
+    Top = 185
     Width = 163
     Height = 17
     Margins.Left = 25
@@ -531,7 +559,7 @@ object framePacotes: TframePacotes
   object pckUCRestConn_dpk: TCheckBox
     Tag = 9
     Left = 65
-    Top = 332
+    Top = 307
     Width = 163
     Height = 17
     Margins.Left = 25
@@ -550,8 +578,8 @@ object framePacotes: TframePacotes
   end
   object PckUCRestDwConn_dpk: TCheckBox
     Tag = 9
-    Left = 63
-    Top = 399
+    Left = 65
+    Top = 374
     Width = 163
     Height = 17
     Margins.Left = 25
@@ -566,6 +594,26 @@ object framePacotes: TframePacotes
     Font.Style = []
     ParentFont = False
     TabOrder = 13
+    OnClick = VerificarCheckboxes
+  end
+  object PckUCRestDwCoreConn_dpk: TCheckBox
+    Tag = 9
+    Left = 65
+    Top = 204
+    Width = 163
+    Height = 17
+    Margins.Left = 25
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    Caption = 'PckUCRestDwCoreConn.dpk'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 14
     OnClick = VerificarCheckboxes
   end
 end

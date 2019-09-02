@@ -4,12 +4,13 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{                APLICAÇÃO DE EXEMPLO - FIREDAC CONECTOR                       }
+{             APLICAÇÃO DE EXEMPLO - REST DATAWARE CORE CONECTOR               }
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }
 { Direitos Autorais Reservados (c) 2019   Giovani Da Cruz                      }
 {                                                                              }
+{ Colaboradores nesse arquivo:                                                 }
 {                                                                              }
 { Você pode obter a última versão desse arquivo na pagina do projeto           }
 { User Control ShowDelphi Edition                                              }
@@ -44,13 +45,41 @@
 { APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL                        }
 {
 { *****************************************************************************}
+unit UCliente;
 
-# Comunidade Show Delphi
+interface
 
-https://showdelphi.com.br
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UCBase;
 
+type
+  TFrmCliente = class(TForm)
+    BtnIncluir: TButton;
+    BtnAlterar: TButton;
+    BtnExcluir: TButton;
+    UCControls1: TUCControls;
+    Label1: TLabel;
+    procedure BtnIncluirClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
 
-# Fórum Oficial do User Control Show Delphi Edition
+var
+  FrmCliente: TFrmCliente;
 
-https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
+implementation
 
+{$R *.dfm}
+
+uses
+  UPrincipal;
+
+procedure TFrmCliente.BtnIncluirClick(Sender: TObject);
+begin
+  ShowMessage('Clicou em ' + TButton(Sender).Caption);
+end;
+
+end.

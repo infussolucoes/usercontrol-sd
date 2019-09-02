@@ -57,14 +57,23 @@ Vicente Barros Leonel [ Fknyght ]
 {                                                                              }
 { Giovani Da Cruz  -  giovani@infus.inf.br  -  www.infus.inf.br                }
 {                                                                              }
-{ ****************************************************************************** }
+{ **************************************************************************** }
+
+{ AJUDE O PROJETO COM UMA XÍCARA DE CAFÉ OU DUAS. CONSIDERE UMA DOAÇÃO!        }
+{                                                                              }
+{ VIA PAGSEGURO: https://pag.ae/7VccpnuCN                                      }
+{ APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL                        }
+{
 
 { ******************************************************************************
   |* Historico
   |*
   |* 01/07/2015: Gioavni Da Cruz
   |*  - Criação e distribuição da Primeira Versao ShowDelphi
-  ******************************************************************************* }
+  |*
+  |* 31/08/2019: Gioavni Da Cruz
+  |*  - Revisão para a instalação do DWCore Conector
+  **************************************************************************** }
 unit uFrameLista;
 
 interface
@@ -109,6 +118,9 @@ type
     Label12: TLabel;
     PckUCRestDwConn_dpk: TCheckBox;
     Label14: TLabel;
+    Label15: TLabel;
+    PckUCRestDwCoreConn_dpk: TCheckBox;
+    Label16: TLabel;
     procedure btnPacotesMarcarTodosClick(Sender: TObject);
     procedure btnPacotesDesmarcarTodosClick(Sender: TObject);
     procedure VerificarCheckboxes(Sender: TObject);

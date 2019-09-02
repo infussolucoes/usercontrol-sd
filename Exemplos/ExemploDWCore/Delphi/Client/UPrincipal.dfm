@@ -1,9 +1,11 @@
 object FrmPrincipal: TFrmPrincipal
   Left = 408
   Top = 246
-  Caption = 'UserControl - Exemplo com FireDac Connector - showdelphi.com.br'
-  ClientHeight = 349
-  ClientWidth = 833
+  Caption = 
+    'Tutorial UserControl - www.showdelphi.com.br - Rest Dataware COR' +
+    'E Connector'
+  ClientHeight = 423
+  ClientWidth = 818
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,11 +15,12 @@ object FrmPrincipal: TFrmPrincipal
   Menu = MainMenu1
   OldCreateOrder = False
   Position = poScreenCenter
+  OnClose = FormClose
   PixelsPerInch = 96
   TextHeight = 13
   object lblUrlForum1: TLabel
     Left = 105
-    Top = 252
+    Top = 257
     Width = 437
     Height = 13
     Cursor = crHandPoint
@@ -33,15 +36,15 @@ object FrmPrincipal: TFrmPrincipal
     OnClick = URLClick
   end
   object lblUrlUserControl1: TLabel
-    Left = 184
-    Top = 140
-    Width = 151
-    Height = 16
+    Left = 212
+    Top = 149
+    Width = 187
+    Height = 19
     Cursor = crHandPoint
     Caption = 'https://pag.ae/7VccpnuCN'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
-    Font.Height = -13
+    Font.Height = -16
     Font.Name = 'Tahoma'
     Font.Style = [fsUnderline]
     ParentFont = False
@@ -50,14 +53,12 @@ object FrmPrincipal: TFrmPrincipal
   object Label19: TLabel
     Left = 37
     Top = 115
-    Width = 439
-    Height = 16
-    Caption = 
-      'Considere colaborar com o projeto com uma x'#237'cara de caf'#233' ou duas' +
-      '.'
+    Width = 456
+    Height = 19
+    Caption = 'Considere colaborar com o projeto com um caf'#233' ou dois!'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clGreen
-    Font.Height = -13
+    Font.Height = -16
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
@@ -65,14 +66,14 @@ object FrmPrincipal: TFrmPrincipal
   object Label21: TLabel
     Left = 37
     Top = 236
-    Width = 241
+    Width = 281
     Height = 13
     Caption = 'Para tirar d'#250'vidas, ajudar ou dar sugest'#245'es visite:'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clGreen
     Font.Height = -11
     Font.Name = 'Tahoma'
-    Font.Style = []
+    Font.Style = [fsBold]
     ParentFont = False
   end
   object Label20: TLabel
@@ -104,32 +105,6 @@ object FrmPrincipal: TFrmPrincipal
     Font.Style = [fsUnderline]
     ParentFont = False
     OnClick = URLClick
-  end
-  object Label3: TLabel
-    Left = 61
-    Top = 140
-    Width = 117
-    Height = 16
-    Caption = 'Doe via Pag Seguro:'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGreen
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-  end
-  object Label14: TLabel
-    Left = 61
-    Top = 162
-    Width = 359
-    Height = 16
-    Caption = 'Apoie com bitcoins: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGreen
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
   end
   object Image1: TImage
     Left = 552
@@ -688,10 +663,75 @@ object FrmPrincipal: TFrmPrincipal
       3A41ED242725217282DA494E4A62E404B5939C94C4E8FF00F8405C0397214B68
       0000000049454E44AE426082}
   end
+  object Label3: TLabel
+    Left = 61
+    Top = 149
+    Width = 145
+    Height = 19
+    Caption = 'Doe via Pag Seguro:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clGreen
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label14: TLabel
+    Left = 61
+    Top = 178
+    Width = 460
+    Height = 19
+    Caption = 'Apoie com bitcoins: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clGreen
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 37
+    Top = 324
+    Width = 192
+    Height = 23
+    Caption = 'Usu'#225'rio Padr'#227'o: Admin'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clRed
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 37
+    Top = 353
+    Width = 195
+    Height = 23
+    Caption = 'Senha Padr'#227'o: #delphi'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clRed
+    Font.Height = -19
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 37
+    Top = 305
+    Width = 135
+    Height = 13
+    Caption = 'No primeiro login utilize:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clGreen
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 330
-    Width = 833
+    Top = 404
+    Width = 818
     Height = 19
     Panels = <
       item
@@ -707,8 +747,8 @@ object FrmPrincipal: TFrmPrincipal
     ExplicitWidth = 0
   end
   object MainMenu1: TMainMenu
-    Left = 600
-    Top = 120
+    Left = 552
+    Top = 152
     object Cadastro1: TMenuItem
       Caption = 'Cadastro'
       object Bancos1: TMenuItem
@@ -825,21 +865,21 @@ object FrmPrincipal: TFrmPrincipal
     TableUsersLogged.FieldMachineName = 'UCMachineName'
     TableUsersLogged.FieldData = 'UCData'
     TableUsersLogged.TableName = 'UCTabUsersLogged'
-    DataConnector = UCFireDACConn1
-    Left = 720
-    Top = 120
+    DataConnector = UCRestDWCoreConn1
+    Left = 680
+    Top = 152
   end
   object UCApplicationMessage1: TUCApplicationMessage
     Active = True
     Interval = 60000
     TableMessages = 'UCTABMESSAGES'
     UserControl = ucMyControl
-    Left = 720
-    Top = 224
+    Left = 672
+    Top = 280
   end
-  object UCFireDACConn1: TUCFireDACConn
-    Connection = dmUC.FDConnection1
-    Left = 600
-    Top = 224
+  object UCRestDWCoreConn1: TUCRestDWCoreConn
+    DataBase = dmUC.RESTDWDataBase1
+    Left = 552
+    Top = 280
   end
 end

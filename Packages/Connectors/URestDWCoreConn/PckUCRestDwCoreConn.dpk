@@ -1,0 +1,52 @@
+package PckUCRestDwCoreConn;
+
+
+{$R *.res}
+{$R *.otares}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'SWDelphi - User Control RestDataware Core Connector'}
+{$IMPLICITBUILD ON}
+
+requires
+  pckUCDataConnector,
+  vcl,
+  soaprtl,
+  inet,
+  IndySystem,
+  IndyProtocols,
+  IndyCore,
+  dsnap,
+  FireDAC,
+  FireDACCommonDriver,
+  FireDACCommon,
+  RestDatawareCORE;
+
+contains
+  UCRestDWCoreConn in '..\..\..\Source\Connectors\UCRestDWCoreConn\UCRestDWCoreConn.pas',
+  UCRestDWCoreConnReg in '..\..\..\Source\Connectors\UCRestDWCoreConn\UCRestDWCoreConnReg.pas';
+
+end.

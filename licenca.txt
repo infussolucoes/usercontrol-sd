@@ -147,18 +147,18 @@ Você deve ter recebido uma cópia da Licença Pública Geral Menor do GNU junto com
 Para contatar alguém da Comunidade Show Delphi:
    por email:
      Giovani Da Cruz e Anderson Tonini	
-	giovani@showdelphi.com.br
-	anderson@showdelphi.com.br
+	giovani@infus.com.br
+	anderson@infus.com.br
 
    ou pelos sites:
-	http://showdelphi.com.br
-	http://infussolucoes.github.io/usercontrol-sd/
+	https://showdelphi.com.br
+	https://infussolucoes.github.io/usercontrol-sd/
 
 ----
 
 Você também pode solicitar a seu empregador (se você for um programador) ou a sua instituição acadêmica, se for o caso, para assinar uma "renúncia de direitos autorais" sobre a biblioteca, se necessário. Segue um exemplo; altere os nomes: 
-A NONONON Ltda., neste ato, renuncia a todos eventuais direitos autorais sobre a biblioteca 'User Control ShowDelphi Edition' (uma biblioteca para Controle de Usuários), baseada no User Control 2. A Versão Show Delphi escrita por colaboradores da Comunidae Show Delphi. 
+A NONONON Ltda., neste ato, renuncia a todos eventuais direitos autorais sobre a biblioteca 'User Control ShowDelphi Edition' (uma biblioteca para Controle de Usuários), baseada no User Control 2. A Versão Show Delphi escrita por colaboradores da Comunidade Show Delphi. 
 
-<Assinatura do Diretor>
+<GIOVANI DA CRUZ>
 
-1º de abril de 1990, NOME DO DIRETOR, Presidente 
+31 de AGOSTO de 2019, GIOVANI DA CRUZ, Presidente 

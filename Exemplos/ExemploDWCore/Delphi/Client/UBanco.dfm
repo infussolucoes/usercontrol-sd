@@ -3,7 +3,7 @@ object FrmBanco: TFrmBanco
   Top = 0
   Caption = 'Cadastro de Bancos'
   ClientHeight = 365
-  ClientWidth = 659
+  ClientWidth = 655
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,7 +18,7 @@ object FrmBanco: TFrmBanco
   object DBGrid1: TDBGrid
     Left = 0
     Top = 0
-    Width = 659
+    Width = 655
     Height = 340
     Align = alClient
     DataSource = DSBanco
@@ -32,12 +32,11 @@ object FrmBanco: TFrmBanco
   object DBNavigator1: TDBNavigator
     Left = 0
     Top = 340
-    Width = 659
+    Width = 655
     Height = 25
     DataSource = DSBanco
     Align = alBottom
     TabOrder = 1
-    ExplicitWidth = 655
   end
   object DSBanco: TDataSource
     DataSet = dmUC.QryBanco

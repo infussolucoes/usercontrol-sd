@@ -4,12 +4,13 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{                APLICAÇÃO DE EXEMPLO - FIREDAC CONECTOR                       }
+{             APLICAÇÃO DE EXEMPLO - REST DATAWARE CORE CONECTOR               }
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }
 { Direitos Autorais Reservados (c) 2019   Giovani Da Cruz                      }
 {                                                                              }
+{ Colaboradores nesse arquivo:                                                 }
 {                                                                              }
 { Você pode obter a última versão desse arquivo na pagina do projeto           }
 { User Control ShowDelphi Edition                                              }
@@ -44,13 +45,37 @@
 { APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL                        }
 {
 { *****************************************************************************}
+unit UDmUC;
 
-# Comunidade Show Delphi
+interface
 
-https://showdelphi.com.br
+uses
+  SysUtils, Classes, DB, UCBase,
+  UCDataConnector, uDWConstsData, uRESTDWPoolerDB, uDWAbout, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
+  FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client;
 
+type
+  TdmUC = class(TDataModule)
+    RESTDWDataBase1: TRESTDWDataBase;
+    QryBanco: TRESTDWClientSQL;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
 
-# Fórum Oficial do User Control Show Delphi Edition
+var
+  dmUC: TdmUC;
 
-https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
+implementation
 
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+uses
+  Forms;
+
+{$R *.dfm}
+
+end.

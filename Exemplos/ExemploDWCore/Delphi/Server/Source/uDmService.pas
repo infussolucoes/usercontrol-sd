@@ -4,12 +4,13 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{                APLICAÇÃO DE EXEMPLO - FIREDAC CONECTOR                       }
+{             APLICAÇÃO DE EXEMPLO - REST DATAWARE CORE CONECTOR               }
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }
 { Direitos Autorais Reservados (c) 2019   Giovani Da Cruz                      }
 {                                                                              }
+{ Colaboradores nesse arquivo:                                                 }
 {                                                                              }
 { Você pode obter a última versão desse arquivo na pagina do projeto           }
 { User Control ShowDelphi Edition                                              }
@@ -44,13 +45,59 @@
 { APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL                        }
 {
 { *****************************************************************************}
+unit uDmService;
 
-# Comunidade Show Delphi
+interface
 
-https://showdelphi.com.br
+uses
+  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
+  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.FB,
+  FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, uRESTDWPoolerDB, uDWAbout,
+  uRestDWDriverFD, Data.DB, FireDAC.Comp.Client, uDWDatamodule;
 
+type
+  TServerMethodDM = class(TServerMethodDataModule)
+    Server_FDConnection: TFDConnection;
+    RESTDWDriverFD1: TRESTDWDriverFD;
+    RESTDWPoolerFD: TRESTDWPoolerDB;
+    procedure DataModuleCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
 
-# Fórum Oficial do User Control Show Delphi Edition
+var
+  ServerMethodDM: TServerMethodDM;
 
-https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
+implementation
 
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+uses
+  IOUtils, Forms;
+
+procedure TServerMethodDM.DataModuleCreate(Sender: TObject);
+var
+  vFile : TFileName;
+begin
+  Server_FDConnection.Close;
+
+  vFile :=
+    IncludeTrailingPathDelimiter(
+    TPath.GetFullPath(
+      ExtractFilePath(Application.ExeName) + '..\')) + 'config.ini';
+
+  { Na primeira vez que rodar o servidor, o arquivo ainda não existe. }
+  if FileExists(vFile) then
+  begin
+    Server_FDConnection.Params.LoadFromFile(vFile);
+  end;
+
+  RESTDWPoolerFD.Active  := True;
+end;
+
+end.

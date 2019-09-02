@@ -4,12 +4,13 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{                APLICAÇÃO DE EXEMPLO - FIREDAC CONECTOR                       }
+{             APLICAÇÃO DE EXEMPLO - REST DATAWARE CORE CONECTOR               }
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }
 { Direitos Autorais Reservados (c) 2019   Giovani Da Cruz                      }
 {                                                                              }
+{ Colaboradores nesse arquivo:                                                 }
 {                                                                              }
 { Você pode obter a última versão desse arquivo na pagina do projeto           }
 { User Control ShowDelphi Edition                                              }
@@ -44,13 +45,41 @@
 { APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL                        }
 {
 { *****************************************************************************}
+unit UBanco;
 
-# Comunidade Show Delphi
+interface
 
-https://showdelphi.com.br
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.ExtCtrls, Vcl.DBCtrls,
+  Vcl.Grids, Vcl.DBGrids;
 
+type
+  TFrmBanco = class(TForm)
+    DBGrid1: TDBGrid;
+    DBNavigator1: TDBNavigator;
+    DSBanco: TDataSource;
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
 
-# Fórum Oficial do User Control Show Delphi Edition
+var
+  FrmBanco: TFrmBanco;
 
-https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
+implementation
 
+{$R *.dfm}
+
+uses
+  UDmUC;
+
+procedure TFrmBanco.FormCreate(Sender: TObject);
+begin
+  if not (dmUC.QryBanco.Active) then
+    dmUC.QryBanco.Open;
+end;
+
+end.
