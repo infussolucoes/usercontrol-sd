@@ -9,9 +9,9 @@ Fórum oficial: https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relaci
 
 # Apoie este trabalho
 
-Doe você também!
+Considere ajudar o projeto com um café ou dois!
 
-PELO PAGSEGURO: https://pag.ae/7VccpnuCN
+DOE PELO PAGSEGURO: https://pag.ae/7VccpnuCN
 
 APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL
 
