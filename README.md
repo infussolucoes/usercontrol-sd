@@ -55,13 +55,14 @@ recomendamos a instalação do Zeos que é Open Source, assim será possível de
 
 Conectors Suportados até o momento:
 ADOConnector, IBXConnector, DBXConnector, FireDACConnector, ZeosConnector, DataSnapConnector,
-RestConnector, RestDWConnector (Versão Datasnap), SQLdb (Somente no Lazarus).
+RestConnector, RestDWConnector (Versão Datasnap), Rest Data Ware CORE Connector, SQLdb (Somente no Lazarus).
 
 Alguns detalhes:
 
 ZeosConnector está disponível para Delphi e Lazarus
 RestConnector faz uso de funções do Firedac, logo é necessário que o FireDac esteja instalado.
 RestDWConnector foi preparado para utilizar o RestWare, versão inicial do RestDataWare que utilizava o DataSnap.
+Rest Data Ware CORE Connector é o connectaor indicado para a utilização com o REST DATA WARE CORE.
 
 O Midas Connector é somente até o Delphi XE 8.
 
