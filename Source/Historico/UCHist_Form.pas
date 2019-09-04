@@ -373,8 +373,9 @@ begin
   If StringGrid1.Visible Then
   Begin
     try
-      List := TStringList.Create;
-      List.Text := DataSource1.DataSet.FieldValues['Obs'];
+      List := TStringList.Create;      
+	  List.Text := DataSource1.DataSet.FieldByName('Obs').AsString;
+	  
       StringGrid1.RowCount := List.Count + 1;
       For Aux := 0 to List.Count - 1 do
       Begin
