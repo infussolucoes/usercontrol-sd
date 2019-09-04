@@ -488,7 +488,7 @@ begin
     UsuarioExiste := GetTranslate(DestSettings.Language, '', 'Const_Men_UsuarioExiste');
     PasswordExpired := GetTranslate(DestSettings.Language, '', 'Const_Men_PasswordExpired');
     ForcaTrocaSenha := GetTranslate(DestSettings.Language, '', 'Const_ErrPass_ForcaTrocaSenha');
-    InvalidLogin := GetTranslate(DestSettings.Language, '', 'Const_Men_Select_Profile');
+    InvalidProfile := GetTranslate(DestSettings.Language, '', 'Const_Men_Select_Profile');
     CanNotDeleteUserLogon := GetTranslate(DestSettings.Language, '', 'Const_Men_Cannot_Del_User_Logon');
     ImageTooLarge := GetTranslate(DestSettings.Language, '', 'Const_Err_Image_Too_Large');
   end;
