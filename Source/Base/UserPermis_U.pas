@@ -801,7 +801,7 @@ begin
   // carrega itens do menu, actions e controles
   CarregaTreeviews;
 
-  // Exibe Permissoes do Usuario
+  // Exibe Permissoes do Usuário
   for Contador := 0 to TreeAction.Items.Count - 1 do
   begin
     DSPermiss.First;
@@ -907,8 +907,8 @@ begin
   TreeMenu.Repaint;
   FChangingTree := False;
   PC.ActivePageIndex := 1;
-  PageAction.Caption := 'Menu Controle de Usuarios';
-  PageMenu.Caption := 'Menu Controle de Usuarios';
+  PageAction.Caption := 'Menu Controle de Usuários';
+  PageMenu.Caption := 'Menu Controle de Usuários';
 end;
 
 function TUserPermis.GetNode(TreeView: TTreeView): TTreeNode;

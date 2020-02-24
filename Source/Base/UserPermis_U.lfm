@@ -449,7 +449,7 @@ object UserPermis: TUserPermis
     TabWidth = 155
     Options = [nboMultiLine]
     object PageMenu: TTabSheet
-      Caption = 'Menu Controle de Usuarios'
+      Caption = 'Menu Controle de Usuários'
       ClientHeight = 499
       ClientWidth = 523
       object TreeMenu: TTreeView
@@ -471,7 +471,7 @@ object UserPermis: TUserPermis
       end
     end
     object PageAction: TTabSheet
-      Caption = 'Menu Controle de Usuarios'
+      Caption = 'Menu Controle de Usuários'
       ClientHeight = 499
       ClientWidth = 495
       ImageIndex = 1
