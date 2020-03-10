@@ -8,7 +8,6 @@
       <Unit0>
         <Filename Value="UserControl_Tut01.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <CursorPos X="27" Y="12"/>
         <UsageCount Value="22"/>
         <Loaded Value="True"/>
@@ -20,10 +19,13 @@
         <ComponentName Value="FrmPrincipal"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="69"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="60"/>
         <CursorPos X="56" Y="81"/>
         <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
@@ -32,10 +34,11 @@
         <ComponentName Value="dmUC"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="26"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="11"/>
         <CursorPos X="27" Y="40"/>
         <UsageCount Value="22"/>
+        <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>

@@ -635,7 +635,7 @@
 
 { Set FreePascal to Delphi mode }
 {$IFDEF FPC}
-  {$MODE DELPHI}
+  //{$MODE DELPHI}
   {$ASMMODE Intel}
   {$UNDEF BORLAND}
   {$DEFINE CPUASM}
