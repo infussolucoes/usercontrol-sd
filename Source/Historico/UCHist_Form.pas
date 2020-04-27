@@ -231,10 +231,14 @@ begin
 end;
 
 procedure TFrmHistorico.SetComBoValues;
-Var
+
+var
   Aux: TAuxObj;
-Begin
+begin
   Aux := TAuxObj.Create;
+
+  // Cria aqui mas depois nunca mais liberta!!!???
+
   Aux.IdUser := -1;
 
   ComboUser.Items.Clear;
@@ -242,41 +246,41 @@ Begin
   ComboEvento.Items.Clear;
   ComboTabela.Items.Clear;
 
-  ComboUser.Items.AddObject(fControl.Historymsg.Hist_All, Aux);
+  ComboUser.Items.AddObject(fControl.HistoryMsg.Hist_All, Aux);
 
-  ComboForm.Items.Add(fControl.Historymsg.Hist_All);
+  ComboForm.Items.Add(fControl.HistoryMsg.Hist_All);
 
-  ComboEvento.Items.Add(fControl.Historymsg.Hist_All);
-  ComboEvento.Items.Add(fControl.Historymsg.Evento_Insert);
-  ComboEvento.Items.Add(fControl.Historymsg.Evento_Delete);
-  ComboEvento.Items.Add(fControl.Historymsg.Evento_Edit);
-  ComboEvento.Items.Add(fControl.Historymsg.Evento_NewRecord);
+  ComboEvento.Items.Add(fControl.HistoryMsg.Hist_All);
+  ComboEvento.Items.Add(fControl.HistoryMsg.Evento_Insert);
+  ComboEvento.Items.Add(fControl.HistoryMsg.Evento_Delete);
+  ComboEvento.Items.Add(fControl.HistoryMsg.Evento_Edit);
+  ComboEvento.Items.Add(fControl.HistoryMsg.Evento_NewRecord);
 
-  ComboTabela.Items.Add(fControl.Historymsg.Hist_All);
+  ComboTabela.Items.Add(fControl.HistoryMsg.Hist_All);
 
   DataSetHist := fControl.UserControl.DataConnector.UCGetSQLDataset
-    (Format('Select distinct %s from %s', [fControl.TableHistory.FieldTableName,
-    fControl.TableHistory.TableName]));
+    (Format(' Select distinct % s from % s ',
+    [fControl.TableHistory.FieldTableName, fControl.TableHistory.TableName]));
   while DataSetHist.Eof = False do
-  Begin
+  begin
     ComboTabela.Items.Add(DataSetHist.Fields[0].AsString);
     DataSetHist.Next;
-  End;
+  end;
 
   DataSetHist := nil;
   DataSetHist := fControl.UserControl.DataConnector.UCGetSQLDataset
-    (Format('Select distinct %s from %s',
+    (Format(' Select distinct % s from % s ',
     [fControl.TableHistory.FieldCaptionForm, fControl.TableHistory.TableName]));
   while DataSetHist.Eof = False do
-  Begin
+  begin
     ComboForm.Items.Add(DataSetHist.Fields[0].AsString);
     DataSetHist.Next;
-  End;
+  end;
 
   DataSetHist := nil;
   DataSetHist := fControl.UserControl.DataConnector.UCGetSQLDataset
-    (Format('Select %s, %s as Usuario from %s where %s = %s order by %s',
-    [fControl.UserControl.TableUsers.FieldUserID,
+    (Format(' Select % s, % s as Usuario from % s where % s = % s order by %s ', 
+	[fControl.UserControl.TableUsers.FieldUserID,
     fControl.UserControl.TableUsers.FieldLogin,
     fControl.UserControl.TableUsers.TableName,
     fControl.UserControl.TableUsers.FieldTypeRec, QuotedStr('U'),
@@ -284,9 +288,10 @@ Begin
 
   If fControl.UserControl.CurrentUser.Privileged = true then
   Begin
+
     while DataSetHist.Eof = False do
-    Begin
-      Aux := TAuxObj.Create;
+    Begin // Salvo o devido respeito, parece-me errado
+      // Aux:= TAuxObj.Create; Dentro do ciclo? Uma vez p/cada registo? É muito estranho e provavelmente uma distração!
       Aux.IdUser := DataSetHist.Fields[0].AsInteger;
       ComboUser.Items.AddObject(DataSetHist.Fields[1].AsString, Aux);
       DataSetHist.Next;
@@ -294,9 +299,10 @@ Begin
   End
   else
   begin
-    Aux := TAuxObj.Create;
+    // Aux := TAuxObj.Create; //Salvo o devido respeito, parece-me errado
     Aux.IdUser := fControl.UserControl.CurrentUser.UserID;
     ComboUser.Items.AddObject(fControl.UserControl.CurrentUser.UserLogin, Aux);
+
   end;
 
   ComboUser.ItemIndex := 0;
@@ -306,12 +312,15 @@ Begin
 
   DataSetHist := nil;
   DataSetHist := fControl.UserControl.DataConnector.UCGetSQLDataset
-    (Format('Select UH.%s as UserId, Uh.%s as Form , ' +
-    'Uh.%s as Evento , Uh.%s as Obs, Uh.%s as FormCaption, Uh.%s as EventDate, Uh.%s as EventTime, uh.%s as TableName, '
-    + 'US.%s As UserName from %s UH, %s US where UH.%s = US.%s and Uh.%s = %s order by Uh.%s, uh.%s',
-    [fControl.TableHistory.FieldUserID, fControl.TableHistory.FieldForm,
-    fControl.TableHistory.FieldEvent, fControl.TableHistory.FieldObs,
-    fControl.TableHistory.FieldCaptionForm,
+    (Format(
+	' Select UH.% s as UserID, UH.% s as Form, ' + 
+	' UH.% s as Evento, UH.% s as Obs, UH.% s as FormCaption, UH.% s as EventDate, '+
+    ' UH.% s as EventTime, UH.% s as TableName, '+ 
+	' US.% s As UserName from % s UH, % s US where UH.% s = US.% s and '+
+    ' UH.% s = % s order by UH.% s, UH.% s ', 
+	[fControl.TableHistory.FieldUserID,
+    fControl.TableHistory.FieldForm, fControl.TableHistory.FieldEvent,
+    fControl.TableHistory.FieldObs, fControl.TableHistory.FieldCaptionForm,
     fControl.TableHistory.FieldEventDate, fControl.TableHistory.FieldEventTime,
     fControl.TableHistory.FieldTableName,
     fControl.UserControl.TableUsers.FieldLogin, fControl.TableHistory.TableName,
@@ -324,6 +333,11 @@ Begin
     fControl.TableHistory.FieldEventDate]));
 
   DataSource1.DataSet := DataSetHist;
+
+  FreeAndNil(Aux);
+
+  // Minha corrcção. Quando sai liberta em definitivo Mário Reis
+
 end;
 
 procedure TFrmHistorico.FormShow(Sender: TObject);
