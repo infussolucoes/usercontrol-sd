@@ -1,19 +1,19 @@
 { **************************************************************************** }
 { Projeto: Componentes User Control ShowDelphi Edition                         }
-{ Biblioteca multiplataforma de componentes Delphi para o controle de usu·rios }
+{ Biblioteca multiplataforma de componentes Delphi para o controle de usu√°rios }
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {
-Autor da vers„o Original: Rodrigo Alves Cordeiro
+Autor da vers√£o Original: Rodrigo Alves Cordeiro
 
-Colaboradores da vers„o original
+Colaboradores da vers√£o original
 Alexandre Oliveira Campioni - alexandre.rural@netsite.com.br
 Bernard Grandmougin
 Carlos Guerra
 Daniel Wszelaki
 Everton Ramos [BS2 Internet]
-Francisco DueÒas - fduenas@flashmail.com
-Germ·n H. Cravero
+Francisco Due√±as - fduenas@flashmail.com
+Germ√°n H. Cravero
 Luciano Almeida Pimenta [ClubeDelphi.net]
 Luiz Benevenuto - luiz@siffra.com
 Luiz Fernando Severnini
@@ -26,30 +26,30 @@ Stefan Nawrath
 Vicente Barros Leonel [ Fknyght ]
 
 *******************************************************************************}
-{ Vers„o ShowDelphi Edition                                                    }
+{ Vers√£o ShowDelphi Edition                                                    }
 {                                                                              }
 { Direitos Autorais Reservados (c) 2015   Giovani Da Cruz                      }
 {                                                                              }
 { Colaboradores nesse arquivo:                                                 }
 {                                                                              }
-{ VocÍ pode obter a ˙ltima vers„o desse arquivo na pagina do projeto           }
+{ Voc√™ pode obter a √∫ltima vers√£o desse arquivo na pagina do projeto           }
 { User Control ShowDelphi Edition                                              }
 { Componentes localizado em http://infussolucoes.github.io/usercontrol-sd/     }
 {                                                                              }
-{ Esta biblioteca È software livre; vocÍ pode redistribuÌ-la e/ou modific·-la  }
-{ sob os termos da LicenÁa P˙blica Geral Menor do GNU conforme publicada pela  }
-{ Free Software Foundation; tanto a vers„o 2.1 da LicenÁa, ou (a seu critÈrio) }
-{ qualquer vers„o posterior.                                                   }
+{ Esta biblioteca √© software livre; voc√™ pode redistribu√≠-la e/ou modific√°-la  }
+{ sob os termos da Licen√ßa P√∫blica Geral Menor do GNU conforme publicada pela  }
+{ Free Software Foundation; tanto a vers√£o 2.1 da Licen√ßa, ou (a seu crit√©rio) }
+{ qualquer vers√£o posterior.                                                   }
 {                                                                              }
-{ Esta biblioteca È distribuÌda na expectativa de que seja ˙til, porÈm, SEM    }
-{ NENHUMA GARANTIA; nem mesmo a garantia implÌcita de COMERCIABILIDADE OU      }
-{ ADEQUA«√O A UMA FINALIDADE ESPECÕFICA. Consulte a LicenÁa P˙blica Geral Menor}
-{ do GNU para mais detalhes. (Arquivo LICEN«A.TXT ou LICENSE.TXT)              }
+{ Esta biblioteca √© distribu√≠da na expectativa de que seja √∫til, por√©m, SEM    }
+{ NENHUMA GARANTIA; nem mesmo a garantia impl√≠cita de COMERCIABILIDADE OU      }
+{ ADEQUA√á√ÉO A UMA FINALIDADE ESPEC√çFICA. Consulte a Licen√ßa P√∫blica Geral Menor}
+{ do GNU para mais detalhes. (Arquivo LICEN√áA.TXT ou LICENSE.TXT)              }
 {                                                                              }
-{ VocÍ deve ter recebido uma cÛpia da LicenÁa P˙blica Geral Menor do GNU junto }
-{ com esta biblioteca; se n„o, escreva para a Free Software Foundation, Inc.,  }
-{ no endereÁo 59 Temple Street, Suite 330, Boston, MA 02111-1307 USA.          }
-{ VocÍ tambÈm pode obter uma copia da licenÁa em:                              }
+{ Voc√™ deve ter recebido uma c√≥pia da Licen√ßa P√∫blica Geral Menor do GNU junto }
+{ com esta biblioteca; se n√£o, escreva para a Free Software Foundation, Inc.,  }
+{ no endere√ßo 59 Temple Street, Suite 330, Boston, MA 02111-1307 USA.          }
+{ Voc√™ tamb√©m pode obter uma copia da licen√ßa em:                              }
 { http://www.opensource.org/licenses/lgpl-license.php                          }
 {                                                                              }
 {                                                                              }
@@ -63,7 +63,7 @@ Vicente Barros Leonel [ Fknyght ]
   |* Historico
   |*
   |* 01/07/2015: Giovani Da Cruz
-  |*  - CriaÁ„o e distribuiÁ„o da Primeira Versao ShowDelphi
+  |*  - Cria√ß√£o e distribui√ß√£o da Primeira Versao ShowDelphi
   ******************************************************************************* }
 
 unit UCBase;
@@ -480,14 +480,14 @@ type
     procedure ActionEsqueceuSenha(Sender: TObject);
   protected
     FRetry: Integer;
-    // Formul·rios
+    // Formul√°rios
     FFormTrocarSenha: TCustomForm;
     FFormLogin: TCustomForm;
     FFormGeral: TCustomForm;
     // -----
 
     procedure Loaded; override;
-    // Criar Formul·rios
+    // Criar Formul√°rios
     procedure CriaFormTrocarSenha; dynamic;
     // -----
 
@@ -872,7 +872,7 @@ begin
   begin
     If UpperCase(Owner.ClassParent.ClassName) = UpperCase('TDataModule') then
       raise Exception.Create
-        ('O Componente "TUserControl" n„o pode ser definido em um "TDataModulo"');
+        ('O Componente "TUserControl" n√£o pode ser definido em um "TDataModulo"');
 
     if not Assigned(DataConnector) then
       raise Exception.Create(RetornaLingua(fLanguage, 'MsgExceptConnector'));
@@ -898,7 +898,7 @@ begin
       if Owner.Components[Contador] is TUCSettings then
       begin
         Language := TUCSettings(Owner.Components[Contador]).Language;
-        // torna a linguage do UCSETTINGS como padr„o
+        // torna a linguage do UCSETTINGS como padr√£o
         FUserSettings.BancoDados := TUCSettings(Owner.Components[Contador]).BancoDados;
         ApplySettings(TUCSettings(Owner.Components[Contador]));
       end;
@@ -1169,11 +1169,11 @@ procedure TUserControl.ActionTSBtGrava(Sender: TObject);
 var
   AuxPass: String;
 begin
-  { Pelo que eu analizei, a gravaÁ„o da senha no Banco de Dados e feita criptografada
-    Qdo a criptografia e padr„o, a funcao RegistraCurrentUser descriptografa a senha atual
+  { Pelo que eu analizei, a grava√ß√£o da senha no Banco de Dados e feita criptografada
+    Qdo a criptografia e padr√£o, a funcao RegistraCurrentUser descriptografa a senha atual
     agora quando criptografia e MD5SUM, devemos criptografar a senha atual vinda do formulario de
     troca de senha para podemos comparar com a senha atual da classe TUCCurrentUser
-    ModificaÁ„o Feita por Vicente Barros Leonel
+    Modifica√ß√£o Feita por Vicente Barros Leonel
   }
   case Self.Criptografia of
     cPadrao:
@@ -1296,6 +1296,13 @@ begin
     btOK.Caption := UserSettings.Login.btOK;
     BtCancela.Caption := btCancel;
 
+    if LeftImage <> nil then
+      ImgLeft.Picture.Assign(LeftImage);
+    if BottomImage <> nil then
+      ImgBottom.Picture.Assign(BottomImage);
+    if TopImage <> nil then
+      ImgTop.Picture.Assign(TopImage);
+
     if Assigned(FMailUserControl) then
     begin
       lbEsqueci.Visible := FMailUserControl.EsqueceuSenha.Ativo;
@@ -1361,7 +1368,7 @@ end;
 
 procedure TUserControl.Log(Msg: String; Level: Integer);
 begin
-  // Adicionado ao log a identificaÁ„o da AplicaÁ„o
+  // Adicionado ao log a identifica√ß√£o da Aplica√ß√£o
   if not LogControl.Active then
     Exit;
 
@@ -1453,7 +1460,7 @@ begin
     TTrocaSenha(FFormTrocarSenha).ForcarTroca := True;
     FFormTrocarSenha.ShowModal;
     FreeAndNil(FFormTrocarSenha);
-    { Incrementa a Data de ExpiraÁ„o em x dias apÛs a troca de senha }
+    { Incrementa a Data de Expira√ß√£o em x dias ap√≥s a troca de senha }
     CurrentUser.DateExpiration := CurrentUser.DateExpiration +
       CurrentUser.UserDaysExpired;
   end;
@@ -1811,7 +1818,7 @@ var
   Sql: String;
   DataSet: TDataSet;
 begin
-  { Procura o campo FieldUserDaysSun na tabela de usuarios se o mesmo n„o existi cria }
+  { Procura o campo FieldUserDaysSun na tabela de usuarios se o mesmo n√£o existi cria }
   try
     Sql := Format('select * from %s', [FTableUsers.TableName]);
     DataSet := DataConnector.UCGetSQLDataset(Sql);
@@ -2329,7 +2336,7 @@ begin
         OnApplyRightsActionIt(Self,
           TAction(TActionList(ObjetoAction).Actions[Contador]));
     end;
-  end; // Fim das permissıes de Actions
+  end; // Fim das permiss√µes de Actions
 
   {$IFNDEF FPC}
   { .$IFDEF UCACTMANAGER }
@@ -2431,7 +2438,7 @@ begin
       ' AND ' + TableUsers.FieldPrivileged + ' = ' +
       BoolToStr(SoVerificarUsuarioAdmin);
 
-  { Ignorando usu·rios inativos - Giovani Da Cruz }
+  { Ignorando usu√°rios inativos - Giovani Da Cruz }
   if DesconsiderarInativo then
   begin
     SQLstmt := SQLstmt +
@@ -3099,7 +3106,7 @@ begin
     Type_VarChar   := SourceSettings.Type_VarChar;
     Type_Char      := SourceSettings.Type_Char;
     Type_Int       := SourceSettings.Type_Int;
-    end;  atenÁ„o mudar aqui }
+    end;  aten√ß√£o mudar aqui }
 
   UserSettings.WindowsPosition := SourceSettings.WindowsPosition;
 end;
