@@ -64,6 +64,9 @@ Vicente Barros Leonel [ Fknyght ]
   |*
   |* 01/07/2015: Giovani Da Cruz
   |*  - Criação e distribuição da Primeira Versao ShowDelphi
+  |
+  |* 21/09/2020: Giovani Da Cruz
+  |*  - Melhoria para obrigar a informar o campo login
   ******************************************************************************* }
 
 unit IncUser_U;
@@ -316,8 +319,20 @@ begin
       end
       else
       begin // inclui user
-        if FUserControl.ExisteUsuario(EditLogin.Text) then
-          MessageDlg(Format(FUserControl.UserSettings.CommonMessages.UsuarioExiste, [EditLogin.Text]), mtWarning, [mbOK], 0)
+        if Trim(EditLogin.Text) = '' then
+        begin
+		  EditLogin.Clear;
+		  
+		  // provisório, pois é necessário incluir a mensagem no controle da UcConsts_Language.pas 
+		  MessageDlg('Atenção, o campo usuário é obrigatório!', mtWarning, [mbOK], 0);
+		  
+		  Exit;
+		end;
+		
+		if FUserControl.ExisteUsuario(EditLogin.Text) then
+		begin
+          MessageDlg(Format(FUserControl.UserSettings.CommonMessages.UsuarioExiste, [EditLogin.Text]), mtWarning, [mbOK], 0);
+		end  
         else
         begin
           FormSenha := TSenhaForm.Create(Self);
