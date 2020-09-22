@@ -324,7 +324,7 @@ begin
 		  EditLogin.Clear;
 		  
 		  // provisório, pois é necessário incluir a mensagem no controle da UcConsts_Language.pas 
-		  MessageDlg('Atenção, o campo usuário é obrigatório!', mtWarning, [mbOK], 0);
+		  MessageDlg('Atenção, o campo login é obrigatório!', mtWarning, [mbOK], 0);
 		  
 		  Exit;
 		end;
