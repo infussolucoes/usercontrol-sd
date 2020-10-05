@@ -7,13 +7,13 @@ que possível.
 
 Fórum oficial: https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
 
-# Apoie este trabalho
+# Apoie este trabalho. Muito obrigado pela sua colaboração!
 
-Considere ajudar o projeto com um café ou dois!
+Considere apoiar o projeto e assim atualizações possam ser desenvolvidas!
 
-DOE PELO PAGSEGURO: https://pag.ae/7VccpnuCN
+APOIE PELO PAGSEGURO: https://pag.ae/7VccpnuCN
 
-APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL
+APOIE PELO PAYPAL: https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=JEJCYEVAGCQEG&source=url
 
 
 # Amplo suporte
@@ -43,6 +43,8 @@ Delphi 10.1 Berlin
 Delphi 10.2 Tokyo
 
 Delphi 10.3 Rio (Inclusive a versão Community Edition [starter] )
+
+O Delphi 10.4 esta em testes, ainda não disponível no instalador.
 
 -------------------------------------------------------------
 
