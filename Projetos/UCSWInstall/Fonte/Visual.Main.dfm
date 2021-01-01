@@ -1,7 +1,7 @@
 object FrmPrincipal: TFrmPrincipal
   Left = 0
   Top = 0
-  ActiveControl = frameDpk.pckHistorico_dpk
+  ActiveControl = edtDirDestino
   Caption = 'Instalador do UserControl ShowDelphi Edition'
   ClientHeight = 548
   ClientWidth = 736
@@ -22,7 +22,7 @@ object FrmPrincipal: TFrmPrincipal
     Top = 71
     Width = 736
     Height = 477
-    ActivePage = wizPgPacote
+    ActivePage = wizPgConfiguracao
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -787,19 +787,6 @@ object FrmPrincipal: TFrmPrincipal
         Width = 117
         Height = 16
         Caption = 'Doe via Pag Seguro:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label14: TLabel
-        Left = 57
-        Top = 276
-        Width = 359
-        Height = 16
-        Caption = 'Apoie com bitcoins: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
         Font.Height = -13

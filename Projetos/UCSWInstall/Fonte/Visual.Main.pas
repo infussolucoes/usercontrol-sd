@@ -143,7 +143,6 @@ type
     chkDeixarSomenteLIB: TCheckBox;
     btnInstalar: TButton;
     Label3: TLabel;
-    Label14: TLabel;
     Label22: TLabel;
     Label23: TLabel;
     Label26: TLabel;
@@ -693,7 +692,7 @@ begin
   // C++ Builder a partir do D2006, versões anteriores tem IDE independentes.
   ckbBCB.Enabled := MatchText(oUserControl.Installations[iVersion].VersionNumberStr,
     ['d10', 'd11', 'd12', 'd14', 'd15', 'd16', 'd17', 'd18', 'd19', 'd20',
-    'd21', 'd22', 'd23', 'd24', 'd25', 'd26']);
+    'd21', 'd22', 'd23', 'd24', 'd25', 'd26', 'd27']);
   if not ckbBCB.Enabled then
     ckbBCB.Checked := False;
 end;
@@ -854,7 +853,9 @@ begin
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd25' then
       edtDelphiVersion.Items.Add('Delphi 10.2 Tokyo')
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd26' then
-      edtDelphiVersion.Items.Add('Delphi 10.3 Rio');
+      edtDelphiVersion.Items.Add('Delphi 10.3 Rio')
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd27' then
+      edtDelphiVersion.Items.Add('Delphi 10.4 Sydney');
 
     // -- Evento disparado antes de iniciar a execução do processo.
     oUserControl.Installations[iFor].DCC32.OnBeforeExecute := BeforeExecute;
