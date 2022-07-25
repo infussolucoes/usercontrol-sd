@@ -28,12 +28,8 @@ package pckUserControl_DT;
 {$IMPLICITBUILD ON}
 
 requires
-  designide,
-  {$IFDEF DELPHI12_UP} 
-    vclimg;
-  {$ELSE} 
-    vcljpg;
-  {$ENDIF}
+   designide,
+   pckUserControl_RT;
 
 contains
   UCReg in '..\..\Source\Base\UCReg.pas',
