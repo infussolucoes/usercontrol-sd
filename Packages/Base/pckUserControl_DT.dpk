@@ -30,11 +30,10 @@ package pckUserControl_DT;
 requires
   designide,
   {$IFDEF DELPHI12_UP} 
-    vclimg,
+    vclimg;
   {$ELSE} 
-    vcljpg,
-  {$ENDIF}  
-  pckUserControl_RT;
+    vcljpg;
+  {$ENDIF}
 
 contains
   UCReg in '..\..\Source\Base\UCReg.pas',
