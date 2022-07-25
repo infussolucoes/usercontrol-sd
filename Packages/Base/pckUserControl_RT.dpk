@@ -28,20 +28,20 @@ package pckUserControl_RT;
 {$IMPLICITBUILD OFF}
 
 requires
+  {$IFDEF DELPHI2006_UP}
+  IndyProtocols,
+  {$ELSE}
+	{$IFDEF DELPHI7}
+	IndyProtocols70,
+	{$ENDIF}
+  {$ENDIF}
   pckMD5,
   pckUCDataConnector,
   inet,
   vclactnband,
   vcldb,
-  VclSmp,
-  {$IFDEF DELPHI2006_UP}
-  IndyProtocols;
-  {$ELSE}
-	{$IFDEF DELPHI7}
-	IndyProtocols70;
-	{$ENDIF}
-  {$ENDIF}
-
+  VclSmp;
+  
 contains
   TrocaSenha_U in '..\..\source\Base\TrocaSenha_U.pas',
   UCBase in '..\..\source\Base\UCBase.pas',
