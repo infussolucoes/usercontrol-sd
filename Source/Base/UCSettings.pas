@@ -74,7 +74,8 @@ uses
   Forms,
 
   UCMessages,
-  UcConsts_Language;
+  UcConsts_Language,
+  UCDataConnector;
 
 type
   TUCSettings = class(TComponent)
@@ -110,7 +111,7 @@ type
     procedure SetFPermissFormMSG(const Value: TUCPermissFormMSG);
     procedure SetFTrocaSenhaFormMSG(const Value: TUCTrocaSenhaFormMSG);
   public
-    Type_Int, Type_Char, Type_VarChar, Type_Memo: String;
+    Type_Int, Type_Char, Type_VarChar, Type_Memo, Type_Blob: String;
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
     procedure Assign(Source: TPersistent); override;
@@ -141,7 +142,7 @@ procedure IniSettings(DestSettings: TUCSettings);
 
 procedure AlterLanguage(DestSettings: TUCUserSettings);
 
-procedure RetornaSqlBancoDados(fBanco: TUCTypeBancoDados; var Int, Char, VarChar, Memo: String);
+procedure RetornaSqlBancoDados(fBanco: TUCTypeBancoDados; var Int, Char, VarChar, Memo, Blob: String);
 
 implementation
 
@@ -154,7 +155,7 @@ uses
 
 {$IFDEF DELPHI9_UP} {$REGION 'Inicializacao'} {$ENDIF}
 
-procedure RetornaSqlBancoDados(fBanco: TUCTypeBancoDados; var Int, Char, VarChar, Memo: String);
+procedure RetornaSqlBancoDados(fBanco: TUCTypeBancoDados; var Int, Char, VarChar, Memo, Blob: String);
 begin
   Int := 'INT';
   Char := 'CHAR';
@@ -162,19 +163,40 @@ begin
 
   case fBanco of
     Firebird:
+    begin
       Memo := 'BLOB SUB_TYPE 1 SEGMENT SIZE 1024';
+      Blob := 'BLOB';
+    end;
     Interbase:
+    begin
       Memo := 'BLOB SUB_TYPE 1 SEGMENT SIZE 1024';
+      Blob := 'BLOB';
+    end;
     MySql:
+    begin
       Memo := 'MEDIUMBLOB';
+      Blob := 'LONGBLOB';
+    end;
     PARADOX:
+    begin
       Memo := 'BLOB(1024,1)';
+      Blob := 'BLOB';
+    end;
     Oracle:
+    begin
       Memo := 'LONG RAW';
+      Blob := 'BLOB';
+    end;
     SqlServer:
+    begin
       Memo := 'NTEXT';
+      Blob := 'BLOB';
+    end;
     PostgreSQL:
+    begin
       Memo := 'TEXT';
+      Blob := 'BYTEA';
+    end;
   end;
 end;
 
@@ -755,10 +777,10 @@ begin
   FTrocaSenhaFormMSG := TUCTrocaSenhaFormMSG.Create(nil);
   FResetPassword := TUCResetPassword.Create(nil);
   FLogControlFormMSG := TUCLogControlFormMSG.Create(nil);
-  fBancoDados := Firebird;
+  fBancoDados := PostgreSQL; // Firebird;
   fUsersLogged := TUCCadUserLoggedMSG.Create(nil);
   FPosition := poMainFormCenter;
-  RetornaSqlBancoDados(fBancoDados, Type_Int, Type_Char, Type_VarChar, Type_Memo);
+  RetornaSqlBancoDados(fBancoDados, Type_Int, Type_Char, Type_VarChar, Type_Memo, Type_Blob);
   if csDesigning in ComponentState then
     IniSettings(Self);
 end;
@@ -799,7 +821,7 @@ procedure TUCSettings.SetfBancoDados(const Value: TUCTypeBancoDados);
 begin
   fBancoDados := Value;
   RetornaSqlBancoDados(fBancoDados, Type_Int, Type_Char, Type_VarChar,
-    Type_Memo);
+    Type_Memo, Type_Blob);
 end;
 
 procedure TUCSettings.SetFCadUserFormMSG(const Value: TUCCadUserFormMSG);
