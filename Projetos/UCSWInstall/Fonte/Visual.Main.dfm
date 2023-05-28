@@ -1,7 +1,7 @@
 object FrmPrincipal: TFrmPrincipal
   Left = 0
   Top = 0
-  ActiveControl = edtDirDestino
+  ActiveControl = wizPgInicio
   Caption = 'Instalador do UserControl ShowDelphi Edition'
   ClientHeight = 548
   ClientWidth = 736
@@ -11,18 +11,16 @@ object FrmPrincipal: TFrmPrincipal
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
-  Position = poDesktopCenter
+  Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
-  PixelsPerInch = 96
   TextHeight = 13
   object wizPrincipal: TJvWizard
     Left = 0
     Top = 71
     Width = 736
     Height = 477
-    ActivePage = wizPgConfiguracao
+    ActivePage = wizPgInicio
     ButtonBarHeight = 42
     ButtonStart.Caption = 'To &Start Page'
     ButtonStart.NumGlyphs = 1
@@ -52,6 +50,7 @@ object FrmPrincipal: TFrmPrincipal
       477)
     object wizPgInicio: TJvWizardInteriorPage
       Header.Visible = False
+      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Assistente para a instala'#231#227'o do UserControl SWDelphi Edition'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -797,6 +796,7 @@ object FrmPrincipal: TFrmPrincipal
     end
     object wizPgConfiguracao: TJvWizardInteriorPage
       Header.Visible = False
+      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Assistente para a instala'#231#227'o do UserControl SWDelphi Edition'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -978,6 +978,7 @@ object FrmPrincipal: TFrmPrincipal
     end
     object wizPgPacote: TJvWizardInteriorPage
       Header.Visible = False
+      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Assistente para a instala'#231#227'o do UserControl SWDelphi Edition'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -998,6 +999,9 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
+      ExplicitLeft = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       inline frameDpk: TframePacotes
         Left = 0
         Top = 0
@@ -1154,6 +1158,7 @@ object FrmPrincipal: TFrmPrincipal
     end
     object wizPgInstalacao: TJvWizardInteriorPage
       Header.Visible = False
+      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Assistente para a instala'#231#227'o do UserControl SWDelphi Edition'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -1243,6 +1248,7 @@ object FrmPrincipal: TFrmPrincipal
     end
     object wizPgFim: TJvWizardInteriorPage
       Header.Visible = False
+      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Assistente para a instala'#231#227'o do UserControl SWDelphi Edition'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -1264,6 +1270,9 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
+      ExplicitLeft = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label9: TLabel
         Left = 39
         Top = 330
