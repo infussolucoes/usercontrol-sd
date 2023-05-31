@@ -55,15 +55,10 @@ Vicente Barros Leonel [ Fknyght ]
 {                                                                              }
 { Comunidade Show Delphi - www.showdelphi.com.br                               }
 {                                                                              }
-{ Giovani Da Cruz  -  giovani@infus.inf.br  -  www.infus.inf.br                }
+{ Giovani Da Cruz  -  giovani@infus.inf.br  -  giovanidacruz.com.br            }
 {                                                                              }
 { **************************************************************************** }
 
-{ AJUDE O PROJETO COM UMA XÍCARA DE CAFÉ OU DUAS. CONSIDERE UMA DOAÇÃO!        }
-{                                                                              }
-{ VIA PAGSEGURO: https://pag.ae/7VccpnuCN                                      }
-{ APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL                        }
-{
 
 { ******************************************************************************
   |* Historico
@@ -76,6 +71,13 @@ Vicente Barros Leonel [ Fknyght ]
   |*
   |* 31/08/2019: Gioavni Da Cruz
   |*  - Revisão para a instalação do DWCore Conector
+  |*
+  |* 31/05/2023: Gioavni Da Cruz
+  |*  - Revisão para a instalação Delphi 10.4
+  |*
+  |*
+  |* 31/05/2023: Gioavni Da Cruz
+  |*  - Revisão para a instalação Delphi 11
   **************************************************************************** }
 
 unit Visual.Main;
@@ -359,7 +361,7 @@ begin
      if VersionNumberStr = 'd16' then
         Sender.Options.Add('-NSData.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win');
 
-     if MatchText(VersionNumberStr, ['d17','d18','d19','d20','d21','d22','d23','d24','d25','d26','d27','d28']) then
+     if MatchText(VersionNumberStr, ['d17','d18','d19','d20','d21','d22','d23','d24','d25','d26','d27','d28', 'd29']) then
         Sender.Options.Add('-NSWinapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;IBX');
 
   end;
@@ -692,7 +694,7 @@ begin
   // C++ Builder a partir do D2006, versões anteriores tem IDE independentes.
   ckbBCB.Enabled := MatchText(oUserControl.Installations[iVersion].VersionNumberStr,
     ['d10', 'd11', 'd12', 'd14', 'd15', 'd16', 'd17', 'd18', 'd19', 'd20',
-    'd21', 'd22', 'd23', 'd24', 'd25', 'd26', 'd27', 'd28']);
+    'd21', 'd22', 'd23', 'd24', 'd25', 'd26', 'd27', 'd28', 'd29']);
   if not ckbBCB.Enabled then
     ckbBCB.Checked := False;
 end;
@@ -857,7 +859,12 @@ begin
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd27' then
       edtDelphiVersion.Items.Add('Delphi 10.4 Sydney')
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd28' then
-      edtDelphiVersion.Items.Add('Delphi 11 Alexandria');
+      edtDelphiVersion.Items.Add('Delphi 11.3 Alexandria')
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd29' then
+      edtDelphiVersion.Items.Add('Delphi Novo'); // para ja testar futura versao
+
+    { Adicionar aqui novas versoes }
+
 
     // -- Evento disparado antes de iniciar a execução do processo.
     oUserControl.Installations[iFor].DCC32.OnBeforeExecute := BeforeExecute;
