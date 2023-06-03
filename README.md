@@ -7,18 +7,14 @@ que possível.
 
 Fórum oficial: https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
 
-# Apoie este trabalho. Muito obrigado pela sua colaboração!
+# Contribuições
 
-Considere apoiar o projeto e assim atualizações possam ser desenvolvidas!
+Lembre-se que você sempre pode contribuir com melhorias nos códigos, exemplos de uso e testes nas versões de Delphi.
+Caso tenha interesse em colaborar, entre em contato conosco.
 
-APOIE PELO PAGSEGURO: https://pag.ae/7VccpnuCN
+# Suporte
 
-APOIE PELO PAYPAL: https://www.paypal.com/donate/?cmd=_s-xclick&hosted_button_id=JEJCYEVAGCQEG&source=url
-
-
-# Amplo suporte
-
-O componente tem suporte do Delphi 7 até o Delphi 10.3 Rio.
+O componente tem suporte do Delphi 7 até o Delphi 11.3 Alexandria.
 
 A partir de 12/03/2019 foi incluso a primeira versão com suporte a Lazarus.
 
@@ -42,15 +38,17 @@ Delphi 10.1 Berlin
 
 Delphi 10.2 Tokyo
 
-Delphi 10.3 Rio (Inclusive a versão Community Edition [starter] )
+Delphi 10.3 Rio
 
-O Delphi 10.4 esta em testes, ainda não disponível no instalador.
+Delphi 10.4 Sydney
+
+O Delphi 11.3 Alexandria
 
 -------------------------------------------------------------
 
 Lazarus 2.0 (Beta)  
 
-Obs: Quem estiver utilizando a versão Starter do Berlin, precisa realizar a instalação manualmente,
+Obs: Quem estiver utilizando a versão Starter (Community) do Delphi, precisa realizar a instalação manualmente,
 pois o delphi não gera as bpls se você utilizar o instalador.
 Lembramos também que o Berlin Starter, por padrão, não tem componentes de conexão instalados, logo
 recomendamos a instalação do Zeos que é Open Source, assim será possível de utilizar o UserControl. 
@@ -81,5 +79,6 @@ Para ver uma descrição completa dos componentes acesse: https://showdelphi.com
 Caso queria baixar o RestWare versão Datasnap que mantemos, acesse: https://github.com/infussolucoes/Datasnap-Restware
 
 Visite a comunidade: https://showdelphi.com.br
+Visite o blog: https://giovanidacruz.com.br
 
 
