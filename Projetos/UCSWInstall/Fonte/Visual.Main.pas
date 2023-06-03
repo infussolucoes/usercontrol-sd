@@ -117,8 +117,6 @@ type
     wizPgInicio: TJvWizardInteriorPage;
     Label6: TLabel;
     lblUrlForum1: TLabel;
-    lblUrlUserControl1: TLabel;
-    Label19: TLabel;
     Label21: TLabel;
     Label11: TLabel;
     Label12: TLabel;
@@ -145,10 +143,10 @@ type
     chkDeixarSomenteLIB: TCheckBox;
     btnInstalar: TButton;
     Label3: TLabel;
+    Label14: TLabel;
+    Label19: TLabel;
     Label22: TLabel;
     Label23: TLabel;
-    Label26: TLabel;
-    Label27: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure edtDelphiVersionChange(Sender: TObject);

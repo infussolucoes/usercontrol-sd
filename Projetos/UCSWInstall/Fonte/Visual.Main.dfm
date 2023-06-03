@@ -93,7 +93,7 @@ object FrmPrincipal: TFrmPrincipal
       end
       object lblUrlForum1: TLabel
         Left = 101
-        Top = 340
+        Top = 267
         Width = 437
         Height = 13
         Cursor = crHandPoint
@@ -108,39 +108,9 @@ object FrmPrincipal: TFrmPrincipal
         ParentFont = False
         OnClick = URLClick
       end
-      object lblUrlUserControl1: TLabel
-        Left = 180
-        Top = 254
-        Width = 151
-        Height = 16
-        Cursor = crHandPoint
-        Caption = 'https://pag.ae/7VccpnuCN'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlue
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = [fsUnderline]
-        ParentFont = False
-        OnClick = URLClick
-      end
-      object Label19: TLabel
-        Left = 33
-        Top = 229
-        Width = 439
-        Height = 16
-        Caption = 
-          'Considere colaborar com o projeto com uma x'#237'cara de caf'#233' ou duas' +
-          '.'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
       object Label21: TLabel
         Left = 33
-        Top = 324
+        Top = 251
         Width = 241
         Height = 13
         Caption = 'Para tirar d'#250'vidas, ajudar ou dar sugest'#245'es visite:'
@@ -783,17 +753,32 @@ object FrmPrincipal: TFrmPrincipal
           0000000049454E44AE426082}
       end
       object Label3: TLabel
-        Left = 57
-        Top = 254
-        Width = 117
-        Height = 16
-        Caption = 'Doe via Pag Seguro:'
+        Left = 33
+        Top = 315
+        Width = 191
+        Height = 13
+        Caption = 'Blog com posts sobre Tecnologia, visite:'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
-        Font.Height = -13
+        Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+      end
+      object Label14: TLabel
+        Left = 101
+        Top = 331
+        Width = 140
+        Height = 13
+        Cursor = crHandPoint
+        Caption = 'https://giovanidacruz.com.br'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsUnderline]
+        ParentFont = False
+        OnClick = URLClick
       end
     end
     object wizPgConfiguracao: TJvWizardInteriorPage
@@ -819,9 +804,6 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label2: TLabel
         Left = 33
         Top = 47
@@ -915,6 +897,17 @@ object FrmPrincipal: TFrmPrincipal
         Font.Style = [fsBold, fsUnderline]
         ParentFont = False
       end
+      object Label23: TLabel
+        Left = 33
+        Top = 292
+        Width = 384
+        Height = 33
+        AutoSize = False
+        Caption = 
+          'Lembre-se de remover TODOS arquivos de outras instala'#231#245'es, inclu' +
+          'sive arquivos (.dcu).'
+        WordWrap = True
+      end
       object edtDirDestino: TEdit
         Left = 33
         Top = 63
@@ -1004,9 +997,6 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       inline frameDpk: TframePacotes
         Left = 0
         Top = 0
@@ -1185,9 +1175,6 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgInstalacaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object btnVisualizarLogCompilacao: TSpeedButton
         Left = 33
         Top = 519
@@ -1278,12 +1265,9 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label9: TLabel
         Left = 39
-        Top = 330
+        Top = 255
         Width = 401
         Height = 13
         Caption = 
@@ -1298,7 +1282,7 @@ object FrmPrincipal: TFrmPrincipal
       end
       object Label10: TLabel
         Left = 107
-        Top = 349
+        Top = 274
         Width = 127
         Height = 13
         Cursor = crHandPoint
@@ -1313,7 +1297,7 @@ object FrmPrincipal: TFrmPrincipal
       end
       object Label24: TLabel
         Left = 39
-        Top = 271
+        Top = 196
         Width = 241
         Height = 13
         Caption = 'Para tirar d'#250'vidas, ajudar ou dar sugest'#245'es visite:'
@@ -1326,7 +1310,7 @@ object FrmPrincipal: TFrmPrincipal
       end
       object Label25: TLabel
         Left = 107
-        Top = 290
+        Top = 215
         Width = 437
         Height = 13
         Cursor = crHandPoint
@@ -1358,61 +1342,33 @@ object FrmPrincipal: TFrmPrincipal
         ParentFont = False
         WordWrap = True
       end
+      object Label19: TLabel
+        Left = 41
+        Top = 323
+        Width = 191
+        Height = 13
+        Caption = 'Blog com posts sobre Tecnologia, visite:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGreen
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
       object Label22: TLabel
-        Left = 190
-        Top = 179
-        Width = 151
-        Height = 16
+        Left = 109
+        Top = 339
+        Width = 140
+        Height = 13
         Cursor = crHandPoint
-        Caption = 'https://pag.ae/7VccpnuCN'
+        Caption = 'https://giovanidacruz.com.br'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlue
-        Font.Height = -13
+        Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = [fsUnderline]
         ParentFont = False
         OnClick = URLClick
-      end
-      object Label23: TLabel
-        Left = 39
-        Top = 152
-        Width = 439
-        Height = 16
-        Caption = 
-          'Considere colaborar com o projeto com uma x'#237'cara de caf'#233' ou duas' +
-          '.'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-      end
-      object Label26: TLabel
-        Left = 63
-        Top = 179
-        Width = 117
-        Height = 16
-        Caption = 'Doe via Pag Seguro:'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
-      object Label27: TLabel
-        Left = 63
-        Top = 203
-        Width = 359
-        Height = 16
-        Caption = 'Apoie com bitcoins: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clGreen
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
       end
     end
     object wizMapa: TJvWizardRouteMapNodes

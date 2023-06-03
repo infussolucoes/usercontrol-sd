@@ -6,3 +6,6 @@ __recovery
 *.local
 /Lib/Delphi
 /*.patch
+/log_Delphi_10.4_Sydney.txt
+/Projetos/UCSWInstall/Fonte/UCSWInstall.identcache
+/UCSWInstall.ini

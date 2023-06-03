@@ -1,4 +1,4 @@
-{ **************************************************************************** }
+﻿{ **************************************************************************** }
 { Projeto: Componentes User Control ShowDelphi Edition                         }
 { Biblioteca multiplataforma de componentes Delphi para o controle de usuários }
 {                                                                              }
@@ -768,6 +768,7 @@ implementation
 uses
   DBGrids,
   Dialogs,
+  TypInfo,
   LoginWindow_U,
   MsgRecForm_U,
   MsgsForm_U,
@@ -875,7 +876,21 @@ begin
         ('O Componente "TUserControl" não pode ser definido em um "TDataModulo"');
 
     if not Assigned(DataConnector) then
-      raise Exception.Create(RetornaLingua(fLanguage, 'MsgExceptConnector'));
+    begin
+      { Tenta pegar um connector setado por código }
+      if Owner is TForm then
+      begin
+        if IsPublishedProp(Owner, 'DataConnector') then
+        begin
+          DataConnector := TUCDataConnector( GetObjectProp(Owner, 'DataConnector') );
+        end;
+      end;
+
+      if not Assigned(DataConnector) then
+      begin
+        raise Exception.Create(RetornaLingua(fLanguage, 'MsgExceptConnector'));
+      end;
+    end;
 
     if ApplicationID = '' then
       raise Exception.Create(RetornaLingua(fLanguage, 'MsgExceptAppID'));
