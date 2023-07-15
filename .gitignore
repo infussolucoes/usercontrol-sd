@@ -11,3 +11,4 @@ __recovery
 /UCSWInstall.ini
 /Exemplos/Apli_Zeos/fontes/*.exe
 /Exemplos/Apli_Firedac/fontes/*.identcache
+/Exemplos/Apli_Zeos/fontes/*.identcache

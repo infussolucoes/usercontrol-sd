@@ -58,8 +58,8 @@ uses
 
 type
   TdmUC = class(TDataModule)
-    ZConnection1: TZConnection;
     QryBanco: TZQuery;
+    ZConnection1: TZConnection;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -73,14 +73,20 @@ var
 implementation
 
 uses
-  Forms;
+  Forms,
+  IoUtils;
 
 {$R *.dfm}
 
 procedure TdmUC.DataModuleCreate(Sender: TObject);
+var
+  vFile : String;
 begin
+  vFile := TPath.GetFullPath(ExtractFilePath(Application.ExeName) + '..\');
+  vFile := vFile + 'DBase\DB_UC.FDB';
+
   ZConnection1.Disconnect;
-  ZConnection1.Database := ExtractFilePath(Application.ExeName) + '..\DBase\DB_UC.FDB';
+  ZConnection1.Database := vFile;
   ZConnection1.Connect;
 end;
 
