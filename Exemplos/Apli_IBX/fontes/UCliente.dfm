@@ -39,7 +39,7 @@ object FrmCliente: TFrmCliente
   end
   object UCControls1: TUCControls
     GroupName = 'Tela de Clientes'
-    UserControl = Form1.ucMyControl
+    UserControl = FrmPrincipal.ucMyControl
     Components = ''
     NotAllowed = naDisabled
     Left = 384

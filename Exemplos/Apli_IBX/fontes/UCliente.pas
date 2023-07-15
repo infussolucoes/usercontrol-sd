@@ -4,7 +4,7 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{               APLICAÇÃO DE EXEMPLO - ZEOS CONECTOR                           }
+{               APLICAÇÃO DE EXEMPLO - IBX CONECTOR                            }
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }

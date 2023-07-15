@@ -1,4 +1,4 @@
-program UserControl_Tut01;
+program Exemplo_UserControl_IBX_Connector;
 
 uses
   Forms,

@@ -1,4 +1,4 @@
-Este exemplo utiliza o Firedac Conector e está configurado para um banco de
+Este exemplo utiliza o Firedac Connector e está configurado para um banco de
 dados Firebird.
 
 Na pasta DBase tem o arquivo "Estrutura.sql" para você recriar o

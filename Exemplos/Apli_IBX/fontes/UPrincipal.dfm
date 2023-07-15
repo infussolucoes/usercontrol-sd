@@ -1,9 +1,9 @@
 object FrmPrincipal: TFrmPrincipal
   Left = 408
   Top = 246
-  Caption = 'Tutorial UserControl - Zeos Connector - www.showdelphi.com.br'
-  ClientHeight = 356
-  ClientWidth = 835
+  Caption = 'Tutorial UserControl - www.showdelphi.com.br'
+  ClientHeight = 388
+  ClientWidth = 809
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -117,7 +117,7 @@ object FrmPrincipal: TFrmPrincipal
     ParentFont = False
   end
   object Image1: TImage
-    Left = 552
+    Left = 527
     Top = 8
     Width = 245
     Height = 75
@@ -702,7 +702,7 @@ object FrmPrincipal: TFrmPrincipal
     ParentFont = False
   end
   object Label5: TLabel
-    Left = 505
+    Left = 480
     Top = 109
     Width = 292
     Height = 22
@@ -716,8 +716,8 @@ object FrmPrincipal: TFrmPrincipal
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 337
-    Width = 835
+    Top = 369
+    Width = 809
     Height = 19
     Panels = <
       item
@@ -728,10 +728,13 @@ object FrmPrincipal: TFrmPrincipal
         Text = 'Giovani Da Cruz - https://giovanidacruz.com.br'
         Width = 50
       end>
+    ExplicitLeft = -63
+    ExplicitTop = 337
+    ExplicitWidth = 835
   end
   object MainMenu1: TMainMenu
-    Left = 608
-    Top = 136
+    Left = 752
+    Top = 168
     object Cadastro1: TMenuItem
       Caption = 'Cadastro'
       object Bancos1: TMenuItem
@@ -848,22 +851,23 @@ object FrmPrincipal: TFrmPrincipal
     TableUsersLogged.FieldMachineName = 'UCMachineName'
     TableUsersLogged.FieldData = 'UCData'
     TableUsersLogged.TableName = 'UCTabUsersLogged'
-    DataConnector = UCZEOSConn1
-    Left = 728
-    Top = 136
+    DataConnector = UCIBXConn1
+    Left = 680
+    Top = 176
+  end
+  object UCIBXConn1: TUCIBXConn
+    Connection = dmUC.IBDatabase1
+    Transaction = dmUC.IBTransaction1
+    Left = 592
+    Top = 256
   end
   object UCApplicationMessage1: TUCApplicationMessage
     Active = True
     Interval = 60000
     TableMessages = 'UCTABMESSAGES'
     UserControl = ucMyControl
-    Left = 736
-    Top = 224
-  end
-  object UCZEOSConn1: TUCZEOSConn
-    Connection = dmUC.ZConnection1
-    Left = 616
-    Top = 216
+    Left = 688
+    Top = 256
   end
   object UCSettings1: TUCSettings
     AppMessages.MsgsForm_BtNew = '&Nova Mensagem'
@@ -1107,7 +1111,7 @@ object FrmPrincipal: TFrmPrincipal
     UsersLogged.InputCaption = 'Mensagem'
     UsersLogged.InputText = 'Digite sua mensagem'
     UsersLogged.MsgSystem = 'Mensagem do sistema'
-    Left = 512
+    Left = 584
     Top = 176
   end
 end

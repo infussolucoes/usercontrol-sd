@@ -4,7 +4,7 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{               APLICAÇÃO DE EXEMPLO - ZEOS CONECTOR                           }
+{               APLICAÇÃO DE EXEMPLO - IBX CONECTOR                            }
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }
@@ -46,20 +46,22 @@
 { Doe no PIX (chave aleatória): 5943007d-4332-4e5c-ac66-06486a10cbfb           }
 {                                                                              }
 { *****************************************************************************}
-unit UCliente;
+unit UBanco;
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UCBase;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.ExtCtrls, Vcl.DBCtrls,
+  Vcl.Grids, Vcl.DBGrids;
 
 type
-  TFrmCliente = class(TForm)
-    BtnIncluir: TButton;
-    BtnAlterar: TButton;
-    BtnExcluir: TButton;
-    UCControls1: TUCControls;
+  TFrmBanco = class(TForm)
+    DBGrid1: TDBGrid;
+    DBNavigator1: TDBNavigator;
+    DSBanco: TDataSource;
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -67,13 +69,25 @@ type
   end;
 
 var
-  FrmCliente: TFrmCliente;
+  FrmBanco: TFrmBanco;
 
 implementation
 
 {$R *.dfm}
 
 uses
-  UPrincipal;
+  UDmUC;
+
+procedure TFrmBanco.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  if dmUC.IBTransaction1.InTransaction then
+    dmUC.IBTransaction1.CommitRetaining;
+end;
+
+procedure TFrmBanco.FormCreate(Sender: TObject);
+begin
+  if not (dmUC.QryBanco.Active) then
+    dmUC.QryBanco.Open;
+end;
 
 end.

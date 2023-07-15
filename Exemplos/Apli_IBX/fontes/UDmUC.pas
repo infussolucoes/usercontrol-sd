@@ -4,7 +4,7 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{               APLICAÇÃO DE EXEMPLO - ZEOS CONECTOR                           }
+{               APLICAÇÃO DE EXEMPLO - IBX CONECTOR                            }
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }
@@ -46,20 +46,20 @@
 { Doe no PIX (chave aleatória): 5943007d-4332-4e5c-ac66-06486a10cbfb           }
 {                                                                              }
 { *****************************************************************************}
-unit UCliente;
+unit UDmUC;
 
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UCBase;
+  SysUtils, Classes, DB, UCBase,
+  UCDataConnector, IBX.IBDatabase, UCIBXConn, IBX.IBCustomDataSet;
 
 type
-  TFrmCliente = class(TForm)
-    BtnIncluir: TButton;
-    BtnAlterar: TButton;
-    BtnExcluir: TButton;
-    UCControls1: TUCControls;
+  TdmUC = class(TDataModule)
+    IBTransaction1: TIBTransaction;
+    QryBanco: TIBDataSet;
+    IBDatabase1: TIBDatabase;
+    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -67,13 +67,26 @@ type
   end;
 
 var
-  FrmCliente: TFrmCliente;
+  dmUC: TdmUC;
 
 implementation
 
+uses
+  Forms,
+  IoUtils;
+
 {$R *.dfm}
 
-uses
-  UPrincipal;
+procedure TdmUC.DataModuleCreate(Sender: TObject);
+var
+  vFile : String;
+begin
+  vFile := TPath.GetFullPath(ExtractFilePath(Application.ExeName) + '..\');
+  vFile := vFile + 'DBase\APLICATIVO_UC.FDB';
+
+  IBDatabase1.Close;
+  IBDatabase1.DatabaseName := vFile;
+  IBDatabase1.Open;
+end;
 
 end.

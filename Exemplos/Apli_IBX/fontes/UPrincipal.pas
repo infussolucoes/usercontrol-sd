@@ -4,7 +4,7 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{               APLICAÇÃO DE EXEMPLO - ZEOS CONECTOR                           }
+{               APLICAÇÃO DE EXEMPLO - IBX CONECTOR                            }
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }
@@ -46,20 +46,59 @@
 { Doe no PIX (chave aleatória): 5943007d-4332-4e5c-ac66-06486a10cbfb           }
 {                                                                              }
 { *****************************************************************************}
-unit UCliente;
+unit UPrincipal;
 
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UCBase;
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Menus, UCBase, UCDataConnector, UCIBXConn, UCSettings, Vcl.ComCtrls,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.StdCtrls;
 
 type
-  TFrmCliente = class(TForm)
-    BtnIncluir: TButton;
-    BtnAlterar: TButton;
-    BtnExcluir: TButton;
-    UCControls1: TUCControls;
+  TFrmPrincipal = class(TForm)
+    MainMenu1: TMainMenu;
+    Cadastro1: TMenuItem;
+    Bancos1: TMenuItem;
+    Clientes1: TMenuItem;
+    Cidades1: TMenuItem;
+    Produtos1: TMenuItem;
+    N1: TMenuItem;
+    Sair1: TMenuItem;
+    Seguranca1: TMenuItem;
+    CadastrodeUsurios1: TMenuItem;
+    Mensagens1: TMenuItem;
+    N2: TMenuItem;
+    rocarSenha1: TMenuItem;
+    N3: TMenuItem;
+    Executarlogon1: TMenuItem;
+    ucMyControl: TUserControl;
+    UCIBXConn1: TUCIBXConn;
+    estes1: TMenuItem;
+    GerarLog1: TMenuItem;
+    UCApplicationMessage1: TUCApplicationMessage;
+    lblUrlForum1: TLabel;
+    lblUrlPIX: TLabel;
+    Label19: TLabel;
+    Label21: TLabel;
+    Label20: TLabel;
+    Label1: TLabel;
+    Label3: TLabel;
+    Image1: TImage;
+    Label2: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    StatusBar1: TStatusBar;
+    UCSettings1: TUCSettings;
+    procedure Sair1Click(Sender: TObject);
+    procedure GerarLog1Click(Sender: TObject);
+    procedure Mensagens1Click(Sender: TObject);
+    procedure Bancos1Click(Sender: TObject);
+    procedure Clientes1Click(Sender: TObject);
+    procedure Cidades1Click(Sender: TObject);
+    procedure Produtos1Click(Sender: TObject);
+    procedure URLClick(Sender: TObject);
+    procedure lblUrlPIXClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -67,13 +106,70 @@ type
   end;
 
 var
-  FrmCliente: TFrmCliente;
+  FrmPrincipal: TFrmPrincipal;
 
 implementation
 
+uses
+  ShellAPI,
+  Clipbrd,
+
+  { Unit da aplicação }
+  UDmUC,
+  UBanco,
+  UCliente;
+
 {$R *.dfm}
 
-uses
-  UPrincipal;
+procedure TFrmPrincipal.Bancos1Click(Sender: TObject);
+begin
+  Application.CreateForm(TFrmBanco, FrmBanco);
+  FrmBanco.ShowModal;
+end;
+
+procedure TFrmPrincipal.Cidades1Click(Sender: TObject);
+begin
+  ShowMessage('Cidade');
+end;
+
+procedure TFrmPrincipal.Clientes1Click(Sender: TObject);
+begin
+  Application.CreateForm(TFrmCliente, FrmCliente);
+  FrmCliente.ShowModal;
+end;
+
+procedure TFrmPrincipal.GerarLog1Click(Sender: TObject);
+begin
+  ucMyControl.Log('Teste de log', 1);
+end;
+
+procedure TFrmPrincipal.lblUrlPIXClick(Sender: TObject);
+begin
+  Clipboard.asText := lblUrlPIX.Caption;
+
+  Application.MessageBox('Chave copiada para a área de transferência!',
+    'Apoio ao Projeto', MB_ICONINFORMATION + MB_OK);
+end;
+
+procedure TFrmPrincipal.Mensagens1Click(Sender: TObject);
+begin
+  UCApplicationMessage1.CheckMessages;
+  UCApplicationMessage1.ShowMessages();
+end;
+
+procedure TFrmPrincipal.Produtos1Click(Sender: TObject);
+begin
+  ShowMessage('Produtos');
+end;
+
+procedure TFrmPrincipal.Sair1Click(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TFrmPrincipal.URLClick(Sender: TObject);
+begin
+  ShellExecute(Handle, 'open', PWideChar(TLabel(Sender).Caption), '', '', 1);
+end;
 
 end.
