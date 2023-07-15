@@ -8,7 +8,7 @@
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }
-{ Direitos Autorais Reservados (c) 2019   Giovani Da Cruz                      }
+{ Direitos Autorais Reservados (c) 2023 - Giovani Da Cruz                      }
 {                                                                              }
 { Colaboradores nesse arquivo:                                                 }
 {                                                                              }
@@ -35,15 +35,16 @@
 {                                                                              }
 { Comunidade Show Delphi - showdelphi.com.br                                   }
 {                                                                              }
+{ Blog do Giovani - giovanidacruz.com.br                                       }
+{                                                                              }
 { Giovani Da Cruz  -  giovani@infus.inf.br  -  www.infus.inf.br                }
 {                                                                              }
 { **************************************************************************** }
-
-{ AJUDE O PROJETO COM UMA XÍCARA DE CAFÉ OU DUAS. CONSIDERE UMA DOAÇÃO!        }
 {                                                                              }
-{ VIA PAGSEGURO: https://pag.ae/7VccpnuCN                                      }
-{ APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL                        }
-{
+{ AJUDE O PROJETO COM UMA XÍCARA DE CAFÉ!                                      }
+{                                                                              }
+{ Doe no PIX (chave aleatória): 5943007d-4332-4e5c-ac66-06486a10cbfb           }
+{                                                                              }
 { *****************************************************************************}
 unit UBanco;
 
