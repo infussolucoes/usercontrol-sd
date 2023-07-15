@@ -35,10 +35,12 @@ requires
   vcldb,
   VclSmp,
   {$IFDEF DELPHI2006_UP}
-  IndyProtocols;
+    IndyProtocols;
   {$ELSE}
 	{$IFDEF DELPHI7}
-	IndyProtocols70;
+	  IndyProtocols70;
+	{$ELSE}
+	  IndyProtocols;
 	{$ENDIF}
   {$ENDIF}
 
