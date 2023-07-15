@@ -7,7 +7,12 @@ que possível.
 
 Fórum oficial: https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
 
-# Contribuições
+# Consultorias
+
+Você pode contatar Giovani da Cruz para consultorias sobre o User Control e 
+serviços Freelancer em Delphi pelo e-mail giovani@infus.inf.br.
+
+# Contribuições em Código
 
 Lembre-se que você sempre pode contribuir com melhorias nos códigos, exemplos de uso e testes nas versões de Delphi.
 Caso tenha interesse em colaborar, entre em contato conosco.
@@ -42,7 +47,7 @@ Delphi 10.3 Rio
 
 Delphi 10.4 Sydney
 
-O Delphi 11.3 Alexandria
+Delphi 11.3 Alexandria
 
 -------------------------------------------------------------
 
