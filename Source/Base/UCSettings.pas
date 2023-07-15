@@ -177,7 +177,24 @@ begin
     PostgreSQL:
       Memo := 'TEXT';
   end;
-  Blob := 'BYTEA';
+
+  case fBanco of
+    Firebird:
+      Blob := 'BLOB SUB_TYPE 0 SEGMENT SIZE 1024';
+    Interbase:
+      Blob := 'BLOB SUB_TYPE 0 SEGMENT SIZE 1024';
+    MySql:
+      Blob := 'MEDIUMBLOB';
+    PARADOX:
+      Blob := 'BLOB(1024,1)';
+    Oracle:
+      Blob := 'LONG RAW';
+    SqlServer:
+      Blob := 'NTEXT';
+    PostgreSQL:
+      Blob := 'BYTEA';
+  end;
+
 end;
 
 procedure IniSettings(DestSettings: TUCSettings);
@@ -757,7 +774,7 @@ begin
   FTrocaSenhaFormMSG := TUCTrocaSenhaFormMSG.Create(nil);
   FResetPassword := TUCResetPassword.Create(nil);
   FLogControlFormMSG := TUCLogControlFormMSG.Create(nil);
-  fBancoDados := PostgreSQL; // Firebird;
+  fBancoDados := Firebird;
   fUsersLogged := TUCCadUserLoggedMSG.Create(nil);
   FPosition := poMainFormCenter;
   RetornaSqlBancoDados(fBancoDados, Type_Int, Type_Char, Type_VarChar, Type_Memo, Type_Blob);
