@@ -9,3 +9,5 @@ __recovery
 /log_Delphi_10.4_Sydney.txt
 /Projetos/UCSWInstall/Fonte/UCSWInstall.identcache
 /UCSWInstall.ini
+/Exemplos/Apli_Zeos/fontes/*.exe
+/Exemplos/Apli_Firedac/fontes/*.identcache
