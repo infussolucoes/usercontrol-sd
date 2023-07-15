@@ -5,7 +5,7 @@ Na pasta DBase tem o arquivo "Estrutura.sql" para você recriar o
 banco de dados na versão que utilizar do Firebird.
 
 O Exemplo pode ser utilizado para Interbase, sendo necessário
-somente ajuntar no IBConnection.
+somente ajustar no IBConnection.
 
 O Script também pode ser utilizado em Interbase, pois é um SQL padrão.
 

@@ -4,7 +4,7 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{               APLICAÇÃO DE EXEMPLO - IBX CONECTOR                            }
+{               APLICAÇÃO DE EXEMPLO - IBX CONNECTOR                           }
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }

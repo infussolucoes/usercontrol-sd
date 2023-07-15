@@ -12,3 +12,5 @@ __recovery
 /Exemplos/Apli_Zeos/fontes/*.exe
 /Exemplos/Apli_Firedac/fontes/*.identcache
 /Exemplos/Apli_Zeos/fontes/*.identcache
+/Exemplos/Apli_DBX/fontes/*.identcache
+/Exemplos/Apli_DBX/fontes/*.exe

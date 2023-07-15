@@ -4,7 +4,7 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{               APLICAÇÃO DE EXEMPLO - ZEOS CONNECTOR                          }
+{               APLICAÇÃO DE EXEMPLO - DBX CONNECTOR                           }
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }
@@ -46,21 +46,59 @@
 { Doe no PIX (chave aleatória): 5943007d-4332-4e5c-ac66-06486a10cbfb           }
 {                                                                              }
 { *****************************************************************************}
-unit UDmUC;
+unit UPrincipal;
 
 interface
 
 uses
-  SysUtils, Classes, DB, UCBase,
-  UCDataConnector,
-  ZAbstractRODataset, ZAbstractDataset, ZDataset,
-  ZAbstractConnection, ZConnection;
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Menus, UCBase, UCDataConnector, UCSettings, Vcl.ComCtrls,
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.StdCtrls, UCDBXConn;
 
 type
-  TdmUC = class(TDataModule)
-    QryBanco: TZQuery;
-    ZConnection1: TZConnection;
-    procedure DataModuleCreate(Sender: TObject);
+  TFrmPrincipal = class(TForm)
+    MainMenu1: TMainMenu;
+    Cadastro1: TMenuItem;
+    Bancos1: TMenuItem;
+    Clientes1: TMenuItem;
+    Cidades1: TMenuItem;
+    Produtos1: TMenuItem;
+    N1: TMenuItem;
+    Sair1: TMenuItem;
+    Seguranca1: TMenuItem;
+    CadastrodeUsurios1: TMenuItem;
+    Mensagens1: TMenuItem;
+    N2: TMenuItem;
+    rocarSenha1: TMenuItem;
+    N3: TMenuItem;
+    Executarlogon1: TMenuItem;
+    ucMyControl: TUserControl;
+    estes1: TMenuItem;
+    GerarLog1: TMenuItem;
+    UCApplicationMessage1: TUCApplicationMessage;
+    lblUrlForum1: TLabel;
+    lblUrlPIX: TLabel;
+    Label19: TLabel;
+    Label21: TLabel;
+    Label20: TLabel;
+    Label1: TLabel;
+    Label3: TLabel;
+    Image1: TImage;
+    Label2: TLabel;
+    Label4: TLabel;
+    StatusBar1: TStatusBar;
+    UCSettings1: TUCSettings;
+    Label5: TLabel;
+    UCDBXConn1: TUCDBXConn;
+    procedure Sair1Click(Sender: TObject);
+    procedure GerarLog1Click(Sender: TObject);
+    procedure Mensagens1Click(Sender: TObject);
+    procedure Bancos1Click(Sender: TObject);
+    procedure Clientes1Click(Sender: TObject);
+    procedure Cidades1Click(Sender: TObject);
+    procedure Produtos1Click(Sender: TObject);
+    procedure URLClick(Sender: TObject);
+    procedure lblUrlPIXClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -68,26 +106,70 @@ type
   end;
 
 var
-  dmUC: TdmUC;
+  FrmPrincipal: TFrmPrincipal;
 
 implementation
 
 uses
-  Forms,
-  IoUtils;
+  ShellAPI,
+  Clipbrd,
+
+  { Unit da aplicação }
+  UDmUC,
+  UBanco,
+  UCliente;
 
 {$R *.dfm}
 
-procedure TdmUC.DataModuleCreate(Sender: TObject);
-var
-  vFile : String;
+procedure TFrmPrincipal.Bancos1Click(Sender: TObject);
 begin
-  vFile := TPath.GetFullPath(ExtractFilePath(Application.ExeName) + '..\');
-  vFile := vFile + 'DBase\DB_UC.FDB';
+  Application.CreateForm(TFrmBanco, FrmBanco);
+  FrmBanco.ShowModal;
+end;
 
-  ZConnection1.Disconnect;
-  ZConnection1.Database := vFile;
-  ZConnection1.Connect;
+procedure TFrmPrincipal.Cidades1Click(Sender: TObject);
+begin
+  ShowMessage('Cidade');
+end;
+
+procedure TFrmPrincipal.Clientes1Click(Sender: TObject);
+begin
+  Application.CreateForm(TFrmCliente, FrmCliente);
+  FrmCliente.ShowModal;
+end;
+
+procedure TFrmPrincipal.GerarLog1Click(Sender: TObject);
+begin
+  ucMyControl.Log('Teste de log', 1);
+end;
+
+procedure TFrmPrincipal.lblUrlPIXClick(Sender: TObject);
+begin
+  Clipboard.asText := lblUrlPIX.Caption;
+
+  Application.MessageBox('Chave copiada para a área de transferência!',
+    'Apoio ao Projeto', MB_ICONINFORMATION + MB_OK);
+end;
+
+procedure TFrmPrincipal.Mensagens1Click(Sender: TObject);
+begin
+  UCApplicationMessage1.CheckMessages;
+  UCApplicationMessage1.ShowMessages();
+end;
+
+procedure TFrmPrincipal.Produtos1Click(Sender: TObject);
+begin
+  ShowMessage('Produtos');
+end;
+
+procedure TFrmPrincipal.Sair1Click(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TFrmPrincipal.URLClick(Sender: TObject);
+begin
+  ShellExecute(Handle, 'open', PWideChar(TLabel(Sender).Caption), '', '', 1);
 end;
 
 end.

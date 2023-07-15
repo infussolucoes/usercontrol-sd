@@ -4,7 +4,7 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{               APLICAÇÃO DE EXEMPLO - ZEOS CONNECTOR                          }
+{               APLICAÇÃO DE EXEMPLO - DBX CONNECTOR                           }
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }
@@ -54,12 +54,15 @@ uses
   SysUtils, Classes, DB, UCBase,
   UCDataConnector,
   ZAbstractRODataset, ZAbstractDataset, ZDataset,
-  ZAbstractConnection, ZConnection;
+  ZAbstractConnection, ZConnection, Data.FMTBcd, Datasnap.DBClient,
+  Datasnap.Provider, Data.SqlExpr, Data.DBXFirebird;
 
 type
   TdmUC = class(TDataModule)
-    QryBanco: TZQuery;
-    ZConnection1: TZConnection;
+    SQLConnection1: TSQLConnection;
+    SQLDataSetBancos: TSQLDataSet;
+    ProviderBancos: TDataSetProvider;
+    CDSBancos: TClientDataSet;
     procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
@@ -83,11 +86,13 @@ var
   vFile : String;
 begin
   vFile := TPath.GetFullPath(ExtractFilePath(Application.ExeName) + '..\');
-  vFile := vFile + 'DBase\DB_UC.FDB';
+  vFile := vFile + 'DBase\APLICACAO_UC.FDB';
 
-  ZConnection1.Disconnect;
-  ZConnection1.Database := vFile;
-  ZConnection1.Connect;
+  SQLConnection1.Close;
+  SQLConnection1.Params.Text :=
+    StringReplace( SQLConnection1.Params.Text, 'Database=database.fdb',
+    'Database='+vFile, []);
+  SQLConnection1.Open;
 end;
 
 end.

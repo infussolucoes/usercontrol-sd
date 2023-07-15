@@ -4,7 +4,7 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{               APLICAÇÃO DE EXEMPLO - ZEOS CONNECTOR                          }
+{               APLICAÇÃO DE EXEMPLO - DBX CONNECTOR                           }
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }
@@ -46,21 +46,22 @@
 { Doe no PIX (chave aleatória): 5943007d-4332-4e5c-ac66-06486a10cbfb           }
 {                                                                              }
 { *****************************************************************************}
-unit UDmUC;
+unit UBanco;
 
 interface
 
 uses
-  SysUtils, Classes, DB, UCBase,
-  UCDataConnector,
-  ZAbstractRODataset, ZAbstractDataset, ZDataset,
-  ZAbstractConnection, ZConnection;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.ExtCtrls, Vcl.DBCtrls,
+  Vcl.Grids, Vcl.DBGrids;
 
 type
-  TdmUC = class(TDataModule)
-    QryBanco: TZQuery;
-    ZConnection1: TZConnection;
-    procedure DataModuleCreate(Sender: TObject);
+  TFrmBanco = class(TForm)
+    DBGrid1: TDBGrid;
+    DBNavigator1: TDBNavigator;
+    DSBanco: TDataSource;
+    procedure FormCreate(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -68,26 +69,24 @@ type
   end;
 
 var
-  dmUC: TdmUC;
+  FrmBanco: TFrmBanco;
 
 implementation
 
-uses
-  Forms,
-  IoUtils;
-
 {$R *.dfm}
 
-procedure TdmUC.DataModuleCreate(Sender: TObject);
-var
-  vFile : String;
-begin
-  vFile := TPath.GetFullPath(ExtractFilePath(Application.ExeName) + '..\');
-  vFile := vFile + 'DBase\DB_UC.FDB';
+uses
+  UDmUC;
 
-  ZConnection1.Disconnect;
-  ZConnection1.Database := vFile;
-  ZConnection1.Connect;
+procedure TFrmBanco.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  dmUC.CDSBancos.ApplyUpdates(0);
+end;
+
+procedure TFrmBanco.FormCreate(Sender: TObject);
+begin
+  if not (DSBanco.DataSet.Active) then
+    DSBanco.DataSet.Open;
 end;
 
 end.

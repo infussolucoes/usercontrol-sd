@@ -1,11 +1,11 @@
-Este exemplo utiliza o Firedac Connector e está configurado para um banco de
+Este exemplo utiliza o DBX Connector e está configurado para um banco de
 dados Firebird.
 
 Na pasta DBase tem o arquivo "Estrutura.sql" para você recriar o
 banco de dados na versão que utilizar do Firebird.
 
-O Exemplo pode ser utilizado para outros banco de dados, sendo necessário
-somente ajustar no FDConnection.
+O Exemplo pode ser utilizado para outros banco de dados, sendo
+somente necessário ajustar no SQLConnection.
 
 O Script também pode ser utilizado em outros bancos, pois é um SQL padrão.
 

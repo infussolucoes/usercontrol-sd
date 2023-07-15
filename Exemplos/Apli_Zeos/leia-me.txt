@@ -4,8 +4,8 @@ dados Firebird.
 Na pasta DBase tem o arquivo "Estrutura.sql" para você recriar o
 banco de dados na versão que utilizar do Firebird.
 
-O Exemplo pode ser utilizado para outros banco de dados, seno necessário
-somente ajuntar no ZConnection.
+O Exemplo pode ser utilizado para outros banco de dados, sendo necessário
+somente ajustar no ZConnection.
 
 O Script também pode ser utilizado em outros bancos, pois é um SQL padrão.
 

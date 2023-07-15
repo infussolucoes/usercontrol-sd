@@ -4,7 +4,7 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{               APLICAÇÃO DE EXEMPLO - FIREDAC CONECTOR                        }
+{               APLICAÇÃO DE EXEMPLO - FIREDAC CONNECTOR                       }
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }

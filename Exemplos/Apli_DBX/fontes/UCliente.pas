@@ -4,7 +4,7 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{               APLICAÇÃO DE EXEMPLO - ZEOS CONNECTOR                          }
+{               APLICAÇÃO DE EXEMPLO - DBX CONNECTOR                           }
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }
@@ -46,21 +46,20 @@
 { Doe no PIX (chave aleatória): 5943007d-4332-4e5c-ac66-06486a10cbfb           }
 {                                                                              }
 { *****************************************************************************}
-unit UDmUC;
+unit UCliente;
 
 interface
 
 uses
-  SysUtils, Classes, DB, UCBase,
-  UCDataConnector,
-  ZAbstractRODataset, ZAbstractDataset, ZDataset,
-  ZAbstractConnection, ZConnection;
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UCBase;
 
 type
-  TdmUC = class(TDataModule)
-    QryBanco: TZQuery;
-    ZConnection1: TZConnection;
-    procedure DataModuleCreate(Sender: TObject);
+  TFrmCliente = class(TForm)
+    BtnIncluir: TButton;
+    BtnAlterar: TButton;
+    BtnExcluir: TButton;
+    UCControls1: TUCControls;
   private
     { Private declarations }
   public
@@ -68,26 +67,13 @@ type
   end;
 
 var
-  dmUC: TdmUC;
+  FrmCliente: TFrmCliente;
 
 implementation
 
-uses
-  Forms,
-  IoUtils;
-
 {$R *.dfm}
 
-procedure TdmUC.DataModuleCreate(Sender: TObject);
-var
-  vFile : String;
-begin
-  vFile := TPath.GetFullPath(ExtractFilePath(Application.ExeName) + '..\');
-  vFile := vFile + 'DBase\DB_UC.FDB';
-
-  ZConnection1.Disconnect;
-  ZConnection1.Database := vFile;
-  ZConnection1.Connect;
-end;
+uses
+  UPrincipal;
 
 end.
