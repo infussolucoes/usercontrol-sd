@@ -5,6 +5,7 @@ object dmUC: TdmUC
   Width = 447
   object ZConnection1: TZConnection
     ControlsCodePage = cGET_ACP
+    AutoEncodeStrings = True
     ClientCodepage = 'ISO8859_1'
     Catalog = ''
     Properties.Strings = (
@@ -28,6 +29,7 @@ object dmUC: TdmUC
     SQL.Strings = (
       'select * from bancos')
     Params = <>
+    Options = [doCalcDefaults, doPreferPrepared]
     Left = 232
     Top = 248
   end
