@@ -1727,6 +1727,19 @@ end;
 
 procedure TUserControl.CheckBD;
 begin
+  if Assigned(UserSettings) then
+  begin
+    { Para garantir nomes em maiúsculo, pois com DBX há relatos de problemas
+    com nomes de tabela informados em minúsculo com o Firebird }
+    case UserSettings.BancoDados of
+      Firebird: begin
+                  FTableUsers.TableName := UpperCase(FTableUsers.TableName);
+                  FTableRights.TableName := UpperCase(FTableRights.TableName);
+                  FTableUsersLogged.TableName := UpperCase(FTableUsersLogged.TableName);
+                end;
+    end;
+  end;
+
   if Assigned(DataConnector) then
   begin
     if not DataConnector.UCFindTable(FTableRights.TableName) then
