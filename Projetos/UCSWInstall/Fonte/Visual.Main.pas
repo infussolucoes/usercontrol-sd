@@ -55,10 +55,15 @@ Vicente Barros Leonel [ Fknyght ]
 {                                                                              }
 { Comunidade Show Delphi - www.showdelphi.com.br                               }
 {                                                                              }
-{ Giovani Da Cruz  -  giovani@infus.inf.br  -  giovanidacruz.com.br            }
+{ Giovani Da Cruz  -  giovani@infus.inf.br  -  www.infus.inf.br                }
 {                                                                              }
 { **************************************************************************** }
 
+{ AJUDE O PROJETO COM UMA XÍCARA DE CAFÉ OU DUAS. CONSIDERE UMA DOAÇÃO!        }
+{                                                                              }
+{ VIA PAGSEGURO: https://pag.ae/7VccpnuCN                                      }
+{ APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL                        }
+{
 
 { ******************************************************************************
   |* Historico
@@ -71,13 +76,6 @@ Vicente Barros Leonel [ Fknyght ]
   |*
   |* 31/08/2019: Gioavni Da Cruz
   |*  - Revisão para a instalação do DWCore Conector
-  |*
-  |* 31/05/2023: Gioavni Da Cruz
-  |*  - Revisão para a instalação Delphi 10.4
-  |*
-  |*
-  |* 31/05/2023: Gioavni Da Cruz
-  |*  - Revisão para a instalação Delphi 11
   **************************************************************************** }
 
 unit Visual.Main;
@@ -117,6 +115,8 @@ type
     wizPgInicio: TJvWizardInteriorPage;
     Label6: TLabel;
     lblUrlForum1: TLabel;
+    lblUrlUserControl1: TLabel;
+    Label19: TLabel;
     Label21: TLabel;
     Label11: TLabel;
     Label12: TLabel;
@@ -143,10 +143,15 @@ type
     chkDeixarSomenteLIB: TCheckBox;
     btnInstalar: TButton;
     Label3: TLabel;
-    Label14: TLabel;
-    Label19: TLabel;
-    Label22: TLabel;
     Label23: TLabel;
+    Label14: TLabel;
+    Label28: TLabel;
+    Label22: TLabel;
+    Label26: TLabel;
+    Label27: TLabel;
+    Label29: TLabel;
+    Label30: TLabel;
+    Label31: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure edtDelphiVersionChange(Sender: TObject);
@@ -164,6 +169,7 @@ type
     procedure URLClick(Sender: TObject);
     procedure wizPgInstalacaoNextButtonClick(Sender: TObject;
       var Stop: Boolean);
+    procedure lblUrlPIXClick(Sender: TObject);
   private
     FCountErros: Integer;
     oUserControl: TJclBorRADToolInstallations;
@@ -193,6 +199,7 @@ type
     function RunAsAdminAndWaitForCompletion(hWnd: HWND; filename: string): Boolean;
     procedure WriteToTXT(const ArqTXT, AString: AnsiString;
       const AppendIfExists: Boolean = True; AddLineBreak: Boolean = True);
+
   public
   end;
 
@@ -205,7 +212,7 @@ implementation
 
 uses
 {$WARNINGS off} FileCtrl, {$WARNINGS on} ShellApi, IniFiles, StrUtils, Math,
-  Registry, System.Types, System.IOUtils;
+  Registry, System.Types, System.IOUtils, Clipbrd;
 
 procedure TFrmPrincipal.AddLibraryPathToDelphiPath(const APath,
   AProcurarRemover: String);
@@ -359,8 +366,10 @@ begin
      if VersionNumberStr = 'd16' then
         Sender.Options.Add('-NSData.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win');
 
-     if MatchText(VersionNumberStr, ['d17','d18','d19','d20','d21','d22','d23','d24','d25','d26','d27','d28', 'd29']) then
-        Sender.Options.Add('-NSWinapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;IBX');
+     if MatchText(VersionNumberStr, ['d17','d18','d19','d20','d21','d22','d23','d24','d25','d26', 'd27', 'd28', 'd29']) then
+     begin
+       Sender.Options.Add('-NSWinapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;IBX');
+     end;
 
   end;
 end;
@@ -692,7 +701,7 @@ begin
   // C++ Builder a partir do D2006, versões anteriores tem IDE independentes.
   ckbBCB.Enabled := MatchText(oUserControl.Installations[iVersion].VersionNumberStr,
     ['d10', 'd11', 'd12', 'd14', 'd15', 'd16', 'd17', 'd18', 'd19', 'd20',
-    'd21', 'd22', 'd23', 'd24', 'd25', 'd26', 'd27', 'd28', 'd29']);
+    'd21', 'd22', 'd23', 'd24', 'd25', 'd26', 'd27', 'd28']);
   if not ckbBCB.Enabled then
     ckbBCB.Checked := False;
 end;
@@ -857,11 +866,7 @@ begin
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd27' then
       edtDelphiVersion.Items.Add('Delphi 10.4 Sydney')
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd28' then
-      edtDelphiVersion.Items.Add('Delphi 11.3 Alexandria')
-    else if oUserControl.Installations[iFor].VersionNumberStr = 'd29' then
-      edtDelphiVersion.Items.Add('Delphi Novo'); // para ja testar futura versao
-
-    { Adicionar aqui novas versoes }
+      edtDelphiVersion.Items.Add('Delphi 11 Alexandria');
 
 
     // -- Evento disparado antes de iniciar a execução do processo.
@@ -905,6 +910,14 @@ end;
 function TfrmPrincipal.IsCheckOutJaFeito(const ADiretorio: String): Boolean;
 begin
   Result := DirectoryExists(IncludeTrailingPathDelimiter(ADiretorio) + '.svn')
+end;
+
+procedure TFrmPrincipal.lblUrlPIXClick(Sender: TObject);
+begin
+  Clipboard.asText := TLabel(Sender).Caption;
+
+  Application.MessageBox('Chave copiada para a área de transferência!',
+    'Apoio ao Projeto', MB_ICONINFORMATION + MB_OK);
 end;
 
 procedure TFrmPrincipal.wizPgConfiguracaoCancelButtonClick(Sender: TObject;
