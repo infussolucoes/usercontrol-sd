@@ -53,8 +53,7 @@ interface
 uses
   SysUtils, Classes, DB, UCBase,
   UCDataConnector,
-  ZAbstractRODataset, ZAbstractDataset, ZDataset,
-  ZAbstractConnection, ZConnection, Data.FMTBcd, Datasnap.DBClient,
+  Data.FMTBcd, Datasnap.DBClient,
   Datasnap.Provider, Data.SqlExpr, Data.DBXFirebird;
 
 type
