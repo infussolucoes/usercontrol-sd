@@ -184,13 +184,13 @@ begin
     Interbase:
       Blob := 'BLOB SUB_TYPE 0 SEGMENT SIZE 1024';
     MySql:
-      Blob := 'MEDIUMBLOB';
+      Blob := 'LONGBLOB';
     PARADOX:
       Blob := 'BLOB(1024,1)';
     Oracle:
       Blob := 'LONG RAW';
     SqlServer:
-      Blob := 'NTEXT';
+      Blob := 'binary';
     PostgreSQL:
       Blob := 'BYTEA';
   end;
