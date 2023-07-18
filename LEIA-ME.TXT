@@ -74,13 +74,14 @@ Vicente Barros Leonel [ Fknyght ]
 {                                                                              }
 { Giovani Da Cruz  -  giovani@infus.inf.br  -  www.infus.inf.br                }
 {                                                                              }
+{  giovanidacruz.com.br							       }
+{									       }
 { **************************************************************************** }
 
-{ AJUDE O PROJETO COM UMA XÍCARA DE CAFÉ OU DUAS. CONSIDERE UMA DOAÇÃO!        }
+{ AJUDE O PROJETO COM UMA XÍCARA DE CAFÉ! 				       }
 {                                                                              }
-{ VIA PAGSEGURO: https://pag.ae/7VccpnuCN                                      }
-{ APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL                        }
-{
+{ Contribuir via PIX (Chave aleatória): 5943007d-4332-4e5c-ac66-06486a10cbfb   }
+
 
 { ******************************************************************************
   |* Historico
@@ -91,6 +92,10 @@ Vicente Barros Leonel [ Fknyght ]
   |* 06/02/2016: Giovani Da Cruz
   |*  - Ajuste para a adição automática no library do delphi.
   |*
-  |* 31/08/2019: Gioavni Da Cruz
+  |* 31/08/2019: Giovani Da Cruz
   |*  - Revisão e adição do Rest Dataware Core Conector
+  |
+  |* 17/07/2023: Giovani Da Cruz
+  |*  - Várias melhorias e correções. Suporte para o Delphi 11.3 Alexandria
+
   **************************************************************************** }
