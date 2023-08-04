@@ -11,10 +11,40 @@ object FrmPrincipal: TFrmPrincipal
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  Position = poScreenCenter
+  OldCreateOrder = False
+  Position = poDesktopCenter
   OnClose = FormClose
   OnCreate = FormCreate
+  PixelsPerInch = 96
   TextHeight = 13
+  object Label27: TLabel
+    Left = 45
+    Top = 288
+    Width = 176
+    Height = 13
+    Caption = 'Conhe'#231'a o Blog Giovani Da Cruz'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clGreen
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label29: TLabel
+    Left = 113
+    Top = 307
+    Width = 140
+    Height = 13
+    Cursor = crHandPoint
+    Caption = 'https://giovanidacruz.com.br'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlue
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = [fsUnderline]
+    ParentFont = False
+    OnClick = URLClick
+  end
   object wizPrincipal: TJvWizard
     Left = 0
     Top = 71
@@ -50,7 +80,6 @@ object FrmPrincipal: TFrmPrincipal
       477)
     object wizPgInicio: TJvWizardInteriorPage
       Header.Visible = False
-      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Assistente para a instala'#231#227'o do UserControl SWDelphi Edition'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -91,7 +120,7 @@ object FrmPrincipal: TFrmPrincipal
       end
       object lblUrlForum1: TLabel
         Left = 101
-        Top = 340
+        Top = 349
         Width = 437
         Height = 13
         Cursor = crHandPoint
@@ -107,28 +136,26 @@ object FrmPrincipal: TFrmPrincipal
         OnClick = URLClick
       end
       object lblUrlUserControl1: TLabel
-        Left = 180
-        Top = 254
-        Width = 151
+        Left = 231
+        Top = 242
+        Width = 238
         Height = 16
         Cursor = crHandPoint
-        Caption = 'https://pag.ae/7VccpnuCN'
+        Caption = '5943007d-4332-4e5c-ac66-06486a10cbfb'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlue
         Font.Height = -13
         Font.Name = 'Tahoma'
         Font.Style = [fsUnderline]
         ParentFont = False
-        OnClick = URLClick
+        OnClick = lblUrlPIXClick
       end
       object Label19: TLabel
         Left = 33
-        Top = 229
-        Width = 439
+        Top = 221
+        Width = 385
         Height = 16
-        Caption = 
-          'Considere colaborar com o projeto com uma x'#237'cara de caf'#233' ou duas' +
-          '.'
+        Caption = 'Considere colaborar com o projeto com uma x'#237'cara de caf'#233'!'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
         Font.Height = -13
@@ -138,7 +165,7 @@ object FrmPrincipal: TFrmPrincipal
       end
       object Label21: TLabel
         Left = 33
-        Top = 324
+        Top = 333
         Width = 241
         Height = 13
         Caption = 'Para tirar d'#250'vidas, ajudar ou dar sugest'#245'es visite:'
@@ -782,10 +809,10 @@ object FrmPrincipal: TFrmPrincipal
       end
       object Label3: TLabel
         Left = 57
-        Top = 254
-        Width = 117
+        Top = 242
+        Width = 168
         Height = 16
-        Caption = 'Doe via Pag Seguro:'
+        Caption = 'Doe via Pix (chave aleat'#243'ria):'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
         Font.Height = -13
@@ -793,10 +820,37 @@ object FrmPrincipal: TFrmPrincipal
         Font.Style = []
         ParentFont = False
       end
+      object Label14: TLabel
+        Left = 37
+        Top = 280
+        Width = 176
+        Height = 13
+        Caption = 'Conhe'#231'a o Blog Giovani Da Cruz'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGreen
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label28: TLabel
+        Left = 105
+        Top = 299
+        Width = 140
+        Height = 13
+        Cursor = crHandPoint
+        Caption = 'https://giovanidacruz.com.br'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsUnderline]
+        ParentFont = False
+        OnClick = URLClick
+      end
     end
     object wizPgConfiguracao: TJvWizardInteriorPage
       Header.Visible = False
-      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Assistente para a instala'#231#227'o do UserControl SWDelphi Edition'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -817,6 +871,9 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
+      ExplicitLeft = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Label2: TLabel
         Left = 33
         Top = 47
@@ -978,7 +1035,6 @@ object FrmPrincipal: TFrmPrincipal
     end
     object wizPgPacote: TJvWizardInteriorPage
       Header.Visible = False
-      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Assistente para a instala'#231#227'o do UserControl SWDelphi Edition'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -1158,7 +1214,6 @@ object FrmPrincipal: TFrmPrincipal
     end
     object wizPgInstalacao: TJvWizardInteriorPage
       Header.Visible = False
-      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Assistente para a instala'#231#227'o do UserControl SWDelphi Edition'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -1180,6 +1235,9 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgInstalacaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
+      ExplicitLeft = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object btnVisualizarLogCompilacao: TSpeedButton
         Left = 33
         Top = 519
@@ -1248,7 +1306,6 @@ object FrmPrincipal: TFrmPrincipal
     end
     object wizPgFim: TJvWizardInteriorPage
       Header.Visible = False
-      Header.ParentFont = False
       Header.Title.Color = clNone
       Header.Title.Text = 'Assistente para a instala'#231#227'o do UserControl SWDelphi Edition'
       Header.Title.Anchors = [akLeft, akTop, akRight]
@@ -1350,29 +1407,12 @@ object FrmPrincipal: TFrmPrincipal
         ParentFont = False
         WordWrap = True
       end
-      object Label22: TLabel
-        Left = 190
-        Top = 179
-        Width = 151
-        Height = 16
-        Cursor = crHandPoint
-        Caption = 'https://pag.ae/7VccpnuCN'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clBlue
-        Font.Height = -13
-        Font.Name = 'Tahoma'
-        Font.Style = [fsUnderline]
-        ParentFont = False
-        OnClick = URLClick
-      end
       object Label23: TLabel
         Left = 39
         Top = 152
-        Width = 439
+        Width = 385
         Height = 16
-        Caption = 
-          'Considere colaborar com o projeto com uma x'#237'cara de caf'#233' ou duas' +
-          '.'
+        Caption = 'Considere colaborar com o projeto com uma x'#237'cara de caf'#233'!'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
         Font.Height = -13
@@ -1380,12 +1420,12 @@ object FrmPrincipal: TFrmPrincipal
         Font.Style = [fsBold]
         ParentFont = False
       end
-      object Label26: TLabel
-        Left = 63
-        Top = 179
-        Width = 117
+      object Label22: TLabel
+        Left = 59
+        Top = 178
+        Width = 168
         Height = 16
-        Caption = 'Doe via Pag Seguro:'
+        Caption = 'Doe via Pix (chave aleat'#243'ria):'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
         Font.Height = -13
@@ -1393,18 +1433,48 @@ object FrmPrincipal: TFrmPrincipal
         Font.Style = []
         ParentFont = False
       end
-      object Label27: TLabel
-        Left = 63
-        Top = 203
-        Width = 359
+      object Label26: TLabel
+        Left = 233
+        Top = 178
+        Width = 238
         Height = 16
-        Caption = 'Apoie com bitcoins: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL'
+        Cursor = crHandPoint
+        Caption = '5943007d-4332-4e5c-ac66-06486a10cbfb'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = [fsUnderline]
+        ParentFont = False
+        OnClick = lblUrlPIXClick
+      end
+      object Label30: TLabel
+        Left = 39
+        Top = 217
+        Width = 153
+        Height = 13
+        Caption = 'Conhe'#231'a o Blog Giovani Da Cruz'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
-        Font.Height = -13
+        Font.Height = -11
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
+      end
+      object Label31: TLabel
+        Left = 107
+        Top = 236
+        Width = 140
+        Height = 13
+        Cursor = crHandPoint
+        Caption = 'https://giovanidacruz.com.br'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlue
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsUnderline]
+        ParentFont = False
+        OnClick = URLClick
       end
     end
     object wizMapa: TJvWizardRouteMapNodes

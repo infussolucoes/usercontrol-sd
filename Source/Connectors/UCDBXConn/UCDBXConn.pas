@@ -1,46 +1,11 @@
-{-----------------------------------------------------------------------------
- Unit Name: UCDBXConn
- Author:    QmD
- Date:      08-nov-2004
- Purpose:   ADO Support
-
- registered in UCDBXReg.pas
------------------------------------------------------------------------------}
-
 
 { **************************************************************************** }
 { Projeto: Componentes User Control ShowDelphi Edition                         }
 { Biblioteca multiplataforma de componentes Delphi para o controle de usuários }
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
-{
-Autor da versão Original: Rodrigo Alves Cordeiro
-
-Colaboradores da versão original
-Alexandre Oliveira Campioni - alexandre.rural@netsite.com.br
-Bernard Grandmougin
-Carlos Guerra
-Daniel Wszelaki
-Everton Ramos [BS2 Internet]
-Francisco Dueñas - fduenas@flashmail.com
-Germán H. Cravero
-Luciano Almeida Pimenta [ClubeDelphi.net]
-Luiz Benevenuto - luiz@siffra.com
-Luiz Fernando Severnini
-Peter van Mierlo
-Rodolfo Ferezin Moreira - rodolfo.fm@bol.com.br
-Rodrigo Palhano (WertherOO)
-Ronald Marconi
-Sergiy Sekela (Dr.Web)
-Stefan Nawrath
-Vicente Barros Leonel [ Fknyght ]
-
-*******************************************************************************}
-{ Versão ShowDelphi Edition                                                    }
 {                                                                              }
-{ Direitos Autorais Reservados (c) 2015   Giovani Da Cruz                      }
-{                                                                              }
-{ Colaboradores nesse arquivo:                                                 }
+{ Direitos Autorais Reservados (c) 2023 - Giovani Da Cruz                      }
 {                                                                              }
 { Você pode obter a última versão desse arquivo na pagina do projeto           }
 { User Control ShowDelphi Edition                                              }
@@ -67,16 +32,20 @@ Vicente Barros Leonel [ Fknyght ]
 {                                                                              }
 { Giovani Da Cruz  -  giovani@infus.inf.br  -  www.infus.inf.br                }
 {                                                                              }
-{ ****************************************************************************** }
+{ **************************************************************************** }
+{                                                                              }
+{ AJUDE O PROJETO COM UMA XÍCARA DE CAFÉ!                                      }
+{                                                                              }
+{ Doe no PIX (chave aleatória): 5943007d-4332-4e5c-ac66-06486a10cbfb           }
+{                                                                              }
+{ *****************************************************************************}
 
 { ******************************************************************************
   |* Historico
   |*
   |* 01/07/2015: Giovani Da Cruz
   |*  - Criação e distribuição da Primeira Versao ShowDelphi
-  ******************************************************************************* }
-
-
+  **************************************************************************** }
 unit UCDBXConn;
 
 interface
@@ -188,15 +157,17 @@ var
   TempList: TStringList;
 begin
   TempList := TStringList.Create;
+
   try
     {$IFDEF DELPHI2009_UP}	
-	if SchemaName <> '' then
+	  if SchemaName <> '' then
       FConnection.GetFieldNames(Tablename, SchemaName, TempList)
     else
       FConnection.GetFieldNames(Tablename, TempList);
-	{$ELSE}
+	  {$ELSE}
     FConnection.GetFieldNames(Tablename, TempList);
-    {$ENDIF}	
+    {$ENDIF}
+
     TempList.Text := UpperCase(TempList.Text);
     Result := TempList.IndexOf(UpperCase(FieldName)) > -1;
   finally
@@ -226,7 +197,6 @@ end;
 
 procedure TUCDBXConn.UCExecSQL(FSQL: String);
 begin
-//  FConnection.Execute(FSQL, nil);    // by vicente barros leonel
   FConnection.ExecuteDirect(FSQL);
 end;
 

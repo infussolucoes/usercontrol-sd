@@ -3,23 +3,10 @@ object dmUC: TdmUC
   OnCreate = DataModuleCreate
   Height = 296
   Width = 447
-  object IBDatabase1: TIBDatabase
-    DatabaseName = 'D:\APLICATIVO_UC.FDB'
-    Params.Strings = (
-      'user_name=sysdba'
-      'password=masterkey'
-      'lc_ctype=ISO8859_1')
-    LoginPrompt = False
-    DefaultTransaction = IBTransaction1
-    ServerType = 'IBServer'
-    AllowStreamedConnected = False
-    Left = 72
-    Top = 80
-  end
   object IBTransaction1: TIBTransaction
     DefaultDatabase = IBDatabase1
-    Left = 72
-    Top = 160
+    Left = 80
+    Top = 192
   end
   object QryBanco: TIBDataSet
     Database = IBDatabase1
@@ -54,6 +41,17 @@ object dmUC: TdmUC
     ParamCheck = True
     UniDirectional = False
     Left = 216
+    Top = 96
+  end
+  object IBDatabase1: TIBDatabase
+    Params.Strings = (
+      'user_name=sysdba'
+      'password=masterkey'
+      'lc_ctype=ISO8859_1')
+    LoginPrompt = False
+    DefaultTransaction = IBTransaction1
+    ServerType = 'IBServer'
+    Left = 80
     Top = 96
   end
 end

@@ -11,6 +11,7 @@ object FrmBanco: TFrmBanco
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   OnClose = FormClose
   OnCreate = FormCreate
   PixelsPerInch = 96
@@ -37,12 +38,9 @@ object FrmBanco: TFrmBanco
     DataSource = DSBanco
     Align = alBottom
     TabOrder = 1
-    ExplicitLeft = 40
-    ExplicitTop = 320
-    ExplicitWidth = 560
   end
   object DSBanco: TDataSource
-    DataSet = dmUC.QryBanco
+    DataSet = dmUC.CDSBancos
     Left = 184
     Top = 104
   end

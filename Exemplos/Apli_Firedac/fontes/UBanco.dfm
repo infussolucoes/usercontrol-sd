@@ -37,7 +37,6 @@ object FrmBanco: TFrmBanco
     DataSource = DSBanco
     Align = alBottom
     TabOrder = 1
-    ExplicitWidth = 655
   end
   object DSBanco: TDataSource
     DataSet = dmUC.QryBanco

@@ -143,10 +143,15 @@ type
     chkDeixarSomenteLIB: TCheckBox;
     btnInstalar: TButton;
     Label3: TLabel;
-    Label22: TLabel;
     Label23: TLabel;
+    Label14: TLabel;
+    Label28: TLabel;
+    Label22: TLabel;
     Label26: TLabel;
     Label27: TLabel;
+    Label29: TLabel;
+    Label30: TLabel;
+    Label31: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure edtDelphiVersionChange(Sender: TObject);
@@ -164,6 +169,7 @@ type
     procedure URLClick(Sender: TObject);
     procedure wizPgInstalacaoNextButtonClick(Sender: TObject;
       var Stop: Boolean);
+    procedure lblUrlPIXClick(Sender: TObject);
   private
     FCountErros: Integer;
     oUserControl: TJclBorRADToolInstallations;
@@ -193,6 +199,7 @@ type
     function RunAsAdminAndWaitForCompletion(hWnd: HWND; filename: string): Boolean;
     procedure WriteToTXT(const ArqTXT, AString: AnsiString;
       const AppendIfExists: Boolean = True; AddLineBreak: Boolean = True);
+
   public
   end;
 
@@ -205,7 +212,7 @@ implementation
 
 uses
 {$WARNINGS off} FileCtrl, {$WARNINGS on} ShellApi, IniFiles, StrUtils, Math,
-  Registry, System.Types, System.IOUtils;
+  Registry, System.Types, System.IOUtils, Clipbrd;
 
 procedure TFrmPrincipal.AddLibraryPathToDelphiPath(const APath,
   AProcurarRemover: String);
@@ -359,8 +366,10 @@ begin
      if VersionNumberStr = 'd16' then
         Sender.Options.Add('-NSData.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win');
 
-     if MatchText(VersionNumberStr, ['d17','d18','d19','d20','d21','d22','d23','d24','d25','d26','d27','d28']) then
-        Sender.Options.Add('-NSWinapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;IBX');
+     if MatchText(VersionNumberStr, ['d17','d18','d19','d20','d21','d22','d23','d24','d25','d26', 'd27', 'd28', 'd29']) then
+     begin
+       Sender.Options.Add('-NSWinapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;IBX');
+     end;
 
   end;
 end;
@@ -859,6 +868,7 @@ begin
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd28' then
       edtDelphiVersion.Items.Add('Delphi 11 Alexandria');
 
+
     // -- Evento disparado antes de iniciar a execução do processo.
     oUserControl.Installations[iFor].DCC32.OnBeforeExecute := BeforeExecute;
 
@@ -900,6 +910,14 @@ end;
 function TfrmPrincipal.IsCheckOutJaFeito(const ADiretorio: String): Boolean;
 begin
   Result := DirectoryExists(IncludeTrailingPathDelimiter(ADiretorio) + '.svn')
+end;
+
+procedure TFrmPrincipal.lblUrlPIXClick(Sender: TObject);
+begin
+  Clipboard.asText := TLabel(Sender).Caption;
+
+  Application.MessageBox('Chave copiada para a área de transferência!',
+    'Apoio ao Projeto', MB_ICONINFORMATION + MB_OK);
 end;
 
 procedure TFrmPrincipal.wizPgConfiguracaoCancelButtonClick(Sender: TObject;

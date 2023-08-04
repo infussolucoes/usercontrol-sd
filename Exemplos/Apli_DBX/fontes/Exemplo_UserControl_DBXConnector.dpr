@@ -1,4 +1,4 @@
-program UserControl_Tut01;
+program Exemplo_UserControl_DBXConnector;
 
 uses
   Forms,
@@ -11,6 +11,7 @@ uses
 
 begin
   Application.Initialize;
+  Application.Title := 'UserControl - Exemplo com Zeos Connector';
   Application.CreateForm(TdmUC, dmUC);
   Application.CreateForm(TFrmPrincipal, FrmPrincipal);
   Application.Run;

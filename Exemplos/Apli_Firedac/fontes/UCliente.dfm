@@ -17,8 +17,8 @@ object FrmCliente: TFrmCliente
   object Label1: TLabel
     Left = 288
     Top = 88
-    Width = 305
-    Height = 81
+    Width = 303
+    Height = 57
     Caption = 
       'Os bot'#245'es Incluir, alterar e excluir estar'#227'o vis'#237'veis ou n'#227'o con' +
       'forme as premiss'#245'es do usu'#225'rio.'
