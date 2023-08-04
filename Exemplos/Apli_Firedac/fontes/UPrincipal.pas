@@ -4,11 +4,11 @@
 {                                                                              }
 { Baseado nos pacotes Open Source User Control 2.31 RC1                        }
 {                                                                              }
-{               APLICAÇÃO DE EXEMPLO - FIREDAC CONECTOR                        }
+{               APLICAÇÃO DE EXEMPLO - FIREDAC CONNECTOR                       }
 {******************************************************************************}
 { Versão ShowDelphi Edition                                                    }
 {                                                                              }
-{ Direitos Autorais Reservados (c) 2019   Giovani Da Cruz                      }
+{ Direitos Autorais Reservados (c) 2023 - Giovani Da Cruz                      }
 {                                                                              }
 { Colaboradores nesse arquivo:                                                 }
 {                                                                              }
@@ -35,15 +35,16 @@
 {                                                                              }
 { Comunidade Show Delphi - showdelphi.com.br                                   }
 {                                                                              }
+{ Blog do Giovani - giovanidacruz.com.br                                       }
+{                                                                              }
 { Giovani Da Cruz  -  giovani@infus.inf.br  -  www.infus.inf.br                }
 {                                                                              }
 { **************************************************************************** }
-
-{ AJUDE O PROJETO COM UMA XÍCARA DE CAFÉ OU DUAS. CONSIDERE UMA DOAÇÃO!        }
 {                                                                              }
-{ VIA PAGSEGURO: https://pag.ae/7VccpnuCN                                      }
-{ APOIE COM BITCOIN: 13JUHQpT7zAU7pC1q6cQBYGpq5EF8XoLcL                        }
-{
+{ AJUDE O PROJETO COM UMA XÍCARA DE CAFÉ!                                      }
+{                                                                              }
+{ Doe no PIX (chave aleatória): 5943007d-4332-4e5c-ac66-06486a10cbfb           }
+{                                                                              }
 { *****************************************************************************}
 unit UPrincipal;
 
@@ -52,7 +53,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, Menus, UCBase, UCDataConnector, UCFireDACConn, Vcl.ComCtrls,
-  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.StdCtrls;
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, Vcl.StdCtrls, UCSettings;
 
 type
   TFrmPrincipal = class(TForm)
@@ -77,15 +78,18 @@ type
     UCApplicationMessage1: TUCApplicationMessage;
     UCFireDACConn1: TUCFireDACConn;
     lblUrlForum1: TLabel;
-    lblUrlUserControl1: TLabel;
+    lblUrlPIX: TLabel;
     Label19: TLabel;
     Label21: TLabel;
     Label20: TLabel;
     Label1: TLabel;
     Label3: TLabel;
-    Label14: TLabel;
     Image1: TImage;
     StatusBar1: TStatusBar;
+    Label2: TLabel;
+    Label4: TLabel;
+    UCSettings1: TUCSettings;
+    Label5: TLabel;
     procedure Sair1Click(Sender: TObject);
     procedure GerarLog1Click(Sender: TObject);
     procedure Mensagens1Click(Sender: TObject);
@@ -94,6 +98,7 @@ type
     procedure Cidades1Click(Sender: TObject);
     procedure Produtos1Click(Sender: TObject);
     procedure URLClick(Sender: TObject);
+    procedure lblUrlPIXClick(Sender: TObject);
   private
 
   public
@@ -107,7 +112,12 @@ implementation
 
 uses
   ShellAPI,
-  UDmUC, UBanco, UCliente;
+  Clipbrd,
+
+  { Unit da aplicação }
+  UDmUC,
+  UBanco,
+  UCliente;
 
 {$R *.dfm}
 
@@ -131,6 +141,14 @@ end;
 procedure TFrmPrincipal.GerarLog1Click(Sender: TObject);
 begin
   ucMyControl.Log('Teste de log', 1);
+end;
+
+procedure TFrmPrincipal.lblUrlPIXClick(Sender: TObject);
+begin
+  Clipboard.asText := lblUrlPIX.Caption;
+
+  Application.MessageBox('Chave copiada para a área de transferência!',
+    'Apoio ao Projeto', MB_ICONINFORMATION + MB_OK);
 end;
 
 procedure TFrmPrincipal.Mensagens1Click(Sender: TObject);

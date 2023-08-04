@@ -1,0 +1,22 @@
+Este exemplo utiliza o IBX Connector e está configurado para um banco de
+dados Firebird.
+
+Na pasta DBase tem o arquivo "Estrutura.sql" para você recriar o
+banco de dados na versão que utilizar do Firebird.
+
+O Exemplo pode ser utilizado para Interbase, sendo necessário
+somente ajustar no IBConnection.
+
+O Script também pode ser utilizado em Interbase, pois é um SQL padrão.
+
+# Visite o Blog giovanidacruz.com.br
+
+# Comunidade Show Delphi
+
+https://showdelphi.com.br
+
+
+# Fórum Oficial do User Control Show Delphi Edition
+
+https://showdelphi.com.br/forum/forum/duvidas-e-problemas-relacionados-ao-usercontrol-showdelphi-edition/
+

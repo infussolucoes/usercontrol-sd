@@ -11,6 +11,7 @@ object FrmCliente: TFrmCliente
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poScreenCenter
   PixelsPerInch = 96
   TextHeight = 13
   object BtnIncluir: TButton
@@ -39,7 +40,7 @@ object FrmCliente: TFrmCliente
   end
   object UCControls1: TUCControls
     GroupName = 'Tela de Clientes'
-    UserControl = Form1.ucMyControl
+    UserControl = FrmPrincipal.ucMyControl
     Components = ''
     NotAllowed = naDisabled
     Left = 384

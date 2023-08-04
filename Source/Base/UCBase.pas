@@ -1,4 +1,4 @@
-{ **************************************************************************** }
+﻿{ **************************************************************************** }
 { Projeto: Componentes User Control ShowDelphi Edition                         }
 { Biblioteca multiplataforma de componentes Delphi para o controle de usuários }
 {                                                                              }
@@ -64,6 +64,9 @@ Vicente Barros Leonel [ Fknyght ]
   |*
   |* 01/07/2015: Giovani Da Cruz
   |*  - Criação e distribuição da Primeira Versao ShowDelphi
+  |*
+  |* 14/07/2023: Giovani Da Cruz
+  |* - Reajustado para o SQL padrão
   ******************************************************************************* }
 
 unit UCBase;
@@ -768,6 +771,7 @@ implementation
 uses
   DBGrids,
   Dialogs,
+  TypInfo,
   LoginWindow_U,
   MsgRecForm_U,
   MsgsForm_U,
@@ -875,7 +879,21 @@ begin
         ('O Componente "TUserControl" não pode ser definido em um "TDataModulo"');
 
     if not Assigned(DataConnector) then
-      raise Exception.Create(RetornaLingua(fLanguage, 'MsgExceptConnector'));
+    begin
+      { Tenta pegar um connector setado por código }
+      if Owner is TForm then
+      begin
+        if IsPublishedProp(Owner, 'DataConnector') then
+        begin
+          DataConnector := TUCDataConnector( GetObjectProp(Owner, 'DataConnector') );
+        end;
+      end;
+
+      if not Assigned(DataConnector) then
+      begin
+        raise Exception.Create(RetornaLingua(fLanguage, 'MsgExceptConnector'));
+      end;
+    end;
 
     if ApplicationID = '' then
       raise Exception.Create(RetornaLingua(fLanguage, 'MsgExceptAppID'));
@@ -1709,6 +1727,19 @@ end;
 
 procedure TUserControl.CheckBD;
 begin
+  if Assigned(UserSettings) then
+  begin
+    { Para garantir nomes em maiúsculo, pois com DBX há relatos de problemas
+    com nomes de tabela informados em minúsculo com o Firebird }
+    case UserSettings.BancoDados of
+      Firebird: begin
+                  FTableUsers.TableName := UpperCase(FTableUsers.TableName);
+                  FTableRights.TableName := UpperCase(FTableRights.TableName);
+                  FTableUsersLogged.TableName := UpperCase(FTableUsersLogged.TableName);
+                end;
+    end;
+  end;
+
   if Assigned(DataConnector) then
   begin
     if not DataConnector.UCFindTable(FTableRights.TableName) then
@@ -1730,13 +1761,26 @@ end;
 procedure TUserControl.CriaTabelaMsgs(const TableName: String);
 begin
   if Assigned(DataConnector) then
-    DataConnector.UCExecSQL('CREATE TABLE IF NOT EXISTS ' + TableName + ' ( ' + 'IdMsg   ' +
-      UserSettings.Type_Int + ' , ' + 'UsrFrom ' + UserSettings.Type_Int + ' , '
-      + 'UsrTo   ' + UserSettings.Type_Int + ' , ' + 'Subject ' +
-      UserSettings.Type_VarChar + '(50),' + 'Msg     ' +
-      UserSettings.Type_VarChar + '(255),' + 'DtSend  ' +
-      UserSettings.Type_VarChar + '(12),' + 'DtReceive  ' +
-      UserSettings.Type_VarChar + '(12) )');
+  begin
+
+    { Giovani Da Cruz
+    É o conector que indica se a tabela existe, a fim de
+    manter a compatibilidade enrte os bancos }
+    if not DataConnector.UCFindTable(TableName) then
+    begin
+      DataConnector.UCExecSQL(
+      ' CREATE TABLE ' + TableName +
+      ' ( ' +
+      ' IdMsg     ' + UserSettings.Type_Int + ', '+
+      ' UsrFrom   ' + UserSettings.Type_Int + ', '+
+      ' UsrTo     ' + UserSettings.Type_Int + ', '+
+      ' Subject   ' + UserSettings.Type_VarChar + '(50),  '+
+      ' Msg       ' + UserSettings.Type_VarChar + '(255), '+
+      ' DtSend    ' + UserSettings.Type_VarChar + '(12),  '+
+      ' DtReceive ' + UserSettings.Type_VarChar + '(12)   '+
+      ' )');
+    end;
+  end;
 end;
 
 destructor TUserControl.Destroy;
@@ -2571,27 +2615,55 @@ begin
       TipoCampo := UserSettings.Type_VarChar + '(32)';
   end;
 
+  { O SQL precisa ser o padrão }
   with TableRights do
+  begin
     if not ExtraRights then
     begin
-      SQLstmt := Format('CREATE TABLE IF NOT EXISTS %s( %s %s, %s %s(50), %s %s(50), %s %s )',
-        [TableName, FieldUserID, UserSettings.Type_Int, FieldModule,
-        UserSettings.Type_VarChar, FieldComponentName,
-        UserSettings.Type_VarChar, FieldKey, TipoCampo]);
+      SQLstmt :=
+        Format(
+        ' CREATE TABLE %s '+
+        ' ( '+
+        ' %s %s, '+
+        ' %s %s(50), '+
+        ' %s %s(50), '+
+        ' %s %s )',
+        [TableName,
+        FieldUserID, UserSettings.Type_Int,
+        FieldModule, UserSettings.Type_VarChar,
+        FieldComponentName, UserSettings.Type_VarChar,
+        FieldKey, TipoCampo]);
+
       if Assigned(DataConnector) then
+      begin
         DataConnector.UCExecSQL(SQLstmt);
+      end;
     end
     else
     begin
       SQLstmt :=
-        Format('CREATE TABLE IF NOT EXISTS %sEX( %s %s, %s %s(50), %s %s(50), %s %s(50), %s %s )',
-        [TableName, FieldUserID, UserSettings.Type_Int, FieldModule,
-        UserSettings.Type_VarChar, FieldComponentName,
-        UserSettings.Type_VarChar, FieldFormName, UserSettings.Type_VarChar,
+        Format(
+        ' CREATE TABLE %sEX '+
+        ' (  '+
+        ' %s %s, '+
+        ' %s %s(50), '+
+        ' %s %s(50), '+
+        ' %s %s(50), '+
+        ' %s %s'+
+        ' )',
+        [TableName,
+        FieldUserID, UserSettings.Type_Int,
+        FieldModule, UserSettings.Type_VarChar,
+        FieldComponentName, UserSettings.Type_VarChar,
+        FieldFormName, UserSettings.Type_VarChar,
         FieldKey, TipoCampo]);
+
       if Assigned(DataConnector) then
+      begin
         DataConnector.UCExecSQL(SQLstmt);
+      end;
     end;
+  end;
 end;
 
 procedure TUserControl.AddRightEX(IdUser: Integer;
@@ -2668,9 +2740,10 @@ end;
 
 procedure TUserControl.CriaTabelaLog;
 begin
+  { O SQL DEVE SER O PADRAO }
   if Assigned(DataConnector) then
     DataConnector.UCExecSQL
-      (Format('CREATE TABLE IF NOT EXISTS %S  (APPLICATIONID %s(250), IDUSER %s , MSG %s(250), DATA %s(14), NIVEL %s)',
+      (Format('CREATE TABLE %S  (APPLICATIONID %s(250), IDUSER %s , MSG %s(250), DATA %s(14), NIVEL %s)',
       [LogControl.TableLog, UserSettings.Type_VarChar, UserSettings.Type_Int,
       UserSettings.Type_VarChar, UserSettings.Type_VarChar,
       UserSettings.Type_Int]));
@@ -2707,10 +2780,11 @@ var
 begin
   if Assigned(DataConnector) then
   begin
+    { QUEM VERIFICA SE A TABELA EXISTE É O CONECTOR }
     if not DataConnector.UCFindTable(FTableUsers.TableName) then
     begin
       SQLstmt := Format(
-        'Create Table IF NOT EXISTS %s (' + // TableName
+        ' Create Table %s (' + // TableName
         '  %s %s, ' + // FieldUserID
         '  %s %s(30), ' + // FieldUserName
         '  %s %s(30), ' + // FieldLogin
@@ -2747,17 +2821,18 @@ begin
     end
     else
     begin
-      
-	  for I := 0 to TableUsers.GetFieldList.Count - 1 do
+
+	    for I := 0 to TableUsers.GetFieldList.Count - 1 do
       begin
         sFieldName := TableUsers.GetFieldList[i];
-		
-		if not DataConnector.UCFindFieldTable(TableUsers.TableName, sFieldName) then
+
+		    if not DataConnector.UCFindFieldTable(TableUsers.TableName, sFieldName) then
         begin
           SQLstmt := Format('alter table %s add %s %s;', [TableUsers.TableName, sFieldName, TableUsers.GetFieldType(sFieldName, Self.Criptografia)]);
           DataConnector.UCExecSQL(SQLstmt);
         end;
       end;
+
     end;
   end;
 
@@ -4170,9 +4245,10 @@ begin
   if not Active then
     Exit;
 
+  { SQL PADRAO }
   with FUserControl.TableUsersLogged do
     SQLstmt :=
-      Format('CREATE TABLE IF NOT EXISTS %s (%s %s(38), %s %s, %s %s(50), %s %s(50), %s %s(14))',
+      Format('CREATE TABLE %s (%s %s(38), %s %s, %s %s(50), %s %s(50), %s %s(14))',
       [TableName, FieldLogonID, FUserControl.UserSettings.Type_Char,
 
       FieldUserID, FUserControl.UserSettings.Type_Int,
