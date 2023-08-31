@@ -3263,7 +3263,7 @@ begin
   for I := 1 to Length(Result) do
   begin
     Result[I] := Ansichar(byte(Result[I]) xor (Seed shr 8));
-    Seed := (byte(S[I]) + Seed) * Word(C1) + Word(C2);
+    Seed := (byte(S[I]) + Word(Seed)) * Word(C1) + Word(C2);   //Roniery - 31/08/2023
   end;
 end;
 
@@ -3301,14 +3301,14 @@ end;
 function InternalEncrypt(const S: ansistring; Key: Word): ansistring;
 var
   I: Word;
-  Seed: int64;
+  Seed: Int64;
 begin
   Result := S;
   Seed := Key;
   for I := 1 to Length(Result) do
   begin
     Result[I] := Ansichar(byte(Result[I]) xor (Seed shr 8));
-    Seed := (byte(Result[I]) + Seed) * Word(C1) + Word(C2);
+    Seed := (byte(Result[I]) + Word(Seed)) * Word(C1) + Word(C2);  //Roniery - 31/05/2023
   end;
 end;
 
