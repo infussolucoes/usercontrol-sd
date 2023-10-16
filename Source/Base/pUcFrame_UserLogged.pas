@@ -196,7 +196,7 @@ end;
 
 procedure TUCFrame_UsersLogged.miDeleteAllClick(Sender: TObject);
 const
-  sql = 'delete from %s L where L.%s = %s and L.%s <> %s';
+  sql = 'delete from %s where %s = %s and %s <> %s';
 begin
   FUserControl.DataConnector.UCExecSQL(Format(sql, [
     FUserControl.TableUsersLogged.TableName,
@@ -210,7 +210,7 @@ end;
 
 procedure TUCFrame_UsersLogged.miDeleteSelectedClick(Sender: TObject);
 const
-  sql = 'delete from %s L where L.%s = %s and L.%s = %s and L.%s <> %s';
+  sql = 'delete from %s where %s = %s and %s = %s and %s <> %s';
 begin
   FUserControl.DataConnector.UCExecSQL(Format(sql, [
     FUserControl.TableUsersLogged.TableName,
