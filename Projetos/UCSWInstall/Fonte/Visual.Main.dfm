@@ -136,12 +136,12 @@ object FrmPrincipal: TFrmPrincipal
         OnClick = URLClick
       end
       object lblUrlUserControl1: TLabel
-        Left = 231
+        Left = 219
         Top = 242
-        Width = 238
+        Width = 150
         Height = 16
         Cursor = crHandPoint
-        Caption = '5943007d-4332-4e5c-ac66-06486a10cbfb'
+        Caption = 'pix@giovanidacruz.com.br'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlue
         Font.Height = -13
@@ -810,9 +810,9 @@ object FrmPrincipal: TFrmPrincipal
       object Label3: TLabel
         Left = 57
         Top = 242
-        Width = 168
+        Width = 154
         Height = 16
-        Caption = 'Doe via Pix (chave aleat'#243'ria):'
+        Caption = 'Doe via Pix (chave e-mail):'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clGreen
         Font.Height = -13
@@ -871,9 +871,6 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label2: TLabel
         Left = 33
         Top = 47
@@ -1055,9 +1052,6 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       inline frameDpk: TframePacotes
         Left = 0
         Top = 0
@@ -1235,9 +1229,6 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgInstalacaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object btnVisualizarLogCompilacao: TSpeedButton
         Left = 33
         Top = 519
@@ -1327,9 +1318,6 @@ object FrmPrincipal: TFrmPrincipal
       OnNextButtonClick = wizPgConfiguracaoNextButtonClick
       OnCancelButtonClick = wizPgConfiguracaoCancelButtonClick
       OnFinishButtonClick = wizPgConfiguracaoFinishButtonClick
-      ExplicitLeft = 0
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label9: TLabel
         Left = 39
         Top = 330

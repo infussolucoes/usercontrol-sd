@@ -701,7 +701,7 @@ begin
   // C++ Builder a partir do D2006, versões anteriores tem IDE independentes.
   ckbBCB.Enabled := MatchText(oUserControl.Installations[iVersion].VersionNumberStr,
     ['d10', 'd11', 'd12', 'd14', 'd15', 'd16', 'd17', 'd18', 'd19', 'd20',
-    'd21', 'd22', 'd23', 'd24', 'd25', 'd26', 'd27', 'd28']);
+    'd21', 'd22', 'd23', 'd24', 'd25', 'd26', 'd27', 'd28', 'd29']);
   if not ckbBCB.Enabled then
     ckbBCB.Checked := False;
 end;
@@ -866,8 +866,9 @@ begin
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd27' then
       edtDelphiVersion.Items.Add('Delphi 10.4 Sydney')
     else if oUserControl.Installations[iFor].VersionNumberStr = 'd28' then
-      edtDelphiVersion.Items.Add('Delphi 11 Alexandria');
-
+      edtDelphiVersion.Items.Add('Delphi 11 Alexandria')
+    else if oUserControl.Installations[iFor].VersionNumberStr = 'd29' then   // 04/06/2024 - Kellson Nunes Rocha: Foi acrescentado a versão d29 athens para o matchtext
+      edtDelphiVersion.Items.Add('Delphi 12 Athens');
 
     // -- Evento disparado antes de iniciar a execução do processo.
     oUserControl.Installations[iFor].DCC32.OnBeforeExecute := BeforeExecute;
