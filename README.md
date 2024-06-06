@@ -49,6 +49,8 @@ Delphi 10.4 Sydney
 
 Delphi 11.3 Alexandria
 
+Delphi 12 Athens
+
 -------------------------------------------------------------
 
 Lazarus 2.0 (Beta)  
