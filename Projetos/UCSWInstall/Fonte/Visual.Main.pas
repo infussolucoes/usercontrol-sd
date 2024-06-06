@@ -89,7 +89,8 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, JvWizard, JvWizardRouteMapNodes, ShlObj,
   JvExControls, Vcl.StdCtrls, Vcl.Buttons, Vcl.ComCtrls, uFrameLista,
-  Vcl.ExtCtrls, Vcl.Imaging.pngimage, JvComponentBase, JvCreateProcess;
+  Vcl.ExtCtrls, Vcl.Imaging.pngimage, JvComponentBase, JvCreateProcess,
+  dxGDIPlusClasses;
 
 type
   TDestino = (tdSystem, tdDelphi, tdNone);
@@ -170,6 +171,7 @@ type
     procedure wizPgInstalacaoNextButtonClick(Sender: TObject;
       var Stop: Boolean);
     procedure lblUrlPIXClick(Sender: TObject);
+    procedure Image1Click(Sender: TObject);
   private
     FCountErros: Integer;
     oUserControl: TJclBorRADToolInstallations;
@@ -908,6 +910,11 @@ end;
 
 // verificar se no caminho informado já existe o .svn indicando que o
 // checkout já foi feito no diretorio
+procedure TFrmPrincipal.Image1Click(Sender: TObject);
+begin
+  ShellExecute(Handle, 'open', PWideChar(lblUrlUserControl1.Caption), '', '', 1);
+end;
+
 function TfrmPrincipal.IsCheckOutJaFeito(const ADiretorio: String): Boolean;
 begin
   Result := DirectoryExists(IncludeTrailingPathDelimiter(ADiretorio) + '.svn')
