@@ -163,19 +163,40 @@ begin
 
   case fBanco of
     Firebird:
+    begin
       Memo := 'BLOB SUB_TYPE 1 SEGMENT SIZE 1024';
+      Blob := 'BLOB';
+    end;
     Interbase:
+    begin
       Memo := 'BLOB SUB_TYPE 1 SEGMENT SIZE 1024';
+      Blob := 'BLOB';
+    end;
     MySql:
+    begin
       Memo := 'MEDIUMBLOB';
+      Blob := 'LONGBLOB';
+    end;
     PARADOX:
+    begin
       Memo := 'BLOB(1024,1)';
+      Blob := 'BLOB';
+    end;
     Oracle:
+    begin
       Memo := 'LONG RAW';
+      Blob := 'BLOB';
+    end;
     SqlServer:
+    begin
       Memo := 'NTEXT';
+      Blob := 'BLOB';
+    end;
     PostgreSQL:
+    begin
       Memo := 'TEXT';
+      Blob := 'BYTEA';
+    end;
   end;
 
   case fBanco of
@@ -774,7 +795,7 @@ begin
   FTrocaSenhaFormMSG := TUCTrocaSenhaFormMSG.Create(nil);
   FResetPassword := TUCResetPassword.Create(nil);
   FLogControlFormMSG := TUCLogControlFormMSG.Create(nil);
-  fBancoDados := Firebird;
+  fBancoDados := PostgreSQL; // Firebird;
   fUsersLogged := TUCCadUserLoggedMSG.Create(nil);
   FPosition := poMainFormCenter;
   RetornaSqlBancoDados(fBancoDados, Type_Int, Type_Char, Type_VarChar, Type_Memo, Type_Blob);
